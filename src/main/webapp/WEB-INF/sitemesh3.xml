@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemesh>
+    <!-- 指明满足“/*”的页面，将被“/WEB-INF/layout/default.html”所装饰 -->
+  	<!--  <mapping decorator="/WEB-INF/layout/default.jsp"/>-->
+  	
+  	<!-- 滿足/admin下的路徑 會裝飾/WEB-INF/jsp/layout/default.jsp頁 -->
+    <mapping path="/admin/*" decorator="/WEB-INF/jsp/layout/default.jsp" />
+    
+    <!-- 指明满足“/exclude.jsp*”的页面，将被排除，不被装饰 -->
+    <mapping path="/text" exclue="true" />
+</sitemesh>
