@@ -13,13 +13,26 @@
 <link rel="stylesheet" href="../css/assets/css/font.css">
 <link rel="stylesheet" href="../css/assets/css/ready.css">
 <link rel="stylesheet" href="../css/assets/css/demo.css">
+<!-- js -->
+<script src="../css/assets/js/core/jquery.3.2.1.min.js"></script>
+<script src="../css/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="../css/assets/js/core/popper.min.js"></script>
+<script src="../css/assets/js/core/bootstrap.min.js"></script>
+<script src="../css/assets/js/plugin/chartist/chartist.min.js"></script>
+<script src="../css/assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
+<script src="../css/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script src="../css/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+<script src="../css/assets/js/plugin/jquery-mapael/jquery.mapael.min.js"></script>
+<script src="../css/assets/js/plugin/chart-circle/circles.min.js"></script>
+<script src="../css/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<script src="../css/assets/js/ready.min.js"></script>
 </head>
 <body>
 	<div class="wrapper">
 		<!-- head -->
 		<div class="main-header">
 			<div class="logo-header">
-				<a href="index.html" class="logo"> Ready Dashboard </a>
+				<a href="index.html" class="logo">配货管理中心</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button"
 					data-toggle="collapse" data-target="collapse"
 					aria-controls="sidebar" aria-expanded="false"
@@ -175,32 +188,32 @@
 						</div>
 					</div>
 				</div>
-				<ul class="nav">
-					<li class="nav-item active"><a href="index.html"> <i
+				<ul class="nav" id="left_nav">
+					<li class="nav-item active"><a href="../admin/welcome.htm"> <i
 							class="la la-dashboard"></i>
-							<p>Dashboard</p> <span class="badge badge-count">5</span>
+							<p>总览</p> <span class="badge badge-count">5</span>
 					</a></li>
-					<li class="nav-item"><a href="components.html"> <i
+					<li class="nav-item"><a href="../admin/components.htm"> <i
 							class="la la-table"></i>
-							<p>Components</p> <span class="badge badge-count">14</span>
+							<p>进度</p> <span class="badge badge-count">14</span>
 					</a></li>
-					<li class="nav-item"><a href="forms.html"> <i
+					<li class="nav-item"><a href="../admin/forms.htm"> <i
 							class="la la-keyboard-o"></i>
-							<p>Forms</p> <span class="badge badge-count">50</span>
+							<p>表</p> <span class="badge badge-count">50</span>
 					</a></li>
-					<li class="nav-item"><a href="tables.html"> <i
+					<li class="nav-item"><a href="../admin/tables.htm"> <i
 							class="la la-th"></i>
-							<p>Tables</p> <span class="badge badge-count">6</span>
+							<p>表格</p> <span class="badge badge-count">6</span>
 					</a></li>
-					<li class="nav-item"><a href="notifications.html"> <i
+					<li class="nav-item"><a href="../admin/notifications.htm"> <i
 							class="la la-bell"></i>
-							<p>Notifications</p> <span class="badge badge-success">3</span>
+							<p>待办事项</p> <span class="badge badge-success">3</span>
 					</a></li>
-					<li class="nav-item"><a href="typography.html"> <i
+					<li class="nav-item"><a href="../admin/typography.htm"> <i
 							class="la la-font"></i>
 							<p>Typography</p> <span class="badge badge-danger">25</span>
 					</a></li>
-					<li class="nav-item"><a href="icons.html"> <i
+					<li class="nav-item"><a href="../admin/icons.htm"> <i
 							class="la la-fonticons"></i>
 							<p>Icons</p>
 					</a></li>
@@ -247,25 +260,6 @@
 		</div>
 	</div>
 </body>
-<!-- js -->
-<script src="../css/assets/js/core/jquery.3.2.1.min.js"></script>
-<script
-	src="../css/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
-<script src="../css/assets/js/core/popper.min.js"></script>
-<script src="../css/assets/js/core/bootstrap.min.js"></script>
-<script src="../css/assets/js/plugin/chartist/chartist.min.js"></script>
-<script
-	src="../css/assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
-<script
-	src="../css/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
-<script
-	src="../css/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
-<script src="../css/assets/js/plugin/jquery-mapael/jquery.mapael.min.js"></script>
-<script
-	src="../css/assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
-<script src="../css/assets/js/plugin/chart-circle/circles.min.js"></script>
-<script
-	src="../css/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-<script src="../css/assets/js/ready.min.js"></script>
+<script src="../css/assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
 <script src="../css/assets/js/demo.js"></script>
 </html>

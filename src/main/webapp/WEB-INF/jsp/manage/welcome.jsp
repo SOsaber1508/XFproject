@@ -6,13 +6,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>配货大厅</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-	<!-- css -->
 </head>
 <body>
 <div class="main-panel">
 				<div class="content">
 					<div class="container-fluid">
-						<h4 class="page-title">Dashboard</h4>
+						<h4 class="page-title">总览</h4>
 						<div class="row">
 							<div class="col-md-3">
 								<div class="card card-stats card-warning">
@@ -185,7 +184,7 @@
 							<div class="col-md-9">
 								<div class="card">
 									<div class="card-header">
-										<h4 class="card-title">World Map</h4>
+										<h4 class="card-title">世界地图</h4>
 										<p class="card-category">
 										Map of the distribution of users around the world</p>
 									</div>
@@ -199,7 +198,6 @@
 								</div>
 							</div>
 						</div>
-						<div class="tlinks">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
 						<div class="row row-card-no-pd">
 							<div class="col-md-4">
 								<div class="card">

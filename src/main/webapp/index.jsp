@@ -9,7 +9,7 @@
 <html lang="en">
 <head>
 <base href="<%=basePath%>">
-<title>错误页</title>
+<title>欢迎页</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport"
 	content="user-scalable=no, width=device-width, initial-scale=1.0" />
