@@ -2,17 +2,28 @@ package com.fec.epreport.controller;
 
 
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.alibaba.fastjson.JSON;
+import com.fec.epreport.entity.User;
+import com.fec.epreport.service.ManageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.io.IOException;
+
 @Controller
 @RequestMapping(value = "/admin")
 public class ManageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static Logger logger = LoggerFactory.getLogger(ManageController.class);
+	@Autowired
+	ManageService manageService;
 
 	/**
 	 * zcy
@@ -84,4 +95,25 @@ public class ManageController extends HttpServlet {
 		   {
 			 return "manage/typography";  
 		   }
+
+
+	//管理登陆
+	//根据用户名查询用户信息
+	//不返回路径返回值
+	//@ResponseBody
+	@RequestMapping("/adminLand.htm")
+	public void adminLand(String user_name, String user_password, HttpSession hs, HttpServletResponse resp) throws IOException {
+		User user = manageService.selectByName(user_name);
+		String string="1";
+		if(user!=null){
+			if(user.getUser_password().equals(user_password)){
+				hs.setAttribute("username",user_name);
+				string="2";
+			}
+		}
+		String json = JSON.toJSONString(string);
+		resp.getWriter().write(json);
+
+	}
+
 }
