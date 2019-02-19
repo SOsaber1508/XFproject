@@ -1,10 +1,6 @@
 package com.fec.epreport.controller;
 
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.alibaba.fastjson.JSON;
 import com.fec.epreport.entity.User;
 import com.fec.epreport.service.ManageService;
@@ -14,7 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.apache.commons.codec.digest.DigestUtils;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @Controller
@@ -104,10 +104,13 @@ public class ManageController extends HttpServlet {
 	@RequestMapping("/adminLand.htm")
 	public void adminLand(String user_name, String user_password, HttpSession hs, HttpServletResponse resp) throws IOException {
 		User user = manageService.selectByName(user_name);
-		System.out.println(user);
+		String str = (String) hs.getAttribute("md5RandomKey");
 		String string="1";
 		if(user!=null){
-			if(user.getUser_password().equals(user_password)){
+			String strpwd = str + user.getUser_password();
+			String md5strpwd = DigestUtils.md5Hex(strpwd);
+
+			if(md5strpwd.equals(user_password)){
 				hs.setAttribute("username",user_name);
 				string="2";
 			}

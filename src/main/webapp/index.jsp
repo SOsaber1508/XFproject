@@ -1,14 +1,12 @@
-<%--<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	String path = request.getContextPath();
-	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-			+ path + "/";
-%>--%>
-
+<%@ page import="org.apache.commons.lang3.RandomStringUtils" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
 	String path = request.getContextPath();
+%>
+
+<%
+	String suijizifu=RandomStringUtils.randomAlphanumeric(10);
+	request.getSession().setAttribute("md5RandomKey", suijizifu);//产生随机数，和密码一起生成MD5
 %>
 <html lang="en">
 
@@ -76,6 +74,7 @@
 			fhi++;
 		};
 	</script>
+	<script type="text/javascript" src="css/my/js/md5.js"></script>
 </head>
 <body>
 
@@ -83,12 +82,12 @@
 <canvas class="cavs"></canvas>
 <div style="width:100%;text-align: center;margin: 0 auto;position: absolute;">
 	<!-- 登录 -->
-	<div id="windows1">
+	<div id="windows1" name="<%=suijizifu%>">
 		<div id="loginbox" >
 			<form action="" method="post" name="loginForm" id="loginForm" style="margin-top: 65px;">
 				<div class="control-group normal_text">
 					<h3 style="margin-top: 65px;">
-						<img src="css/login/logos.png" alt="Logos1" style="width: 50%;height: 20%;"/>
+						<img src="css/login/logos1.png" alt="Logos1" style="width: 65%;height: 11%;"/>
 					</h3>
 				</div>
 				<div class="control-group">
@@ -234,11 +233,17 @@
 	//服务器校验
 	function severCheck(){
 		if(check()){
+			var str = $("#windows1").attr("name");
+			var pwd = $("#password").val();
+			var strpwd = $("#windows1").attr("name")+ $("#password").val();
+			var md5strpwd = $.md5(strpwd);
+
 			$.ajax({
 				url:"/XFproject/admin/adminLand.htm",
 				type:"POST",
 				data:{"user_name":$("#loginname").val(),
-					"user_password":$("#password").val()
+					"user_password":md5strpwd
+					/*$("#password").val()*/
 				},
 				dataType:"json",
 				success:function(data) {

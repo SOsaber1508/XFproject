@@ -26,6 +26,7 @@
 <script src="../css/assets/js/plugin/chart-circle/circles.min.js"></script>
 <script src="../css/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 <script src="../css/assets/js/ready.min.js"></script>
+<script src="../css/my/js/default.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -150,7 +151,7 @@
 							<a class="dropdown-item" href="#"><i class="ti-settings"></i>
 								Account Setting</a>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#"><i class="fa fa-power-off"></i>
+							<a class="dropdown-item" href="#" id="Logout"><i class="fa fa-power-off"></i>
 								Logout</a>
 						</ul> <!-- /.dropdown-user --></li>
 				</ul>
