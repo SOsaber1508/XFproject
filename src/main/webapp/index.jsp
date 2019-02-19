@@ -27,7 +27,7 @@
 	<script src="css/js/jquery-1.7.2.js"></script>
 	<script src="css/login/js/bootstrap.min.js"></script>
 	<!-- 软键盘控件start -->
-	<link href="css/login/keypad/css/framework/form.css" rel="stylesheet" type="text/css"/>
+	<%--<link href="css/login/keypad/css/framework/form.css" rel="stylesheet" type="text/css"/>--%>
 	<!-- 软键盘控件end -->
 	<style type="text/css">
 		/*
@@ -85,15 +85,15 @@
 	<!-- 登录 -->
 	<div id="windows1">
 		<div id="loginbox" >
-			<form action="" method="post" name="loginForm" id="loginForm">
+			<form action="" method="post" name="loginForm" id="loginForm" style="margin-top: 65px;">
 				<div class="control-group normal_text">
-					<h3>
-						<img src="css/login/logo.png" alt="Logo" />
+					<h3 style="margin-top: 65px;">
+						<img src="css/login/logos.png" alt="Logos1" style="width: 50%;height: 20%;"/>
 					</h3>
 				</div>
 				<div class="control-group">
 					<div class="controls">
-						<div class="main_input_box">
+						<div class="main_input_box" style="margin-top: 80px;">
 							<span class="add-on bg_lg">
 							<i><img height="37" src="css/login/user.png" /></i>
 							</span><input type="text" name="loginname" id="loginname" value="" placeholder="请输入用户名" />
@@ -690,8 +690,8 @@
 <script type="text/javascript" src="css/js/jquery.cookie.js"></script>
 
 <!-- 软键盘控件start -->
-<script type="text/javascript" src="css/login/keypad/js/form/keypad.js"></script>
-<script type="text/javascript" src="css/login/keypad/js/framework.js"></script>
+<%--<script type="text/javascript" src="css/login/keypad/js/form/keypad.js"></script>
+<script type="text/javascript" src="css/login/keypad/js/framework.js"></script>--%>
 <!-- 软键盘控件end -->
 
 </body>

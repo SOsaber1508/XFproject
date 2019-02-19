@@ -104,6 +104,7 @@ public class ManageController extends HttpServlet {
 	@RequestMapping("/adminLand.htm")
 	public void adminLand(String user_name, String user_password, HttpSession hs, HttpServletResponse resp) throws IOException {
 		User user = manageService.selectByName(user_name);
+		System.out.println(user);
 		String string="1";
 		if(user!=null){
 			if(user.getUser_password().equals(user_password)){
