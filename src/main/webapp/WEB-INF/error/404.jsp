@@ -1,14 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2019/2/19
-  Time: 15:26
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html xmlns="http://www.w3.org/1999/xhtml">
-
-<head>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport"
           content="user-scalable=no, width=device-width, initial-scale=1.0" />
@@ -19,9 +17,9 @@
 
     <style type="text/css">
 
-        .head404{ width:580px; height:234px; margin:50px auto 0 auto; background:url(https://www.daixiaorui.com/Public/images/head404.png) no-repeat; }
+        .head404{ width:580px; height:234px; margin:50px auto 0 auto; background:url(<%=basePath%>css/my/images/head404.png) no-repeat; }
 
-        .txtbg404{ width:499px; height:169px; margin:10px auto 0 auto; background:url(https://www.daixiaorui.com/Public/images/txtbg404.png) no-repeat;}
+        .txtbg404{ width:499px; height:169px; margin:10px auto 0 auto; background:url(<%=basePath%>css/my/images/txtbg404.png) no-repeat;}
 
         .txtbg404 .txtbox{ width:390px; position:relative; top:30px; left:60px;color:#eee; font-size:13px;}
 
@@ -53,7 +51,7 @@
 
         <p>》<a style="cursor:pointer" onclick="history.back()">返回上一页面</a></p>
 
-        <p>》<a href="https://www.daixiaorui.com">返回网站首页</a></p>
+        <p>》<a href="<%=basePath%>index.jsp">返回网站首页</a></p>
 
     </div>
 
