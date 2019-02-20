@@ -235,8 +235,9 @@
 		if(check()){
 			var str = $("#windows1").attr("name");
 			var pwd = $("#password").val();
-			var strpwd = $("#windows1").attr("name")+ $("#password").val();
-			var md5strpwd = $.md5(strpwd);
+			var md5str = $.md5(str);
+			var md5pwd = $.md5(pwd);
+			var md5strpwd = md5str+ md5pwd;
 
 			$.ajax({
 				url:"/XFproject/admin/adminLand.htm",

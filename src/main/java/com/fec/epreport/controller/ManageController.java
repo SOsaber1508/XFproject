@@ -4,13 +4,13 @@ package com.fec.epreport.controller;
 import com.alibaba.fastjson.JSON;
 import com.fec.epreport.entity.User;
 import com.fec.epreport.service.ManageService;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.apache.commons.codec.digest.DigestUtils;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
@@ -107,8 +107,8 @@ public class ManageController extends HttpServlet {
 		String str = (String) hs.getAttribute("md5RandomKey");
 		String string="1";
 		if(user!=null){
-			String strpwd = str + user.getUser_password();
-			String md5strpwd = DigestUtils.md5Hex(strpwd);
+			String md5str = DigestUtils.md5Hex(str);
+			String md5strpwd = md5str+user.getUser_password();
 
 			if(md5strpwd.equals(user_password)){
 				hs.setAttribute("username",user_name);
@@ -117,7 +117,6 @@ public class ManageController extends HttpServlet {
 		}
 		String json = JSON.toJSONString(string);
 		resp.getWriter().write(json);
-
 	}
 
 }
