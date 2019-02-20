@@ -88,6 +88,7 @@ public class PureNetUtil {
 				if (sb.toString().length() == 0) {
 					return null;
 				}
+				//返回字符串
 				return sb.toString().substring(0,
 						sb.toString().length() - System.getProperty("line.separator").length());
 			}

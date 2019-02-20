@@ -177,7 +177,7 @@ $("#left_nav").find('li').eq(5).addClass("active");
 							</ul>
 						</nav>
 						<div class="copyright ml-auto">
-							2018, made with <i class="la la-heart heart text-danger"></i> by <a href="#">ThemeKita</a> - More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></div>				
+							2019, made with <i class="la la-heart heart text-danger"></i> by <a href="#">奈落落</a> - More Templates - Collect from <a href="https://tieba.baidu.com/f?fr=wwwt&kw=%E5%A5%88%E8%90%BD%E8%90%BD" title="奈落落" target="_blank">奈落落</a></div>				
 					</div>
 				</footer>
 			</div>
