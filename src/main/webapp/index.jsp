@@ -2,6 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
 	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
 
 <%
@@ -240,7 +242,7 @@
 			var md5strpwd = md5str+ md5pwd;
 
 			$.ajax({
-				url:"/epreport/admin/adminLand.htm",
+				url:"<%=basePath%>login/adminLand.htm",
 				type:"POST",
 				data:{"user_name":$("#loginname").val(),
 					"user_password":md5strpwd
@@ -258,7 +260,7 @@
 						showfh();
 						$("#loginname").focus();
 					} else{
-						self.location.href="/epreport/admin/welcome.htm";
+						self.location.href="<%=basePath%>admin/welcome.htm";
 					}
 
 				},
