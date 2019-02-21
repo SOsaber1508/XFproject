@@ -240,7 +240,7 @@
 			var md5strpwd = md5str+ md5pwd;
 
 			$.ajax({
-				url:"/XFproject/admin/adminLand.htm",
+				url:"/epreport/admin/adminLand.htm",
 				type:"POST",
 				data:{"user_name":$("#loginname").val(),
 					"user_password":md5strpwd
@@ -258,7 +258,7 @@
 						showfh();
 						$("#loginname").focus();
 					} else{
-						self.location.href="/XFproject/admin/welcome.htm";
+						self.location.href="/epreport/admin/welcome.htm";
 					}
 
 				},

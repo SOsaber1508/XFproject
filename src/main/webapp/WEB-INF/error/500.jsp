@@ -1,16 +1,16 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2019/2/19
-  Time: 15:27
-  To change this template use File | Settings | File Templates.
---%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>老司机动画网站访问出错500页面模板</title>
-    <link rel="stylesheet" type="text/css" href="../../css/my/css/500.css" />
+    <link rel="stylesheet" type="text/css" href="../css/my/css/500.css" />
 </head>
 
 <body style="background:#0186a7;">
@@ -19,7 +19,7 @@
 <div class="error_new_bg pr">
     <div class="error_new_content">
         <div class="error_new pa">
-            <div class="fl error_new_left"><img src="../../css/my/images/error.png"></div>
+            <div class="fl error_new_left"><img src="<%=basePath%>css/my/images/error.png"></div>
             <div class="fl error_new_right">
                 <div class="error_detail">
                     <p class="error_p_title">哎呦~ 老司机居然累倒了!</p>
@@ -28,7 +28,7 @@
                 </div>
 
                 <p class="error_new_right_btn pr">
-                    <a href="#" class="type-2 type-3">
+                    <a href="<%=basePath%>index.jsp" class="type-2 type-3">
                         <i> 返回首页</i>
                         <i> 返回首页 </i>
                         <i> 返回首页 </i>

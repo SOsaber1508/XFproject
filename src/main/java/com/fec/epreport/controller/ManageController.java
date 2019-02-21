@@ -109,7 +109,6 @@ public class ManageController extends HttpServlet {
 		if(user!=null){
 			String md5str = DigestUtils.md5Hex(str);
 			String md5strpwd = md5str+user.getUser_password();
-
 			if(md5strpwd.equals(user_password)){
 				hs.setAttribute("username",user_name);
 				string="2";

@@ -27,6 +27,7 @@
 <script src="../css/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 <script src="../css/assets/js/ready.min.js"></script>
 <script src="../css/my/js/default.js"></script>
+<script src="../css/my/js/echarts.js"></script>
 </head>
 <body>
 	<div class="wrapper">
