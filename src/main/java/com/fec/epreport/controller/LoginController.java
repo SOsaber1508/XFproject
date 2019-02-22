@@ -26,8 +26,9 @@ public class LoginController {
     //不返回路径返回值
     //@ResponseBody
     @RequestMapping("/adminLand.htm")
-    public void adminLand(String user_name, String user_password, HttpSession hs, HttpServletResponse resp) throws IOException {
+    public void adminLand(String user_name, String user_password, HttpSession hs, HttpServletResponse resp) throws Exception {
        // System.out.println("1");
+
         User user = manageService.selectByName(user_name);
         String str = (String) hs.getAttribute("md5RandomKey");
         String string="1";
@@ -49,6 +50,24 @@ public class LoginController {
         //清除session
         session.invalidate();
         String json = JSON.toJSONString("true");
+        resp.getWriter().write(json);
+    }
+    //管理员注册
+    @RequestMapping("/register.htm")
+    public void register(String user_name, String user_password, HttpSession hs, HttpServletResponse resp) throws Exception {
+
+        User user = manageService.selectByName(user_name);
+        String str = (String) hs.getAttribute("md5RandomKey");
+        String string="1";
+        if(user!=null){
+            String md5str = DigestUtils.md5Hex(str);
+            String md5strpwd = md5str+user.getUser_password();
+            if(md5strpwd.equals(user_password)){
+                hs.setAttribute("username",user_name);
+                string="2";
+            }
+        }
+        String json = JSON.toJSONString(string);
         resp.getWriter().write(json);
     }
 }

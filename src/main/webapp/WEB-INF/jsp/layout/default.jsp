@@ -151,14 +151,14 @@
 							<a class="dropdown-item" href="#"><i class="ti-user"></i> My
 								Profile</a>
 							<a class="dropdown-item" href="#"></i> My Balance</a>
-							<a class="dropdown-item" href="#"><i class="ti-email"></i>
-								Inbox</a>
+							<a class="dropdown-item" href="#" id="register"><i class="ti-email"></i>
+								注册</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#"><i class="ti-settings"></i>
 								Account Setting</a>
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#" id="Logout"><i class="fa fa-power-off"></i>
-								Logout</a>
+								退出登录</a>
 						</ul> <!-- /.dropdown-user --></li>
 				</ul>
 			</div>
@@ -174,8 +174,8 @@
 					</div>
 					<div class="info">
 						<a class="" data-toggle="collapse" href="#collapseExample"
-							aria-expanded="true"> <span> Hizrian <span
-								class="user-level">Administrator</span> <span class="caret"></span>
+							aria-expanded="true"> <span> 管理员: <span
+								class="user-level">${sessionScope.username}</span> <span class="caret"></span>
 						</span>
 						</a>
 						<div class="clearfix"></div>
