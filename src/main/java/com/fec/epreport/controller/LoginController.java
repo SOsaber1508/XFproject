@@ -55,19 +55,17 @@ public class LoginController {
     //管理员注册
     @RequestMapping("/register.htm")
     public void register(String user_name, String user_password, HttpSession hs, HttpServletResponse resp) throws Exception {
-
         User user = manageService.selectByName(user_name);
-        String str = (String) hs.getAttribute("md5RandomKey");
-        String string="1";
-        if(user!=null){
-            String md5str = DigestUtils.md5Hex(str);
-            String md5strpwd = md5str+user.getUser_password();
-            if(md5strpwd.equals(user_password)){
-                hs.setAttribute("username",user_name);
-                string="2";
+        String str="1";
+        if(user==null){
+            User user1 = new User(null,user_name,user_password,null,null,null,null);
+            int num = manageService.insertAUser(user1);
+            if(num==1){
+                str="2";
             }
         }
-        String json = JSON.toJSONString(string);
+        System.out.println(str);
+        String json = JSON.toJSONString(str);
         resp.getWriter().write(json);
     }
 }

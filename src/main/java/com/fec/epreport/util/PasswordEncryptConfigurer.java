@@ -13,7 +13,6 @@ public class PasswordEncryptConfigurer extends PropertyPlaceholderConfigurer {
         System.out.println("正在解密系统文件。。。");
         try {
             String JdPassword = props.getProperty("password");
-            System.out.println(JdPassword);
             String JdPasswords = null;
             if (JdPassword != null) {
                 //加密  password

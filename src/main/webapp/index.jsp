@@ -318,7 +318,7 @@
 		}else if(!reg.test(username)){
 			$("#loginname").tips({
 				side : 2,
-				msg : '用户名不符合要求（字母开头，4-9位）',
+				msg : '用户名不符合要求（字母开头，5-9位）',
 				bg : '#AE81FF',
 				time : 3
 			});
@@ -360,7 +360,7 @@
 		}else if(!reg1.test($("#loginname").val())){
 			$("#loginname").tips({
 				side : 2,
-				msg : '用户名不符合要求（字母开头，4-9位）',
+				msg : '用户名不符合要求（字母开头，5-9位）',
 				bg : '#AE81FF',
 				time : 3
 			});

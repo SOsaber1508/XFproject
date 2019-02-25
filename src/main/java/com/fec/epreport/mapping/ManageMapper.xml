@@ -7,5 +7,8 @@
     <select id="selectByName" resultMap="BaseResultMap">
         select * from admin_user where user_name=#{user_name}
     </select>
+    <insert id="insertAUser" parameterType="com.fec.epreport.entity.User">
+        insert into admin_user values(null,#{user_name},#{user_password},null,null,null,null)
+    </insert>
 
 </mapper>

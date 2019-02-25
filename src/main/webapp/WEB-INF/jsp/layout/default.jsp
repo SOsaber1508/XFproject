@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="../css/assets/css/font.css">
 <link rel="stylesheet" href="../css/assets/css/ready.css">
 <link rel="stylesheet" href="../css/assets/css/demo.css">
+<link href="../css/my/css/toastr.css" rel="stylesheet" />
 <!-- js -->
 <script src="../css/assets/js/core/jquery.3.2.1.min.js"></script>
 <script src="../css/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
@@ -33,6 +34,7 @@
 <script src="../css/assets/js/ready.min.js"></script>
 <script src="../css/my/js/default.js"></script>
 <script src="../css/my/js/echarts.js"></script>
+<script src="../css/my/js/toastr.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -243,29 +245,116 @@
 			<div class="modal-content">
 				<div class="modal-header bg-primary">
 					<h6 class="modal-title">
-						<i class="la la-frown-o"></i> Under Development
+						<i class="la la-frown-o"></i> 注册用户：
 					</h6>
 					<button type="button" class="close" data-dismiss="modal"
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
 				</div>
-				<div class="modal-body text-center">
-					<p>
-						Currently the pro version of the <b>Ready Dashboard</b> Bootstrap
-						is in progress development
-					</p>
-					<p>
-						<b>We'll let you know when it's done</b>
-					</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">Close</button>
-				</div>
+				<form class="form-horizontal">
+					<div class="modal-body text-center">
+
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+							<div class="col-sm-11">
+								<input type="text" class="form-control" id="inputEmail3" placeholder="username">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+								<div class="col-sm-11">
+									<input type="password" class="form-control" id="inputPassword3" placeholder="password">
+								</div>
+						</div>
+					</div>
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10"> </div>
+						</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-default" onclick="register()">注册</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
+	<script type="text/javascript" src="../css/my/js/md5.js"></script>
+	<script type="text/javascript">
+
+		//失去焦点用户名
+		$("#inputEmail3").blur(function () {
+			var username = $(this).val();
+			var reg = /^[a-zA-Z][a-zA-Z0-9]{4,9}$/;
+				if(username==""||username==null){
+					alert("用户名不得为空");
+				}else if(!reg.test(username)){
+					alert("用户名不符合要求（字母开头，5-9位）");
+				}
+		});
+		//失去焦点密码
+		$("#inputPassword3").blur(function () {
+				var password = $(this).val();
+				var reg = /^[a-zA-Z0-9]{5,10}$/;
+				if(password==""||password==null){
+					alert("密码不得为空");
+				}else if(!reg.test(password)){
+					alert("密丶码不符合要求（字母或数字 6-11位）");
+				}
+		});
+
+		function check() {
+			var reg1 = /^[a-zA-Z][a-zA-Z0-9]{4,9}$/;
+					if ($("#inputEmail3").val() == "") {
+						alert("用户名不得为空");
+						return false;
+					}else if(!reg1.test($("#inputEmail3").val())){
+						alert("用户名不符合要求（字母开头，5-9位）");
+						return false;
+					}
+					var reg2 = /^[a-zA-Z0-9]{5,10}$/;
+					if ($("#inputPassword3").val() == "") {
+						alert("密码不得为空");
+						return false;
+					}else if (!reg2.test($("#inputPassword3").val())){
+						alert("密丶码不符合要求（字母或数字 6-11位）");
+						return false;
+					}
+			return true;
+		}
+
+
+		function register() {
+		if(check()){
+			var une = $("#inputEmail3").val();
+			var pwd = $("#inputPassword3").val();
+			var md5pwd = $.md5(pwd);
+			$.ajax({
+				url:"<%=basePath%>login/register.htm",
+				type:"POST",
+				data:{"user_name":une,
+				"user_password":md5pwd },
+				dataType:"json",
+				success:function(data) {
+				if(data==1){
+					alert("用户已存在，注册失败！！！")
+				} else if (data==2) {
+					alert("注册成功！！！")
+				}
+
+				},
+				error:function () {
+					alert("请求失败");
+				},
+				complete:function () {
+					//alert("请求成功与否，都会执行");
+				}
+			});
+		}else {
+
+		}
+		}
+	</script>
 </body>
 <script src="../css/assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
 <script src="../css/assets/js/demo.js"></script>
