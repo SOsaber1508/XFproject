@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 @RequestMapping(value = "/login")
@@ -55,10 +57,12 @@ public class LoginController {
     //管理员注册
     @RequestMapping("/register.htm")
     public void register(String user_name, String user_password, HttpSession hs, HttpServletResponse resp) throws Exception {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+        String user_creationtime = df.format(new Date());// new Date()为获取当前系统时间
         User user = manageService.selectByName(user_name);
         String str="1";
         if(user==null){
-            User user1 = new User(null,user_name,user_password,null,null,null,null);
+            User user1 = new User(null,user_name,user_password,null,null,null,null,user_creationtime,null);
             int num = manageService.insertAUser(user1);
             if(num==1){
                 str="2";
@@ -75,7 +79,7 @@ public class LoginController {
         User user = manageService.selectByName(user_name);
         String str="1";
         if(user.getUser_password().equals(user_password)){
-            User user1 = new User(null,user_name,user_upassword,null,null,null,null);
+            User user1 = new User(null,user_name,user_upassword,null,null,null,null,null,null);
             int num = manageService.updatePassword(user1);
             if(num==1){
                 str="2";

@@ -8,11 +8,13 @@ public class User {
     private String user_phonenumber;
     private String user_idnumber;
     private String user_wechatnumber;
+    private String user_creationtime;
+    private String user_modificationtime;
 
     public User() {
     }
 
-    public User(Integer user_id, String user_name, String user_password, String user_realname, String user_phonenumber, String user_idnumber, String user_wechatnumber) {
+    public User(Integer user_id, String user_name, String user_password, String user_realname, String user_phonenumber, String user_idnumber, String user_wechatnumber, String user_creationtime, String user_modificationtime) {
         this.user_id = user_id;
         this.user_name = user_name;
         this.user_password = user_password;
@@ -20,6 +22,8 @@ public class User {
         this.user_phonenumber = user_phonenumber;
         this.user_idnumber = user_idnumber;
         this.user_wechatnumber = user_wechatnumber;
+        this.user_creationtime = user_creationtime;
+        this.user_modificationtime = user_modificationtime;
     }
 
     public Integer getUser_id() {
@@ -78,6 +82,22 @@ public class User {
         this.user_wechatnumber = user_wechatnumber;
     }
 
+    public String getUser_creationtime() {
+        return user_creationtime;
+    }
+
+    public void setUser_creationtime(String user_creationtime) {
+        this.user_creationtime = user_creationtime;
+    }
+
+    public String getUser_modificationtime() {
+        return user_modificationtime;
+    }
+
+    public void setUser_modificationtime(String user_modificationtime) {
+        this.user_modificationtime = user_modificationtime;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -88,6 +108,8 @@ public class User {
                 ", user_phonenumber='" + user_phonenumber + '\'' +
                 ", user_idnumber='" + user_idnumber + '\'' +
                 ", user_wechatnumber='" + user_wechatnumber + '\'' +
+                ", user_creationtime='" + user_creationtime + '\'' +
+                ", user_modificationtime='" + user_modificationtime + '\'' +
                 '}';
     }
 }

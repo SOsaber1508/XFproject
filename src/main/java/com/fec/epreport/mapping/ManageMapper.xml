@@ -8,7 +8,7 @@
         select * from admin_user where user_name=#{user_name}
     </select>
     <insert id="insertAUser" parameterType="com.fec.epreport.entity.User">
-        insert into admin_user values(null,#{user_name},#{user_password},null,null,null,null)
+        insert into admin_user values(null,#{user_name},#{user_password},null,null,null,null,#{user_creationtime},null)
     </insert>
     <update id="updatePassword" parameterType="com.fec.epreport.entity.User">
         update admin_user set user_password = #{user_password} where user_name = #{user_name}
