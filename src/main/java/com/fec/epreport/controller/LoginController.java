@@ -68,4 +68,20 @@ public class LoginController {
         String json = JSON.toJSONString(str);
         resp.getWriter().write(json);
     }
+    //管理员修改密码
+    @RequestMapping("/updatePassword.htm")
+    public void updatePassword(String user_password, String user_upassword, HttpSession hs, HttpServletResponse resp) throws Exception {
+        String user_name = (String) hs.getAttribute("username");
+        User user = manageService.selectByName(user_name);
+        String str="1";
+        if(user.getUser_password().equals(user_password)){
+            User user1 = new User(null,user_name,user_upassword,null,null,null,null);
+            int num = manageService.updatePassword(user1);
+            if(num==1){
+                str="2";
+            }
+        }
+        String json = JSON.toJSONString(str);
+        resp.getWriter().write(json);
+    }
 }

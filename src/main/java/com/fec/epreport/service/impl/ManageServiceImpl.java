@@ -33,4 +33,9 @@ public class ManageServiceImpl implements ManageService {
         return manageDao.insertAUser(user);
     }
 
+    @Override
+    public int updatePassword(User user) {
+        return manageDao.updatePassword(user);
+    }
+
 }

@@ -35,6 +35,7 @@
 <script src="../css/my/js/default.js"></script>
 <script src="../css/my/js/echarts.js"></script>
 <script src="../css/my/js/toastr.js"></script>
+<script src="../css/my/layer/layer.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -150,7 +151,7 @@
 								</div>
 							</li>
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#"><i class="ti-user"></i> My
+							<%--<a class="dropdown-item" href="#"><i class="ti-user"></i> My
 								Profile</a>
 							<a class="dropdown-item" href="#"></i> My Balance</a>
 							<a class="dropdown-item" href="#" id="register"><i class="ti-email"></i>
@@ -158,7 +159,7 @@
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" href="#"><i class="ti-settings"></i>
 								Account Setting</a>
-							<div class="dropdown-divider"></div>
+							<div class="dropdown-divider"></div>--%>
 							<a class="dropdown-item" href="#" id="Logout"><i class="fa fa-power-off"></i>
 								退出登录</a>
 						</ul> <!-- /.dropdown-user --></li>
@@ -185,13 +186,13 @@
 						<div class="collapse in" id="collapseExample" aria-expanded="true"
 							style="">
 							<ul class="nav">
-								<li><a href="#profile"> <span class="link-collapse">My
+								<%--<li><a href="#profile"> <span class="link-collapse">My
 											Profile</span>
 								</a></li>
 								<li><a href="#edit"> <span class="link-collapse">Edit
 											Profile</span>
-								</a></li>
-								<li><a href="#settings"> <span class="link-collapse">Settings</span>
+								</a></li>--%>
+								<li><a href="#" data-toggle="modal" data-target="#Updatepassword"> <span class="link-collapse">修改密码</span>
 								</a></li>
 							</ul>
 						</div>
@@ -229,7 +230,7 @@
 					<li class="nav-item update-pro">
 						<button data-toggle="modal" data-target="#modalUpdate">
 							<i class="la la-hand-pointer-o"></i>
-							<p>Update To Pro</p>
+							<p>注册用户</p>
 						</button>
 					</li>
 				</ul>
@@ -279,7 +280,60 @@
 			</div>
 		</div>
 	</div>
+
+	<!-- 修改密码 -->
+	<div class="modal fade" id="Updatepassword" tabindex="-1" role="dialog"
+		aria-labelledby="modalUpdatePro" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header bg-primary">
+					<h6 class="modal-title">
+						<i class="la la-frown-o"></i> 修改密码：
+					</h6>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<form class="form-horizontal">
+					<div class="modal-body text-center">
+
+						<div class="form-group">
+							<label for="inputPassword1" class="col-sm-5 control-label">原密码：</label>
+							<div class="col-sm-11">
+								<input type="password" class="form-control" id="inputPassword1" placeholder="password">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword2" class="col-sm-5 control-label">新密码：</label>
+							<div class="col-sm-11">
+								<input type="password" class="form-control" id="inputPassword2" placeholder="password">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword4" class="col-sm-5 control-label">再次输入新密码：</label>
+							<div class="col-sm-11">
+								<input type="password" class="form-control" id="inputPassword4" placeholder="password">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10"> </div>
+					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-default" onclick="Updatepassword()">修改密码</button>
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+
+
+
 	<script type="text/javascript" src="../css/my/js/md5.js"></script>
+
 	<script type="text/javascript">
 
 		//失去焦点用户名
@@ -287,7 +341,8 @@
 			var username = $(this).val();
 			var reg = /^[a-zA-Z][a-zA-Z0-9]{4,9}$/;
 				if(username==""||username==null){
-					alert("用户名不得为空");
+                    // layer.msg('用户名不得为空');
+                    alert("用户名不得为空");
 				}else if(!reg.test(username)){
 					alert("用户名不符合要求（字母开头，5-9位）");
 				}
@@ -303,28 +358,29 @@
 				}
 		});
 
+
+		//注册
+		function register() {
+		//注册点击判断
 		function check() {
 			var reg1 = /^[a-zA-Z][a-zA-Z0-9]{4,9}$/;
-					if ($("#inputEmail3").val() == "") {
-						alert("用户名不得为空");
-						return false;
-					}else if(!reg1.test($("#inputEmail3").val())){
-						alert("用户名不符合要求（字母开头，5-9位）");
-						return false;
-					}
-					var reg2 = /^[a-zA-Z0-9]{5,10}$/;
-					if ($("#inputPassword3").val() == "") {
-						alert("密码不得为空");
-						return false;
-					}else if (!reg2.test($("#inputPassword3").val())){
-						alert("密丶码不符合要求（字母或数字 6-11位）");
-						return false;
-					}
+			if ($("#inputEmail3").val() == "") {
+				alert("用户名不得为空");
+				return false;
+			}else if(!reg1.test($("#inputEmail3").val())){
+				alert("用户名不符合要求（字母开头，5-9位）");
+				return false;
+			}
+			var reg2 = /^[a-zA-Z0-9]{5,10}$/;
+			if ($("#inputPassword3").val() == "") {
+				alert("密码不得为空");
+				return false;
+			}else if (!reg2.test($("#inputPassword3").val())){
+				alert("密丶码不符合要求（字母或数字 6-11位）");
+				return false;
+			}
 			return true;
 		}
-
-
-		function register() {
 		if(check()){
 			var une = $("#inputEmail3").val();
 			var pwd = $("#inputPassword3").val();
@@ -350,10 +406,94 @@
 					//alert("请求成功与否，都会执行");
 				}
 			});
-		}else {
+			}else {
 
+			}
 		}
+
+		//失去焦点判断密码
+		$("#inputPassword1").blur(function () {
+			var password = $(this).val();
+			var reg = /^[a-zA-Z0-9]{5,10}$/;
+			if(password==""||password==null){
+				alert("密码不得为空");
+			}else if(!reg.test(password)){
+				alert("密丶码不符合要求（字母或数字 6-11位）");
+			}
+		});
+		$("#inputPassword2").blur(function () {
+			var password = $(this).val();
+			var reg = /^[a-zA-Z0-9]{5,10}$/;
+			if(password==""||password==null){
+				alert("密码不得为空");
+			}else if(!reg.test(password)){
+				alert("密丶码不符合要求（字母或数字 6-11位）");
+			}
+		});
+		$("#inputPassword4").blur(function () {
+			var password = $(this).val();
+			var password1 = $("#inputPassword2").val();
+
+			if(password!=password1){
+				alert("两次密码输入不一致");
+			}
+		});
+
+		//修改密码
+		function Updatepassword() {
+			//修改密码点击判断
+			function check() {
+				var reg = /^[a-zA-Z0-9]{5,10}$/;
+				if ($("#inputPassword1").val() == "") {
+					alert("密码不得为空");
+					return false;
+				}else if(!reg.test($("#inputPassword1").val())){
+					alert("密丶码不符合要求（字母或数字 6-11位）");
+					return false;
+				}
+				if ($("#inputPassword2").val() == "") {
+					alert("密码不得为空");
+					return false;
+				}else if (!reg.test($("#inputPassword2").val())){
+					alert("密丶码不符合要求（字母或数字 6-11位）");
+					return false;
+				}
+				if($("#inputPassword2").val()!=$("#inputPassword4").val()){
+					alert("两次密码输入不一致");
+					return false;
+				}
+				return true;
+			}
+			if(check()){
+				var pwd = $("#inputPassword1").val();
+				var upwd = $("#inputPassword4").val();
+				var md5pwd = $.md5(pwd);
+				var md5upwd = $.md5(upwd);
+				$.ajax({
+					url:"<%=basePath%>login/updatePassword.htm",
+					type:"POST",
+					data:{"user_password":md5pwd,
+					"user_upassword":md5upwd },
+					dataType:"json",
+					success:function(data) {
+						if(data==1){
+						alert("原密码输入有误，修改失败！！！")
+						} else if (data==2) {
+						alert("修改成功！！！")
+						}
+					},
+					error:function () {
+						alert("请求失败");
+					},
+					complete:function () {
+						//alert("请求成功与否，都会执行");
+					}
+				});
+			}else {
+
+			}
 		}
+
 	</script>
 </body>
 <script src="../css/assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>

@@ -7,4 +7,6 @@ public interface ManageDao {
     public User selectByName(String user_name);
     //添加加用户
     public int insertAUser(User user);
+    //修改密码
+    public int updatePassword(User user);
 }
