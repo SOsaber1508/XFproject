@@ -24,7 +24,7 @@ public class IdcardUtil {
         // 身份证识别url
         String idcardIdentificate = "https://aip.baidubce.com/rest/2.0/ocr/v1/idcard";
         // 本地图片路径
-        String filePath = "#####本地文件路径#####";
+        String filePath = "d:/demo-card-5.png";
         try {
             byte[] imgData = FileUtil.readFileByBytes(filePath);
             String imgStr = Base64Util.encode(imgData);
@@ -34,7 +34,7 @@ public class IdcardUtil {
             /**
              * 线上环境access_token有过期时间， 客户端可自行缓存，过期后重新获取。
              */
-            String accessToken = "#####调用鉴权接口获取的token#####";
+            String accessToken = "24.af8e6bb0b02c0baf5f6c4707b6e2fda5.2592000.1553765130.282335-15632473";
             String result = BaiduHttpUtil.post(idcardIdentificate, accessToken, params);
             System.out.println(result);
         } catch (Exception e) {
