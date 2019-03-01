@@ -50,7 +50,12 @@
 	<!--登录拦截器-->
 	<mvc:interceptors>
 		<mvc:interceptor>
-			<mvc:mapping path="/**"/>
+			<!-- 要拦截的路径 -->
+			<mvc:mapping path="/admin/**"/>
+			<!-- 放行的路径 -->
+			<mvc:exclude-mapping path="/interface/**"/> 
+			<!-- 测试接口 -->
+			<mvc:exclude-mapping path="/test/**"/> 
 			<bean class="com.fec.epreport.util.LoginInterceptor"/>
 		</mvc:interceptor>
 	</mvc:interceptors>
