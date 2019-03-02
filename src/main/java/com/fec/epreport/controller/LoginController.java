@@ -30,7 +30,7 @@ public class LoginController {
     @RequestMapping("/adminLand.htm")
     public void adminLand(String user_name, String user_password, HttpSession hs, HttpServletResponse resp) throws Exception {
        // System.out.println("1");
-
+        System.out.println("dzdds");
         User user = manageService.selectByName(user_name);
         String str = (String) hs.getAttribute("md5RandomKey");
         String string="1";

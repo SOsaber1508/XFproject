@@ -10,7 +10,6 @@ import java.util.Properties;
 public class PasswordEncryptConfigurer extends PropertyPlaceholderConfigurer {
     @Override
     protected void processProperties(ConfigurableListableBeanFactory beanFactory, Properties props)throws BeansException {
-        System.out.println("正在解密系统文件。。。");
         try {
             String JdPassword = props.getProperty("password");
             String JdPasswords = null;

@@ -240,7 +240,7 @@
 			var md5str = $.md5(str);
 			var md5pwd = $.md5(pwd);
 			var md5strpwd = md5str+ md5pwd;
-
+			alert("asdsd")
 			$.ajax({
 				url:"<%=basePath%>login/adminLand.htm",
 				type:"POST",

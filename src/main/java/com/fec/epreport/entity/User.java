@@ -1,5 +1,5 @@
 package com.fec.epreport.entity;
-//用户表
+//管理员表
 public class User {
     private Integer user_id;
     private String user_name;
