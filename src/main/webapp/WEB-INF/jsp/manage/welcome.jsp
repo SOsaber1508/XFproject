@@ -243,7 +243,7 @@
 															}
 														},
 														legend: {
-															data:['订单量'/*,'降水量','平均温度'*/]
+															data:['货源时间'/*,'降水量','平均温度'*/]
 														},
 														xAxis: [
 															{
@@ -257,7 +257,7 @@
 														yAxis: [
 															{
 																type: 'value',
-																name: '订单量',
+																name: '货源时间',
 																min: 0,
 																max: 200,
 																interval: 50,
@@ -278,7 +278,7 @@
 														],
 														series: [
 															{
-																name:'订单量',
+																name:'货源时间',
 																type:'bar',
 																data:[data.yue1, data.yue2, data.yue3, data.yue4, data.yue5, data.yue6,
 																	data.yue7, data.yue8, data.yue9, data.yue10, data.yue11, data.yue12]
@@ -344,7 +344,7 @@
 														}
 													},
 													legend: {
-														data:['订单量'/*,'降水量','平均温度'*/]
+														data:['货源时间'/*,'降水量','平均温度'*/]
 													},
 													xAxis: [
 														{
@@ -359,12 +359,12 @@
 													yAxis: [
 														{
 															type: 'value',
-															name: '订单量',
+															name: '货源时间',
 															min: 0,
 															max: 200,
 															interval: 50,
 															axisLabel: {
-																formatter: '{value} 单'
+																formatter:'{value}'
 															}
 														},
 														{
@@ -380,7 +380,7 @@
 													],
 													series: [
 														{
-															name:'订单量',
+															name:'货源时间',
 															type:'bar',
 															data:[data.yue1, data.yue2, data.yue3, data.yue4, data.yue5, data.yue6,
 																data.yue7, data.yue8, data.yue9, data.yue10, data.yue11, data.yue12]
