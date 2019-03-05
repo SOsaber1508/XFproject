@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/admin")
@@ -25,9 +28,11 @@ public class ManageController extends HttpServlet {
 	 * @return
 	 */
 	   @RequestMapping(value = "/welcome.htm", method = RequestMethod.GET)
-	   public String welcome( )
+	   public String welcome(HttpServletRequest req)
 	   {
-		 return "manage/welcome";  
+		List<Map<String,Object>> list = manageService.selectGoodsTime();
+	   	req.setAttribute("year",list);
+		return "manage/welcome";
 	   }
 	   /**
 		 * zcy

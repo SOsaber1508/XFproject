@@ -1,15 +1,14 @@
 package com.fec.epreport.service.impl;
 
 
-
-
-
 import com.fec.epreport.dao.ManageDao;
 import com.fec.epreport.entity.User;
+import com.fec.epreport.service.ManageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.fec.epreport.service.ManageService;
+import java.util.List;
+import java.util.Map;
 
 
 @Service("manageService")  
@@ -36,6 +35,17 @@ public class ManageServiceImpl implements ManageService {
     @Override
     public int updatePassword(User user) {
         return manageDao.updatePassword(user);
+    }
+    //货源信息
+    // 查询一年中的各月份的订单量
+    @Override
+    public Map selectGoodsOrderNumber(String date) {
+        return manageDao.selectGoodsOrderNumber(date);
+    }
+    //查询所有数据的时间的年份
+    @Override
+    public List<Map<String,Object>> selectGoodsTime() {
+        return manageDao.selectGoodsTime();
     }
 
 }

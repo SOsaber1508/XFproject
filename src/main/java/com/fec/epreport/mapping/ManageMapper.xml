@@ -13,4 +13,10 @@
     <update id="updatePassword" parameterType="com.fec.epreport.entity.User">
         update admin_user set user_password = #{user_password} where user_name = #{user_name}
     </update>
+    <select id="selectGoodsOrderNumber" parameterType="java.lang.String" resultType="java.util.HashMap">
+        select count(*) as order_quantity from doods where goods_time like #{dates};
+    </select>
+    <select id="selectGoodsTime" resultType="java.util.HashMap">
+        select DISTINCT YEAR (goods_time) as year from doods
+    </select>
 </mapper>

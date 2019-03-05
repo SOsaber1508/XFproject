@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
 @Controller
 @RequestMapping(value = "/login")
@@ -30,7 +30,6 @@ public class LoginController {
     @RequestMapping("/adminLand.htm")
     public void adminLand(String user_name, String user_password, HttpSession hs, HttpServletResponse resp) throws Exception {
        // System.out.println("1");
-        System.out.println("dzdds");
         User user = manageService.selectByName(user_name);
         String str = (String) hs.getAttribute("md5RandomKey");
         String string="1";
@@ -86,6 +85,42 @@ public class LoginController {
             }
         }
         String json = JSON.toJSONString(str);
+        resp.getWriter().write(json);
+    }
+    //货源信息
+    // 查询一年中的各月份的订单量
+    @RequestMapping("/selectGoodsOrderNumber.htm")
+    public void selectGoodsOrderNumber(String year,HttpServletResponse resp) throws Exception {
+        //请求解决乱码
+        resp.setContentType("text/html;charset=utf-8");
+
+        List<String> list = new ArrayList<>();
+        list.add(year+"-01-%");
+        list.add(year+"-02-%");
+        list.add(year+"-03-%");
+        list.add(year+"-04-%");
+        list.add(year+"-05-%");
+        list.add(year+"-06-%");
+        list.add(year+"-07-%");
+        list.add(year+"-08-%");
+        list.add(year+"-09-%");
+        list.add(year+"-10-%");
+        list.add(year+"-11-%");
+        list.add(year+"-12-%");
+        Map<String,Object> map = new HashMap<>();
+        //jsona;
+        //['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+        //jsonb;
+        //[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
+        int i=1;
+        for (String list1:list) {
+            Map<String,Object> map1 = manageService.selectGoodsOrderNumber(list1);
+            map.put("yue"+i,map1.get("order_quantity"));
+            i++;
+        }
+        /*data.jsona
+        data.jsonb*/
+        String json = JSON.toJSONString(map);
         resp.getWriter().write(json);
     }
 }
