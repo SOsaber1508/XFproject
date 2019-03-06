@@ -139,18 +139,18 @@
 					<li class="nav-item dropdown"><a
 						class="dropdown-toggle profile-pic" data-toggle="dropdown"
 						href="#" aria-expanded="false"> <img
-							src="../css/assets/img/profile.jpg" alt="user-img" width="36"
-							class="img-circle"><span>Hizrian</span></span>
+							src="../css/assets/img/profile.jpeg" alt="user-img" width="36"
+							class="img-circle"><span>${sessionScope.username}</span></span>
 					</a>
 						<ul class="dropdown-menu dropdown-user">
 							<li>
 								<div class="user-box">
 									<div class="u-img">
-										<img src="../css/assets/img/profile.jpg" alt="user">
+										<img src="../css/assets/img/profile.jpeg" alt="user">
 									</div>
 									<div class="u-text">
-										<h4>Hizrian</h4>
-										<p class="text-muted">hello@themekita.com</p>
+										<h4>${sessionScope.username}</h4>
+										<p class="text-muted">管理员</p>
 										<a href="profile.html"
 											class="btn btn-rounded btn-danger btn-sm">View Profile</a>
 									</div>
@@ -179,7 +179,7 @@
 			<div class="scrollbar-inner sidebar-wrapper">
 				<div class="user">
 					<div class="photo">
-						<img src="../css/assets/img/profile.jpg">
+						<img src="../css/assets/img/profile.jpeg">
 					</div>
 					<div class="info">
 						<a class="" data-toggle="collapse" href="#collapseExample"
@@ -501,9 +501,10 @@
 		}
 
 	</script>
+	<script src="../css/assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
+    <script src="../css/assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
+	<script src="../css/assets/js/demo.js"></script>
+
 </body>
-<script src="../css/assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
-<script src="../css/assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
-<script src="../css/assets/js/demo.js"></script>
 
 </html>

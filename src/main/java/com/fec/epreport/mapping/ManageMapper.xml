@@ -35,10 +35,10 @@
         select count(*) as goods_number from doods
     </select>
     <select id="selectVehiceStateNumber" resultType="java.util.HashMap">
-        select count(*) as vehice_statenumber from vehice where vehice_state = '是'
+        select count(*) as vehice_statenumber from vehice where vehice_state = '0'
     </select>
     <select id="selectDoodsStateNumber" resultType="java.util.HashMap">
-        select count(*) as goods_statenumber from doods where doods_releasestatus = '是'
+        select count(*) as goods_statenumber from doods where doods_releasestatus = '0'
     </select>
 
 
