@@ -41,7 +41,7 @@
 <script src="../css/my/js/echarts.js"></script>
 <script src="../css/my/js/toastr.js"></script>
 <script src="../css/my/layer/layer.js"></script>
-
+<script src="../css/assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -502,8 +502,5 @@
 
 	</script>
 </body>
-<script src="../css/assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
-<script src="../css/assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
-<script src="../css/assets/js/demo.js"></script>
-
+<!--  <script src="../css/assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>-->
 </html>

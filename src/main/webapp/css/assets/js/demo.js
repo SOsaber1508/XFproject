@@ -16,8 +16,8 @@ Circles.create({
 
 $.notify({
 	icon: 'la la-bell',
-	title: 'Bootstrap notify',
-	message: '欢迎您管理员！by-配货中心后台',
+	title: '配货管理中心',
+	message: '欢迎您管理员！by--开发部奈落',
 },{
 	type: 'success',
 	placement: {
@@ -37,7 +37,9 @@ Chartist.Pie('#monthlyChart', {
 	Chartist.plugins.tooltip()
 	]
 });
-
+/**
+ * 
+ 
 // trafficChart
 var chart = new Chartist.Line('#trafficChart', {
 	labels: [1, 2, 3, 4, 5, 6, 7],
@@ -53,7 +55,7 @@ var chart = new Chartist.Line('#trafficChart', {
 	low: 0,
 	height: "245px",
 });
-
+*/
 // salesChart
 var dataSales = {
 	labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],

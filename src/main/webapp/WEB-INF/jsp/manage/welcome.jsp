@@ -11,7 +11,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<title>配货大厅</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-	<script src="<%=basePath%>css/my/js/echarts.js"></script>
+	<!--  <script src="<%=basePath%>css/my/js/echarts.js"></script>-->
 </head>
 <body>
 <div class="main-panel">
@@ -745,5 +745,7 @@
 					</div>
 				</footer>
 			</div>
+<script src="<%=basePath%>css/assets/js/demo.js"></script>
 </body>
+
 </html>
