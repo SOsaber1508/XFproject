@@ -16,6 +16,18 @@ public interface ManageService {
     //货源信息
     // 查询一年中的各月份的订单量
     public Map selectGoodsOrderNumber(String date);
-    //查询所有数据的时间的年份
-    public List<Map<String,Object>> selectGoodsTime();
+    //查询车源货源所有数据的时间的年份
+    public List<Map<String,Object>> selectGoodsVehiceTime();
+    //车源信息 查询一年中的各月份的订单量
+    public Map<String,Object> selectVehiceOrderNumber(String dates);
+    //查询用户数量
+    public Map<String,Object> selectUserNumber();
+    //查询车源数量
+    public Map<String,Object> selectVehiceNumber();
+    //查询货源源数量
+    public Map<String,Object> selectDoodsNumber();
+    //查询车源完成数量
+    public Map<String,Object> selectVehiceStateNumber();
+    //查询货源完成源数量
+    public Map<String,Object> selectDoodsStateNumber();
 }

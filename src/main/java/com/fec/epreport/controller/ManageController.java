@@ -28,10 +28,24 @@ public class ManageController extends HttpServlet {
 	 * @return
 	 */
 	   @RequestMapping(value = "/welcome.htm", method = RequestMethod.GET)
-	   public String welcome(HttpServletRequest req)
-	   {
-		List<Map<String,Object>> list = manageService.selectGoodsTime();
-	   	req.setAttribute("year",list);
+	   public String welcome(HttpServletRequest req) {
+		   try {
+			   List<Map<String,Object>> list = manageService.selectGoodsVehiceTime();
+			   req.setAttribute("year",list);
+			   Map<String,Object> map = manageService.selectUserNumber();
+			   Map<String,Object> map1 = manageService.selectVehiceNumber();
+			   Map<String,Object> map2 = manageService.selectDoodsNumber();
+			   Map<String,Object> map3 = manageService.selectVehiceStateNumber();
+			   Map<String,Object> map4 = manageService.selectDoodsStateNumber();
+			   req.setAttribute("userNumber",map.get("user_number"));
+			   req.setAttribute("vehiceNumber",map1.get("vehice_number"));
+			   req.setAttribute("doodsNumber",map2.get("goods_number"));
+			   req.setAttribute("vehiceStateNumber",map3.get("vehice_statenumber"));
+			   req.setAttribute("doodsStateNumber",map4.get("goods_statenumber"));
+		   } catch (Exception e) {
+			   logger.error(e.getLocalizedMessage(), e);
+			   e.printStackTrace();
+		   }
 		return "manage/welcome";
 	   }
 	   /**

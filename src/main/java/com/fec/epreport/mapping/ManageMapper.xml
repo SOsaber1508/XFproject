@@ -16,7 +16,35 @@
     <select id="selectGoodsOrderNumber" parameterType="java.lang.String" resultType="java.util.HashMap">
         select count(*) as order_quantity from doods where goods_time like #{dates}
     </select>
-    <select id="selectGoodsTime" resultType="java.util.HashMap">
-        select DISTINCT YEAR(goods_time) as year from doods
+    <select id="selectGoodsVehiceTime" resultType="java.util.HashMap">
+        select DISTINCT YEAR(goods_time) as year from (select * FROM(
+            select goods_time FROM doods
+            union all
+            select vehice_releasetime FROM vehice) as t)as s ORDER BY year DESC
     </select>
+    <select id="selectVehiceOrderNumber" parameterType="java.lang.String" resultType="java.util.HashMap">
+        select count(*) as order_vehice from vehice where vehice_releasetime like #{dates}
+    </select>
+    <select id="selectUserNumber" resultType="java.util.HashMap">
+        select count(*) as user_number from user
+    </select>
+    <select id="selectVehiceNumber" resultType="java.util.HashMap">
+        select count(*) as vehice_number from vehice
+    </select>
+    <select id="selectDoodsNumber" resultType="java.util.HashMap">
+        select count(*) as goods_number from doods
+    </select>
+    <select id="selectVehiceStateNumber" resultType="java.util.HashMap">
+        select count(*) as vehice_statenumber from vehice where vehice_state = '是'
+    </select>
+    <select id="selectDoodsStateNumber" resultType="java.util.HashMap">
+        select count(*) as goods_statenumber from doods where doods_releasestatus = '是'
+    </select>
+
+
+
+
+
+
+
 </mapper>

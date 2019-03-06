@@ -127,18 +127,14 @@ public class LoginController {
             list.add(year+"-11-%");
             list.add(year+"-12-%");
             Map<String,Object> map = new HashMap<>();
-            //jsona;
-            //['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
-            //jsonb;
-            //[2.0, 4.9, 7.0, 23.2, 25.6, 76.7, 135.6, 162.2, 32.6, 20.0, 6.4, 3.3]
             int i=1;
             for (String list1:list) {
                 Map<String,Object> map1 = manageService.selectGoodsOrderNumber(list1);
-                map.put("yue"+i,map1.get("order_quantity"));
+                Map<String,Object> map2 = manageService.selectVehiceOrderNumber(list1);
+                map.put("Goods"+i,map1.get("order_quantity"));
+                map.put("Vehice"+i,map2.get("order_vehice"));
                 i++;
             }
-        /*data.jsona
-        data.jsonb*/
             String json = JSON.toJSONString(map);
             resp.getWriter().write(json);
         } catch (Exception e) {

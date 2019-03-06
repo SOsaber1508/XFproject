@@ -25,17 +25,23 @@
 <script src="../css/assets/js/core/popper.min.js"></script>
 <script src="../css/assets/js/core/bootstrap.min.js"></script>
 <script src="../css/assets/js/plugin/chartist/chartist.min.js"></script>
-<script src="../css/assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
+
 <script src="../css/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+
 <script src="../css/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+
 <script src="../css/assets/js/plugin/jquery-mapael/jquery.mapael.min.js"></script>
+
 <script src="../css/assets/js/plugin/chart-circle/circles.min.js"></script>
+
 <script src="../css/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+
 <script src="../css/assets/js/ready.min.js"></script>
 <script src="../css/my/js/default.js"></script>
 <script src="../css/my/js/echarts.js"></script>
 <script src="../css/my/js/toastr.js"></script>
 <script src="../css/my/layer/layer.js"></script>
+
 </head>
 <body>
 	<div class="wrapper">
@@ -497,5 +503,7 @@
 	</script>
 </body>
 <script src="../css/assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>
+<script src="../css/assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
 <script src="../css/assets/js/demo.js"></script>
+
 </html>

@@ -66,12 +66,79 @@ public class ManageServiceImpl implements ManageService {
         return map;
 
     }
-    //查询所有数据的时间的年份
+    //查询车源货源所有数据的时间的年份
     @Override
-    public List<Map<String,Object>> selectGoodsTime() {
+    public List<Map<String,Object>> selectGoodsVehiceTime() {
         List<Map<String,Object>> map = null;
         try {
-            map=manageDao.selectGoodsTime();
+            map=manageDao.selectGoodsVehiceTime();
+        } catch (DataAccessException d) {
+            logger.info("查询数据库错误："+d.getLocalizedMessage());
+        }
+        return map;
+    }
+
+    //车源信息 查询一年中的各月份的订单量
+    @Override
+    public Map<String, Object> selectVehiceOrderNumber(String dates) {
+        Map map = null;
+        try {
+            map=manageDao.selectVehiceOrderNumber(dates);
+        } catch (DataAccessException d) {
+            logger.info("查询数据库错误："+d.getLocalizedMessage());
+        }
+        return map;
+    }
+    //查询用户数量
+    @Override
+    public Map<String, Object> selectUserNumber() {
+        Map map = null;
+        try {
+            map=manageDao.selectUserNumber();
+        } catch (DataAccessException d) {
+            logger.info("查询数据库错误："+d.getLocalizedMessage());
+        }
+        return map;
+    }
+    //查询车源数量
+    @Override
+    public Map<String, Object> selectVehiceNumber() {
+        Map map = null;
+        try {
+            map=manageDao.selectVehiceNumber();
+        } catch (DataAccessException d) {
+            logger.info("查询数据库错误："+d.getLocalizedMessage());
+        }
+        return map;
+    }
+    //查询货源源数量
+    @Override
+    public Map<String, Object> selectDoodsNumber() {
+        Map map = null;
+        try {
+            map=manageDao.selectDoodsNumber();
+        } catch (DataAccessException d) {
+            logger.info("查询数据库错误："+d.getLocalizedMessage());
+        }
+        return map;
+    }
+    //查询车源完成数量
+    @Override
+    public Map<String, Object> selectVehiceStateNumber() {
+        Map map = null;
+        try {
+            map=manageDao.selectVehiceStateNumber();
+        } catch (DataAccessException d) {
+            logger.info("查询数据库错误："+d.getLocalizedMessage());
+        }
+        return map;
+    }
+    //查询货源完成源数量
+    @Override
+    public Map<String, Object> selectDoodsStateNumber() {
+        Map map = null;
+        try {
+            map=manageDao.selectDoodsStateNumber();
         } catch (DataAccessException d) {
             logger.info("查询数据库错误："+d.getLocalizedMessage());
         }

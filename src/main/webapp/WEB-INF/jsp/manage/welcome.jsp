@@ -19,7 +19,7 @@
 					<div class="container-fluid">
 						<h4 class="page-title">总览</h4>
 						<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<div class="card card-stats card-warning">
 									<div class="card-body ">
 										<div class="row">
@@ -30,15 +30,15 @@
 											</div>
 											<div class="col-7 d-flex align-items-center">
 												<div class="numbers">
-													<p class="card-category">Visitors</p>
-													<h4 class="card-title">1,294</h4>
+													<p class="card-category">用户数量</p>
+													<h4 class="card-title">${requestScope.userNumber}</h4>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<div class="card card-stats card-success">
 									<div class="card-body ">
 										<div class="row">
@@ -49,15 +49,15 @@
 											</div>
 											<div class="col-7 d-flex align-items-center">
 												<div class="numbers">
-													<p class="card-category">Sales</p>
-													<h4 class="card-title">$ 1,345</h4>
+													<p class="card-category">车源总量</p>
+													<h4 class="card-title">${requestScope.vehiceNumber}</h4>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<div class="card card-stats card-danger">
 									<div class="card-body">
 										<div class="row">
@@ -68,15 +68,15 @@
 											</div>
 											<div class="col-7 d-flex align-items-center">
 												<div class="numbers">
-													<p class="card-category">Subscribers</p>
-													<h4 class="card-title">1303</h4>
+													<p class="card-category">货源总量</p>
+													<h4 class="card-title">${requestScope.doodsNumber}</h4>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-2">
 								<div class="card card-stats card-primary">
 									<div class="card-body ">
 										<div class="row">
@@ -87,8 +87,27 @@
 											</div>
 											<div class="col-7 d-flex align-items-center">
 												<div class="numbers">
-													<p class="card-category">Order</p>
-													<h4 class="card-title">576</h4>
+													<p class="card-category">车源完成数量</p>
+													<h4 class="card-title">${requestScope.vehiceStateNumber}</h4>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="card card-stats card-default">
+									<div class="card-body ">
+										<div class="row">
+											<div class="col-5">
+												<div class="icon-big text-center">
+													<i class="la la-bar-chart text-success"></i>
+												</div>
+											</div>
+											<div class="col-7 d-flex align-items-center">
+												<div class="numbers">
+													<p class="card-category">货源完成数量</p>
+													<h4 class="card-title">${requestScope.doodsStateNumber}</h4>
 												</div>
 											</div>
 										</div>
@@ -243,7 +262,7 @@
 															}
 														},
 														legend: {
-															data:['货源时间'/*,'降水量','平均温度'*/]
+															data:['货源发布数量','车源发布数量'/*,'平均温度'*/]
 														},
 														xAxis: [
 															{
@@ -257,7 +276,7 @@
 														yAxis: [
 															{
 																type: 'value',
-																name: '货源时间',
+																name: '发布数量',
 																min: 0,
 																max: 200,
 																interval: 50,
@@ -278,16 +297,18 @@
 														],
 														series: [
 															{
-																name:'货源时间',
+																name:'货源发布数量',
 																type:'bar',
-																data:[data.yue1, data.yue2, data.yue3, data.yue4, data.yue5, data.yue6,
-																	data.yue7, data.yue8, data.yue9, data.yue10, data.yue11, data.yue12]
+																data:[data.Goods1, data.Goods2, data.Goods3, data.Goods4, data.Goods5, data.Goods6,
+																	data.Goods7, data.Goods8, data.Goods9, data.Goods10, data.Goods11, data.Goods12]
+																//json.y
 															},
-															/*{
-                                                                name:'降水量',
-                                                                type:'bar',
-                                                                data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
-                                                            },*/
+															{
+																name:'车源发布数量',
+																type:'bar',
+																data:[data.Vehice1, data.Vehice2, data.Vehice3, data.Vehice4, data.Vehice5, data.Vehice6,
+																	data.Vehice7, data.Vehice8, data.Vehice9, data.Vehice10, data.Vehice11, data.Vehice12]
+															},
 															/*{
                                                                 name:'平均温度',
                                                                 type:'line',
@@ -344,7 +365,7 @@
 														}
 													},
 													legend: {
-														data:['货源时间'/*,'降水量','平均温度'*/]
+														data:['货源发布数量','车源发布数量'/*,'平均温度'*/]
 													},
 													xAxis: [
 														{
@@ -359,7 +380,7 @@
 													yAxis: [
 														{
 															type: 'value',
-															name: '货源时间',
+															name: '发布数量',
 															min: 0,
 															max: 200,
 															interval: 50,
@@ -380,17 +401,18 @@
 													],
 													series: [
 														{
-															name:'货源时间',
+															name:'货源发布数量',
 															type:'bar',
-															data:[data.yue1, data.yue2, data.yue3, data.yue4, data.yue5, data.yue6,
-																data.yue7, data.yue8, data.yue9, data.yue10, data.yue11, data.yue12]
+															data:[data.Goods1, data.Goods2, data.Goods3, data.Goods4, data.Goods5, data.Goods6,
+																data.Goods7, data.Goods8, data.Goods9, data.Goods10, data.Goods11, data.Goods12]
 															//json.y
 														},
-														/*{
-															name:'降水量',
+														{
+															name:'车源发布数量',
 															type:'bar',
-															data:[2.6, 5.9, 9.0, 26.4, 28.7, 70.7, 175.6, 182.2, 48.7, 18.8, 6.0, 2.3]
-														},*/
+															data:[data.Vehice1, data.Vehice2, data.Vehice3, data.Vehice4, data.Vehice5, data.Vehice6,
+																data.Vehice7, data.Vehice8, data.Vehice9, data.Vehice10, data.Vehice11, data.Vehice12]
+														},
 														/*{
 															name:'平均温度',
 															type:'line',
