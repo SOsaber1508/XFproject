@@ -1,12 +1,14 @@
-package com.fec.epreport.dao;
+package com.fec.epreport.service.impl;
  
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.fec.epreport.service.impl.JedisClient;
+import com.fec.epreport.dao.JedisClient;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
- 
+/*一般第一次访问的时候先从数据库读取数据，然后将数据写入到缓存，再次访问同一内容的时候就从缓存中读取，如果缓存中没有则从数据库中读取
+	所以我们添加缓存逻辑的时候，从数据库中将内容读取出来之后，先set入缓存，然后再从缓存中添加读取行为，如果缓存为空则从数据库中进行读取
+*/
 public class JedisClientSingle implements JedisClient{
      
     @Autowired
@@ -38,7 +40,7 @@ public class JedisClientSingle implements JedisClient{
         jedis.close();
         return string;
     }
- 
+   //存储hashMap
     @Override
     public long hset(String hkey, String key, String value) {
         Jedis jedis = jedisPool.getResource();

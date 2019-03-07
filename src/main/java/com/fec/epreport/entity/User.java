@@ -1,7 +1,11 @@
 package com.fec.epreport.entity;
+
+import java.io.Serializable;
+
 //管理员表
-public class User {
-    private Integer user_id;
+public class User implements Serializable {
+	private static final long serialVersionUID = 1L;
+	private Integer user_id;
     private String user_name;
     private String user_password;
     private String user_realname;

@@ -1,6 +1,8 @@
 package com.fec.epreport.util;
 
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,7 +15,7 @@ import java.util.Map;
  * 获取token类
  */
 public class BaiduTokenUtil {
-
+	private static Logger logger = LoggerFactory.getLogger(BaiduTokenUtil.class);
     /**
      * 获取权限token
      * @return 返回示例：
@@ -23,23 +25,24 @@ public class BaiduTokenUtil {
      * }
      */
 	
+	//测试方法
+//	public static void main(String arg[]) {
+//        // 官网获取的 API Key 更新为你注册的
+//        String clientId = "9nVQ1W2m4u8K4Ij8YgZAAqXe";
+//        // 官网获取的 Secret Key 更新为你注册的
+//        String clientSecret = "cuf4b6kNozXxZhmMdk0gvVrFYF9QbvO3";
+//        System.out.println("开始了");
+//        getAuth(clientId, clientSecret);
+//    }
 	
-	public static void main(String arg[]) {
+	//暂时用的奈落的相关密钥
+    public static String getAuth() {
         // 官网获取的 API Key 更新为你注册的
         String clientId = "9nVQ1W2m4u8K4Ij8YgZAAqXe";
         // 官网获取的 Secret Key 更新为你注册的
         String clientSecret = "cuf4b6kNozXxZhmMdk0gvVrFYF9QbvO3";
-        System.out.println("开始了");
-        getAuth(clientId, clientSecret);
+        return getAuth(clientId, clientSecret);
     }
-	
-//    public static String getAuth() {
-//        // 官网获取的 API Key 更新为你注册的
-//        String clientId = "b1844144d95647859c0300e8e8442950";
-//        // 官网获取的 Secret Key 更新为你注册的
-//        String clientSecret = "d1bb547468a04d60b9d6ba2d4fcf393d";
-//        return getAuth(clientId, clientSecret);
-//    }
 
     /**
      * 获取API访问token
@@ -48,6 +51,7 @@ public class BaiduTokenUtil {
      * @param sk - 百度云官网获取的 Securet Key
      * @return assess_token 示例：
      * "24.460da4889caad24cccdb1fea17221975.2592000.1491995545.282335-1234567"
+     * 24.5fd076f0ab70f3924704c74b11874655.2592000.1554367191.282335-15632473
      */
     public static String getAuth(String ak, String sk) {
         // 获取token地址
@@ -84,9 +88,11 @@ public class BaiduTokenUtil {
             System.err.println("result:" + result);
             JSONObject jsonObject = new JSONObject(result);
             String access_token = jsonObject.getString("access_token");
+            logger.info("access_token+++++++++++++++"+access_token);
             return access_token;
         } catch (Exception e) {
             System.err.printf("获取token失败！");
+            logger.error(e.getLocalizedMessage(), e);
             e.printStackTrace(System.err);
         }
         return null;
