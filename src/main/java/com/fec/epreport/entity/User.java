@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 //管理员表
 public class User implements Serializable {
+    //序列化实例化
 	private static final long serialVersionUID = 1L;
 	private Integer user_id;
     private String user_name;

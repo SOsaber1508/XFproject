@@ -1,6 +1,11 @@
 package com.fec.epreport.entity;
+
+import java.io.Serializable;
+
 //发布消息
-public class Release {
+public class Release implements Serializable {
+    //序列化实例化
+    private static final long serialVersionUID = 1L;
     private Integer release_id;
     private Integer release_user_id;
     private Integer release_goods_id;

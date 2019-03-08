@@ -1,6 +1,11 @@
 package com.fec.epreport.entity;
+
+import java.io.Serializable;
+
 //我的消息
-public class News {
+public class News implements Serializable {
+    //序列化实例化
+    private static final long serialVersionUID = 1L;
     private Integer news_id;
     private Integer news_user_id;
     private Integer news_user_ids;

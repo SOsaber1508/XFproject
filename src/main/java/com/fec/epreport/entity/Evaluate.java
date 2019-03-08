@@ -1,6 +1,11 @@
 package com.fec.epreport.entity;
+
+import java.io.Serializable;
+
 //评价
-public class Evaluate {
+public class Evaluate implements Serializable {
+    //序列化实例化
+    private static final long serialVersionUID = 1L;
     private Integer evaluate_id;
     private Integer evaluate_user_id;
     private Integer evaluate_user_ids;

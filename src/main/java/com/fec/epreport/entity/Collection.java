@@ -1,6 +1,11 @@
 package com.fec.epreport.entity;
+
+import java.io.Serializable;
+
 //收藏
-public class Collection {
+public class Collection implements Serializable {
+    //序列化实例化
+    private static final long serialVersionUID = 1L;
     private Integer collection_id;
     private Integer collection_user_id;
     private Integer collection_user_ids;

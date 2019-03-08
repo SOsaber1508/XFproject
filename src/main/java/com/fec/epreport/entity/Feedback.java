@@ -1,6 +1,11 @@
 package com.fec.epreport.entity;
+
+import java.io.Serializable;
+
 //意见反馈
-public class Feedback {
+public class Feedback implements Serializable {
+    //序列化实例化
+    private static final long serialVersionUID = 1L;
     private Integer feedback_id;
     private Integer feedback_user_id;
     private String feedback_type;

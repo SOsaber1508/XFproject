@@ -1,6 +1,11 @@
 package com.fec.epreport.entity;
+
+import java.io.Serializable;
+
 //浏览
-public class Browse {
+public class Browse implements Serializable {
+    //序列化实例化
+    private static final long serialVersionUID = 1L;
     private Integer browse_id;
     private Integer browse_user_id;
     private Integer browse_user_ids;

@@ -1,6 +1,11 @@
 package com.fec.epreport.entity;
+
+import java.io.Serializable;
+
 //车源信息
-public class Vehice {
+public class Vehice implements Serializable {
+    //序列化实例化
+    private static final long serialVersionUID = 1L;
     private Integer vehicle_id;
     private String vehicle_start;
     private String vehicle_end;

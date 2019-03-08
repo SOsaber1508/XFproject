@@ -1,6 +1,11 @@
 package com.fec.epreport.entity;
+
+import java.io.Serializable;
+
 //通话记录
-public class Conversation {
+public class Conversation implements Serializable {
+    //序列化实例化
+    private static final long serialVersionUID = 1L;
     private Integer conversation_id;
     private Integer conversation_user_id;
     private Integer conversation_user_ids;

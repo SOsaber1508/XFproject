@@ -1,6 +1,11 @@
 package com.fec.epreport.entity;
+
+import java.io.Serializable;
+
 //货源信息
-public class Doods {
+public class Doods implements Serializable {
+    //序列化实例化
+    private static final long serialVersionUID = 1L;
     private Integer goods_id;
     private String goods_vehicletype;
     private Double goods_length;
