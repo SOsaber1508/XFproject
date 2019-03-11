@@ -1,4 +1,4 @@
-package com.fec.epreport.util;
+package com.fec.epreport.util.baidu;
 
 import org.json.JSONObject;
 import org.slf4j.Logger;

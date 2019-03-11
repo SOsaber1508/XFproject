@@ -1,4 +1,4 @@
-package com.fec.epreport.util;
+package com.fec.epreport.util.baidu;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;

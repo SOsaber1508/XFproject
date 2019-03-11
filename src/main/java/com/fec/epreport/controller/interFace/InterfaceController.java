@@ -35,9 +35,6 @@ import net.sf.json.JSONArray;
 @RequestMapping(value = "/interface")
 public class InterfaceController {
 	@Autowired
-	private ManageService manageService;
-
-	@Autowired
 	private RedisService redisService;
 
 	private static Logger logger = LoggerFactory.getLogger(InterfaceController.class);
@@ -167,6 +164,7 @@ public class InterfaceController {
 //		//转到doGet中做处理
 //		doGet(request, response);
 //	}
+	//测试redis
 	@RequestMapping(value = "/ceshi4.htm", method = RequestMethod.GET)
 	public void ceshi4() {
 		redisService.getUserList(0);
