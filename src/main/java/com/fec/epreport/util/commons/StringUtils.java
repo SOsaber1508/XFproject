@@ -1,4 +1,4 @@
-package com.fec.epreport.util;
+package com.fec.epreport.util.commons;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;

@@ -59,6 +59,8 @@
 			<mvc:exclude-mapping path="/interface/**" />
 			<!-- 百度身份证接口 -->
 			<mvc:exclude-mapping path="/baiduIDcard/**" />
+			<!-- 百度身份证接口 -->
+			<mvc:exclude-mapping path="/interface2/**" />
 			<!-- 测试接口 -->
 			<mvc:exclude-mapping path="/test/**" />
 			<bean class="com.fec.epreport.util.LoginInterceptor" />

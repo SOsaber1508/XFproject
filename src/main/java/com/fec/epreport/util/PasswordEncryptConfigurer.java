@@ -5,6 +5,8 @@ import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;
 import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
 
+import com.fec.epreport.util.baidu.EncryptUtil;
+
 import java.util.Properties;
 
 public class PasswordEncryptConfigurer extends PropertyPlaceholderConfigurer {

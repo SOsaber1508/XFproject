@@ -1,4 +1,4 @@
-package com.fec.epreport.util;
+package com.fec.epreport.util.baidu;
 
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;

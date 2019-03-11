@@ -3,8 +3,8 @@ package com.fec.epreport.service.impl;
 import com.fec.epreport.dao.JedisClient;
 import com.fec.epreport.entity.User;
 import com.fec.epreport.service.RedisService;
-import com.fec.epreport.util.JsonUtils;
-import com.fec.epreport.util.StringUtils;
+import com.fec.epreport.util.commons.JsonUtils;
+import com.fec.epreport.util.commons.StringUtils;
 
 import net.sf.json.JSONObject;
 
@@ -13,7 +13,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service("redisService")

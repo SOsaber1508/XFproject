@@ -1,4 +1,4 @@
-package com.fec.epreport.util;
+package com.fec.epreport.util.baidu;
 
 /**
  * Base64 工具类

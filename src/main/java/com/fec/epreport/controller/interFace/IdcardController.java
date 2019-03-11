@@ -22,11 +22,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fec.epreport.dao.JedisClient;
-import com.fec.epreport.util.Base64Util;
-import com.fec.epreport.util.FileUtil;
-import com.fec.epreport.util.StringUtils;
 import com.fec.epreport.util.baidu.BaiduHttpUtil;
+import com.fec.epreport.util.baidu.Base64Util;
 import com.fec.epreport.util.baidu.TokenUtil;
+import com.fec.epreport.util.commons.FileUtil;
+import com.fec.epreport.util.commons.StringUtils;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -92,10 +92,13 @@ public class IdcardController {
 			resultmap.put("Birthday", param.getJSONObject("出生").getString("words"));// 出生
 			resultmap.put("IDcard", param.getJSONObject("公民身份号码").getString("words"));// 公民身份号码
 			resultmap.put("Sex", param.getJSONObject("性别").getString("words"));// 性别
+			resultmap.put("code", "200");// 性别
 			System.out.println(resultmap);
 			// net.sf.json.JSONObject 将Map转换为JSON方法
 			json = JSONObject.fromObject(resultmap);
+			
 		} catch (Exception e) {
+			json.put("code", "201");
 			logger.error(e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}

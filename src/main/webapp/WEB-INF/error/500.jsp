@@ -30,9 +30,6 @@
                 <p class="error_new_right_btn pr">
                     <a href="<%=basePath%>index.jsp" class="type-2 type-3">
                         <i> 返回首页</i>
-                        <i> 返回首页 </i>
-                        <i> 返回首页 </i>
-                        <i> 返回首页 </i>
                     </a>
                 </p>
             </div>

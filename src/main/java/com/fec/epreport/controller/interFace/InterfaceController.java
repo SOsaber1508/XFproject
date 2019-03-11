@@ -3,6 +3,7 @@ package com.fec.epreport.controller.interFace;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -13,8 +14,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -25,9 +28,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.alibaba.fastjson.JSONObject;
-import com.fec.epreport.service.ManageService;
 import com.fec.epreport.service.RedisService;
-import com.fec.epreport.util.PureNetUtil;
+import com.fec.epreport.util.commons.PureNetUtil;
 
 import net.sf.json.JSONArray;
 
@@ -109,13 +111,20 @@ public class InterfaceController {
 	 */
 	// get测试接口
 	@ResponseBody
-	@RequestMapping(value = "/ceshi2.htm", method = RequestMethod.GET)
+	@RequestMapping(value = "/ceshi2.htm", method = RequestMethod.POST)
 	public JSONObject ceshi2() {
 		JSONObject params = new JSONObject();
 		params.put("name", "zcy");
 		params.put("passward", "qaz006");
 		params.put("nickname", "zzzz");
 		return params;
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/get.htm", method = RequestMethod.GET)
+	public void get() {
+		String result = PureNetUtil.get("http://192.168.3.45:8083/epreport//interface/get.htm");
+		System.out.println(result);
 	}
 
 	/**
@@ -164,10 +173,39 @@ public class InterfaceController {
 //		//转到doGet中做处理
 //		doGet(request, response);
 //	}
-	//测试redis
+	// 测试redis
 	@RequestMapping(value = "/ceshi4.htm", method = RequestMethod.GET)
 	public void ceshi4() {
 		redisService.getUserList(0);
 	}
 
+	@RequestMapping(value = "/getLiu.htm", method = { RequestMethod.POST, RequestMethod.GET }, produces = {
+			"text/html;charset=UTF-8" })
+	public ModelAndView test(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+System.out.println("进来了");
+		InputStream inputStream;
+		String json = "";
+		String res = "";
+		// 获得响应流，获得输入对象
+		try {
+			inputStream = request.getInputStream();
+			// 建立接收流缓冲，准备处理
+			StringBuffer requestBuffer = new StringBuffer();
+			BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "utf-8"));
+			// 读入流，并转换成字符串
+			String readLine;
+			while ((readLine = reader.readLine()) != null) {
+				requestBuffer.append(readLine).append("\n");
+			}
+			reader.close();
+			json = requestBuffer.toString();
+			// logger.error("RequestInfo:" + xmlInfo);
+		} catch (Exception e) {
+			// logger.error("接收同步消息失败"+e);
+		}
+		System.out.println("request json:" + json);
+//mav.setViewName("redirect:../../pic/index.html");
+		return null;
+	}
 }
