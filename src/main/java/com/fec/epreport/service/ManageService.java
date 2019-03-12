@@ -2,6 +2,7 @@ package com.fec.epreport.service;
 
 
 import com.fec.epreport.entity.User;
+import com.fec.epreport.entity.Users;
 
 import java.util.List;
 import java.util.Map;
@@ -30,4 +31,6 @@ public interface ManageService {
     public Map<String,Object> selectVehiceStateNumber();
     //查询货源完成源数量
     public Map<String,Object> selectDoodsStateNumber();
+    //查询所有的用户信息
+    public List<Users> selectAllusers();
 }

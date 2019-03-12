@@ -568,34 +568,111 @@
 											<thead>
 												<tr>
 													<th scope="col">#</th>
-													<th scope="col">First</th>
-													<th scope="col">Last</th>
-													<th scope="col">Handle</th>
+													<th scope="col">姓名</th>
+													<th scope="col">性别</th>
+													<th scope="col">身份证号</th>
+													<th scope="col">住址</th>
 												</tr>
 											</thead>
-											<tbody>
-												<tr>
-													<td>1</td>
-													<td>Mark</td>
-													<td>Otto</td>
-													<td>@mdo</td>
-												</tr>
-												<tr>
-													<td>2</td>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-												</tr>
-												<tr>
+											<tbody id="users">
+												<c:forEach items="${userlist.list}" var="user" varStatus="status">
+													<tr>
+														<td>${user.user_id}</td>
+														<td>${user.user_name}</td>
+														<td>${user.user_sex}</td>
+														<td>${user.user_idnumber}</td>
+														<td>${user.user_address}</td>
+													</tr>
+												</c:forEach>
+												<%--<tr>
 													<td>3</td>
 													<td colspan="2">Larry the Bird</td>
 													<td>@twitter</td>
-												</tr>
+													<td>@mdo</td>
+												</tr>--%>
 											</tbody>
 										</table>
+										<div align="center" id="fenye">
+											<p id="fenye1">
+												<span>
+												当前 ${userlist.pageNum }页,总${userlist.pages } 页,总${userlist.total } 条记录 <input type="hidden" name="page" id="page" />
+												</span>
+											</p>
+											<span id="fenye2">
+												<a href="javascript:" onclick="toPage(1)">第一页</a>
+											</span>
+
+											<span id="fenye3">
+												<c:if test="${userlist.hasPreviousPage }">
+													<a href="javascript:" onclick="toPage(${userlist.pageNum-1})">上一页</a>
+												</c:if>
+											</span>
+											<span id="fenye4">
+												<c:if test="${userlist.hasNextPage}">
+													<a href="javascript:" onclick="toPage(${userlist.pageNum+1})">下一页</a>
+												</c:if>
+											</span>
+											<span id="fenye5">
+												<a href="javascript:" onclick="toPage(${userlist.pages})">最后页</a>
+											</span>
+
+										</div>
+
 									</div>
+
 								</div>
 							</div>
+
+							<script type="text/javascript">
+								function toPage(yema) {
+									$.ajax({
+										url:"<%=basePath%>demo/demo.htm",
+										type:"post",
+										data:{"pageNo":yema},
+										dataType:"json",
+										success:function (data) {
+											/*console.log(data.pageNum);
+											console.log(data.pages);*/
+											//console.log(data.list);
+											$("#users").html("");
+											for(var i = 0;i<data.list.length;i++){
+												var users = $("<tr>\n" +
+														"<td>"+data.list[i].user_id+"</td>" +
+														"<td>"+data.list[i].user_name+"</td>" +
+														"<td>"+data.list[i].user_sex+"</td>" +
+														"<td>"+data.list[i].user_idnumber+"</td>" +
+														"<td>"+data.list[i].user_address+"</td>" +
+														"</tr>");
+												$("#users").append(users);
+											}
+											$("#fenye3").html("");
+											if (data.hasPreviousPage) {
+												var fenye3 = $("<a href=\"javascript:\" onclick=\"toPage("+(data.pageNum-1)+")\">上一页</a>");
+												$("#fenye3").append(fenye3);
+											}
+											$("#fenye4").html("");
+											if (data.hasNextPage) {
+												var fenye4 = $("<a href=\"javascript:\" onclick=\"toPage("+(data.pageNum+1)+")\">下一页</a>");
+												$("#fenye4").append(fenye4);
+											}
+											$("#fenye5").html("");
+											var fenye5 = $("<a href=\"javascript:\" onclick=\"toPage("+data.pages+")\">最后页</a>");
+											$("#fenye5").append(fenye5);
+
+											$("#fenye1").html("");
+											var fenye1 = $("<span>" +
+													"当前 "+data.pageNum+"页,总"+data.pages+" 页,总"+data.total+" 条记录 <input type=\"hidden\" name=\"page\" id=\"page\" />" +
+													"</span>");
+											$("#fenye1").append(fenye1);
+										},
+										error:function () {
+											alert("服务器繁忙，请稍后重试")
+										}
+									});
+								}
+							</script>
+
+
 							<div class="col-md-6">
 								<div class="card card-tasks">
 									<div class="card-header ">

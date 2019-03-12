@@ -40,7 +40,9 @@
     <select id="selectDoodsStateNumber" resultType="java.util.HashMap">
         select count(*) as goods_statenumber from doods where doods_releasestatus = '0'
     </select>
-
+    <select id="selectAllusers" resultType="com.fec.epreport.entity.Users">
+        select * from user
+    </select>
 
 
 

@@ -17,11 +17,14 @@ public class Users implements Serializable {
     private String user_authentication;
     private String user_establish;
     private String user_modify;
+    private String user_sex;
+    private String user_birth;
+    private String user_address;
 
     public Users() {
     }
 
-    public Users(Integer user_id, String user_headportrait, String user_name, String user_password, String user_realname, String user_idnumber, String user_phonenumber, String user_wechat, String user_authentication, String user_establish, String user_modify) {
+    public Users(Integer user_id, String user_headportrait, String user_name, String user_password, String user_realname, String user_idnumber, String user_phonenumber, String user_wechat, String user_authentication, String user_establish, String user_modify, String user_sex, String user_birth, String user_address) {
         this.user_id = user_id;
         this.user_headportrait = user_headportrait;
         this.user_name = user_name;
@@ -33,6 +36,13 @@ public class Users implements Serializable {
         this.user_authentication = user_authentication;
         this.user_establish = user_establish;
         this.user_modify = user_modify;
+        this.user_sex = user_sex;
+        this.user_birth = user_birth;
+        this.user_address = user_address;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Integer getUser_id() {
@@ -123,6 +133,30 @@ public class Users implements Serializable {
         this.user_modify = user_modify;
     }
 
+    public String getUser_sex() {
+        return user_sex;
+    }
+
+    public void setUser_sex(String user_sex) {
+        this.user_sex = user_sex;
+    }
+
+    public String getUser_birth() {
+        return user_birth;
+    }
+
+    public void setUser_birth(String user_birth) {
+        this.user_birth = user_birth;
+    }
+
+    public String getUser_address() {
+        return user_address;
+    }
+
+    public void setUser_address(String user_address) {
+        this.user_address = user_address;
+    }
+
     @Override
     public String toString() {
         return "Users{" +
@@ -137,6 +171,9 @@ public class Users implements Serializable {
                 ", user_authentication='" + user_authentication + '\'' +
                 ", user_establish='" + user_establish + '\'' +
                 ", user_modify='" + user_modify + '\'' +
+                ", user_sex='" + user_sex + '\'' +
+                ", user_birth='" + user_birth + '\'' +
+                ", user_address='" + user_address + '\'' +
                 '}';
     }
 }

@@ -3,6 +3,7 @@ package com.fec.epreport.service.impl;
 
 import com.fec.epreport.dao.ManageDao;
 import com.fec.epreport.entity.User;
+import com.fec.epreport.entity.Users;
 import com.fec.epreport.service.ManageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -143,6 +144,17 @@ public class ManageServiceImpl implements ManageService {
             logger.info("查询数据库错误："+d.getLocalizedMessage());
         }
         return map;
+    }
+    //查询所有的用户信息
+    @Override
+    public List<Users> selectAllusers() {
+        List<Users> list = null;
+        try {
+            list=manageDao.selectAllusers();
+        } catch (DataAccessException d) {
+            logger.info("查询数据库错误："+d.getLocalizedMessage());
+        }
+        return list;
     }
 
 }

@@ -1,14 +1,15 @@
 package com.fec.epreport.dao;
 
 import com.fec.epreport.entity.User;
+import com.fec.epreport.entity.Users;
 
 import java.util.List;
 import java.util.Map;
 
 public interface ManageDao {
-    //根据用户名查询用户信息
+    //根据管理员用户名查询管理员用户信息
     public User selectByName(String user_name);
-    //添加加用户
+    //添加管理员用户
     public int insertAUser(User user);
     //修改密码
     public int updatePassword(User user);
@@ -28,5 +29,7 @@ public interface ManageDao {
     public Map<String,Object> selectVehiceStateNumber();
     //查询货源完成源数量
     public Map<String,Object> selectDoodsStateNumber();
+    //查询所有的用户信息
+    public List<Users> selectAllusers();
 
 }
