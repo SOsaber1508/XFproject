@@ -1,23 +1,18 @@
 package com.fec.epreport.controller.text;
  
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.Map;
- 
- 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-
-import net.sf.json.JSONObject;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.HashMap;
+import java.util.Map;
  
 /**
  *  接收json用测试接口
@@ -43,6 +38,7 @@ public class TestConttroller{
 		     String x=new String(buff,0,length);
 		     System.out.println(x);
 		}
+
 		//响应
 		Map<String,Object> jsonObject = new HashMap<String, Object>();  //创建Json对象
 		jsonObject.put("username", "张三");         //设置Json对象的属性

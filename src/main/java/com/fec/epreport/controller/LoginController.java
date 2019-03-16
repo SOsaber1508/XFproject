@@ -21,6 +21,7 @@ import java.util.*;
 @RequestMapping(value = "/login")
 public class LoginController {
     private static Logger logger = LoggerFactory.getLogger(LoginController.class);
+    /*private static HttpClientPoolHelper hcph = HttpClientPoolHelper.getInstance();*/
     @Autowired
     ManageService manageService;
     //管理登陆
@@ -29,6 +30,13 @@ public class LoginController {
     //@ResponseBody
     @RequestMapping("/adminLand.htm")
     public void adminLand(String user_name, String user_password, HttpSession hs, HttpServletResponse resp) throws Exception {
+        /*try {
+            String result = null;
+            result = hcph.postRequest("http://www.baidu.com", "adsdshdisgdys");
+            System.err.println(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
         try {
             User user = manageService.selectByName(user_name);
             String str = (String) hs.getAttribute("md5RandomKey");

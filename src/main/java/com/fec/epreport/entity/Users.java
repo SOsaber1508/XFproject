@@ -20,11 +20,13 @@ public class Users implements Serializable {
     private String user_sex;
     private String user_birth;
     private String user_address;
+    private Integer user_share;
+    private Integer user_role;
 
     public Users() {
     }
 
-    public Users(Integer user_id, String user_headportrait, String user_name, String user_password, String user_realname, String user_idnumber, String user_phonenumber, String user_wechat, String user_authentication, String user_establish, String user_modify, String user_sex, String user_birth, String user_address) {
+    public Users(Integer user_id, String user_headportrait, String user_name, String user_password, String user_realname, String user_idnumber, String user_phonenumber, String user_wechat, String user_authentication, String user_establish, String user_modify, String user_sex, String user_birth, String user_address, Integer user_share, Integer user_role) {
         this.user_id = user_id;
         this.user_headportrait = user_headportrait;
         this.user_name = user_name;
@@ -39,6 +41,8 @@ public class Users implements Serializable {
         this.user_sex = user_sex;
         this.user_birth = user_birth;
         this.user_address = user_address;
+        this.user_share = user_share;
+        this.user_role = user_role;
     }
 
     public static long getSerialVersionUID() {
@@ -157,6 +161,22 @@ public class Users implements Serializable {
         this.user_address = user_address;
     }
 
+    public Integer getUser_share() {
+        return user_share;
+    }
+
+    public void setUser_share(Integer user_share) {
+        this.user_share = user_share;
+    }
+
+    public Integer getUser_role() {
+        return user_role;
+    }
+
+    public void setUser_role(Integer user_role) {
+        this.user_role = user_role;
+    }
+
     @Override
     public String toString() {
         return "Users{" +
@@ -174,6 +194,8 @@ public class Users implements Serializable {
                 ", user_sex='" + user_sex + '\'' +
                 ", user_birth='" + user_birth + '\'' +
                 ", user_address='" + user_address + '\'' +
+                ", user_share=" + user_share +
+                ", user_role=" + user_role +
                 '}';
     }
 }

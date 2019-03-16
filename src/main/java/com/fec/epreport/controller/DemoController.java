@@ -27,7 +27,6 @@ public class DemoController {
 	public PageInfo<Users> selectallManage(Model model, String excelMsg, @RequestParam(defaultValue="1",required=true,value="pageNo") int pageNo) {
 		PageInfo<Users> pageInfo=null;
 		try {
-			System.out.println(pageNo);
 			//分页插件
 			PageHelper.startPage(pageNo, pageSize);
 			//拦截写入新的查询 暂定10条每页查

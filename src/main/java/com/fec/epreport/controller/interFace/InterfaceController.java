@@ -1,12 +1,9 @@
 package com.fec.epreport.controller.interFace;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
+import com.alibaba.fastjson.JSONObject;
+import com.fec.epreport.service.RedisService;
+import com.fec.epreport.util.commons.PureNetUtil;
+import net.sf.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,22 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.alibaba.fastjson.JSONObject;
-import com.fec.epreport.service.RedisService;
-import com.fec.epreport.util.commons.PureNetUtil;
-
-import net.sf.json.JSONArray;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 @Controller
 @RequestMapping(value = "/interface")
@@ -183,7 +171,7 @@ public class InterfaceController {
 			"text/html;charset=UTF-8" })
 	public ModelAndView test(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
-System.out.println("进来了");
+		System.out.println("进来了");
 		InputStream inputStream;
 		String json = "";
 		String res = "";

@@ -22,11 +22,12 @@ public class Doods implements Serializable {
     private String goods_contactinformation;
     private Integer doods_user_id;
     private String doods_releasestatus;
+    private String doods_loadingtime;
 
     public Doods() {
     }
 
-    public Doods(Integer goods_id, String goods_vehicletype, Double goods_length, String goods_vetype, String goods_type, String goods_Detailedtype, String goods_name, Double goods_number, String goods_time, String goods_start, String goods_end, String goods_detailed, String goods_contacts, String goods_contactinformation, Integer doods_user_id, String doods_releasestatus) {
+    public Doods(Integer goods_id, String goods_vehicletype, Double goods_length, String goods_vetype, String goods_type, String goods_Detailedtype, String goods_name, Double goods_number, String goods_time, String goods_start, String goods_end, String goods_detailed, String goods_contacts, String goods_contactinformation, Integer doods_user_id, String doods_releasestatus, String doods_loadingtime) {
         this.goods_id = goods_id;
         this.goods_vehicletype = goods_vehicletype;
         this.goods_length = goods_length;
@@ -43,6 +44,11 @@ public class Doods implements Serializable {
         this.goods_contactinformation = goods_contactinformation;
         this.doods_user_id = doods_user_id;
         this.doods_releasestatus = doods_releasestatus;
+        this.doods_loadingtime = doods_loadingtime;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Integer getGoods_id() {
@@ -173,6 +179,14 @@ public class Doods implements Serializable {
         this.doods_releasestatus = doods_releasestatus;
     }
 
+    public String getDoods_loadingtime() {
+        return doods_loadingtime;
+    }
+
+    public void setDoods_loadingtime(String doods_loadingtime) {
+        this.doods_loadingtime = doods_loadingtime;
+    }
+
     @Override
     public String toString() {
         return "Doods{" +
@@ -192,6 +206,7 @@ public class Doods implements Serializable {
                 ", goods_contactinformation='" + goods_contactinformation + '\'' +
                 ", doods_user_id=" + doods_user_id +
                 ", doods_releasestatus='" + doods_releasestatus + '\'' +
+                ", doods_loadingtime='" + doods_loadingtime + '\'' +
                 '}';
     }
 }

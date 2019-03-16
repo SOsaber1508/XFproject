@@ -17,8 +17,8 @@ public class PasswordEncryptConfigurer extends PropertyPlaceholderConfigurer {
             String JdPasswords = null;
             if (JdPassword != null) {
                 //加密  password
-               /* JdPasswords = EncryptUtil.encrypt(JdPassword);*/
-                 //解密  password
+                /* JdPasswords = EncryptUtil.encrypt(JdPassword);*/
+                //解密  password
                 JdPasswords = EncryptUtil.decrypt(JdPassword);
              }
             //将解密后的密码放入Properties中

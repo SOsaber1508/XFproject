@@ -1,9 +1,6 @@
 package com.fec.epreport.controller.text;
 
-import java.io.BufferedReader;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-
+import net.sf.json.JSONObject;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
@@ -13,7 +10,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicHeader;
 import org.apache.http.protocol.HTTP;
 
-import net.sf.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class TestOne {
 	public static void main(String[] args) {
@@ -24,7 +23,7 @@ public class TestOne {
 		jsobj2.put("state", "0");
 		jsobj1.put("item", jsobj2);
 		jsobj1.put("requestCommand", "control");
-		post(jsobj1, "http://192.168.3.45:8083/epreport/test1/test.htm");
+		post(jsobj1, "http://192.168.3.69:8080/epreport/test1/test.htm");
 	}
 
 	public static String post(JSONObject json, String path) {

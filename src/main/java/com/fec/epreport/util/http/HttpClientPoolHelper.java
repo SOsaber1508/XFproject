@@ -1,11 +1,4 @@
 package com.fec.epreport.util.http;
-import java.io.IOException;
-import java.io.InterruptedIOException;
-import java.net.UnknownHostException;
-
-import javax.net.ssl.SSLException;
-import javax.net.ssl.SSLHandshakeException;
-
 import org.apache.commons.lang3.StringUtils;
 import org.apache.http.HttpEntityEnclosingRequest;
 import org.apache.http.HttpRequest;
@@ -31,6 +24,12 @@ import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
+
+import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLHandshakeException;
+import java.io.IOException;
+import java.io.InterruptedIOException;
+import java.net.UnknownHostException;
 
 
 /**
@@ -89,7 +88,6 @@ public class HttpClientPoolHelper {
                 .register("http", plainsf)
                 .register("https", sslsf)
                 .build();
-
         //请求重试处理
         HttpRequestRetryHandler httpRequestRetryHandler = new HttpRequestRetryHandler() {
             public boolean retryRequest(IOException exception,int executionCount, HttpContext context) {
@@ -225,16 +223,13 @@ public class HttpClientPoolHelper {
     }  
     
   //参考调用方式
-    /**
-     * private static HttpClientPoolHelper hcph = HttpClientPoolHelper.getInstance();
-	 *	try {
-     *	result = hcph.postRequest(targetUrl, requestJson.toString());
-     *	} catch (Exception e) {
+
+      /*private static HttpClientPoolHelper hcph = HttpClientPoolHelper.getInstance();
+	 	try {
+     	result = hcph.postRequest(targetUrl, requestJson.toString());
+     	} catch (Exception e) {
     		e.printStackTrace();
-		}
-     * 
-     */
-    
-    
-    
+		}*/
+
+
 }
