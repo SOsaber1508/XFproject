@@ -62,7 +62,7 @@
 			<!-- 百度身份证接口 -->
 			<mvc:exclude-mapping path="/interface2/**" />
 			<!-- 测试接口 -->
-			<mvc:exclude-mapping path="/test/**" />
+			<mvc:exclude-mapping path="/test1/**" />
 			<bean class="com.fec.epreport.util.LoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>

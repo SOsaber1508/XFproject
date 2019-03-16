@@ -26,30 +26,28 @@
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:jdbc.properties" />
 	</bean>
-
-
 	 <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"  init-method="init" destroy-method="close">
 		<property name="driverClassName" value="${driver}" />
 		<property name="url" value="${url}" />
 		<property name="username" value="${username}" />
 		<property name="password" value="${password}" />
 		 <!-- 初始化连接大小 -->
-		<property name="initialSize" value="${dbcp.initialSize}" />
+		<property name="initialSize" value="${druid.initialSize}" />
        	<!-- 连接池最大数量 -->
-        <property name="maxActive" value="${dbcp.maxActive}" />
+        <property name="maxActive" value="${druid.maxActive}" />
        	<!-- 连接池最大空闲 -->
-        <property name="maxIdle" value="${dbcp.maxIdle}" />
+        <property name="maxIdle" value="${druid.maxIdle}" />
         <!-- 获取连接最大等待时间 -->
-        <property name="maxWait" value="${dbcp.maxWait}" />
-        <property name="defaultAutoCommit" value="${dbcp.defaultAutoCommit}" />
-        <property name="removeAbandoned" value="${dbcp.removeAbandoned}" />
-        <property name="removeAbandonedTimeout" value="${dbcp.removeAbandonedTimeout}" />
+        <property name="maxWait" value="${druid.maxWait}" />
+        <property name="defaultAutoCommit" value="${druid.defaultAutoCommit}" />
+        <property name="removeAbandoned" value="${druid.removeAbandoned}" />
+        <property name="removeAbandonedTimeout" value="${druid.removeAbandonedTimeout}" />
         <property name="logAbandoned" value="true"></property>
         <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
         <property name="timeBetweenEvictionRunsMillis" value="60000" />
         <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
         <property name="minEvictableIdleTimeMillis" value="300000" />
-        <property name="validationQuery" value="${dbcp.validationQuery}" />
+        <property name="validationQuery" value="${druid.validationQuery}" />
         <property name="testWhileIdle" value="true" />
         <property name="testOnBorrow" value="false" />
         <property name="testOnReturn" value="false" />
