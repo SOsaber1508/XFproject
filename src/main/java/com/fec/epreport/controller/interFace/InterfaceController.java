@@ -3,6 +3,8 @@ package com.fec.epreport.controller.interFace;
 import com.alibaba.fastjson.JSONObject;
 import com.fec.epreport.service.RedisService;
 import com.fec.epreport.util.commons.PureNetUtil;
+import com.fec.epreport.util.http.HttpClientPoolHelper;
+
 import net.sf.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +26,8 @@ import java.net.URL;
 @Controller
 @RequestMapping(value = "/interface")
 public class InterfaceController {
+	private static HttpClientPoolHelper hcph = HttpClientPoolHelper.getInstance();
+	
 	@Autowired
 	private RedisService redisService;
 
@@ -196,4 +200,25 @@ public class InterfaceController {
 //mav.setViewName("redirect:../../pic/index.html");
 		return null;
 	}
+	
+	//http连接池接口用法
+	//示例
+	public String httpCeshi() {
+	String targetUrl="asdasdadad";
+	JSONObject requestJson = new JSONObject();
+	requestJson.put("name", "zcy");
+	requestJson.put("passward", "qaz006");
+	requestJson.put("nickname", "zzzz");
+	String result = null;
+	//实体list =manageServer.selcet(xxxxxx); 查出来的东西
+	//list 直接转string 也行 应该有把   
+	//result = hcph.postRequest(targetUrl, 要传的);
+	try {
+     	result = hcph.postRequest(targetUrl, requestJson.toString());
+     	} catch (Exception e) {
+    		e.printStackTrace();
+		}
+	return result;
+	}
+	
 }
