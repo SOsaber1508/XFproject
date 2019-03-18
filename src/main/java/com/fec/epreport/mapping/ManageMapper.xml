@@ -14,11 +14,11 @@
         update admin_user set user_password = #{user_password} where user_name = #{user_name}
     </update>
     <select id="selectGoodsOrderNumber" parameterType="java.lang.String" resultType="java.util.HashMap">
-        select count(*) as order_quantity from doods where goods_time like #{dates}
+        select count(*) as order_quantity from goods where goods_time like #{dates}
     </select>
     <select id="selectGoodsVehiceTime" resultType="java.util.HashMap">
         select DISTINCT YEAR(goods_time) as year from (select * FROM(
-            select goods_time FROM doods
+            select goods_time FROM goods
             union all
             select vehice_releasetime FROM vehice) as t)as s ORDER BY year DESC
     </select>
@@ -32,13 +32,13 @@
         select count(*) as vehice_number from vehice
     </select>
     <select id="selectDoodsNumber" resultType="java.util.HashMap">
-        select count(*) as goods_number from doods
+        select count(*) as goods_number from goods
     </select>
     <select id="selectVehiceStateNumber" resultType="java.util.HashMap">
         select count(*) as vehice_statenumber from vehice where vehice_state = '0'
     </select>
     <select id="selectDoodsStateNumber" resultType="java.util.HashMap">
-        select count(*) as goods_statenumber from doods where doods_releasestatus = '0'
+        select count(*) as goods_statenumber from goods where goods_releasestatus = '0'
     </select>
     <select id="selectAllusers" resultType="com.fec.epreport.entity.Users">
         select * from user

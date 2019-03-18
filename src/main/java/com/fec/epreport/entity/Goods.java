@@ -3,7 +3,7 @@ package com.fec.epreport.entity;
 import java.io.Serializable;
 
 //货源信息
-public class Doods implements Serializable {
+public class Goods implements Serializable {
     //序列化实例化
     private static final long serialVersionUID = 1L;
     private Integer goods_id;
@@ -20,14 +20,17 @@ public class Doods implements Serializable {
     private String goods_detailed;
     private String goods_contacts;
     private String goods_contactinformation;
-    private Integer doods_user_id;
-    private String doods_releasestatus;
-    private String doods_loadingtime;
+    private Integer goods_user_id;
+    private String goods_releasestatus;
+    private String goods_loadingtime;
+    private Integer goods_Identification;
+    private Double goods_long;
+    private Double goods_lot;
 
-    public Doods() {
+    public Goods() {
     }
 
-    public Doods(Integer goods_id, String goods_vehicletype, Double goods_length, String goods_vetype, String goods_type, String goods_Detailedtype, String goods_name, Double goods_number, String goods_time, String goods_start, String goods_end, String goods_detailed, String goods_contacts, String goods_contactinformation, Integer doods_user_id, String doods_releasestatus, String doods_loadingtime) {
+    public Goods(Integer goods_id, String goods_vehicletype, Double goods_length, String goods_vetype, String goods_type, String goods_Detailedtype, String goods_name, Double goods_number, String goods_time, String goods_start, String goods_end, String goods_detailed, String goods_contacts, String goods_contactinformation, Integer goods_user_id, String goods_releasestatus, String goods_loadingtime, Integer goods_Identification, Double goods_long, Double goods_lot) {
         this.goods_id = goods_id;
         this.goods_vehicletype = goods_vehicletype;
         this.goods_length = goods_length;
@@ -42,9 +45,12 @@ public class Doods implements Serializable {
         this.goods_detailed = goods_detailed;
         this.goods_contacts = goods_contacts;
         this.goods_contactinformation = goods_contactinformation;
-        this.doods_user_id = doods_user_id;
-        this.doods_releasestatus = doods_releasestatus;
-        this.doods_loadingtime = doods_loadingtime;
+        this.goods_user_id = goods_user_id;
+        this.goods_releasestatus = goods_releasestatus;
+        this.goods_loadingtime = goods_loadingtime;
+        this.goods_Identification = goods_Identification;
+        this.goods_long = goods_long;
+        this.goods_lot = goods_lot;
     }
 
     public static long getSerialVersionUID() {
@@ -163,33 +169,57 @@ public class Doods implements Serializable {
         this.goods_contactinformation = goods_contactinformation;
     }
 
-    public Integer getDoods_user_id() {
-        return doods_user_id;
+    public Integer getGoods_user_id() {
+        return goods_user_id;
     }
 
-    public void setDoods_user_id(Integer doods_user_id) {
-        this.doods_user_id = doods_user_id;
+    public void setGoods_user_id(Integer goods_user_id) {
+        this.goods_user_id = goods_user_id;
     }
 
-    public String getDoods_releasestatus() {
-        return doods_releasestatus;
+    public String getGoods_releasestatus() {
+        return goods_releasestatus;
     }
 
-    public void setDoods_releasestatus(String doods_releasestatus) {
-        this.doods_releasestatus = doods_releasestatus;
+    public void setGoods_releasestatus(String goods_releasestatus) {
+        this.goods_releasestatus = goods_releasestatus;
     }
 
-    public String getDoods_loadingtime() {
-        return doods_loadingtime;
+    public String getGoods_loadingtime() {
+        return goods_loadingtime;
     }
 
-    public void setDoods_loadingtime(String doods_loadingtime) {
-        this.doods_loadingtime = doods_loadingtime;
+    public void setGoods_loadingtime(String goods_loadingtime) {
+        this.goods_loadingtime = goods_loadingtime;
+    }
+
+    public Integer getGoods_Identification() {
+        return goods_Identification;
+    }
+
+    public void setGoods_Identification(Integer goods_Identification) {
+        this.goods_Identification = goods_Identification;
+    }
+
+    public Double getGoods_long() {
+        return goods_long;
+    }
+
+    public void setGoods_long(Double goods_long) {
+        this.goods_long = goods_long;
+    }
+
+    public Double getGoods_lot() {
+        return goods_lot;
+    }
+
+    public void setGoods_lot(Double goods_lot) {
+        this.goods_lot = goods_lot;
     }
 
     @Override
     public String toString() {
-        return "Doods{" +
+        return "Goods{" +
                 "goods_id=" + goods_id +
                 ", goods_vehicletype='" + goods_vehicletype + '\'' +
                 ", goods_length=" + goods_length +
@@ -204,9 +234,12 @@ public class Doods implements Serializable {
                 ", goods_detailed='" + goods_detailed + '\'' +
                 ", goods_contacts='" + goods_contacts + '\'' +
                 ", goods_contactinformation='" + goods_contactinformation + '\'' +
-                ", doods_user_id=" + doods_user_id +
-                ", doods_releasestatus='" + doods_releasestatus + '\'' +
-                ", doods_loadingtime='" + doods_loadingtime + '\'' +
+                ", goods_user_id=" + goods_user_id +
+                ", goods_releasestatus='" + goods_releasestatus + '\'' +
+                ", goods_loadingtime='" + goods_loadingtime + '\'' +
+                ", goods_Identification=" + goods_Identification +
+                ", goods_long=" + goods_long +
+                ", goods_lot=" + goods_lot +
                 '}';
     }
 }

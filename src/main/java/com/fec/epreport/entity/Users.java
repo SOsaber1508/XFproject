@@ -17,16 +17,16 @@ public class Users implements Serializable {
     private String user_authentication;
     private String user_establish;
     private String user_modify;
-    private String user_sex;
+    private Integer user_sex;
     private String user_birth;
     private String user_address;
     private Integer user_share;
-    private Integer user_role;
+    private String user_sharetime;
 
     public Users() {
     }
 
-    public Users(Integer user_id, String user_headportrait, String user_name, String user_password, String user_realname, String user_idnumber, String user_phonenumber, String user_wechat, String user_authentication, String user_establish, String user_modify, String user_sex, String user_birth, String user_address, Integer user_share, Integer user_role) {
+    public Users(Integer user_id, String user_headportrait, String user_name, String user_password, String user_realname, String user_idnumber, String user_phonenumber, String user_wechat, String user_authentication, String user_establish, String user_modify, Integer user_sex, String user_birth, String user_address, Integer user_share, String user_sharetime) {
         this.user_id = user_id;
         this.user_headportrait = user_headportrait;
         this.user_name = user_name;
@@ -42,7 +42,7 @@ public class Users implements Serializable {
         this.user_birth = user_birth;
         this.user_address = user_address;
         this.user_share = user_share;
-        this.user_role = user_role;
+        this.user_sharetime = user_sharetime;
     }
 
     public static long getSerialVersionUID() {
@@ -137,11 +137,11 @@ public class Users implements Serializable {
         this.user_modify = user_modify;
     }
 
-    public String getUser_sex() {
+    public Integer getUser_sex() {
         return user_sex;
     }
 
-    public void setUser_sex(String user_sex) {
+    public void setUser_sex(Integer user_sex) {
         this.user_sex = user_sex;
     }
 
@@ -169,12 +169,12 @@ public class Users implements Serializable {
         this.user_share = user_share;
     }
 
-    public Integer getUser_role() {
-        return user_role;
+    public String getUser_sharetime() {
+        return user_sharetime;
     }
 
-    public void setUser_role(Integer user_role) {
-        this.user_role = user_role;
+    public void setUser_sharetime(String user_sharetime) {
+        this.user_sharetime = user_sharetime;
     }
 
     @Override
@@ -191,11 +191,11 @@ public class Users implements Serializable {
                 ", user_authentication='" + user_authentication + '\'' +
                 ", user_establish='" + user_establish + '\'' +
                 ", user_modify='" + user_modify + '\'' +
-                ", user_sex='" + user_sex + '\'' +
+                ", user_sex=" + user_sex +
                 ", user_birth='" + user_birth + '\'' +
                 ", user_address='" + user_address + '\'' +
                 ", user_share=" + user_share +
-                ", user_role=" + user_role +
+                ", user_sharetime='" + user_sharetime + '\'' +
                 '}';
     }
 }

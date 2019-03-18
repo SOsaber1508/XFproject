@@ -18,11 +18,14 @@ public class Vehice implements Serializable {
     private String vehice_detaileddescription;
     private Double vehice_load;
     private String vehice_state;
+    private Integer vehice_Identification;
+    private Double vehice_long;
+    private Double vehice_lot;
 
     public Vehice() {
     }
 
-    public Vehice(Integer vehicle_id, String vehicle_start, String vehicle_end, String vehice_contacts, String vehice_contactinformation, Double vehice_length, String vehice_type, String vehice_releasetime, Integer vehice_user_id, String vehice_detaileddescription, Double vehice_load, String vehice_state) {
+    public Vehice(Integer vehicle_id, String vehicle_start, String vehicle_end, String vehice_contacts, String vehice_contactinformation, Double vehice_length, String vehice_type, String vehice_releasetime, Integer vehice_user_id, String vehice_detaileddescription, Double vehice_load, String vehice_state, Integer vehice_Identification, Double vehice_long, Double vehice_lot) {
         this.vehicle_id = vehicle_id;
         this.vehicle_start = vehicle_start;
         this.vehicle_end = vehicle_end;
@@ -35,6 +38,13 @@ public class Vehice implements Serializable {
         this.vehice_detaileddescription = vehice_detaileddescription;
         this.vehice_load = vehice_load;
         this.vehice_state = vehice_state;
+        this.vehice_Identification = vehice_Identification;
+        this.vehice_long = vehice_long;
+        this.vehice_lot = vehice_lot;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Integer getVehicle_id() {
@@ -133,6 +143,30 @@ public class Vehice implements Serializable {
         this.vehice_state = vehice_state;
     }
 
+    public Integer getVehice_Identification() {
+        return vehice_Identification;
+    }
+
+    public void setVehice_Identification(Integer vehice_Identification) {
+        this.vehice_Identification = vehice_Identification;
+    }
+
+    public Double getVehice_long() {
+        return vehice_long;
+    }
+
+    public void setVehice_long(Double vehice_long) {
+        this.vehice_long = vehice_long;
+    }
+
+    public Double getVehice_lot() {
+        return vehice_lot;
+    }
+
+    public void setVehice_lot(Double vehice_lot) {
+        this.vehice_lot = vehice_lot;
+    }
+
     @Override
     public String toString() {
         return "Vehice{" +
@@ -148,6 +182,9 @@ public class Vehice implements Serializable {
                 ", vehice_detaileddescription='" + vehice_detaileddescription + '\'' +
                 ", vehice_load=" + vehice_load +
                 ", vehice_state='" + vehice_state + '\'' +
+                ", vehice_Identification=" + vehice_Identification +
+                ", vehice_long=" + vehice_long +
+                ", vehice_lot=" + vehice_lot +
                 '}';
     }
 }
