@@ -1,4 +1,4 @@
-package com.fec.epreport.controller;
+package com.fec.epreport.controller.backstage;
 
 import com.alibaba.fastjson.JSON;
 import com.fec.epreport.entity.User;
@@ -140,7 +140,7 @@ public class LoginController {
                 Map<String,Object> map1 = manageService.selectGoodsOrderNumber(list1);
                 Map<String,Object> map2 = manageService.selectVehiceOrderNumber(list1);
                 map.put("Goods"+i,map1.get("order_quantity"));
-                map.put("Vehice"+i,map2.get("order_vehice"));
+                map.put("Vehicle"+i,map2.get("order_vehicle"));
                 i++;
             }
             String json = JSON.toJSONString(map);

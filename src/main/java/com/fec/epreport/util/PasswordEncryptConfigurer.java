@@ -17,9 +17,11 @@ public class PasswordEncryptConfigurer extends PropertyPlaceholderConfigurer {
             String JdPasswords = null;
             if (JdPassword != null) {
                 //加密  password
-                /* JdPasswords = EncryptUtil.encrypt(JdPassword);*/
+                String Jd = EncryptUtil.encrypt("Xfkjadmin123");
+                System.out.println("加密："+Jd);
                 //解密  password
                 JdPasswords = EncryptUtil.decrypt(JdPassword);
+                System.out.println("解密："+JdPasswords);
              }
             //将解密后的密码放入Properties中
              props.setProperty("password", JdPasswords);

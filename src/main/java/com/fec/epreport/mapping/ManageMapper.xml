@@ -20,22 +20,22 @@
         select DISTINCT YEAR(goods_time) as year from (select * FROM(
             select goods_time FROM goods
             union all
-            select vehice_releasetime FROM vehice) as t)as s ORDER BY year DESC
+            select vehicle_releasetime FROM vehicle) as t)as s ORDER BY year DESC
     </select>
     <select id="selectVehiceOrderNumber" parameterType="java.lang.String" resultType="java.util.HashMap">
-        select count(*) as order_vehice from vehice where vehice_releasetime like #{dates}
+        select count(*) as order_vehicle from vehicle where vehicle_releasetime like #{dates}
     </select>
     <select id="selectUserNumber" resultType="java.util.HashMap">
         select count(*) as user_number from user
     </select>
     <select id="selectVehiceNumber" resultType="java.util.HashMap">
-        select count(*) as vehice_number from vehice
+        select count(*) as vehicle_number from vehicle
     </select>
     <select id="selectDoodsNumber" resultType="java.util.HashMap">
         select count(*) as goods_number from goods
     </select>
     <select id="selectVehiceStateNumber" resultType="java.util.HashMap">
-        select count(*) as vehice_statenumber from vehice where vehice_state = '0'
+        select count(*) as vehicle_statenumber from vehicle where vehicle_state = '0'
     </select>
     <select id="selectDoodsStateNumber" resultType="java.util.HashMap">
         select count(*) as goods_statenumber from goods where goods_releasestatus = '0'
@@ -43,8 +43,6 @@
     <select id="selectAllusers" resultType="com.fec.epreport.entity.Users">
         select * from user
     </select>
-
-
 
 
 

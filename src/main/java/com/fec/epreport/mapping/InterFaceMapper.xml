@@ -1,6 +1,98 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.fec.epreport.dao.InterFaceDao" >
+    <!--评价列表查询-->
+    <select id="selectEvaluates" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+        select u.user_id,u.user_headportrait,u.user_name,u.user_realname,e.evaluate_id,e.evaluate_type,e.evaluate_content,e.evaluate_time
+        from user u join evaluate e on u.user_id=e.evaluate_user_id WHERE e.evaluate_user_ids=#{user_id}
+    </select>
+    <!--好评数（货源车源）-->
+    <select id="selectPraise" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+        select count(*) from  evaluate where evaluate_user_ids=#{user_id} and evaluate_type=0
+    </select>
+    <!--中评数（货源车源）-->
+    <select id="selectIn" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+        select count(*) from  evaluate where evaluate_user_ids=#{user_id} and evaluate_type=1
+    </select>
+    <!--差评数（货源车源）-->
+    <select id="selectDifferenc" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+        select count(*) from  evaluate where evaluate_user_ids=#{user_id} and evaluate_type=2
+    </select>
+    <!--提交评价-->
+    <insert id="submissionEvaluates" parameterType="java.util.HashMap">
 
+    </insert>
+    <!--点击评价-->
+    <select id="clickEvaluates" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+
+    </select>
+    <!--货源详情查询-->
+    <select id="selectSourceDetails" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+
+    </select>
+    <!--查询是否收藏此用户（货源车源）-->
+    <select id="selectCollection" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+
+    </select>
+    <!--货源列表查询-->
+    <select id="selectGoods" resultType="java.util.HashMap">
+
+    </select>
+    <!--发布货源-->
+    <insert id="releaseSource" parameterType="java.util.HashMap">
+
+    </insert>
+    <!--根据条件查询货源列表-->
+    <select id="selectGoodsCondition" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+
+    </select>
+    <!--查询个人信息-->
+    <select id="selectAUsersss" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+
+    </select>
+    <!--历史发布查询-->
+    <select id="selectRelease" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+
+    </select>
+    <!--完善车辆信息-->
+    <insert id="perfectVehicle" parameterType="java.util.HashMap">
+
+    </insert>
+    <!--查询我的收藏信息-->
+    <select id="selectMyCollection" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+
+    </select>
+    <!--个人分享信息-->
+    <select id="shareInformation" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+
+    </select>
+    <!--用户简介查询-->
+    <select id="selectAUsersRelease" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+
+    </select>
+    <!--用户简介中查询个人信息-->
+    <select id="selectAUsers" parameterType="java.lang.Integer" resultType="java.util.HashMap">
+
+    </select>
+    <!--身份认证-->
+    <select id="identityAuthentication" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+
+    </select>
+    <!--车源详情查询-->
+    <select id="selectVehicleDetails" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+
+    </select>
+    <!--车源列表查询-->
+    <select id="selectVehicles" resultType="java.util.HashMap">
+
+    </select>
+    <!--根据条件查询车源列表-->
+    <select id="selectVehiclesCondition" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+
+    </select>
+    <!--发布车源-->
+    <insert id="releaseCar" parameterType="java.util.HashMap">
+
+    </insert>
 
 </mapper>

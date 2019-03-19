@@ -306,8 +306,8 @@
 															{
 																name:'车源发布数量',
 																type:'bar',
-																data:[data.Vehice1, data.Vehice2, data.Vehice3, data.Vehice4, data.Vehice5, data.Vehice6,
-																	data.Vehice7, data.Vehice8, data.Vehice9, data.Vehice10, data.Vehice11, data.Vehice12]
+																data:[data.Vehicle1, data.Vehicle2, data.Vehicle3, data.Vehicle4, data.Vehicle5, data.Vehicle6,
+																	data.Vehicle7, data.Vehicle8, data.Vehicle9, data.Vehicle10, data.Vehicle11, data.Vehicle12]
 															},
 															/*{
                                                                 name:'平均温度',

@@ -33,4 +33,8 @@ public interface ManageService {
     public Map<String,Object> selectDoodsStateNumber();
     //查询所有的用户信息
     public List<Users> selectAllusers();
+
+
+
+
 }

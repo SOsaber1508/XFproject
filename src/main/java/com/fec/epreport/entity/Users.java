@@ -22,11 +22,15 @@ public class Users implements Serializable {
     private String user_address;
     private Integer user_share;
     private String user_sharetime;
+    private Double user_conductor;
+    private String user_vehicletype;
+    private Double user_load;
+    private Integer user_perfect;
 
     public Users() {
     }
 
-    public Users(Integer user_id, String user_headportrait, String user_name, String user_password, String user_realname, String user_idnumber, String user_phonenumber, String user_wechat, String user_authentication, String user_establish, String user_modify, Integer user_sex, String user_birth, String user_address, Integer user_share, String user_sharetime) {
+    public Users(Integer user_id, String user_headportrait, String user_name, String user_password, String user_realname, String user_idnumber, String user_phonenumber, String user_wechat, String user_authentication, String user_establish, String user_modify, Integer user_sex, String user_birth, String user_address, Integer user_share, String user_sharetime, Double user_conductor, String user_vehicletype, Double user_load, Integer user_perfect) {
         this.user_id = user_id;
         this.user_headportrait = user_headportrait;
         this.user_name = user_name;
@@ -43,6 +47,10 @@ public class Users implements Serializable {
         this.user_address = user_address;
         this.user_share = user_share;
         this.user_sharetime = user_sharetime;
+        this.user_conductor = user_conductor;
+        this.user_vehicletype = user_vehicletype;
+        this.user_load = user_load;
+        this.user_perfect = user_perfect;
     }
 
     public static long getSerialVersionUID() {
@@ -177,6 +185,38 @@ public class Users implements Serializable {
         this.user_sharetime = user_sharetime;
     }
 
+    public Double getUser_conductor() {
+        return user_conductor;
+    }
+
+    public void setUser_conductor(Double user_conductor) {
+        this.user_conductor = user_conductor;
+    }
+
+    public String getUser_vehicletype() {
+        return user_vehicletype;
+    }
+
+    public void setUser_vehicletype(String user_vehicletype) {
+        this.user_vehicletype = user_vehicletype;
+    }
+
+    public Double getUser_load() {
+        return user_load;
+    }
+
+    public void setUser_load(Double user_load) {
+        this.user_load = user_load;
+    }
+
+    public Integer getUser_perfect() {
+        return user_perfect;
+    }
+
+    public void setUser_perfect(Integer user_perfect) {
+        this.user_perfect = user_perfect;
+    }
+
     @Override
     public String toString() {
         return "Users{" +
@@ -196,6 +236,10 @@ public class Users implements Serializable {
                 ", user_address='" + user_address + '\'' +
                 ", user_share=" + user_share +
                 ", user_sharetime='" + user_sharetime + '\'' +
+                ", user_conductor=" + user_conductor +
+                ", user_vehicletype='" + user_vehicletype + '\'' +
+                ", user_load=" + user_load +
+                ", user_perfect=" + user_perfect +
                 '}';
     }
 }

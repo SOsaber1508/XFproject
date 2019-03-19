@@ -11,7 +11,7 @@ public interface ManageDao {
     public User selectByName(String user_name);
     //添加管理员用户
     public int insertAUser(User user);
-    //修改密码
+    //修改管理员用户密码
     public int updatePassword(User user);
     //货源信息 查询一年中的各月份的订单量
     public Map<String,Object> selectGoodsOrderNumber(String dates);
@@ -31,5 +31,13 @@ public interface ManageDao {
     public Map<String,Object> selectDoodsStateNumber();
     //查询所有的用户信息
     public List<Users> selectAllusers();
+
+
+
+
+
+
+
+
 
 }
