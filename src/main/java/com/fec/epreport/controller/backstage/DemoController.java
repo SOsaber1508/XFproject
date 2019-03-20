@@ -23,7 +23,7 @@ public class DemoController {
 	@Autowired
 	ManageService manageService;
 	@ResponseBody
-	@RequestMapping({ "/demo.htm" })
+	@RequestMapping("/demo.htm")
 	public PageInfo<Users> selectallManage(Model model, String excelMsg, @RequestParam(defaultValue="1",required=true,value="pageNo") int pageNo) {
 		PageInfo<Users> pageInfo=null;
 		try {
@@ -37,7 +37,7 @@ public class DemoController {
 			e.printStackTrace();
 			logger.error("查询失败：失败原因+"+e.getLocalizedMessage());
 		}
-		logger.debug("leave /admin/download_center.htm");
+		logger.debug("leave/admin/download_center.htm");
 		return pageInfo;
 	}
 }

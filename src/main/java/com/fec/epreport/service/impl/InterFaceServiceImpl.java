@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 
-@Service("interFaceService")  
+@Service("interFaceService")
 public class InterFaceServiceImpl implements InterFaceService {
     private static Logger logger = LoggerFactory.getLogger(InterFaceServiceImpl.class);
     @Autowired
