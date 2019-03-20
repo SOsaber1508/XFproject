@@ -15,6 +15,8 @@ import java.net.URL;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
@@ -31,8 +33,7 @@ public class PureNetUtil {
 	/**
 	 * get方法直接调用post方法
 	 * 
-	 * @param url
-	 *            网络地址
+	 * @param url 网络地址
 	 * @return 返回网络数据
 	 */
 	public static String get(String url) {
@@ -42,10 +43,8 @@ public class PureNetUtil {
 	/**
 	 * 设定post方法获取网络资源,如果参数为null,实际上设定为get方法
 	 * 
-	 * @param url
-	 *            网络地址
-	 * @param param
-	 *            请求参数键值对
+	 * @param url   网络地址
+	 * @param param 请求参数键值对
 	 * @return 返回读取数据
 	 */
 	public static String post(String url, Map param) {
@@ -57,9 +56,9 @@ public class PureNetUtil {
 			if (param != null) {// 如果请求参数不为空
 				sb = new StringBuffer();
 				/*
-				 * A URL connection can be used for input and/or output. Set the
-				 * DoOutput flag to true if you intend to use the URL connection
-				 * for output, false if not. The default is false.
+				 * A URL connection can be used for input and/or output. Set the DoOutput flag
+				 * to true if you intend to use the URL connection for output, false if not. The
+				 * default is false.
 				 */
 				// 默认为false,post方法需要写入参数,设定true
 				conn.setDoOutput(true);
@@ -101,7 +100,7 @@ public class PureNetUtil {
 				if (sb.toString().length() == 0) {
 					return null;
 				}
-				//返回字符串
+				// 返回字符串
 				return sb.toString().substring(0,
 						sb.toString().length() - System.getProperty("line.separator").length());
 			}
@@ -114,80 +113,81 @@ public class PureNetUtil {
 		}
 		return null;
 	}
-	
+
 	/**
 	 * zcy
+	 * 
 	 * @param inStream
 	 * @return
 	 * @throws Exception
 	 */
-	//得到图片的二进制数据，以二进制封装得到数据，具有通用性  
-    public static byte[] readInputStream(InputStream inStream) throws Exception{  
-        ByteArrayOutputStream outStream = new ByteArrayOutputStream();  
-        //创建一个Buffer字符串  
-        byte[] buffer = new byte[1024];  
-        //每次读取的字符串长度，如果为-1，代表全部读取完毕  
-        int len = 0;  
-        //使用一个输入流从buffer里把数据读取出来  
-        while( (len=inStream.read(buffer)) != -1 ){  
-            //用输出流往buffer里写入数据，中间参数代表从哪个位置开始读，len代表读取的长度  
-            outStream.write(buffer, 0, len);  
-        }  
-        //关闭输入流  
-        inStream.close();  
-        //把outStream里的数据写入内存  
-        return outStream.toByteArray();  
-    }
-    /**
-     * 发送数据工具
-     * @throws IOException 
-     */
-    public static String appPost(String url1) throws IOException {
-    	URL url = new URL("http://192.168.3.45:8083/epreport/interface/getLiu.htm");
-        HttpURLConnection connection = (HttpURLConnection) url
-                .openConnection();
-        connection.setDoOutput(true);
-        connection.setDoInput(true);
-        connection.setRequestMethod("POST");
-        connection.setUseCaches(false);
-        connection.setInstanceFollowRedirects(true);
-        connection.setRequestProperty("connection", "Keep-Alive");
-        //connection.setRequestProperty("Content-Type", "text/plain; charset=utf-8");
-        connection.connect();
-    	 //POST请求
-        DataOutputStream out = new DataOutputStream(
-                connection.getOutputStream());
-        JSONObject obj = new JSONObject();
-        String message = java.net.URLEncoder.encode("哈哈哈","utf-8");
-        obj.element("detail", "df");
-        obj.element("TEXT1", "asd");
-        obj.element("TEXT2", message);
-        out.writeBytes("data="+obj.toString());
-        System.out.println("data="+obj.toString());
-        out.flush();
-        out.close();
-        //读取响应
-        BufferedReader reader = new BufferedReader(new InputStreamReader(
-                connection.getInputStream()));
-        String lines;
-        StringBuffer sb = new StringBuffer("");
-        while ((lines = reader.readLine()) != null) {
-            lines = new String(lines.getBytes(), "utf-8");
-            sb.append(lines);
-        }
-        System.out.println(sb);
-        reader.close();
-        connection.disconnect();
-    	return null;
-    	
-    }
-    
-    public static void main(String[]args) throws IOException {
-    	appPost(null);
-    }
-    
+	// 得到图片的二进制数据，以二进制封装得到数据，具有通用性
+	public static byte[] readInputStream(InputStream inStream) throws Exception {
+		ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+		// 创建一个Buffer字符串
+		byte[] buffer = new byte[1024];
+		// 每次读取的字符串长度，如果为-1，代表全部读取完毕
+		int len = 0;
+		// 使用一个输入流从buffer里把数据读取出来
+		while ((len = inStream.read(buffer)) != -1) {
+			// 用输出流往buffer里写入数据，中间参数代表从哪个位置开始读，len代表读取的长度
+			outStream.write(buffer, 0, len);
+		}
+		// 关闭输入流
+		inStream.close();
+		// 把outStream里的数据写入内存
+		return outStream.toByteArray();
+	}
+
+	/**
+	 * 发送数据工具
+	 * 
+	 * @throws IOException
+	 */
+	public static String appPost(String url1) throws IOException {
+		URL url = new URL("http://192.168.3.45:8083/epreport/interface/getLiu.htm");
+		HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+		connection.setDoOutput(true);
+		connection.setDoInput(true);
+		connection.setRequestMethod("POST");
+		connection.setUseCaches(false);
+		connection.setInstanceFollowRedirects(true);
+		connection.setRequestProperty("connection", "Keep-Alive");
+		// connection.setRequestProperty("Content-Type", "text/plain; charset=utf-8");
+		connection.connect();
+		// POST请求
+		DataOutputStream out = new DataOutputStream(connection.getOutputStream());
+		JSONObject obj = new JSONObject();
+		String message = java.net.URLEncoder.encode("哈哈哈", "utf-8");
+		obj.element("detail", "df");
+		obj.element("TEXT1", "asd");
+		obj.element("TEXT2", message);
+		out.writeBytes("data=" + obj.toString());
+		System.out.println("data=" + obj.toString());
+		out.flush();
+		out.close();
+		// 读取响应
+		BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+		String lines;
+		StringBuffer sb = new StringBuffer("");
+		while ((lines = reader.readLine()) != null) {
+			lines = new String(lines.getBytes(), "utf-8");
+			sb.append(lines);
+		}
+		System.out.println(sb);
+		reader.close();
+		connection.disconnect();
+		return null;
+
+	}
+
+	public static void main(String[] args) throws IOException {
+		appPost(null);
+	}
+
 	/**
 	 * 传送json类型的post请求
+	 * 
 	 * @param url
 	 * @param json
 	 * @return String
@@ -216,5 +216,24 @@ public class PureNetUtil {
 			}
 		}
 		return resultString;
+	}
+
+	public static StringBuilder buffJson(HttpServletRequest request) {
+		StringBuilder sb = new StringBuilder();
+		try (BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream(), "UTF-8"))) {
+			String line = null;
+			//  读取请求内容
+			while ((line = br.readLine()) != null) {
+				sb.append(line);
+				System.out.println(sb);
+			}
+			br.close();
+			if ("".equals(sb.toString())) {
+				System.out.println("接收的为空");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return sb;
 	}
 }
