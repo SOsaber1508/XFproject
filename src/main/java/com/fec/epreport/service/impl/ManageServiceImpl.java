@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 
-@Service("manageService")  
+@Service("manageService")
 public class ManageServiceImpl implements ManageService {
     private static Logger logger = LoggerFactory.getLogger(ManageServiceImpl.class);
 
@@ -156,7 +156,4 @@ public class ManageServiceImpl implements ManageService {
         }
         return list;
     }
-
-
-
 }
