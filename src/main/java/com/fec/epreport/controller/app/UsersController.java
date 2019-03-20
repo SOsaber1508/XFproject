@@ -93,10 +93,10 @@ public class UsersController {
     //身份认证
     @ResponseBody
     @RequestMapping("/identityAuthentication.htm")
-    public String identityAuthentication(String user_realname,String user_idnumber,String user_phonenumber){
+    public String identityAuthentication(String wx_nickname,String user_idnumber,String user_phonenumber){
         try {
             HashMap<String,Object> hashMap = new HashMap<>();
-            hashMap.put("user_realname",user_realname);
+            hashMap.put("wx_nickname",wx_nickname);
             hashMap.put("user_idnumber",user_idnumber);
             hashMap.put("user_phonenumber",user_phonenumber);
         } catch (Exception e) {

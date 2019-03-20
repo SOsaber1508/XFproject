@@ -7,13 +7,16 @@ public class Users implements Serializable {
     //序列化实例化
     private static final long serialVersionUID = 1L;
     private Integer user_id;
-    private String user_headportrait;
-    private String user_name;
-    private String user_password;
-    private String user_realname;
+    private String wx_headimgurl;
+    private String wx_name;
+    private String wx_password;
+    private String wx_nickname;
+    private String wx_city;
+    private String wx_province;
+    private String wx_country;
+    private Integer wx_openid;
     private String user_idnumber;
     private String user_phonenumber;
-    private String user_wechat;
     private String user_authentication;
     private String user_establish;
     private String user_modify;
@@ -30,15 +33,18 @@ public class Users implements Serializable {
     public Users() {
     }
 
-    public Users(Integer user_id, String user_headportrait, String user_name, String user_password, String user_realname, String user_idnumber, String user_phonenumber, String user_wechat, String user_authentication, String user_establish, String user_modify, Integer user_sex, String user_birth, String user_address, Integer user_share, String user_sharetime, Double user_conductor, String user_vehicletype, Double user_load, Integer user_perfect) {
+    public Users(Integer user_id, String wx_headimgurl, String wx_name, String wx_password, String wx_nickname, String wx_city, String wx_province, String wx_country, Integer wx_openid, String user_idnumber, String user_phonenumber, String user_authentication, String user_establish, String user_modify, Integer user_sex, String user_birth, String user_address, Integer user_share, String user_sharetime, Double user_conductor, String user_vehicletype, Double user_load, Integer user_perfect) {
         this.user_id = user_id;
-        this.user_headportrait = user_headportrait;
-        this.user_name = user_name;
-        this.user_password = user_password;
-        this.user_realname = user_realname;
+        this.wx_headimgurl = wx_headimgurl;
+        this.wx_name = wx_name;
+        this.wx_password = wx_password;
+        this.wx_nickname = wx_nickname;
+        this.wx_city = wx_city;
+        this.wx_province = wx_province;
+        this.wx_country = wx_country;
+        this.wx_openid = wx_openid;
         this.user_idnumber = user_idnumber;
         this.user_phonenumber = user_phonenumber;
-        this.user_wechat = user_wechat;
         this.user_authentication = user_authentication;
         this.user_establish = user_establish;
         this.user_modify = user_modify;
@@ -65,36 +71,68 @@ public class Users implements Serializable {
         this.user_id = user_id;
     }
 
-    public String getUser_headportrait() {
-        return user_headportrait;
+    public String getWx_headimgurl() {
+        return wx_headimgurl;
     }
 
-    public void setUser_headportrait(String user_headportrait) {
-        this.user_headportrait = user_headportrait;
+    public void setWx_headimgurl(String wx_headimgurl) {
+        this.wx_headimgurl = wx_headimgurl;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getWx_name() {
+        return wx_name;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setWx_name(String wx_name) {
+        this.wx_name = wx_name;
     }
 
-    public String getUser_password() {
-        return user_password;
+    public String getWx_password() {
+        return wx_password;
     }
 
-    public void setUser_password(String user_password) {
-        this.user_password = user_password;
+    public void setWx_password(String wx_password) {
+        this.wx_password = wx_password;
     }
 
-    public String getUser_realname() {
-        return user_realname;
+    public String getWx_nickname() {
+        return wx_nickname;
     }
 
-    public void setUser_realname(String user_realname) {
-        this.user_realname = user_realname;
+    public void setWx_nickname(String wx_nickname) {
+        this.wx_nickname = wx_nickname;
+    }
+
+    public String getWx_city() {
+        return wx_city;
+    }
+
+    public void setWx_city(String wx_city) {
+        this.wx_city = wx_city;
+    }
+
+    public String getWx_province() {
+        return wx_province;
+    }
+
+    public void setWx_province(String wx_province) {
+        this.wx_province = wx_province;
+    }
+
+    public String getWx_country() {
+        return wx_country;
+    }
+
+    public void setWx_country(String wx_country) {
+        this.wx_country = wx_country;
+    }
+
+    public Integer getWx_openid() {
+        return wx_openid;
+    }
+
+    public void setWx_openid(Integer wx_openid) {
+        this.wx_openid = wx_openid;
     }
 
     public String getUser_idnumber() {
@@ -111,14 +149,6 @@ public class Users implements Serializable {
 
     public void setUser_phonenumber(String user_phonenumber) {
         this.user_phonenumber = user_phonenumber;
-    }
-
-    public String getUser_wechat() {
-        return user_wechat;
-    }
-
-    public void setUser_wechat(String user_wechat) {
-        this.user_wechat = user_wechat;
     }
 
     public String getUser_authentication() {
@@ -221,13 +251,16 @@ public class Users implements Serializable {
     public String toString() {
         return "Users{" +
                 "user_id=" + user_id +
-                ", user_headportrait='" + user_headportrait + '\'' +
-                ", user_name='" + user_name + '\'' +
-                ", user_password='" + user_password + '\'' +
-                ", user_realname='" + user_realname + '\'' +
+                ", wx_headimgurl='" + wx_headimgurl + '\'' +
+                ", wx_name='" + wx_name + '\'' +
+                ", wx_password='" + wx_password + '\'' +
+                ", wx_nickname='" + wx_nickname + '\'' +
+                ", wx_city='" + wx_city + '\'' +
+                ", wx_province='" + wx_province + '\'' +
+                ", wx_country='" + wx_country + '\'' +
+                ", wx_openid=" + wx_openid +
                 ", user_idnumber='" + user_idnumber + '\'' +
                 ", user_phonenumber='" + user_phonenumber + '\'' +
-                ", user_wechat='" + user_wechat + '\'' +
                 ", user_authentication='" + user_authentication + '\'' +
                 ", user_establish='" + user_establish + '\'' +
                 ", user_modify='" + user_modify + '\'' +

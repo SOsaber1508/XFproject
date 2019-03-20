@@ -206,12 +206,12 @@ public class InterfaceController {
 	public String httpCeshi() {
 	String targetUrl="asdasdadad";
 	JSONObject requestJson = new JSONObject();
-	requestJson.put("name", "zcy");
-	requestJson.put("passward", "qaz006");
-	requestJson.put("nickname", "zzzz");
+	requestJson.put("name","zcy");
+	requestJson.put("passward","qaz006");
+	requestJson.put("nickname","zzzz");
 	String result = null;
 	//实体list =manageServer.selcet(xxxxxx); 查出来的东西
-	//list 直接转string 也行 应该有把   
+	//list 直接转string 也行 应该有把
 	//result = hcph.postRequest(targetUrl, 要传的);
 	try {
      	result = hcph.postRequest(targetUrl, requestJson.toString());
@@ -220,5 +220,4 @@ public class InterfaceController {
 		}
 	return result;
 	}
-	
 }
