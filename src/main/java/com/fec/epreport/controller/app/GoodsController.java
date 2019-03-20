@@ -22,6 +22,8 @@ public class GoodsController {
     public String selectSourceDetails(Integer goods_id,Integer user_id){
         try {
             HashMap<String,Object> hashMap = new HashMap<>();
+            Integer id = null;
+            hashMap.put("id",id);
             hashMap.put("user_id",user_id);
             hashMap.put("goods_id",goods_id);
         } catch (Exception e) {

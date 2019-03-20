@@ -3,7 +3,7 @@
 <mapper namespace="com.fec.epreport.dao.InterFaceDao" >
     <!--评价列表查询-->
     <select id="selectEvaluates" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-        select u.user_id,u.user_headportrait,u.user_name,u.user_realname,e.evaluate_id,e.evaluate_type,e.evaluate_content,e.evaluate_time
+        select u.user_id,u.wx_headimgurl,u.wx_name,u.wx_nickname,e.evaluate_id,e.evaluate_type,e.evaluate_content,e.evaluate_time
         from user u join evaluate e on u.user_id=e.evaluate_user_id WHERE e.evaluate_user_ids=#{user_id}
     </select>
     <!--好评数（货源车源）-->
@@ -20,23 +20,28 @@
     </select>
     <!--提交评价-->
     <insert id="submissionEvaluates" parameterType="java.util.HashMap">
-
+        insert into evaluate values(null,#{id},#{user_id},#{evaluate_type},#{evaluate_content},SYSDATE())
     </insert>
     <!--点击评价-->
     <select id="clickEvaluates" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-
+        select user_id,wx_headimgurl,wx_name,wx_nickname from user where user_id=#{user_id}
     </select>
     <!--货源详情查询-->
     <select id="selectSourceDetails" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-
+        select goods_id,goods_vehicletype,goods_length,goods_vetype,goods_type,goods_Detailedtype,goods_name,goods_number,
+        goods_start,goods_end,goods_detailed,goods_contacts,goods_contactinformation,goods_loadingtime,user_id,wx_headimgurl,
+        wx_name,wx_nickname,user_share
+        from goods g join user u on g.goods_user_id=u.user_id where g.goods_id=#{goods_id}
     </select>
     <!--查询是否收藏此用户（货源车源）-->
     <select id="selectCollection" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-
+        select * from collection where collection_user_id = #{user_id} and collection_user_ids = #{id}
     </select>
     <!--货源列表查询-->
     <select id="selectGoods" resultType="java.util.HashMap">
-
+        select goods_id,goods_vehicletype,goods_length,goods_name,goods_number,goods_time,
+        goods_start,goods_end,goods_contacts,goods_contactinformation,goods_user_id,goods_loadingtime,user_id,wx_headimgurl,
+        wx_name,wx_nickname from goods g join user u on g.goods_user_id=u.user_id
     </select>
     <!--发布货源-->
     <insert id="releaseSource" parameterType="java.util.HashMap">
