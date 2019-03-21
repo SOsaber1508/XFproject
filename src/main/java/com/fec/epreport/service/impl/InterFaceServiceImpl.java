@@ -218,12 +218,23 @@ public class InterFaceServiceImpl implements InterFaceService {
         }
         return map;
     }
+    //身份认证
+    @Override
+    public Integer identityAuthentication(HashMap<String, Object> hashMap) {
+        Integer integer = null;
+        try {
+            integer=interFaceDao.identityAuthentication(hashMap);
+        } catch (DataAccessException d) {
+            logger.info("查询数据库错误："+d.getLocalizedMessage());
+        }
+        return integer;
+    }
     //查询此用户是否进行过身份认证
     @Override
-    public Map<String, Object> identityAuthentication(HashMap<String, Object> hashMap) {
+    public Map<String, Object> selectidentityAuthentication(HashMap<String, Object> hashMap) {
         Map<String, Object> map = null;
         try {
-            map=interFaceDao.identityAuthentication(hashMap);
+            map=interFaceDao.selectidentityAuthentication(hashMap);
         } catch (DataAccessException d) {
             logger.info("查询数据库错误："+d.getLocalizedMessage());
         }

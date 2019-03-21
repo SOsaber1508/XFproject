@@ -564,7 +564,7 @@
 										<p class="card-category">Users Table</p>
 									</div>
 									<div class="card-body">
-										<table class="table table-head-bg-success table-striped table-hover">
+										<table class="table table-head-bg-success table-striped table-hover col-md-6">
 											<thead>
 												<tr>
 													<th scope="col">#</th>
@@ -578,7 +578,7 @@
 												<c:forEach items="${userlist.list}" var="user" varStatus="status">
 													<tr>
 														<td>${user.user_id}</td>
-														<td>${user.user_name}</td>
+														<td>${user.wx_nickname}</td>
 														<td>${user.user_sex}</td>
 														<td>${user.user_idnumber}</td>
 														<td>${user.user_address}</td>
@@ -638,7 +638,7 @@
 											for(var i = 0;i<data.list.length;i++){
 												var users = $("<tr>\n" +
 														"<td>"+data.list[i].user_id+"</td>" +
-														"<td>"+data.list[i].user_name+"</td>" +
+														"<td>"+data.list[i].wx_nickname+"</td>" +
 														"<td>"+data.list[i].user_sex+"</td>" +
 														"<td>"+data.list[i].user_idnumber+"</td>" +
 														"<td>"+data.list[i].user_address+"</td>" +

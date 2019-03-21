@@ -42,8 +42,10 @@ public interface InterFaceService {
     public List<Map<String,Object>> selectAUsersRelease(Integer user_id);
     //用户简介中查询个人信息
     public Map<String,Object> selectAUsers(Integer user_id);
+    //身份认证
+    public Integer identityAuthentication(HashMap<String, Object> hashMap);
     //查询此用户是否进行过身份认证
-    public Map<String,Object> identityAuthentication(HashMap<String,Object> hashMap);
+    public Map<String,Object> selectidentityAuthentication(HashMap<String,Object> hashMap);
     //车源详情查询
     public Map<String,Object> selectVehicleDetails(HashMap<String,Object> hashMap);
     //车源列表查询

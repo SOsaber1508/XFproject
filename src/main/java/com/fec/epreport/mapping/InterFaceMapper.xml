@@ -85,17 +85,25 @@
     <select id="selectAUsers" parameterType="java.lang.Integer" resultType="java.util.HashMap">
         select user_id,wx_headimgurl,wx_name,wx_nickname,user_establish,user_authentication,user_phonenumber from user where user_id=#{user_id}
     </select>
+    <!--身份认证-->
+    <update id="identityAuthentication" parameterType="java.util.HashMap">
+        update user set wx_name = #{wx_name},wx_nickname=#{wx_nickname},user_idnumber=#{user_idnumber},user_phonenumber=#{user_phonenumber} where user_id = #{user_id};
+    </update>
     <!--查询此用户是否进行过身份认证-->
-    <select id="identityAuthentication" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-
+    <select id="selectidentityAuthentication" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        select user_authentication from user where user_id = #{user_id}
     </select>
     <!--车源详情查询-->
     <select id="selectVehicleDetails" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-
+        select vehicle_id,vehicle_start,vehicle_end,vehicle_contacts,vehicle_contactinformation,vehicle_length,vehicle_type,vehicle_releasetime,
+        vehicle_detaileddescription,vehicle_load,user_id,wx_headimgurl,wx_name,wx_nickname,user_share
+        from vehicle c join user u on c.vehicle_user_id=u.user_id where c.vehicle_id=#{vehicle_id}
     </select>
     <!--车源列表查询-->
     <select id="selectVehicles" resultType="java.util.HashMap">
-
+        select vehicle_id,vehicle_start,vehicle_end,vehicle_contacts,vehicle_contactinformation,vehicle_length,
+        vehicle_type,vehicle_releasetime,vehicle_user_id,vehicle_load,user_id,wx_headimgurl,
+        wx_name,wx_nickname from vehicle v join user u on v.vehicle_user_id=u.user_id
     </select>
     <!--根据条件查询车源列表-->
     <select id="selectVehiclesCondition" parameterType="java.util.HashMap" resultType="java.util.HashMap">

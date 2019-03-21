@@ -10,17 +10,21 @@ public class Feedback implements Serializable {
     private String feedback_user_id;
     private String feedback_type;
     private String feedback_content;
-    private String feedback_photo;
+    private String feedback_photoa;
+    private String feedback_photob;
+    private String feedback_photoc;
 
     public Feedback() {
     }
 
-    public Feedback(Integer feedback_id, String feedback_user_id, String feedback_type, String feedback_content, String feedback_photo) {
+    public Feedback(Integer feedback_id, String feedback_user_id, String feedback_type, String feedback_content, String feedback_photoa, String feedback_photob, String feedback_photoc) {
         this.feedback_id = feedback_id;
         this.feedback_user_id = feedback_user_id;
         this.feedback_type = feedback_type;
         this.feedback_content = feedback_content;
-        this.feedback_photo = feedback_photo;
+        this.feedback_photoa = feedback_photoa;
+        this.feedback_photob = feedback_photob;
+        this.feedback_photoc = feedback_photoc;
     }
 
     public static long getSerialVersionUID() {
@@ -59,12 +63,28 @@ public class Feedback implements Serializable {
         this.feedback_content = feedback_content;
     }
 
-    public String getFeedback_photo() {
-        return feedback_photo;
+    public String getFeedback_photoa() {
+        return feedback_photoa;
     }
 
-    public void setFeedback_photo(String feedback_photo) {
-        this.feedback_photo = feedback_photo;
+    public void setFeedback_photoa(String feedback_photoa) {
+        this.feedback_photoa = feedback_photoa;
+    }
+
+    public String getFeedback_photob() {
+        return feedback_photob;
+    }
+
+    public void setFeedback_photob(String feedback_photob) {
+        this.feedback_photob = feedback_photob;
+    }
+
+    public String getFeedback_photoc() {
+        return feedback_photoc;
+    }
+
+    public void setFeedback_photoc(String feedback_photoc) {
+        this.feedback_photoc = feedback_photoc;
     }
 
     @Override
@@ -74,7 +94,9 @@ public class Feedback implements Serializable {
                 ", feedback_user_id='" + feedback_user_id + '\'' +
                 ", feedback_type='" + feedback_type + '\'' +
                 ", feedback_content='" + feedback_content + '\'' +
-                ", feedback_photo='" + feedback_photo + '\'' +
+                ", feedback_photoa='" + feedback_photoa + '\'' +
+                ", feedback_photob='" + feedback_photob + '\'' +
+                ", feedback_photoc='" + feedback_photoc + '\'' +
                 '}';
     }
 }
