@@ -6,7 +6,7 @@ import java.io.Serializable;
 public class Users implements Serializable {
     //序列化实例化
     private static final long serialVersionUID = 1L;
-    private Integer user_id;
+    private String user_id;
     private String wx_headimgurl;
     private String wx_name;
     private String wx_password;
@@ -14,7 +14,7 @@ public class Users implements Serializable {
     private String wx_city;
     private String wx_province;
     private String wx_country;
-    private Integer wx_openid;
+    private String wx_openid;
     private String user_idnumber;
     private String user_phonenumber;
     private String user_authentication;
@@ -33,7 +33,7 @@ public class Users implements Serializable {
     public Users() {
     }
 
-    public Users(Integer user_id, String wx_headimgurl, String wx_name, String wx_password, String wx_nickname, String wx_city, String wx_province, String wx_country, Integer wx_openid, String user_idnumber, String user_phonenumber, String user_authentication, String user_establish, String user_modify, Integer user_sex, String user_birth, String user_address, Integer user_share, String user_sharetime, Double user_conductor, String user_vehicletype, Double user_load, Integer user_perfect) {
+    public Users(String user_id, String wx_headimgurl, String wx_name, String wx_password, String wx_nickname, String wx_city, String wx_province, String wx_country, String wx_openid, String user_idnumber, String user_phonenumber, String user_authentication, String user_establish, String user_modify, Integer user_sex, String user_birth, String user_address, Integer user_share, String user_sharetime, Double user_conductor, String user_vehicletype, Double user_load, Integer user_perfect) {
         this.user_id = user_id;
         this.wx_headimgurl = wx_headimgurl;
         this.wx_name = wx_name;
@@ -63,11 +63,11 @@ public class Users implements Serializable {
         return serialVersionUID;
     }
 
-    public Integer getUser_id() {
+    public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(Integer user_id) {
+    public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
 
@@ -127,11 +127,11 @@ public class Users implements Serializable {
         this.wx_country = wx_country;
     }
 
-    public Integer getWx_openid() {
+    public String getWx_openid() {
         return wx_openid;
     }
 
-    public void setWx_openid(Integer wx_openid) {
+    public void setWx_openid(String wx_openid) {
         this.wx_openid = wx_openid;
     }
 
@@ -250,7 +250,7 @@ public class Users implements Serializable {
     @Override
     public String toString() {
         return "Users{" +
-                "user_id=" + user_id +
+                "user_id='" + user_id + '\'' +
                 ", wx_headimgurl='" + wx_headimgurl + '\'' +
                 ", wx_name='" + wx_name + '\'' +
                 ", wx_password='" + wx_password + '\'' +
@@ -258,7 +258,7 @@ public class Users implements Serializable {
                 ", wx_city='" + wx_city + '\'' +
                 ", wx_province='" + wx_province + '\'' +
                 ", wx_country='" + wx_country + '\'' +
-                ", wx_openid=" + wx_openid +
+                ", wx_openid='" + wx_openid + '\'' +
                 ", user_idnumber='" + user_idnumber + '\'' +
                 ", user_phonenumber='" + user_phonenumber + '\'' +
                 ", user_authentication='" + user_authentication + '\'' +

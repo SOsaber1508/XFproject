@@ -14,7 +14,7 @@ public class Vehicle implements Serializable {
     private Double vehicle_length;
     private String vehicle_type;
     private String vehicle_releasetime;
-    private Integer vehicle_user_id;
+    private String vehicle_user_id;
     private String vehicle_detaileddescription;
     private Double vehicle_load;
     private String vehicle_state;
@@ -25,7 +25,7 @@ public class Vehicle implements Serializable {
     public Vehicle() {
     }
 
-    public Vehicle(Integer vehicle_id, String vehicle_start, String vehicle_end, String vehicle_contacts, String vehicle_contactinformation, Double vehicle_length, String vehicle_type, String vehicle_releasetime, Integer vehicle_user_id, String vehicle_detaileddescription, Double vehicle_load, String vehicle_state, Integer vehicle_Identification, Double vehicle_long, Double vehicle_lot) {
+    public Vehicle(Integer vehicle_id, String vehicle_start, String vehicle_end, String vehicle_contacts, String vehicle_contactinformation, Double vehicle_length, String vehicle_type, String vehicle_releasetime, String vehicle_user_id, String vehicle_detaileddescription, Double vehicle_load, String vehicle_state, Integer vehicle_Identification, Double vehicle_long, Double vehicle_lot) {
         this.vehicle_id = vehicle_id;
         this.vehicle_start = vehicle_start;
         this.vehicle_end = vehicle_end;
@@ -111,11 +111,11 @@ public class Vehicle implements Serializable {
         this.vehicle_releasetime = vehicle_releasetime;
     }
 
-    public Integer getVehicle_user_id() {
+    public String getVehicle_user_id() {
         return vehicle_user_id;
     }
 
-    public void setVehicle_user_id(Integer vehicle_user_id) {
+    public void setVehicle_user_id(String vehicle_user_id) {
         this.vehicle_user_id = vehicle_user_id;
     }
 
@@ -178,7 +178,7 @@ public class Vehicle implements Serializable {
                 ", vehicle_length=" + vehicle_length +
                 ", vehicle_type='" + vehicle_type + '\'' +
                 ", vehicle_releasetime='" + vehicle_releasetime + '\'' +
-                ", vehicle_user_id=" + vehicle_user_id +
+                ", vehicle_user_id='" + vehicle_user_id + '\'' +
                 ", vehicle_detaileddescription='" + vehicle_detaileddescription + '\'' +
                 ", vehicle_load=" + vehicle_load +
                 ", vehicle_state='" + vehicle_state + '\'' +

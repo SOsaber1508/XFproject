@@ -20,7 +20,7 @@ public class Goods implements Serializable {
     private String goods_detailed;
     private String goods_contacts;
     private String goods_contactinformation;
-    private Integer goods_user_id;
+    private String goods_user_id;
     private String goods_releasestatus;
     private String goods_loadingtime;
     private Integer goods_Identification;
@@ -30,7 +30,7 @@ public class Goods implements Serializable {
     public Goods() {
     }
 
-    public Goods(Integer goods_id, String goods_vehicletype, Double goods_length, String goods_vetype, String goods_type, String goods_Detailedtype, String goods_name, Double goods_number, String goods_time, String goods_start, String goods_end, String goods_detailed, String goods_contacts, String goods_contactinformation, Integer goods_user_id, String goods_releasestatus, String goods_loadingtime, Integer goods_Identification, Double goods_long, Double goods_lot) {
+    public Goods(Integer goods_id, String goods_vehicletype, Double goods_length, String goods_vetype, String goods_type, String goods_Detailedtype, String goods_name, Double goods_number, String goods_time, String goods_start, String goods_end, String goods_detailed, String goods_contacts, String goods_contactinformation, String goods_user_id, String goods_releasestatus, String goods_loadingtime, Integer goods_Identification, Double goods_long, Double goods_lot) {
         this.goods_id = goods_id;
         this.goods_vehicletype = goods_vehicletype;
         this.goods_length = goods_length;
@@ -169,11 +169,11 @@ public class Goods implements Serializable {
         this.goods_contactinformation = goods_contactinformation;
     }
 
-    public Integer getGoods_user_id() {
+    public String getGoods_user_id() {
         return goods_user_id;
     }
 
-    public void setGoods_user_id(Integer goods_user_id) {
+    public void setGoods_user_id(String goods_user_id) {
         this.goods_user_id = goods_user_id;
     }
 
@@ -234,7 +234,7 @@ public class Goods implements Serializable {
                 ", goods_detailed='" + goods_detailed + '\'' +
                 ", goods_contacts='" + goods_contacts + '\'' +
                 ", goods_contactinformation='" + goods_contactinformation + '\'' +
-                ", goods_user_id=" + goods_user_id +
+                ", goods_user_id='" + goods_user_id + '\'' +
                 ", goods_releasestatus='" + goods_releasestatus + '\'' +
                 ", goods_loadingtime='" + goods_loadingtime + '\'' +
                 ", goods_Identification=" + goods_Identification +

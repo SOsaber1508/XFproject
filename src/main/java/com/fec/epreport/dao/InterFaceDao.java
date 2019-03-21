@@ -38,7 +38,7 @@ public interface InterFaceDao {
     public List<Map<String,Object>> selectMyCollection(Integer user_id);
     //个人分享信息
     public Map<String,Object> shareInformation(Integer user_id);
-    //用户简介查询
+    //用户简介查询(发布信息)
     public List<Map<String,Object>> selectAUsersRelease(Integer user_id);
     //用户简介中查询个人信息
     public Map<String,Object> selectAUsers(Integer user_id);

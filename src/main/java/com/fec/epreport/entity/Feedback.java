@@ -7,7 +7,7 @@ public class Feedback implements Serializable {
     //序列化实例化
     private static final long serialVersionUID = 1L;
     private Integer feedback_id;
-    private Integer feedback_user_id;
+    private String feedback_user_id;
     private String feedback_type;
     private String feedback_content;
     private String feedback_photo;
@@ -15,12 +15,16 @@ public class Feedback implements Serializable {
     public Feedback() {
     }
 
-    public Feedback(Integer feedback_id, Integer feedback_user_id, String feedback_type, String feedback_content, String feedback_photo) {
+    public Feedback(Integer feedback_id, String feedback_user_id, String feedback_type, String feedback_content, String feedback_photo) {
         this.feedback_id = feedback_id;
         this.feedback_user_id = feedback_user_id;
         this.feedback_type = feedback_type;
         this.feedback_content = feedback_content;
         this.feedback_photo = feedback_photo;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Integer getFeedback_id() {
@@ -31,11 +35,11 @@ public class Feedback implements Serializable {
         this.feedback_id = feedback_id;
     }
 
-    public Integer getFeedback_user_id() {
+    public String getFeedback_user_id() {
         return feedback_user_id;
     }
 
-    public void setFeedback_user_id(Integer feedback_user_id) {
+    public void setFeedback_user_id(String feedback_user_id) {
         this.feedback_user_id = feedback_user_id;
     }
 
@@ -67,7 +71,7 @@ public class Feedback implements Serializable {
     public String toString() {
         return "Feedback{" +
                 "feedback_id=" + feedback_id +
-                ", feedback_user_id=" + feedback_user_id +
+                ", feedback_user_id='" + feedback_user_id + '\'' +
                 ", feedback_type='" + feedback_type + '\'' +
                 ", feedback_content='" + feedback_content + '\'' +
                 ", feedback_photo='" + feedback_photo + '\'' +

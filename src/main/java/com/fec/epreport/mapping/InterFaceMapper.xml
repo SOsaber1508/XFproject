@@ -53,11 +53,15 @@
     </select>
     <!--查询个人信息-->
     <select id="selectAUsersss" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-
+        select user_id,wx_headimgurl,wx_name,wx_nickname,user_idnumber,user_phonenumber,user_authentication,user_establish,
+        user_modify,user_sex,user_address
+        from user where user_id=#{user_id}
     </select>
     <!--历史发布查询-->
     <select id="selectRelease" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-
+        select goods_id as id,goods_start as start,goods_end as end,goods_length as length,goods_vehicletype as vehicletype,goods_number as loads,goods_Identification as Identification
+        from (select * FROM(select goods_id,goods_start,goods_end,goods_length,goods_vehicletype,goods_number,goods_Identification FROM goods union all
+        select vehicle_id,vehicle_start,vehicle_end,vehicle_length,vehicle_type,vehicle_load,vehicle_Identification FROM vehicle) as t) as s ORDER BY id DESC;
     </select>
     <!--完善车辆信息-->
     <insert id="perfectVehicle" parameterType="java.util.HashMap">
@@ -65,19 +69,19 @@
     </insert>
     <!--查询我的收藏信息-->
     <select id="selectMyCollection" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-
+        select collection_id,user_id,wx_headimgurl,wx_name from collection c join user u on c.collection_user_ids=u.user_id where u.user_id=#{user_id};
     </select>
     <!--个人分享信息-->
     <select id="shareInformation" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-
+        SELECT user_share,user_sharetime from user where user_id = #{user_id}
     </select>
-    <!--用户简介查询-->
+    <!--用户简介查询（发布信息）-->
     <select id="selectAUsersRelease" parameterType="java.lang.Integer" resultType="java.util.HashMap">
 
     </select>
     <!--用户简介中查询个人信息-->
     <select id="selectAUsers" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-
+        select user_id,wx_headimgurl,wx_name,wx_nickname,user_establish,user_authentication,user_phonenumber from user where user_id=#{user_id}
     </select>
     <!--身份认证-->
     <select id="identityAuthentication" parameterType="java.util.HashMap" resultType="java.util.HashMap">
