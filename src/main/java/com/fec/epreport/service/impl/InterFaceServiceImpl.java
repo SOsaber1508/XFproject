@@ -218,7 +218,7 @@ public class InterFaceServiceImpl implements InterFaceService {
         }
         return map;
     }
-    //身份认证
+    //查询此用户是否进行过身份认证
     @Override
     public Map<String, Object> identityAuthentication(HashMap<String, Object> hashMap) {
         Map<String, Object> map = null;
