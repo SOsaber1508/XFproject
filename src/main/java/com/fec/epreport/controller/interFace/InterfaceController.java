@@ -9,6 +9,7 @@ import net.sf.json.JSONArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,7 +28,7 @@ import java.net.URL;
 @RequestMapping(value = "/interface")
 public class InterfaceController {
 	private static HttpClientPoolHelper hcph = HttpClientPoolHelper.getInstance();
-	
+
 	@Autowired
 	private RedisService redisService;
 
@@ -200,24 +201,55 @@ public class InterfaceController {
 //mav.setViewName("redirect:../../pic/index.html");
 		return null;
 	}
-	
-	//http连接池接口用法
-	//示例
+
+	// http连接池接口用法
+	// 示例
 	public String httpCeshi() {
-	String targetUrl="asdasdadad";
-	JSONObject requestJson = new JSONObject();
-	requestJson.put("name","zcy");
-	requestJson.put("passward","qaz006");
-	requestJson.put("nickname","zzzz");
-	String result = null;
-	//实体list =manageServer.selcet(xxxxxx); 查出来的东西
-	//list 直接转string 也行 应该有把
-	//result = hcph.postRequest(targetUrl, 要传的);
-	try {
-     	result = hcph.postRequest(targetUrl, requestJson.toString());
-     	} catch (Exception e) {
-    		e.printStackTrace();
+		String targetUrl = "asdasdadad";
+		JSONObject requestJson = new JSONObject();
+		requestJson.put("name", "zcy");
+		requestJson.put("passward", "qaz006");
+		requestJson.put("nickname", "zzzz");
+		String result = null;
+		// 实体list =manageServer.selcet(xxxxxx); 查出来的东西
+		// list 直接转string 也行 应该有把
+		// result = hcph.postRequest(targetUrl, 要传的);
+		try {
+			result = hcph.postRequest(targetUrl, requestJson.toString());
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-	return result;
+		return result;
+	}
+
+	// http连接池接口用法
+	// 示例
+	@RequestMapping(value = "/wx_certification.htm", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+	public void wx_certification(HttpServletRequest request) throws UnsupportedEncodingException, IOException {
+		try (InputStreamReader reader = new InputStreamReader(request.getInputStream(), "UTF-8")) {
+			// 后台接收
+			char[] buff = new char[1024];
+			int length = 0;
+			while ((length = reader.read(buff)) != -1) {
+				String x = new String(buff, 0, length);
+				System.out.println(x);
+			}
+			reader.close();
+			String targetUrl = "asdasdadad";
+			JSONObject requestJson = new JSONObject();
+//		requestJson.put("name", "zcy");
+//		requestJson.put("passward", "qaz006");
+//		requestJson.put("nickname", "zzzz");
+			String result = null;
+			// 实体list =manageServer.selcet(xxxxxx); 查出来的东西
+			// list 直接转string 也行 应该有把
+			// result = hcph.postRequest(targetUrl, 要传的);
+			try {
+				// result = hcph.postRequest(targetUrl, requestJson.toString());
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 }

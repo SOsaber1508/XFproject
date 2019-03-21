@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.fec.epreport.pojo.WxUser;
+
 public interface InterFaceService {
     //评价列表查询
     public List<Map<String,Object>> selectEvaluates(Integer user_id);
@@ -28,8 +30,6 @@ public interface InterFaceService {
     public Integer releaseSource(HashMap<String,Object> hashMap);
     //根据条件查询货源列表
     public List<Map<String,Object>> selectGoodsCondition(HashMap<String,Object> hashMap);
-    //查询个人信息
-    public Map<String,Object> selectAUsersss(Integer user_id);
     //历史发布查询
     public List<Map<String,Object>> selectRelease(Integer user_id);
     //完善车辆信息
@@ -42,8 +42,10 @@ public interface InterFaceService {
     public List<Map<String,Object>> selectAUsersRelease(Integer user_id);
     //用户简介中查询个人信息
     public Map<String,Object> selectAUsers(Integer user_id);
+    //身份认证
+    public Integer identityAuthentication(HashMap<String, Object> hashMap);
     //查询此用户是否进行过身份认证
-    public Map<String,Object> identityAuthentication(HashMap<String,Object> hashMap);
+    public Map<String,Object> selectidentityAuthentication(HashMap<String,Object> hashMap);
     //车源详情查询
     public Map<String,Object> selectVehicleDetails(HashMap<String,Object> hashMap);
     //车源列表查询
@@ -52,4 +54,15 @@ public interface InterFaceService {
     public List<Map<String,Object>> selectVehiclesCondition(HashMap<String,Object> hashMap);
     //发布车源
     public Integer releaseCar(HashMap<String,Object> hashMap);
+    
+    /**
+     * 
+     * @param 微信相关
+     */
+    //发布车源
+	public void insertWxUser(WxUser user);
+	//查询是否授权过
+	public int selectShouQuan(String user_id);
+	//查询个人信息
+    public Map<String,Object> selectAUsersss(String user_id);
 }

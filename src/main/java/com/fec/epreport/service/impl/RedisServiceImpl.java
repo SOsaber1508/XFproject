@@ -20,7 +20,7 @@ public class RedisServiceImpl implements RedisService {
 	private static Logger logger = LoggerFactory.getLogger(RedisServiceImpl.class);
 
 	@Autowired
-	private JedisClient jedisClient;
+	JedisClient jedisClient;
 	@Override
 	public List<User> getUserList(int redisID) {
 		logger.info("开始了");

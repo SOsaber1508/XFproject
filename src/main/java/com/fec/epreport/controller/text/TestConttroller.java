@@ -1,54 +1,95 @@
 package com.fec.epreport.controller.text;
- 
-import java.io.InputStreamReader;
+
 import java.util.HashMap;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.MediaType;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.fec.epreport.entity.Users;
+import com.fec.epreport.pojo.WxUser;
+import com.fec.epreport.service.InterFaceService;
+import com.fec.epreport.util.commons.PureNetUtil;
 
 import javax.servlet.http.HttpServletRequest;
- 
+
 /**
- *  接收json用测试接口
+ * 接收json用测试接口
+ * 
  * @author zcy
  *
  */
 @Controller
 @RequestMapping("/test1")
-public class TestConttroller{
+public class TestConttroller {
 	private static Logger logger = LoggerFactory.getLogger(TestConttroller.class);
+
 	
-    @ResponseBody
-	@RequestMapping(value="/test.htm",produces = MediaType.APPLICATION_JSON_VALUE,method = RequestMethod.POST)
-	public Map<String,Object> getString(HttpServletRequest request) {
-    	logger.info("进入/test1/test.htm");
-		Map<String,Object> jsonObject = new HashMap<String, Object>();  //创建Json对象
-		try (InputStreamReader reader=new InputStreamReader(request.getInputStream(),"UTF-8")){
-		//后台接收
-		char [] buff=new char[1024];
-		int length=0;
-		while((length=reader.read(buff))!=-1){
-		     String x=new String(buff,0,length);
-		     System.out.println(x);
-		}
-		reader.close();
-		//响应
-		jsonObject.put("username", "张三");         //设置Json对象的属性
-		jsonObject.put("password", "123456");
+	@Autowired
+	InterFaceService interFaceService;
+	
+	@ResponseBody
+	@RequestMapping(value = "/test.htm", method = RequestMethod.POST)
+	public Map<String, Object> getString(HttpServletRequest request) {
+		logger.info("进入/test1/test.htm");
+		Map<String, Object> jsonObject = new HashMap<String, Object>(); // 创建Json对象
+		try {
+			String sb = PureNetUtil.buffJson(request);
+			if ("".equals(sb.toString())) {
+				jsonObject.put("code", "201");
+				return jsonObject;
+			}
+				WxUser user = JSON.parseObject(sb, WxUser.class);
+				interFaceService.insertWxUser(user);
+			System.out.println("拿到接口的数据为：" + sb);
 		} catch (Exception e) {
 			logger.error(e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
+		jsonObject.put("code", "200");
 		return jsonObject;
-	}   
-    
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/bodyceshi.htm", method = RequestMethod.POST)
+	public Map<String, Object> bodyceshi(HttpServletRequest request, @RequestBody JSONObject jsonObject) {
+		Map<String, Object> tobject = new HashMap<String, Object>(); // 创建Json对象
+		try {
+			String nickName = jsonObject.getString("nickname");
+			String sex = jsonObject.getString("sex");
+			String city = jsonObject.getString("city");
+			String province = jsonObject.getString("province");
+			String country = jsonObject.getString("country");
+			String headimgurl = jsonObject.getString("headimgurl");
+			String unionid = jsonObject.getString("unionid");
+			String openid = jsonObject.getString("openid");
+			// String emailTitle = jsonObject.get("emailTitle").toString();
+			// String emailBody = jsonObject.get("emailBody").toString();
+			logger.info(nickName);
+			logger.info(sex);
+			logger.info(city);
+			logger.info(province);
+			logger.info(country);
+			logger.info(headimgurl);
+			logger.info(unionid);
+			logger.info(openid);
+		} catch (Exception e) {
+			logger.error(e.getLocalizedMessage(), e);
+			e.printStackTrace();
+		}
+		tobject.put("code", "200");
+		return tobject;
+
+	}
+
 //    /**
 //     * 文件上传
 //     * @param f
@@ -85,6 +126,4 @@ public class TestConttroller{
 //        return TransitionEnum.系统异常.getMap();
 //    }
 
-    
-    
 }

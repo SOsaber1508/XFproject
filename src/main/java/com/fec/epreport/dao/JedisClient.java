@@ -17,7 +17,7 @@ public interface JedisClient {
 
 	long expire(String key, int second);// 设罝缓存生存时间-根据key设置生存时间(s)
 
-	long ttl(String key);//键的剩余时间-查看某个key的剩余生存时间,单位【秒】.永久生存或者不存在的都返回-1
+	long ttl(String key);// 键的剩余时间-查看某个key的剩余生存时间,单位【秒】.永久生存或者不存在的都返回-1
 
 	long del(String key); // 删除数据-根据key
 

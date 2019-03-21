@@ -19,13 +19,12 @@ import org.apache.log4j.Logger;
 
 import com.fec.epreport.service.HttpClientService;
 
-
-public class HttpClientServiceImpl implements HttpClientService{
+public class HttpClientServiceImpl implements HttpClientService {
 
 	private static final Logger log = Logger.getLogger(HttpClientServiceImpl.class);
-	
-	public String httpClientGet(String requestUrl){
-		log.info("URL:"+requestUrl);
+
+	public String httpClientGet(String requestUrl) {
+		log.info("URL:" + requestUrl);
 
 		CloseableHttpClient httpclient = HttpClients.createDefault();
 		HttpGet httpGet = new HttpGet(requestUrl);
@@ -43,32 +42,31 @@ public class HttpClientServiceImpl implements HttpClientService{
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
-		}finally{
+		} finally {
 			try {
 				httpclient.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-		log.info("result:"+result);
+		log.info("result:" + result);
 		return result;
 	}
-	
-	public String httpClientPost(String requestUrl,String json){
-		log.info("URL:"+requestUrl);
-		log.info("json:"+json);
-		
-  
-        HttpPost method = new HttpPost(requestUrl);  
- 
-     // 接收参数json列表  
-        StringEntity entity = new StringEntity(json,"utf-8");//解决中文乱码问题    
-        entity.setContentEncoding("UTF-8");    
-        entity.setContentType("application/json");    
-        method.setEntity(entity);    
-        HttpResponse result = null;
-        String resData = null;
-		try (CloseableHttpClient httpclient = HttpClients.createDefault()){
+
+	public String httpClientPost(String requestUrl, String json) {
+		log.info("URL:" + requestUrl);
+		log.info("json:" + json);
+
+		HttpPost method = new HttpPost(requestUrl);
+
+		// 接收参数json列表
+		StringEntity entity = new StringEntity(json, "utf-8");// 解决中文乱码问题
+		entity.setContentEncoding("UTF-8");
+		entity.setContentType("application/json");
+		method.setEntity(entity);
+		HttpResponse result = null;
+		String resData = null;
+		try (CloseableHttpClient httpclient = HttpClients.createDefault()) {
 			result = httpclient.execute(method);
 			resData = EntityUtils.toString(result.getEntity());
 		} catch (ClientProtocolException e) {
@@ -76,7 +74,7 @@ public class HttpClientServiceImpl implements HttpClientService{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-        JSONObject resJson = JSONObject.fromObject(resData);  
+		JSONObject resJson = JSONObject.fromObject(resData);
 		log.info(resJson.toString());
 		return resJson.toString();
 	}

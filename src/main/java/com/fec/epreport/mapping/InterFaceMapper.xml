@@ -105,5 +105,26 @@
     <insert id="releaseCar" parameterType="java.util.HashMap">
 
     </insert>
+	<!-- 微信相关 -->
 
+
+	<!--保存微信用户授权信息 -->
+	<insert id="insertWxUser"
+		parameterType="com.fec.epreport.pojo.WxUser">
+		insert into user
+		(user_sex,wx_city,wx_province,wx_country,wx_headimgurl,user_id,wx_name,wx_openid)value
+		(#{wx_sex},#{wx_city},#{wx_province},#{wx_country},#{wx_headimgurl},#{wx_id},#{wx_nickname},#{wx_openid})
+	</insert>
+	<!-- 查询微信是否授权该用户 -->
+	<select id="selectShouQuan" resultType="int">
+		SELECT count(*) from user WHERE user_id=#{wx_id}
+	</select>
+
+	<!--查询个人信息 -->
+	<select id="selectAUsersss" parameterType="String"
+		resultType="java.util.HashMap">
+		select
+		user_id,wx_headimgurl,wx_name,wx_nickname,user_idnumber,user_phonenumber,user_authentication
+		from user where user_id=#{user_id}
+	</select>
 </mapper>

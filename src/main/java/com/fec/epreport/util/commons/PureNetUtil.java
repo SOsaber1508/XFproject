@@ -218,7 +218,7 @@ public class PureNetUtil {
 		return resultString;
 	}
 
-	public static StringBuilder buffJson(HttpServletRequest request) {
+	public static String buffJson(HttpServletRequest request) {
 		StringBuilder sb = new StringBuilder();
 		try (BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream(), "UTF-8"))) {
 			String line = null;
@@ -228,12 +228,9 @@ public class PureNetUtil {
 				System.out.println(sb);
 			}
 			br.close();
-			if ("".equals(sb.toString())) {
-				System.out.println("接收的为空");
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return sb;
+		return sb.toString();
 	}
 }
