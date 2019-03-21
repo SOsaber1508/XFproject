@@ -153,7 +153,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 
 	// 历史发布查询
 	@Override
-	public List<Map<String, Object>> selectRelease(Integer user_id) {
+	public List<Map<String, Object>> selectRelease(String user_id) {
 		List<Map<String, Object>> maps = null;
 		try {
 			maps = interFaceDao.selectRelease(user_id);
@@ -177,7 +177,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 
 	// 查询我的收藏信息
 	@Override
-	public List<Map<String, Object>> selectMyCollection(Integer user_id) {
+	public List<Map<String, Object>> selectMyCollection(String user_id) {
 		List<Map<String, Object>> maps = null;
 		try {
 			maps = interFaceDao.selectMyCollection(user_id);
@@ -189,7 +189,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 
 	// 个人分享信息
 	@Override
-	public Map<String, Object> shareInformation(Integer user_id) {
+	public Map<String, Object> shareInformation(String user_id) {
 		Map<String, Object> map = null;
 		try {
 			map = interFaceDao.shareInformation(user_id);

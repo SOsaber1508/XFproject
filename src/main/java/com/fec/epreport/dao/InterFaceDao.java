@@ -1,11 +1,11 @@
 package com.fec.epreport.dao;
 
 
+import com.fec.epreport.pojo.WxUser;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import com.fec.epreport.pojo.WxUser;
 
 public interface InterFaceDao {
     //评价列表查询
@@ -31,13 +31,13 @@ public interface InterFaceDao {
     //根据条件查询货源列表
     public List<Map<String,Object>> selectGoodsCondition(HashMap<String,Object> hashMap);
     //历史发布查询
-    public List<Map<String,Object>> selectRelease(Integer user_id);
+    public List<Map<String,Object>> selectRelease(String user_id);
     //完善车辆信息
     public Integer perfectVehicle(HashMap<String,Object> hashMap);
     //查询我的收藏信息
-    public List<Map<String,Object>> selectMyCollection(Integer user_id);
+    public List<Map<String,Object>> selectMyCollection(String user_id);
     //个人分享信息
-    public Map<String,Object> shareInformation(Integer user_id);
+    public Map<String,Object> shareInformation(String user_id);
     //用户简介查询(发布信息)
     public List<Map<String,Object>> selectAUsersRelease(Integer user_id);
     //用户简介中查询个人信息

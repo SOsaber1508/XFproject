@@ -1,9 +1,7 @@
 package com.fec.epreport.controller.app;
 
-import com.fec.epreport.service.ManageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,8 +12,7 @@ import java.util.HashMap;
 @RequestMapping(value = "/evaluate")
 public class EvaluateController {
     private static Logger logger = LoggerFactory.getLogger(EvaluateController.class);
-    @Autowired
-    ManageService manageService;
+
     //评价列表查询
     @ResponseBody
     @RequestMapping("/selectEvaluates.htm")

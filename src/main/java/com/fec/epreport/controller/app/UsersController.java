@@ -4,9 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fec.epreport.pojo.WxUser;
 import com.fec.epreport.service.InterFaceService;
-import com.fec.epreport.service.ManageService;
 import com.fec.epreport.util.commons.PureNetUtil;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/userinterface")
@@ -31,8 +29,8 @@ public class UsersController {
 	HttpServletRequest request;
 	/**
 	 * 微信授权接口
-	 * 
-	 * @param request
+	 * request
+	 * @param
 	 * @return jsonObject
 	 */
 	@ResponseBody
@@ -72,8 +70,8 @@ public class UsersController {
 	public Map<String, Object> selectAUsers() {
 		Map<String, Object> jsonObject = new HashMap<String, Object>(); 
 		try {
-			//String sb = "{" + "    \"wx_id\": \"o_xR71EEsi2313iZ7zmG2XXqd_u8FUbE\"" + "}";
-			String sb = PureNetUtil.buffJson(request);
+			String sb = "{" + "    \"wx_id\": \"1001\"" + "}";
+//			String sb = PureNetUtil.buffJson(request);
 			if ("".equals(sb.toString())) {
 				jsonObject.put("code", "201");
 				return jsonObject;
@@ -90,25 +88,40 @@ public class UsersController {
 	// 历史发布查询
 	@ResponseBody
 	@RequestMapping("/selectRelease.htm")
-	public String selectRelease() {
+	public Map<String, Object> selectRelease() {
+		Map<String, Object> jsonObject = new HashMap<String, Object>();
+		List<Map<String,Object>> listjsonObject = null;
 		try {
-
+			String sb = "{" + "    \"wx_id\": \"1001\"" + "}";
+//			String sb = PureNetUtil.buffJson(request);
+			if ("".equals(sb.toString())) {
+				jsonObject.put("code", "201");
+				listjsonObject.add(jsonObject);
+				return jsonObject;
+			}
+			JSONObject wxObject = JSONObject.parseObject(sb);
+			listjsonObject = interFaceService.selectRelease(wxObject.getString("wx_id"));
 		} catch (Exception e) {
 			logger.error("错误提示：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
-		return "";
+		jsonObject.put("code", "200");
+		jsonObject.put("list",listjsonObject);
+		return jsonObject;
 	}
 
 	// 完善车辆信息
 	@ResponseBody
 	@RequestMapping("/perfectVehicle.htm")
 	public String perfectVehicle(Double user_conductor, String user_vehicletype, Double user_load) {
+
 		try {
 			HashMap<String, Object> hashMap = new HashMap<>();
 			hashMap.put("user_conductor", user_conductor);
 			hashMap.put("user_vehicletype", user_vehicletype);
 			hashMap.put("user_load", user_load);
+
+
 		} catch (Exception e) {
 			logger.error("错误提示：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
@@ -119,39 +132,82 @@ public class UsersController {
 	// 查询我的收藏信息
 	@ResponseBody
 	@RequestMapping("/selectMyCollection.htm")
-	public String selectMyCollection() {
+	public Map<String, Object> selectMyCollection() {
+		Map<String, Object> jsonObject = new HashMap<String, Object>();
+		List<Map<String,Object>> listjsonObject = null;
 		try {
-
+			String sb = "{" + "    \"wx_id\": \"1003\"" + "}";
+//			String sb = PureNetUtil.buffJson(request);
+			if ("".equals(sb.toString())) {
+				jsonObject.put("code", "201");
+				listjsonObject.add(jsonObject);
+				return jsonObject;
+			}
+			JSONObject wxObject = JSONObject.parseObject(sb);
+			listjsonObject = interFaceService.selectMyCollection(wxObject.getString("wx_id"));
 		} catch (Exception e) {
 			logger.error("错误提示：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
-		return "";
+		jsonObject.put("code", "200");
+		jsonObject.put("list",listjsonObject);
+		return jsonObject;
 	}
 
 	// 分享信息
 	@ResponseBody
 	@RequestMapping("/shareInformation.htm")
-	public String shareInformation() {
-		try {
+	public Map<String, Object> shareInformation() {
+		Map<String, Object> jsonObject = new HashMap<String, Object>();
 
+		try {
+			String sb = "{" + "    \"wx_id\": \"1001\"" + "}";
+//			String sb = PureNetUtil.buffJson(request);
+			if ("".equals(sb.toString())) {
+				jsonObject.put("code", "201");
+				return jsonObject;
+			}
+			JSONObject wxObject = JSONObject.parseObject(sb);
+			jsonObject = interFaceService.shareInformation(wxObject.getString("wx_id"));
 		} catch (Exception e) {
 			logger.error("错误提示：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
-		return "";
+		jsonObject.put("code", "200");
+		return jsonObject;
 	}
 
 	// 用户简介查询
 	@ResponseBody
 	@RequestMapping("/selectAUsersRelease.htm")
 	public String selectAUsersRelease(Integer user_id) {
+		Map<String, Object> jsonObject = new HashMap<String, Object>();
+		Map<String, Object> jsonObject1 = new HashMap<String, Object>();
+		List<Map<String,Object>> listjsonObject = null;
 		try {
-
+			String sb = "{" + "    \"wx_id\": \"1001\"" + "}";
+//			String sb = PureNetUtil.buffJson(request);
+			if ("".equals(sb.toString())) {
+				jsonObject1.put("code", "201");
+				listjsonObject.add(jsonObject1);
+				return "";
+			}
+			JSONObject wxObject = JSONObject.parseObject(sb);
+			jsonObject = interFaceService.shareInformation(wxObject.getString("wx_id"));
+			if ("".equals(sb.toString())) {
+				jsonObject1.put("code", "201");
+				listjsonObject.add(jsonObject1);
+				return "";
+			}
+			JSONObject wxObject1 = JSONObject.parseObject(sb);
+			listjsonObject = interFaceService.selectRelease(wxObject.getString("wx_id"));
 		} catch (Exception e) {
 			logger.error("错误提示：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
+		listjsonObject.add(jsonObject);
+		jsonObject1.put("code", "200");
+		listjsonObject.add(jsonObject1);
 		return "";
 	}
 
