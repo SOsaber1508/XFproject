@@ -7,20 +7,24 @@ public class News implements Serializable {
     //序列化实例化
     private static final long serialVersionUID = 1L;
     private Integer news_id;
-    private Integer news_user_id;
-    private Integer news_user_ids;
+    private String news_user_id;
+    private String news_user_ids;
     private String news_information;
     private String news_time;
 
     public News() {
     }
 
-    public News(Integer news_id, Integer news_user_id, Integer news_user_ids, String news_information, String news_time) {
+    public News(Integer news_id, String news_user_id, String news_user_ids, String news_information, String news_time) {
         this.news_id = news_id;
         this.news_user_id = news_user_id;
         this.news_user_ids = news_user_ids;
         this.news_information = news_information;
         this.news_time = news_time;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
     public Integer getNews_id() {
@@ -31,19 +35,19 @@ public class News implements Serializable {
         this.news_id = news_id;
     }
 
-    public Integer getNews_user_id() {
+    public String getNews_user_id() {
         return news_user_id;
     }
 
-    public void setNews_user_id(Integer news_user_id) {
+    public void setNews_user_id(String news_user_id) {
         this.news_user_id = news_user_id;
     }
 
-    public Integer getNews_user_ids() {
+    public String getNews_user_ids() {
         return news_user_ids;
     }
 
-    public void setNews_user_ids(Integer news_user_ids) {
+    public void setNews_user_ids(String news_user_ids) {
         this.news_user_ids = news_user_ids;
     }
 
@@ -67,8 +71,8 @@ public class News implements Serializable {
     public String toString() {
         return "News{" +
                 "news_id=" + news_id +
-                ", news_user_id=" + news_user_id +
-                ", news_user_ids=" + news_user_ids +
+                ", news_user_id='" + news_user_id + '\'' +
+                ", news_user_ids='" + news_user_ids + '\'' +
                 ", news_information='" + news_information + '\'' +
                 ", news_time='" + news_time + '\'' +
                 '}';
