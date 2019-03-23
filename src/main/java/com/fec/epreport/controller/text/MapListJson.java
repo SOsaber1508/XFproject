@@ -1,11 +1,13 @@
-package com.fec.epreport.util;
+package com.fec.epreport.controller.text;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.sf.json.JSONObject;
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
 
 public class MapListJson {
 	public static void main(String []args) {
@@ -23,5 +25,18 @@ public class MapListJson {
         System.out.println("这是list的输出：" + list);
         System.out.println("这是json的输出：" + param1);
         System.out.println("这是map的输出：" + param0);
+        
+        JSONArray jsonArray = new JSONArray();
+        JSONObject json = new JSONObject();
+        json.put("a","1");
+        json.put("b","2");
+        json.put("c","3");
+        jsonArray.add(json);
+        System.out.println(jsonArray);
+        
+        Map<String, Object> map2 = new HashMap<String, Object>();
+        map2.put("code", "200");
+        
+        System.out.println(map2);
     }
 }
