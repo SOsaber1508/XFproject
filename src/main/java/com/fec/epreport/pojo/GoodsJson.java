@@ -6,6 +6,10 @@ import java.io.Serializable;
 public class GoodsJson implements Serializable {
 	// 序列化实例化
 	private static final long serialVersionUID = 1L;
+	//出发
+	private String goods_start;
+	//终点
+	private String goods_end;
 	// 出发-省
 	private String goods_start_province;
 	// 出发-市
@@ -50,6 +54,56 @@ public class GoodsJson implements Serializable {
 	private String goods_loadingtime;
 	// 微信id
 	private String goods_wx_id;
+
+	public GoodsJson() {
+	}
+
+	public GoodsJson(String goods_start, String goods_end, String goods_start_province, String goods_start_city, String goods_start_area, String goods_start_address, String goods_end_province, String goods_end__city, String goods_end__area, String goods_end__address, String goods_contacts, String goods_contactinformation, String goods_type, String goods_vetype, String goods_vehicletype, String goods_Detailedtype, String goods_detailed, String goods_length, String goods_name, String goods_number, String goods_number_mi, String goods_time, String goods_loadingtime, String goods_wx_id) {
+		this.goods_start = goods_start;
+		this.goods_end = goods_end;
+		this.goods_start_province = goods_start_province;
+		this.goods_start_city = goods_start_city;
+		this.goods_start_area = goods_start_area;
+		this.goods_start_address = goods_start_address;
+		this.goods_end_province = goods_end_province;
+		this.goods_end__city = goods_end__city;
+		this.goods_end__area = goods_end__area;
+		this.goods_end__address = goods_end__address;
+		this.goods_contacts = goods_contacts;
+		this.goods_contactinformation = goods_contactinformation;
+		this.goods_type = goods_type;
+		this.goods_vetype = goods_vetype;
+		this.goods_vehicletype = goods_vehicletype;
+		this.goods_Detailedtype = goods_Detailedtype;
+		this.goods_detailed = goods_detailed;
+		this.goods_length = goods_length;
+		this.goods_name = goods_name;
+		this.goods_number = goods_number;
+		this.goods_number_mi = goods_number_mi;
+		this.goods_time = goods_time;
+		this.goods_loadingtime = goods_loadingtime;
+		this.goods_wx_id = goods_wx_id;
+	}
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public String getGoods_start() {
+		return goods_start;
+	}
+
+	public void setGoods_start(String goods_start) {
+		this.goods_start = goods_start;
+	}
+
+	public String getGoods_end() {
+		return goods_end;
+	}
+
+	public void setGoods_end(String goods_end) {
+		this.goods_end = goods_end;
+	}
 
 	public String getGoods_start_province() {
 		return goods_start_province;
@@ -229,55 +283,31 @@ public class GoodsJson implements Serializable {
 
 	@Override
 	public String toString() {
-		return "GoodsJson [goods_start_province=" + goods_start_province + ", goods_start_city=" + goods_start_city
-				+ ", goods_start_area=" + goods_start_area + ", goods_start_address=" + goods_start_address
-				+ ", goods_end_province=" + goods_end_province + ", goods_end__city=" + goods_end__city
-				+ ", goods_end__area=" + goods_end__area + ", goods_end__address=" + goods_end__address
-				+ ", goods_contacts=" + goods_contacts + ", goods_contactinformation=" + goods_contactinformation
-				+ ", goods_type=" + goods_type + ", goods_vetype=" + goods_vetype + ", goods_vehicletype="
-				+ goods_vehicletype + ", goods_Detailedtype=" + goods_Detailedtype + ", goods_detailed="
-				+ goods_detailed + ", goods_length=" + goods_length + ", goods_name=" + goods_name + ", goods_number="
-				+ goods_number + ", goods_number_mi=" + goods_number_mi + ", goods_time=" + goods_time
-				+ ", goods_loadingtime=" + goods_loadingtime + ", goods_wx_id=" + goods_wx_id + "]";
+		return "GoodsJson{" +
+				"goods_start='" + goods_start + '\'' +
+				", goods_end='" + goods_end + '\'' +
+				", goods_start_province='" + goods_start_province + '\'' +
+				", goods_start_city='" + goods_start_city + '\'' +
+				", goods_start_area='" + goods_start_area + '\'' +
+				", goods_start_address='" + goods_start_address + '\'' +
+				", goods_end_province='" + goods_end_province + '\'' +
+				", goods_end__city='" + goods_end__city + '\'' +
+				", goods_end__area='" + goods_end__area + '\'' +
+				", goods_end__address='" + goods_end__address + '\'' +
+				", goods_contacts='" + goods_contacts + '\'' +
+				", goods_contactinformation='" + goods_contactinformation + '\'' +
+				", goods_type='" + goods_type + '\'' +
+				", goods_vetype='" + goods_vetype + '\'' +
+				", goods_vehicletype='" + goods_vehicletype + '\'' +
+				", goods_Detailedtype='" + goods_Detailedtype + '\'' +
+				", goods_detailed='" + goods_detailed + '\'' +
+				", goods_length='" + goods_length + '\'' +
+				", goods_name='" + goods_name + '\'' +
+				", goods_number='" + goods_number + '\'' +
+				", goods_number_mi='" + goods_number_mi + '\'' +
+				", goods_time='" + goods_time + '\'' +
+				", goods_loadingtime='" + goods_loadingtime + '\'' +
+				", goods_wx_id='" + goods_wx_id + '\'' +
+				'}';
 	}
-
-	public GoodsJson(String goods_start_province, String goods_start_city, String goods_start_area,
-			String goods_start_address, String goods_end_province, String goods_end__city, String goods_end__area,
-			String goods_end__address, String goods_contacts, String goods_contactinformation, String goods_type,
-			String goods_vetype, String goods_vehicletype, String goods_Detailedtype, String goods_detailed,
-			String goods_length, String goods_name, String goods_number, String goods_number_mi, String goods_time,
-			String goods_loadingtime, String goods_wx_id) {
-		super();
-		this.goods_start_province = goods_start_province;
-		this.goods_start_city = goods_start_city;
-		this.goods_start_area = goods_start_area;
-		this.goods_start_address = goods_start_address;
-		this.goods_end_province = goods_end_province;
-		this.goods_end__city = goods_end__city;
-		this.goods_end__area = goods_end__area;
-		this.goods_end__address = goods_end__address;
-		this.goods_contacts = goods_contacts;
-		this.goods_contactinformation = goods_contactinformation;
-		this.goods_type = goods_type;
-		this.goods_vetype = goods_vetype;
-		this.goods_vehicletype = goods_vehicletype;
-		this.goods_Detailedtype = goods_Detailedtype;
-		this.goods_detailed = goods_detailed;
-		this.goods_length = goods_length;
-		this.goods_name = goods_name;
-		this.goods_number = goods_number;
-		this.goods_number_mi = goods_number_mi;
-		this.goods_time = goods_time;
-		this.goods_loadingtime = goods_loadingtime;
-		this.goods_wx_id = goods_wx_id;
-	}
-
-	public GoodsJson() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	// private Double goods_long;
-	// private Double goods_lot;
-
 }

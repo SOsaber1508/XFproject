@@ -26,23 +26,23 @@ public class BaiduTokenUtil {
      */
 	
 	//测试方法
-//	public static void main(String arg[]) {
-//        // 官网获取的 API Key 更新为你注册的
-//        String clientId = "9nVQ1W2m4u8K4Ij8YgZAAqXe";
-//        // 官网获取的 Secret Key 更新为你注册的
-//        String clientSecret = "cuf4b6kNozXxZhmMdk0gvVrFYF9QbvO3";
-//        System.out.println("开始了");
-//        getAuth(clientId, clientSecret);
-//    }
-	
-	//暂时用的奈落的相关密钥
-    public static String getAuth() {
+	public static void main(String arg[]) {
         // 官网获取的 API Key 更新为你注册的
         String clientId = "vl4gONK0BvujMG72BQWXK8sY";
         // 官网获取的 Secret Key 更新为你注册的
         String clientSecret = "5Q3lkWCQuZojj4XlO2GbYu0MS6bxE27s";
-        return getAuth(clientId, clientSecret);
+        System.out.println("开始了");
+        getAuth(clientId, clientSecret);
     }
+	
+	//暂时用的奈落的相关密钥
+//    public static String getAuth() {
+//        // 官网获取的 API Key 更新为你注册的
+//        String clientId = "vl4gONK0BvujMG72BQWXK8sY";
+//        // 官网获取的 Secret Key 更新为你注册的
+//        String clientSecret = "5Q3lkWCQuZojj4XlO2GbYu0MS6bxE27s";
+//        return getAuth(clientId, clientSecret);
+//    }
 
     /**
      * 获取API访问token

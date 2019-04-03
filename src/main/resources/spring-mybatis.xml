@@ -83,8 +83,13 @@
     </bean>  
     <!-- jedis客户端单机版 -->
     <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
-        <constructor-arg name="host" value="192.168.3.45"></constructor-arg>
+        <constructor-arg name="host" value="r-bp19e53817d7f924.redis.rds.aliyuncs.com"></constructor-arg>
+      <!--<constructor-arg name="host" value="192.168.3.45"></constructor-arg>-->
         <constructor-arg name="port" value="6379"></constructor-arg>
+		<!-- 客户端连接超时时间-->
+        <constructor-arg name="timeout" value="30000"></constructor-arg>
+        <!--  <property name="password" value="Xfkjadmin123"></property>-->
+          <constructor-arg name="password" value="Xfkjadmin123"></constructor-arg>
         <constructor-arg name="poolConfig" ref="jedisPoolConfig"></constructor-arg>
     </bean>
      <bean id="jedisClient" class="com.fec.epreport.service.impl.JedisClientSingle"/>

@@ -6,6 +6,10 @@ import java.io.Serializable;
 public class VehicleJson implements Serializable {
 	// 序列化实例化
 	private static final long serialVersionUID = 1L;
+	//出发
+	private String vehicle_start;
+	//终点
+	private String vehicle_end;
 	// 出发-省
 	private String vehicle_start_province;
 	// 出发-市
@@ -41,6 +45,51 @@ public class VehicleJson implements Serializable {
 	private String vehicle_number;
 	// 载重(立方)
 	private String vehicle_number_mi;
+
+	public VehicleJson() {
+	}
+
+	public VehicleJson(String vehicle_start, String vehicle_end, String vehicle_start_province, String vehicle_start_city, String vehicle_start_area, String vehicle_start_address, String vehicle_end_province, String vehicle_end__city, String vehicle_end__area, String vehicle_end__address, String vehicle_contacts, String vehicle_contactinformation, String vehicle_length, String vehicle_type, String vehicle_releasetime, String vehicle_wx_id, String vehicle_detaileddescription, String vehicle_number, String vehicle_number_mi) {
+		this.vehicle_start = vehicle_start;
+		this.vehicle_end = vehicle_end;
+		this.vehicle_start_province = vehicle_start_province;
+		this.vehicle_start_city = vehicle_start_city;
+		this.vehicle_start_area = vehicle_start_area;
+		this.vehicle_start_address = vehicle_start_address;
+		this.vehicle_end_province = vehicle_end_province;
+		this.vehicle_end__city = vehicle_end__city;
+		this.vehicle_end__area = vehicle_end__area;
+		this.vehicle_end__address = vehicle_end__address;
+		this.vehicle_contacts = vehicle_contacts;
+		this.vehicle_contactinformation = vehicle_contactinformation;
+		this.vehicle_length = vehicle_length;
+		this.vehicle_type = vehicle_type;
+		this.vehicle_releasetime = vehicle_releasetime;
+		this.vehicle_wx_id = vehicle_wx_id;
+		this.vehicle_detaileddescription = vehicle_detaileddescription;
+		this.vehicle_number = vehicle_number;
+		this.vehicle_number_mi = vehicle_number_mi;
+	}
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
+
+	public String getVehicle_start() {
+		return vehicle_start;
+	}
+
+	public void setVehicle_start(String vehicle_start) {
+		this.vehicle_start = vehicle_start;
+	}
+
+	public String getVehicle_end() {
+		return vehicle_end;
+	}
+
+	public void setVehicle_end(String vehicle_end) {
+		this.vehicle_end = vehicle_end;
+	}
 
 	public String getVehicle_start_province() {
 		return vehicle_start_province;
@@ -180,48 +229,26 @@ public class VehicleJson implements Serializable {
 
 	@Override
 	public String toString() {
-		return "VehicleJson [vehicle_start_province=" + vehicle_start_province + ", vehicle_start_city="
-				+ vehicle_start_city + ", vehicle_start_area=" + vehicle_start_area + ", vehicle_start_address="
-				+ vehicle_start_address + ", vehicle_end_province=" + vehicle_end_province + ", vehicle_end__city="
-				+ vehicle_end__city + ", vehicle_end__area=" + vehicle_end__area + ", vehicle_end__address="
-				+ vehicle_end__address + ", vehicle_contacts=" + vehicle_contacts + ", vehicle_contactinformation="
-				+ vehicle_contactinformation + ", vehicle_length=" + vehicle_length + ", vehicle_type=" + vehicle_type
-				+ ", vehicle_releasetime=" + vehicle_releasetime + ", vehicle_wx_id=" + vehicle_wx_id
-				+ ", vehicle_detaileddescription=" + vehicle_detaileddescription + ", vehicle_number=" + vehicle_number
-				+ ", vehicle_number_mi=" + vehicle_number_mi + "]";
+		return "VehicleJson{" +
+				"vehicle_start='" + vehicle_start + '\'' +
+				", vehicle_end='" + vehicle_end + '\'' +
+				", vehicle_start_province='" + vehicle_start_province + '\'' +
+				", vehicle_start_city='" + vehicle_start_city + '\'' +
+				", vehicle_start_area='" + vehicle_start_area + '\'' +
+				", vehicle_start_address='" + vehicle_start_address + '\'' +
+				", vehicle_end_province='" + vehicle_end_province + '\'' +
+				", vehicle_end__city='" + vehicle_end__city + '\'' +
+				", vehicle_end__area='" + vehicle_end__area + '\'' +
+				", vehicle_end__address='" + vehicle_end__address + '\'' +
+				", vehicle_contacts='" + vehicle_contacts + '\'' +
+				", vehicle_contactinformation='" + vehicle_contactinformation + '\'' +
+				", vehicle_length='" + vehicle_length + '\'' +
+				", vehicle_type='" + vehicle_type + '\'' +
+				", vehicle_releasetime='" + vehicle_releasetime + '\'' +
+				", vehicle_wx_id='" + vehicle_wx_id + '\'' +
+				", vehicle_detaileddescription='" + vehicle_detaileddescription + '\'' +
+				", vehicle_number='" + vehicle_number + '\'' +
+				", vehicle_number_mi='" + vehicle_number_mi + '\'' +
+				'}';
 	}
-
-	public VehicleJson(String vehicle_start_province, String vehicle_start_city, String vehicle_start_area,
-			String vehicle_start_address, String vehicle_end_province, String vehicle_end__city,
-			String vehicle_end__area, String vehicle_end__address, String vehicle_contacts,
-			String vehicle_contactinformation, String vehicle_length, String vehicle_type, String vehicle_releasetime,
-			String vehicle_wx_id, String vehicle_detaileddescription, String vehicle_number, String vehicle_number_mi) {
-		super();
-		this.vehicle_start_province = vehicle_start_province;
-		this.vehicle_start_city = vehicle_start_city;
-		this.vehicle_start_area = vehicle_start_area;
-		this.vehicle_start_address = vehicle_start_address;
-		this.vehicle_end_province = vehicle_end_province;
-		this.vehicle_end__city = vehicle_end__city;
-		this.vehicle_end__area = vehicle_end__area;
-		this.vehicle_end__address = vehicle_end__address;
-		this.vehicle_contacts = vehicle_contacts;
-		this.vehicle_contactinformation = vehicle_contactinformation;
-		this.vehicle_length = vehicle_length;
-		this.vehicle_type = vehicle_type;
-		this.vehicle_releasetime = vehicle_releasetime;
-		this.vehicle_wx_id = vehicle_wx_id;
-		this.vehicle_detaileddescription = vehicle_detaileddescription;
-		this.vehicle_number = vehicle_number;
-		this.vehicle_number_mi = vehicle_number_mi;
-	}
-
-	public VehicleJson() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	// private Double vehicle_long;
-	// private Double vehicle_lot;
-
 }

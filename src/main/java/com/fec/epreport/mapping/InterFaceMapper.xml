@@ -1,120 +1,570 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fec.epreport.dao.InterFaceDao" >
-    <!--评价列表查询-->
-    <select id="selectEvaluates" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-        select u.user_id,u.wx_headimgurl,u.wx_name,u.wx_nickname,e.evaluate_id,e.evaluate_type,e.evaluate_content,e.evaluate_time
-        from user u join evaluate e on u.user_id=e.evaluate_user_id WHERE e.evaluate_user_ids=#{user_id}
-    </select>
-    <!--好评数（货源车源）-->
-    <select id="selectPraise" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-        select count(*) from  evaluate where evaluate_user_ids=#{user_id} and evaluate_type=0
-    </select>
-    <!--中评数（货源车源）-->
-    <select id="selectIn" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-        select count(*) from  evaluate where evaluate_user_ids=#{user_id} and evaluate_type=1
-    </select>
-    <!--差评数（货源车源）-->
-    <select id="selectDifferenc" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-        select count(*) from  evaluate where evaluate_user_ids=#{user_id} and evaluate_type=2
-    </select>
-    <!--提交评价-->
-    <insert id="submissionEvaluates" parameterType="java.util.HashMap">
-        insert into evaluate values(null,#{id},#{user_id},#{evaluate_type},#{evaluate_content},SYSDATE())
-    </insert>
-    <!--点击评价-->
-    <select id="clickEvaluates" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-        select user_id,wx_headimgurl,wx_name,wx_nickname from user where user_id=#{user_id}
-    </select>
-    <!--货源详情查询-->
-    <select id="selectSourceDetails" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-        select goods_id,goods_vehicletype,goods_length,goods_vetype,goods_type,goods_Detailedtype,goods_name,goods_number,
-        goods_start,goods_end,goods_detailed,goods_contacts,goods_contactinformation,goods_loadingtime,user_id,wx_headimgurl,
-        wx_name,wx_nickname,user_share
-        from goods g join user u on g.goods_user_id=u.user_id where g.goods_id=#{goods_id}
-    </select>
-    <!--查询是否收藏此用户（货源车源）-->
-    <select id="selectCollection" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-        select * from collection where collection_user_id = #{user_id} and collection_user_ids = #{id}
-    </select>
-    <!--货源列表查询-->
-    <select id="selectGoods" resultType="java.util.HashMap">
-        select goods_id,goods_vehicletype,goods_length,goods_name,goods_number,goods_time,
-        goods_start,goods_end,goods_contacts,goods_contactinformation,goods_user_id,goods_loadingtime,user_id,wx_headimgurl,
-        wx_name,wx_nickname from goods g join user u on g.goods_user_id=u.user_id
-    </select>
-    <!--发布货源-->
-    <insert id="releaseSource" parameterType="java.util.HashMap">
+<mapper namespace="com.fec.epreport.dao.InterFaceDao">
+	<resultMap id="BaseResultMap"
+		type="com.fec.epreport.pojo.GoodsList">
+	</resultMap>
+	<!--评价列表查询 -->
+	<select id="selectEvaluates" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select
+		u.user_id,u.wx_headimgurl,u.wx_name,u.wx_nickname,e.evaluate_id,e.evaluate_type,e.evaluate_content,e.evaluate_time
+		from user u join evaluate e on u.user_id=e.evaluate_user_id
+		WHERE
+		e.evaluate_user_ids=#{user_id}
+	</select>
+	<!--好评数（货源车源） -->
+	<select id="selectPraise" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select count(*) as haoping_number from evaluate
+		where
+		evaluate_user_ids=#{user_id} and evaluate_type=0
+	</select>
+	<!--中评数（货源车源） -->
+	<select id="selectIn" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select count(*) as zhongping_number from evaluate
+		where
+		evaluate_user_ids=#{user_id} and evaluate_type=1
+	</select>
+	<!--差评数（货源车源） -->
+	<select id="selectDifferenc" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select count(*) as chaping_number from evaluate
+		where
+		evaluate_user_ids=#{user_id} and evaluate_type=2
+	</select>
+	<!--提交评价 -->
+	<insert id="submissionEvaluates"
+		parameterType="com.alibaba.fastjson.JSONObject">
+		insert into evaluate
+		values(null,#{id},#{user_id},#{evaluate_type},#{evaluate_content},SYSDATE())
+	</insert>
+	<!--点击评价 -->
+	<select id="clickEvaluates" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select user_id,wx_headimgurl,wx_name,wx_nickname from user
+		where user_id=#{user_id}
+	</select>
 
-    </insert>
-    <!--根据条件查询货源列表-->
-    <select id="selectGoodsCondition" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	<!-- 浏览记录 -->
+	<!--添加浏览记录(货) -->
+	<insert id="tianjialiulanjiluhuo"
+		parameterType="com.alibaba.fastjson.JSONObject">
+		insert into browse values(null,#{wx_id},#{goods_id},SYSDATE(),2)
+	</insert>
+	<!--修改浏览记录(货车) -->
+	<update id="xiugailiulanjiluhuoche"
+		parameterType="java.util.HashMap">
+		update browse set browse_time=SYSDATE()
+		where browse_user_id=#{browse_user_id} and browse_data_id=#{browse_data_id}
+		and browse_identification=#{browse_identification}
+	</update>
+	<!--添加浏览记录(车) -->
+	<insert id="tianjialiulanjiluche"
+		parameterType="com.alibaba.fastjson.JSONObject">
+		insert into browse values(null,#{wx_id},#{vehicle_id},SYSDATE(),1)
+	</insert>
+	<!--查询我的浏览记录-->
+    <select id="selectliulanjilu" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        <choose>
+            <when test="browse_identification==1">
+                select user_id,wx_headimgurl,vehicle_id as id,vehicle_start as start,vehicle_end as end,vehicle_length
+                as length,
+                vehicle_type as vetype,vehicle_number as number,vehicle_Identification as identification
+                from vehicle v join user u on v.vehicle_user_id=u.user_id join browse b on b.browse_data_id=v.vehicle_id
+                where b.browse_user_id=#{browse_user_id} and b.browse_data_id=#{browse_data_id} and
+                b.browse_identification=#{browse_identification}
+            </when>
+            <when test="browse_identification==2">
+                select user_id,wx_headimgurl,goods_id as id,goods_start as start,goods_end as end,goods_length as
+                length,
+                goods_vetype as vetype,goods_number as number,goods_Identification as identification
+                from goods g join user u on g.goods_user_id=u.user_id join browse b on b.browse_data_id=g.goods_id
+                where b.browse_user_id=#{browse_user_id} and b.browse_data_id=#{browse_data_id} and
+                b.browse_identification=#{browse_identification}
+            </when>
+        </choose>
+    </select>
+	<!--查询浏览记录表的内容 -->
+	<select id="selectliulanjilubiao"
+		parameterType="java.lang.String" resultType="java.util.HashMap">
+		select browse_user_id,browse_data_id,browse_identification from browse
+		WHERE browse_user_id=#{user_id}
+	</select>
 
-    </select>
-    <!--查询个人信息-->
-    <select id="selectAUsersss" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-        select user_id,wx_headimgurl,wx_name,wx_nickname,user_idnumber,user_phonenumber,user_authentication,user_establish,
-        user_modify,user_sex,user_address
-        from user where user_id=#{user_id}
-    </select>
-    <!--历史发布查询-->
-    <select id="selectRelease" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-        select goods_id as id,goods_start as start,goods_end as end,goods_length as length,goods_vehicletype as vehicletype,goods_number as loads,goods_Identification as Identification
-        from (select * FROM(select goods_id,goods_start,goods_end,goods_length,goods_vehicletype,goods_number,goods_Identification,goods_user_id FROM goods union all
-        select vehicle_id,vehicle_start,vehicle_end,vehicle_length,vehicle_type,vehicle_load,vehicle_Identification,vehicle_user_id FROM vehicle) as t where goods_user_id=#{user_id}) as s ORDER BY id DESC;
-    </select>
-    <!--完善车辆信息-->
-    <insert id="perfectVehicle" parameterType="java.util.HashMap">
+	<!-- 收藏 -->
+	<!--查询我的收藏信息 -->
+	<select id="selectMyCollection" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select collection_id,collection_user_id as
+		user_id,wx_headimgurl,wx_nickname
+		from collection c
+		join user u on
+		c.collection_user_id=u.user_id
+		where c.collection_user_ids=#{user_id}
+		ORDER BY collection_id DESC
+	</select>
+	<!--查询我是否收藏此用户 -->
+	<select id="selectMyCollectionUser"
+		parameterType="com.alibaba.fastjson.JSONObject"
+		resultType="java.util.HashMap">
+		select * from collection
+		where collection_user_ids=#{wx_id}
+		and collection_user_id=#{wx_ids}
+	</select>
+	<!--用户 -->
+	<!--查询是否收藏此用户（货源车源） -->
+	<select id="selectCollection" parameterType="java.util.HashMap"
+		resultType="java.util.HashMap">
+		select * from collection where collection_user_id =
+		#{user_id} and
+		collection_user_ids = #{id}
+	</select>
+	<!--点击收藏取消用户 -->
+	<delete id="dianjishoucanguser"
+		parameterType="com.alibaba.fastjson.JSONObject">
+		<choose>
+			<when test="collection==1">
+				DELETE from collection
+				where
+				collection_user_id=#{wx_ids} and collection_user_ids=#{wx_id}
+			</when>
+			<when test="collection==2">
+				insert into collection
+				values(null,#{wx_ids},#{wx_id})
+			</when>
+		</choose>
+	</delete>
 
-    </insert>
-    <!--查询我的收藏信息-->
-    <select id="selectMyCollection" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-        select collection_id,user_id,wx_headimgurl,wx_name from collection c join user u on c.collection_user_ids=u.user_id where u.user_id=#{user_id};
-    </select>
-    <!--个人分享信息-->
-    <select id="shareInformation" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-        SELECT user_share,user_sharetime from user where user_id = #{user_id}
-    </select>
-    <!--用户简介查询（发布信息）-->
-    <select id="selectAUsersRelease" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-        select goods_id as id,goods_start as start,goods_end as end,goods_length as length,goods_vehicletype as vehicletype,goods_number as loads,goods_Identification as Identification,goods_time as time
-        from (select * FROM(select goods_id,goods_start,goods_end,goods_length,goods_vehicletype,goods_number,goods_Identification,goods_user_id,goods_time FROM goods union all
-        select vehicle_id,vehicle_start,vehicle_end,vehicle_length,vehicle_type,vehicle_load,vehicle_Identification,vehicle_user_id,vehicle_releasetime FROM vehicle) as t where goods_user_id=1001) as s ORDER BY id DESC;
-    </select>
-    <!--用户简介中查询个人信息-->
-    <select id="selectAUsers" parameterType="java.lang.Integer" resultType="java.util.HashMap">
-        select user_id,wx_headimgurl,wx_name,wx_nickname,user_establish,user_authentication,user_phonenumber from user where user_id=#{user_id}
-    </select>
-    <!--身份认证-->
-    <update id="identityAuthentication" parameterType="java.util.HashMap">
-        update user set wx_name = #{wx_name},wx_nickname=#{wx_nickname},user_idnumber=#{user_idnumber},user_phonenumber=#{user_phonenumber} where user_id = #{user_id};
-    </update>
-    <!--查询此用户是否进行过身份认证-->
-    <select id="selectidentityAuthentication" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-        select user_authentication from user where user_id = #{user_id}
-    </select>
-    <!--车源详情查询-->
-    <select id="selectVehicleDetails" parameterType="java.util.HashMap" resultType="java.util.HashMap">
-        select vehicle_id,vehicle_start,vehicle_end,vehicle_contacts,vehicle_contactinformation,vehicle_length,vehicle_type,vehicle_releasetime,
-        vehicle_detaileddescription,vehicle_load,user_id,wx_headimgurl,wx_name,wx_nickname,user_share
-        from vehicle c join user u on c.vehicle_user_id=u.user_id where c.vehicle_id=#{vehicle_id}
-    </select>
-    <!--车源列表查询-->
-    <select id="selectVehicles" resultType="java.util.HashMap">
-        select vehicle_id,vehicle_start,vehicle_end,vehicle_contacts,vehicle_contactinformation,vehicle_length,
-        vehicle_type,vehicle_releasetime,vehicle_user_id,vehicle_load,user_id,wx_headimgurl,
-        wx_name,wx_nickname from vehicle v join user u on v.vehicle_user_id=u.user_id
-    </select>
-    <!--根据条件查询车源列表-->
-    <select id="selectVehiclesCondition" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+	<!-- 货源 -->
+	<!--发布货源 -->
+	<insert id="releaseSource"
+		parameterType="com.fec.epreport.pojo.GoodsJson">
+		insert into goods
+		(goods_start_province,goods_start_city,goods_start_area,goods_start_address,
+		goods_end_province,goods_end_city,goods_end_area,goods_end_address,
+		goods_contacts,goods_contactinformation,
+		goods_type,goods_vetype,goods_vehicletype,goods_Detailedtype,
+		goods_detailed,goods_length,goods_name,goods_number,goods_number_mi,
+		goods_time,goods_loadingtime,goods_user_id,goods_start,goods_end
+		)value(
+		#{goods_start_province},#{goods_start_city},#{goods_start_area},#{goods_start_address},
+		#{goods_end_province},#{goods_end__city},#{goods_end__area},#{goods_end__address},
+		#{goods_contacts},#{goods_contactinformation},
+		#{goods_type},#{goods_vetype},#{goods_vehicletype},#{goods_Detailedtype},
+		#{goods_detailed},#{goods_length},#{goods_name},#{goods_number},#{goods_number_mi},
+		#{goods_time},#{goods_loadingtime},#{goods_wx_id},#{goods_start},#{goods_end})
+	</insert>
+	<!--货源详情查询 -->
+	<select id="selectSourceDetails"
+		parameterType="java.lang.String" resultType="java.util.HashMap">
+		select
+		goods_id,goods_vehicletype,goods_length,goods_vetype,goods_type,goods_Detailedtype,goods_name,goods_number,
+		goods_start,goods_end,goods_detailed,goods_contacts,goods_contactinformation,goods_loadingtime,user_id,wx_headimgurl,
+		wx_name,wx_nickname,user_share,goods_end_province,goods_end_city,goods_end_area,goods_end_address
+		from goods g join user u on g.goods_user_id=u.user_id
+		where
+		g.goods_id=#{goods_id}
+	</select>
+	<!--货源列表查询 -->
+	<select id="selectGoods" resultMap="BaseResultMap">
+		select
+		goods_id,goods_vetype,goods_length,goods_name,goods_number,(SELECT
+		IF(TO_DAYS(now()) >= TO_DAYS(goods_time),
+		( SELECT DATE_FORMAT(
+		g.goods_time, '%m-%d %H:%i' ) ),
+		( SELECT DATE_FORMAT( g.goods_time,
+		'%Y-%m-%d' ) )
+		))as goods_time,
+		goods_start,goods_end,goods_contacts,goods_contactinformation,goods_user_id,(SELECT
+		IF(TO_DAYS(now()) >= TO_DAYS(goods_loadingtime),
+		( SELECT DATE_FORMAT(
+		g.goods_loadingtime, '%m-%d %H:%i' ) ),
+		( SELECT DATE_FORMAT(
+		g.goods_loadingtime, '%Y-%m-%d' ) )
+		)) AS
+		goods_loadingtime,user_id,wx_headimgurl,
+		wx_name,wx_nickname from goods
+		g join user u on g.goods_user_id=u.user_id ORDER BY
+		goods_id DESC
+	</select>
+	<!--货源列表筛选查询 -->
+	<select id="selectGoodsShaiXuan" resultMap="BaseResultMap">
+		select goods_id,goods_vetype,goods_length,goods_name,goods_number,
+		(SELECT
+		IF(TO_DAYS(now()) >= TO_DAYS(goods_time),
+		( SELECT DATE_FORMAT(
+		g.goods_time, '%m-%d %H:%i' ) ),
+		( SELECT DATE_FORMAT( g.goods_time,
+		'%Y-%m-%d' ) )
+		))as goods_time,
+		goods_start,goods_end,goods_contacts,goods_contactinformation,goods_user_id,
+		(SELECT
+		IF(TO_DAYS(now()) >= TO_DAYS(goods_loadingtime),
+		( SELECT
+		DATE_FORMAT( g.goods_loadingtime, '%m-%d %H:%i' ) ),
+		( SELECT
+		DATE_FORMAT( g.goods_loadingtime, '%Y-%m-%d' ) )
+		)) AS
+		goods_loadingtime,
+		user_id,wx_headimgurl,
+		wx_name,wx_nickname from goods
+		g join user u on g.goods_user_id=u.user_id
+		WHERE 1 = 1
+		<if
+			test="param1.goods_start_area != null and param1.goods_start_area !='' and param1.goods_start_area !='不限'">
+			AND goods_start LIKE CONCAT('%',#{param1.goods_start_area},'%')
+		</if>
 
-    </select>
-    <!--发布车源-->
-    <insert id="releaseCar" parameterType="java.util.HashMap">
+		<if
+			test="param1.goods_end_area != null and param1.goods_end_area !='' and param1.goods_end_area !='不限'">
+			AND goods_end LIKE CONCAT('%',#{param1.goods_end_area},'%')
+		</if>
 
-    </insert>
+		<!-- 载重类型 -->
+		<if
+			test="param1.goods_wight != null and param1.goods_wight !='' and param1.goods_wight !='不限' ">
+			and (goods_number = 0
+			<foreach collection="maps" item="item" index="index">
+				<if test="item.max_number!=0.66">
+					or goods_number BETWEEN #{item.min_number} AND
+					#{item.max_number}
+				</if>
+				<if test="item.max_number==0.66">
+					or goods_number &gt;= #{item.min_number}
+				</if>
+			</foreach>
+			)
+		</if>
+
+		<!-- 装货时间 -->
+		<if
+			test="param1.goods_loadingtime != null and param1.goods_loadingtime !='' and param1.goods_loadingtime !='不限'">
+			and (goods_loadingtime = "1999-09-09"
+			<foreach collection="date" item="item" index="index">
+				/**
+				*查询今天的
+				*/
+				<if test="item != null and item =='今天' and item !=''">
+					or to_days(goods_loadingtime) = to_days(now())
+				</if>
+				/**
+				*查询明天的
+				*/
+				<if test="item != null and item =='明天' and item !=''">
+					or TO_DAYS(goods_loadingtime)-TO_DAYS(NOW())=1
+				</if>
+				/**
+				*查询明天以后的
+				*/
+				<if test="item != null and item =='明天以后' and item !=''">
+					or TO_DAYS(goods_loadingtime)>TO_DAYS(NOW())
+				</if>
+			</foreach>
+			)
+		</if>
+		<!-- 用车类型 -->
+		<if
+			test="param1.goods_vehicletype != null and param1.goods_vehicletype !='' and param1.goods_vehicletype !='不限'">
+			AND goods_vehicletype LIKE
+			CONCAT('%',#{param1.goods_vehicletype},'%')
+		</if>
+		<!-- 车长 -->
+		<if
+			test="param1.goods_length != null and param1.goods_length !='' and param1.goods_length.toString() !='不限' ">
+			AND goods_length LIKE CONCAT('%',#{param1.goods_length},'%')
+		</if>
+		<!-- 车型 -->
+
+		<if
+			test="param1.goods_vetype != null and  param1.goods_vetype !='' and  param1.goods_vetype !='不限'">
+			and (goods_vetype = "成功"
+			<foreach collection="date2" item="item" index="index">
+				or goods_vetype
+				LIKE CONCAT('%',#{item},'%')
+			</foreach>
+			)
+		</if>
+		<!-- 货物类型 -->
+		<if
+			test="param1.goods_type != null  and param1.goods_type !='' and param1.goods_type !='其他'">
+			AND goods_type LIKE CONCAT('%',#{param1.goods_type},'%')
+		</if>
+
+		<if test="param1.desc_time != null and param1.desc_time ==1">
+			ORDER BY goods_loadingtime DESC
+
+		</if>
+	</select>
+
+	<!-- 车源 -->
+	<!--车源详情查询 -->
+	<select id="selectVehicleDetails"
+		parameterType="java.lang.String" resultType="java.util.HashMap">
+		select
+		vehicle_id,vehicle_start,vehicle_end,vehicle_contacts,vehicle_contactinformation,vehicle_length,vehicle_type,vehicle_releasetime,
+		vehicle_detaileddescription,vehicle_number,user_id,wx_headimgurl,wx_name,wx_nickname,user_share,vehicle_end_province,vehicle_end_city,
+		vehicle_end_area,vehicle_end_address
+		from vehicle c
+		join user u
+		on
+		c.vehicle_user_id=u.user_id
+		where c.vehicle_id=#{vehicle_id}
+	</select>
+	<!--车源列表查询 -->
+	<select id="selectVehicles" resultType="java.util.HashMap">
+		select
+		vehicle_id,vehicle_start,vehicle_end,vehicle_contacts,vehicle_contactinformation,vehicle_length,
+		vehicle_type,
+		(SELECT
+		IF(TO_DAYS(now()) >= TO_DAYS(vehicle_releasetime),
+		( SELECT DATE_FORMAT( v.vehicle_releasetime, '%m-%d %H:%i' ) ),
+		(
+		SELECT DATE_FORMAT( v.vehicle_releasetime, '%Y-%m-%d' ) )
+		))as
+		vehicle_releasetime,
+		vehicle_user_id,vehicle_number,user_id,wx_headimgurl,
+		wx_name,wx_nickname
+		from vehicle v
+		join user u on
+		v.vehicle_user_id=u.user_id ORDER BY vehicle_id DESC
+	</select>
+	<!--车源列表筛选查询 -->
+	<select id="selectVehiclesShaiXuan"
+		resultType="java.util.HashMap">
+		select
+		vehicle_id,vehicle_start,vehicle_end,vehicle_contacts,vehicle_contactinformation,vehicle_length,
+		vehicle_type,(SELECT
+		IF(TO_DAYS(now()) >= TO_DAYS(vehicle_releasetime),
+		( SELECT DATE_FORMAT( v.vehicle_releasetime, '%m-%d %H:%i' ) ),
+		(
+		SELECT DATE_FORMAT( v.vehicle_releasetime, '%Y-%m-%d' ) )
+		))as
+		vehicle_releasetime,vehicle_user_id,vehicle_number,user_id,wx_headimgurl,
+		wx_name,wx_nickname from vehicle v join user u on
+		v.vehicle_user_id=u.user_id
+		WHERE 1 = 1
+
+		<!--地点 -->
+		<if
+			test="param1.vehicle_start_area != null and param1.vehicle_start_area !='' and param1.vehicle_start_area !='不限'">
+			AND vehicle_start LIKE
+			CONCAT('%',#{param1.vehicle_start_area},'%')
+		</if>
+
+		<if
+			test="param1.vehicle_end_area != null and param1.vehicle_end_area !=''  and param1.vehicle_end_area !='不限'">
+			AND vehicle_end LIKE CONCAT('%',#{param1.vehicle_end_area},'%')
+		</if>
+		<!-- 重量 -->
+		<if
+			test="param1.vehicle_weight != null and param1.vehicle_weight !='' and param1.vehicle_weight !='不限'">
+			and (vehicle_number = 0
+			<foreach collection="maps" item="item" index="index">
+				<if test="item.max_number!=0.66">
+					or vehicle_number BETWEEN #{item.min_number} AND
+					#{item.max_number}
+				</if>
+				<if test="item.max_number==0.66">
+					or vehicle_number &gt;= #{item.min_number}
+				</if>
+			</foreach>
+			)
+		</if>
+
+
+		<!-- 车长 -->
+		<if
+			test="param1.vehicle_length != null and param1.vehicle_length !='' and param1.vehicle_length !='不限'">
+			AND vehicle_length LIKE CONCAT('%',#{param1.vehicle_length},'%')
+		</if>
+		<!-- 车型 -->
+		<if
+			test="param1.vehicle_type != null and  param1.vehicle_type !='' and  param1.vehicle_type !='不限'">
+			and (vehicle_type = "成功"
+			<foreach collection="data" item="item" index="index">
+				or vehicle_type
+				LIKE CONCAT('%',#{item},'%')
+			</foreach>
+			)
+		</if>
+
+		<if test="param1.desc_time != null and param1.desc_time ==1">
+			ORDER BY vehicle_releasetime DESC
+
+		</if>
+	</select>
+	<!--发布车源 -->
+	<insert id="releaseCar"
+		parameterType="com.fec.epreport.pojo.VehicleJson">
+		insert into vehicle
+		(vehicle_start_province,vehicle_start_city,vehicle_start_area,vehicle_start_address,
+		vehicle_end_province,vehicle_end_city,vehicle_end_area,vehicle_end_address,
+		vehicle_contacts,vehicle_contactinformation,
+		vehicle_length,vehicle_type,
+		vehicle_releasetime,vehicle_user_id,
+		vehicle_detaileddescription,vehicle_number,vehicle_number_mi,vehicle_start,vehicle_end
+		)value(
+		#{vehicle_start_province},#{vehicle_start_city},#{vehicle_start_area},#{vehicle_start_address},
+		#{vehicle_end_province},#{vehicle_end__city},#{vehicle_end__area},#{vehicle_end__address},
+		#{vehicle_contacts},#{vehicle_contactinformation},
+		#{vehicle_length},#{vehicle_type},
+		#{vehicle_releasetime},#{vehicle_wx_id},
+		#{vehicle_detaileddescription},#{vehicle_number},#{vehicle_number_mi},#{vehicle_start},#{vehicle_end})
+	</insert>
+	<!-- 发布信息 -->
+	<!--历史发布查询 -->
+	<select id="selectRelease" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select goods_id as id,goods_start as start,goods_end as
+		end,goods_length as
+		length,
+		goods_vetype as vehicletype,goods_number as
+		loads,goods_Identification as
+		Identification
+		from (
+		select * FROM(
+		select
+		goods_id,goods_start,goods_end,goods_length,goods_vetype,goods_number,goods_Identification,goods_user_id
+		FROM goods union all
+		select
+		vehicle_id,vehicle_start,vehicle_end,vehicle_length,vehicle_type,vehicle_number,vehicle_Identification,vehicle_user_id
+		FROM vehicle) as t
+		where goods_user_id=#{user_id}) as s
+		ORDER BY id DESC
+	</select>
+
+	<!--用户简介查询（发布信息） -->
+	<select id="selectAUsersRelease"
+		parameterType="java.lang.String" resultType="java.util.HashMap">
+		select goods_id as
+		id,goods_start as start,goods_end as end,goods_length as
+		length,goods_vetype as vehicletype,goods_number as loads,
+		goods_Identification as
+		Identification,date_format(goods_time,'%Y-%m-%d') as time
+		from (select
+		* FROM(
+		select
+		goods_id,goods_start,goods_end,goods_length,goods_vetype,goods_number,goods_Identification,goods_user_id,goods_time
+		FROM goods union all
+		select
+		vehicle_id,vehicle_start,vehicle_end,vehicle_length,vehicle_type,vehicle_number,vehicle_Identification,vehicle_user_id,vehicle_releasetime
+		FROM vehicle) as t
+		where goods_user_id=#{user_id}) as s ORDER BY id
+		DESC
+	</select>
+	<!--用户简介查询（发布信息数量） -->
+	<select id="selectAUsersReleaseNumber"
+		parameterType="java.lang.String" resultType="java.util.HashMap">
+		select count(*) as number
+		from (
+		select * FROM(
+		select
+		goods_id,goods_start,goods_end,goods_length,goods_vetype,goods_number,goods_Identification,goods_user_id,goods_time
+		FROM goods union all
+		select
+		vehicle_id,vehicle_start,vehicle_end,vehicle_length,vehicle_type,vehicle_number,vehicle_Identification,vehicle_user_id,vehicle_releasetime
+		FROM vehicle) as t
+		where goods_user_id=#{user_id}) as s
+	</select>
+	<!--重新发布接口(修改时间) -->
+	<update id="chongxinfabuxiugai"
+		parameterType="com.alibaba.fastjson.JSONObject">
+		<choose>
+			<when test="identification==1">
+				update vehicle set vehicle_releasetime =SYSDATE()
+				where vehicle_id = #{id}
+			</when>
+			<when test="identification==2">
+				update goods set goods_time =SYSDATE()
+				where goods_id = #{id}
+			</when>
+		</choose>
+	</update>
+	<!--重新发布接口(查询时间) -->
+	<select id="chongxinfabuchaxun"
+		parameterType="com.alibaba.fastjson.JSONObject"
+		resultType="java.util.HashMap">
+		<choose>
+			<when test="identification==1">
+				select vehicle_releasetime as times from vehicle
+				where vehicle_id= #{id}
+			</when>
+			<when test="identification==2">
+				select goods_time as times from goods
+				where goods_id= #{id}
+			</when>
+		</choose>
+	</select>
+	<!--修改发布接口（查询该发布信息）-->
+    <select id="xiugaifabu" parameterType="java.util.HashMap" resultType="java.util.HashMap">
+        <choose>
+            <when test="identification==1">
+                select vehicle_id,vehicle_start_province,vehicle_start_city,vehicle_start_area,vehicle_start_address,
+                vehicle_end_province,vehicle_end_city,vehicle_end_area,vehicle_end_address,
+                vehicle_contacts,vehicle_contactinformation,
+                vehicle_length,vehicle_type,
+                vehicle_releasetime,vehicle_user_id,
+                vehicle_detaileddescription,vehicle_number,vehicle_number_mi,vehicle_Identification as identification
+                from vehicle where vehicle_id= #{id}
+            </when>
+            <when test="identification==2">
+                select goods_id,goods_start_province,goods_start_city,goods_start_area,goods_start_address,
+                goods_end_province,goods_end_city,goods_end_area,goods_end_address,
+                goods_contacts,goods_contactinformation,
+                goods_type,goods_vetype,goods_vehicletype,goods_Detailedtype,
+                goods_detailed,goods_length,goods_name,goods_number,goods_number_mi,
+                goods_time,goods_loadingtime,goods_user_id,goods_Identification as identification
+                from goods where goods_id= #{id}
+            </when>
+        </choose>
+    </select>
+	<!--修改发布接口（提交该发布信息） -->
+	<update id="xiugaifabutijiao"
+		parameterType="com.alibaba.fastjson.JSONObject">
+		<choose>
+			<when test="identification==1">
+				update vehicle set
+				vehicle_start_province=#{vehicle_start_province},vehicle_start_city=#{vehicle_start_city},vehicle_start_area=#{vehicle_start_area},
+				vehicle_start_address=#{vehicle_start_address},vehicle_end_province=#{vehicle_end_province},vehicle_end_city=#{vehicle_end__city},vehicle_end_area=#{vehicle_end__area},
+				vehicle_end_address=#{vehicle_end__address},vehicle_contacts=#{vehicle_contacts},vehicle_contactinformation=#{vehicle_contactinformation},vehicle_length=#{vehicle_length},
+				vehicle_type=#{vehicle_type},vehicle_releasetime=SYSDATE(),vehicle_user_id=#{vehicle_wx_id},vehicle_detaileddescription=#{vehicle_detaileddescription},
+				vehicle_number=#{vehicle_number},vehicle_number_mi=#{vehicle_number_mi},vehicle_start=#{vehicle_start},vehicle_end=#{vehicle_end}
+				where vehicle_id=#{vehicle_id}
+			</when>
+			<when test="identification==2">
+				update goods set
+				goods_start_province=#{goods_start_province},goods_start_city=#{goods_start_city},goods_start_area=#{goods_start_area},
+				goods_start_address=#{goods_start_address},goods_end_province=#{goods_end_province},goods_end_city=#{goods_end_city},goods_end_area=#{goods_end_area},
+				goods_end_address=#{goods_end_address},goods_contacts=#{goods_contacts},goods_contactinformation=#{goods_contactinformation},goods_type=#{goods_type},
+				goods_vetype=#{goods_vetype},goods_vehicletype=#{goods_vehicletype},goods_Detailedtype=#{goods_Detailedtype},goods_detailed=#{goods_detailed},
+				goods_length=#{goods_length},goods_name=#{goods_name},goods_number=#{goods_number},goods_number_mi=#{goods_number_mi},goods_time=SYSDATE(),
+				goods_loadingtime=#{goods_loadingtime},goods_user_id=#{goods_user_id},goods_start=#{goods_start},goods_end=#{goods_end}
+				where goods_id=#{goods_id}
+			</when>
+		</choose>
+	</update>
+
+	<!-- 车辆相关 -->
+
+
+	<!-- 查询是否完善过车辆信息:默认为1 是未完善,0是已完善 -->
+	<select id="selectPerfectVehicle" parameterType="String"
+		resultType="String">
+		select user_perfect from user where user_id =
+		#{wx_id}
+	</select>
+
+	<!--完善车辆信息 -->
+	<update id="perfectVehicle"
+		parameterType="com.fec.epreport.pojo.CarInformation">
+		update user set user_conductor
+		=#{user_conductor},user_vehicletype=#{user_vehicletype},user_load=#{user_load},user_perfect=0
+		where user_id = #{wx_id};
+	</update>
+
 	<!-- 微信相关 -->
-
 
 	<!--保存微信用户授权信息 -->
 	<insert id="insertWxUser"
@@ -124,8 +574,10 @@
 		(#{wx_sex},#{wx_city},#{wx_province},#{wx_country},#{wx_headimgurl},#{wx_id},#{wx_nickname},#{wx_openid})
 	</insert>
 	<!-- 查询微信是否授权该用户 -->
-	<select id="selectShouQuan" resultType="int">
-		SELECT count(*) from user WHERE user_id=#{wx_id}
+	<select id="selectShouQuan" resultType="int"
+		parameterType="String">
+		SELECT count(*) from user
+		WHERE user_id=#{wx_id}
 	</select>
 
 	<!--查询个人信息 -->
@@ -134,5 +586,76 @@
 		select
 		user_id,wx_headimgurl,wx_name,wx_nickname,user_idnumber,user_phonenumber,user_authentication
 		from user where user_id=#{user_id}
+	</select>
+	<!--身份认证 -->
+	<update id="identityAuthentication">
+		update user set wx_name =
+		#{wx_name},wx_nickname=#{wx_nickname},user_idnumber=#{wx_idcard},user_phonenumber=#{phone},wx_headimgurl=#{wx_headimgurl},user_authentication=1
+		where user_id = #{wx_id};
+	</update>
+	<!--查询此用户是否进行过身份认证 -->
+	<select id="selectidentityAuthentication" parameterType="String"
+		resultType="String">
+		select user_authentication from user where user_id =
+		#{user_id}
+	</select>
+	<!--总的:查询是否完善车辆信息+查询是否身份认证 -->
+	<select id="selectShiro" parameterType="String"
+		resultType="java.util.HashMap">
+		select user_authentication,user_perfect from user where
+		user_id =
+		#{user_id}
+	</select>
+	<!-- 个人分享信息(残) -->
+	<select id="shareInformation" parameterType="String"
+		resultType="String">
+		SELECT user_share_shiro FROM user WHERE
+		user_id=#{user_id}
+	</select>
+	<!-- 个人分享信息(总) -->
+	<select id="selectshareShiro" parameterType="String"
+		resultType="com.fec.epreport.pojo.ShareShiro">
+		SELECT user_share,user_sharetime,user_share_shiro FROM user
+		WHERE
+		user_id=#{wx_id}
+	</select>
+	<!-- 分享回调修改权限 -->
+	<update id="shareShiro">
+		update user set user_share_shiro=#{share_shiro}
+		where
+		user_id = #{wx_id};
+	</update>
+	<!-- 分享回调增加分享次数计数 -->
+	<update id="CountshareShiro">
+		update user set user_share=user_share+1
+		where
+		user_id =
+		#{wx_id};
+	</update>
+	<!-- 查询分享话术 -->
+	<select id="sharePC" resultType="com.fec.epreport.entity.Share">
+		SELECT
+		share_title,share_value,share_img,share_url FROM share
+	</select>
+	<!--用户 -->
+	<!--个人中心资料查询 -->
+	<select id="selectAUserziliao" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select
+		wx_headimgurl,wx_nickname,user_phonenumber,user_conductor,user_vehicletype,user_load
+		from user where user_id=#{user_id}
+	</select>
+	<!--用户简介中查询个人信息 -->
+	<select id="selectAUsers" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select
+		user_id,wx_headimgurl,wx_name,wx_nickname,user_establish,user_authentication,user_phonenumber
+		from user
+		where user_id=#{user_id}
+	</select>
+	<!--关于我们 -->
+	<select id="guanyuwomen" parameterType="java.lang.String"
+		resultType="java.util.HashMap">
+		select aboutus_content from aboutus
 	</select>
 </mapper>

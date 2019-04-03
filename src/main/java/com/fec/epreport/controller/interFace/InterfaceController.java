@@ -222,34 +222,34 @@ public class InterfaceController {
 		return result;
 	}
 
-	// http连接池接口用法
-	// 示例
-	@RequestMapping(value = "/wx_certification.htm", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
-	public void wx_certification(HttpServletRequest request) throws UnsupportedEncodingException, IOException {
-		try (InputStreamReader reader = new InputStreamReader(request.getInputStream(), "UTF-8")) {
-			// 后台接收
-			char[] buff = new char[1024];
-			int length = 0;
-			while ((length = reader.read(buff)) != -1) {
-				String x = new String(buff, 0, length);
-				System.out.println(x);
-			}
-			reader.close();
-			String targetUrl = "asdasdadad";
-			JSONObject requestJson = new JSONObject();
-//		requestJson.put("name", "zcy");
-//		requestJson.put("passward", "qaz006");
-//		requestJson.put("nickname", "zzzz");
-			String result = null;
-			// 实体list =manageServer.selcet(xxxxxx); 查出来的东西
-			// list 直接转string 也行 应该有把
-			// result = hcph.postRequest(targetUrl, 要传的);
-			try {
-				// result = hcph.postRequest(targetUrl, requestJson.toString());
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}
-
-	}
+//	// http连接池接口用法
+//	// 示例
+//	@RequestMapping(value = "/wx_certification.htm", produces = MediaType.APPLICATION_JSON_VALUE, method = RequestMethod.POST)
+//	public void wx_certification(HttpServletRequest request) throws UnsupportedEncodingException, IOException {
+//		try (InputStreamReader reader = new InputStreamReader(request.getInputStream(), "UTF-8")) {
+//			// 后台接收
+//			char[] buff = new char[1024];
+//			int length = 0;
+//			while ((length = reader.read(buff)) != -1) {
+//				String x = new String(buff, 0, length);
+//				System.out.println(x);
+//			}
+//			reader.close();
+//			String targetUrl = "asdasdadad";
+//			JSONObject requestJson = new JSONObject();
+////		requestJson.put("name", "zcy");
+////		requestJson.put("passward", "qaz006");
+////		requestJson.put("nickname", "zzzz");
+//			String result = null;
+//			// 实体list =manageServer.selcet(xxxxxx); 查出来的东西
+//			// list 直接转string 也行 应该有把
+//			// result = hcph.postRequest(targetUrl, 要传的);
+//			try {
+//				// result = hcph.postRequest(targetUrl, requestJson.toString());
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
+//
+//	}
 }

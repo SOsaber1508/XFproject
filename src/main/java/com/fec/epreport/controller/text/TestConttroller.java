@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletRequest;
  *
  */
 @Controller
-@RequestMapping("/test1")
+@RequestMapping("/test1")  
 public class TestConttroller {
 	private static Logger logger = LoggerFactory.getLogger(TestConttroller.class);
 
@@ -47,8 +47,8 @@ public class TestConttroller {
 				jsonObject.put("code", "201");
 				return jsonObject;
 			}
-				WxUser user = JSON.parseObject(sb, WxUser.class);
-				interFaceService.insertWxUser(user);
+				//WxUser user = JSON.parseObject(sb, WxUser.class);
+				//interFaceService.insertWxUser(user);
 			System.out.println("拿到接口的数据为：" + sb);
 		} catch (Exception e) {
 			logger.error(e.getLocalizedMessage(), e);
@@ -87,9 +87,7 @@ public class TestConttroller {
 		}
 		tobject.put("code", "200");
 		return tobject;
-
 	}
-
 //    /**
 //     * 文件上传
 //     * @param f

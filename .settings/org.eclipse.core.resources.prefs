@@ -5,4 +5,5 @@ encoding//src/main/resources/log4j.properties=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/manage/components.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/manage/forms.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/jsp/manage/welcome.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/jsp/share/share.jsp=UTF-8
 encoding/<project>=UTF-8

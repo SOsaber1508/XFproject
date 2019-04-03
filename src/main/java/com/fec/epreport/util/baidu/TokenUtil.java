@@ -43,9 +43,12 @@ public class TokenUtil {
 	 *         "expires_in": 2592000 }
 	 */
 	public static String getAuth() {
-		String clientId = "9nVQ1W2m4u8K4Ij8YgZAAqXe";
+		//zcy
+		//String clientId = "9nVQ1W2m4u8K4Ij8YgZAAqXe";
 		// 官网获取的 Secret Key 更新为你注册的
-		String clientSecret = "cuf4b6kNozXxZhmMdk0gvVrFYF9QbvO3";
+		//String clientSecret = "cuf4b6kNozXxZhmMdk0gvVrFYF9QbvO3";
+		String clientId="vl4gONK0BvujMG72BQWXK8sY";
+		String clientSecret="5Q3lkWCQuZojj4XlO2GbYu0MS6bxE27s";
 		flag = true;
 		return getAuth(clientId, clientSecret);
 	}
