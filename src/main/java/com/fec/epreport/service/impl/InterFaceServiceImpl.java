@@ -40,7 +40,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			maps = interFaceDao.selectEvaluates(user_id);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectEvaluates)：" + d.getLocalizedMessage());
 		}
 		return maps;
 	}
@@ -52,7 +52,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			map = interFaceDao.selectPraise(user_id);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectPraise)：" + d.getLocalizedMessage());
 		}
 		return map;
 	}
@@ -64,7 +64,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			map = interFaceDao.selectIn(user_id);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectIn)：" + d.getLocalizedMessage());
 		}
 		return map;
 	}
@@ -76,7 +76,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			map = interFaceDao.selectDifferenc(user_id);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectDifferenc)：" + d.getLocalizedMessage());
 		}
 		return map;
 	}
@@ -88,7 +88,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			integer = interFaceDao.submissionEvaluates(jsonObject);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(submissionEvaluates)：" + d.getLocalizedMessage());
 		}
 		return integer;
 	}
@@ -100,7 +100,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			map = interFaceDao.clickEvaluates(user_id);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(clickEvaluates)：" + d.getLocalizedMessage());
 		}
 		return map;
 	}
@@ -116,7 +116,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			map = interFaceDao.selectSourceDetails(goods_id);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectSourceDetails)：" + d.getLocalizedMessage());
 		}
 		return map;
 	}
@@ -128,7 +128,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			maps = interFaceDao.selectGoods();
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectGoods)：" + d.getLocalizedMessage());
 		}
 		return maps;
 	}
@@ -140,7 +140,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			integer = interFaceDao.releaseSource(car);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(releaseSource)：" + d.getLocalizedMessage());
 		}
 		return integer;
 	}
@@ -152,7 +152,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			maps = interFaceDao.selectGoodsShaiXuan(wxObject, maps1, list1, list2);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectGoodsShaiXuan)：" + d.getLocalizedMessage());
 		}
 		return maps;
 	}
@@ -167,7 +167,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			map = interFaceDao.selectVehicleDetails(vehicle_id);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectVehicleDetails)：" + d.getLocalizedMessage());
 		}
 		return map;
 	}
@@ -179,7 +179,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			maps = interFaceDao.selectVehicles();
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectVehicles)：" + d.getLocalizedMessage());
 		}
 		return maps;
 	}
@@ -194,7 +194,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 			maps = interFaceDao.selectVehiclesShaiXuan(jsonObject, maps1, list1);
 
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectVehiclesShaiXuan)：" + d.getLocalizedMessage());
 		}
 		return maps;
 	}
@@ -206,7 +206,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			integer = interFaceDao.releaseCar(car);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(releaseCar)：" + d.getLocalizedMessage());
 		}
 		return integer;
 	}
@@ -218,7 +218,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			maps = interFaceDao.selectMyCollection(user_id);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectMyCollection)：" + d.getLocalizedMessage());
 		}
 		return maps;
 	}
@@ -230,7 +230,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			user_share_shiro = interFaceDao.shareInformation(user_id);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(shareInformation)：" + d.getLocalizedMessage());
 		}
 		return user_share_shiro;
 	}
@@ -243,7 +243,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			i = interFaceDao.identityAuthentication(wx_id, wx_idcard, phone, wx_name, wx_nickname, wx_headimgurl);
 		} catch (DataAccessException d) {
-			logger.info("更改数据库错误：" + d.getLocalizedMessage());
+			logger.info("更改数据库错误(identityAuthentication)：" + d.getLocalizedMessage());
 		}
 		return i;
 	}
@@ -258,7 +258,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			integer = interFaceDao.chongxinfabuxiugai(jsonObject);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(chongxinfabuxiugai)：" + d.getLocalizedMessage());
 		}
 		return integer;
 	}
@@ -270,7 +270,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			map = interFaceDao.chongxinfabuchaxun(jsonObject);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(chongxinfabuchaxun)：" + d.getLocalizedMessage());
 		}
 		return map;
 	}
@@ -294,7 +294,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			integer = interFaceDao.xiugaifabutijiao(jsonObject);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(xiugaifabutijiao)：" + d.getLocalizedMessage());
 		}
 		return integer;
 	}
@@ -310,7 +310,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			map = interFaceDao.selectCollection(hashMap);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectCollection)：" + d.getLocalizedMessage());
 		}
 		return map;
 	}
@@ -322,7 +322,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			user_perfect = interFaceDao.selectPerfectVehicle(wx_id);
 		} catch (DataAccessException d) {
-			logger.info("查询是否完善过车辆数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询是否完善过车辆数据库错误(selectPerfectVehicle)：" + d.getLocalizedMessage());
 		}
 		return user_perfect;
 	}
@@ -334,7 +334,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			i = interFaceDao.perfectVehicle(car);
 		} catch (DataAccessException d) {
-			logger.info("完善车辆信息添加数据库错误：" + d.getLocalizedMessage());
+			logger.info("完善车辆信息添加数据库错误(perfectVehicle)：" + d.getLocalizedMessage());
 		}
 		return i;
 	}
@@ -346,7 +346,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			maps = interFaceDao.selectRelease(user_id);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectRelease)：" + d.getLocalizedMessage());
 		}
 		return maps;
 	}
@@ -361,7 +361,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			integer = interFaceDao.tianjialiulanjiluhuo(jsonObject);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(tianjialiulanjiluhuo)：" + d.getLocalizedMessage());
 		}
 		return integer;
 	}
@@ -373,7 +373,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			integer = interFaceDao.xiugailiulanjiluhuoche(map);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(xiugailiulanjiluhuoche)：" + d.getLocalizedMessage());
 		}
 		return integer;
 	}
@@ -385,7 +385,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			integer = interFaceDao.tianjialiulanjiluche(jsonObject);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(tianjialiulanjiluche)：" + d.getLocalizedMessage());
 		}
 		return integer;
 	}
@@ -397,7 +397,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			map = interFaceDao.selectliulanjilu(map1);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectliulanjilu)：" + d.getLocalizedMessage());
 		}
 		return map;
 	}
@@ -409,7 +409,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			maps = interFaceDao.selectliulanjilubiao(user_id);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectliulanjilubiao)：" + d.getLocalizedMessage());
 		}
 		return maps;
 	}
@@ -423,7 +423,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			interFaceDao.insertWxUser(user);
 		} catch (DataAccessException d) {
-			logger.info("保存微信用户授权信息错误：" + d.getLocalizedMessage());
+			logger.info("保存微信用户授权信息错误(insertWxUser)：" + d.getLocalizedMessage());
 		}
 	}
 
@@ -435,7 +435,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 			count = interFaceDao.selectShouQuan(wx_id);
 			logger.info("count+++++++++++" + count);
 		} catch (DataAccessException d) {
-			logger.info("查询是否授权过该微信用户错误：" + d.getLocalizedMessage());
+			logger.info("查询是否授权过该微信用户错误(selectShouQuan)：" + d.getLocalizedMessage());
 		}
 		return count;
 	}
@@ -449,7 +449,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 			logger.info("map++++" + map);
 
 		} catch (DataAccessException d) {
-			logger.info("查询个人信息错误：" + d.getLocalizedMessage());
+			logger.info("查询个人信息错误(selectAUsersss)：" + d.getLocalizedMessage());
 		}
 		return map;
 	}
@@ -461,7 +461,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			authentication = interFaceDao.selectidentityAuthentication(user_authentication);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectidentityAuthentication)：" + d.getLocalizedMessage());
 		}
 		return authentication;
 	}
@@ -475,7 +475,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 			logger.info("map++++" + map);
 
 		} catch (DataAccessException d) {
-			logger.info("查询个人信息错误：" + d.getLocalizedMessage());
+			logger.info("查询个人信息错误(selectShiro)：" + d.getLocalizedMessage());
 		}
 		return map;
 	}
@@ -488,7 +488,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 			count = interFaceDao.shareShiro(wx_id, share_shiro);
 			logger.info("count+++++++++++" + count);
 		} catch (DataAccessException d) {
-			logger.info("查询是否授权过该微信用户错误：" + d.getLocalizedMessage());
+			logger.info("查询是否授权过该微信用户错误(shareShiro)：" + d.getLocalizedMessage());
 		}
 		// TODO Auto-generated method stub
 		return count;
@@ -501,7 +501,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 			shareShiro = interFaceDao.selectshareShiro(wx_id);
 			logger.info("shareShiro+++++++++++" + shareShiro);
 		} catch (DataAccessException d) {
-			logger.info("查询是否授权过该微信用户错误：" + d.getLocalizedMessage());
+			logger.info("查询是否授权过该微信用户错误(selectshareShiro)：" + d.getLocalizedMessage());
 		}
 		return shareShiro;
 	}
@@ -514,7 +514,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 			count = interFaceDao.CountshareShiro(wx_id);
 			logger.info("count+++++++++++" + count);
 		} catch (DataAccessException d) {
-			logger.info("查询是否授权过该微信用户错误：" + d.getLocalizedMessage());
+			logger.info("查询是否授权过该微信用户错误(CountshareShiro)：" + d.getLocalizedMessage());
 		}
 		return count;
 	}
@@ -527,7 +527,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 			share = interFaceDao.sharePC();
 			logger.info("share+++++++++++" + share);
 		} catch (DataAccessException d) {
-			logger.info("查询是否授权过该微信用户错误：" + d.getLocalizedMessage());
+			logger.info("查询是否授权过该微信用户错误(sharePC)：" + d.getLocalizedMessage());
 		}
 		return share;
 	}
@@ -543,7 +543,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			map = interFaceDao.selectAUserziliao(user_id);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectAUserziliao)：" + d.getLocalizedMessage());
 		}
 		return map;
 	}
@@ -555,7 +555,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			maps = interFaceDao.selectAUsersRelease(user_id);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectAUsersRelease)：" + d.getLocalizedMessage());
 		}
 		return maps;
 	}
@@ -567,7 +567,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			map = interFaceDao.selectAUsersReleaseNumber(user_id);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectAUsersReleaseNumber)：" + d.getLocalizedMessage());
 		}
 		return map;
 	}
@@ -579,7 +579,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			map = interFaceDao.selectAUsers(user_id);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(selectAUsers)：" + d.getLocalizedMessage());
 		}
 		return map;
 	}
@@ -591,7 +591,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			map = interFaceDao.guanyuwomen();
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(guanyuwomen)：" + d.getLocalizedMessage());
 		}
 		return map;
 	}
@@ -613,7 +613,7 @@ public class InterFaceServiceImpl implements InterFaceService {
 		try {
 			integer = interFaceDao.dianjishoucanguser(jsonObject);
 		} catch (DataAccessException d) {
-			logger.info("查询数据库错误()：" + d.getLocalizedMessage());
+			logger.info("查询数据库错误(dianjishoucanguser)：" + d.getLocalizedMessage());
 		}
 		return integer;
 	}

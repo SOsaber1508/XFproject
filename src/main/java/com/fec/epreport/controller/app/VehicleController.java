@@ -44,7 +44,7 @@ public class VehicleController {
 	@ResponseBody
 	@RequestMapping("/selectVehicleDetails.htm")
 	public Map<String, Object> selectVehicleDetails() {
-		logger.info("come in   /xxxxxx /releaseCar.htm");
+		logger.info("come in   /vehicle /selectVehicleDetails.htm");
 		Map<String, Object> jsonObject = new HashMap<String, Object>();
 		Map<String, Object> jsonObject1 = new HashMap<String, Object>();
 		try {
@@ -82,11 +82,12 @@ public class VehicleController {
 				jsonObject.put("collection", "2");
 			}
 			jsonObject.put("favorableRate", "暂无");
-			logger.info("leave   /xxxxxx /releaseCar.htm");
+
 		} catch (Exception e) {
-			logger.error("错误提示：" + e.getLocalizedMessage(), e);
+			logger.error("错误提示(selectVehicleDetails)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
+		logger.info("leave   /vehicle /selectVehicleDetails.htm");
 		jsonObject.put("code", "200");
 		return jsonObject;
 	}
@@ -97,7 +98,7 @@ public class VehicleController {
 	public Map<String, Object> selectVehicles(
 			@RequestParam(defaultValue = "1", required = true, value = "pageNo") int pageNo,
 			@RequestParam(defaultValue = "0", required = true, value = "share_shiro") String share_shiro) {
-		logger.info("come in   /selectVehicles /releaseCar.htm");
+		logger.info("come in   /vehicle /selectVehicles.htm");
 		System.out.println(share_shiro);
 		System.out.println(pageNo);
 		if (share_shiro.equals("0")) {
@@ -180,11 +181,12 @@ public class VehicleController {
 				System.out.println("pageInfo" + pageInfo);
 			}
 
-			logger.info("leave   /selectVehicles /releaseCar.htm");
+
 		} catch (Exception e) {
-			logger.error("错误提示：" + e.getLocalizedMessage(), e);
+			logger.error("错误提示(selectVehicles)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
+		logger.info("leave   / vehicle/selectVehicles.htm");
 		jsonObject.put("data", pageInfo);
 //        jsonObject.put("data",listjsonObject);
 		jsonObject.put("code", "200");
@@ -230,7 +232,7 @@ public class VehicleController {
 				return jsonObject;
 			}
 		} catch (Exception e) {
-			logger.error("错误提示：" + e.getLocalizedMessage(), e);
+			logger.error("错误提示(releaseCar)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
 		logger.info("leave /vehicle/releaseCar.htm");

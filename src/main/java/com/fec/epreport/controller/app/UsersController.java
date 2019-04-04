@@ -54,7 +54,8 @@ public class UsersController {
 	/**
 	 * 微信授权接口
 	 * zcy
-	 * @param request
+	 * request
+	 * @param
 	 * @return jsonObject
 	 */
 	@ResponseBody
@@ -83,7 +84,7 @@ public class UsersController {
 			System.out.println("拿到接口的数据为：" + sb);
 		} catch (Exception e) {
 			jsonObject.put("code", "201");
-			logger.error(e.getLocalizedMessage(), e);
+			logger.error("错误提示(shouquan)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
 		logger.info("leave/userinterface/shouquan.htm");
@@ -99,7 +100,7 @@ public class UsersController {
 	@RequestMapping(value = "/selectAUserziliao.htm")
 	//个人中心资料查询
 	public Map<String, Object> selectAUserziliao() {
-		logger.info("进入/test1/selectAUserziliao.htm");
+		logger.info("进入/userinterface/selectAUserziliao.htm");
 		Map<String, Object> jsonObject = new HashMap<String, Object>();
 		try {
 
@@ -111,11 +112,12 @@ public class UsersController {
 			}
 			JSONObject wxObject = JSONObject.parseObject(sb);
 			jsonObject = interFaceService.selectAUserziliao(wxObject.getString("wx_id"));
-			logger.info("leave   /xxxxxx /selectAUserziliao.htm");
+
 		} catch (Exception e) {
-			logger.error(e.getLocalizedMessage(), e);
+			logger.error("错误提示(selectAUserziliao)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
+		logger.info("leave   /userinterface /selectAUserziliao.htm");
 		jsonObject.put("code", "200");
 		return jsonObject;
 	}
@@ -124,7 +126,7 @@ public class UsersController {
 		@ResponseBody
 		@RequestMapping(value = "/selectAUsersRelease.htm",method = {RequestMethod.POST,RequestMethod.GET})
 		public Map<String, Object> selectAUsersRelease() {
-			logger.info("come in   /selectAUsersRelease /releaseCar.htm");
+			logger.info("come in   /userinterface /selectAUsersRelease.htm");
 			Map<String, Object> jsonObject = new HashMap<String, Object>();
 			Map<String, Object> jsonObject1 = new HashMap<String, Object>();
 			Map<String, Object> jsonObject2 = new HashMap<String, Object>();
@@ -144,11 +146,12 @@ public class UsersController {
 				String number =jsonObject2.get("number").toString();
 				jsonObject.put("number",number);
 
-				logger.info("leave   /selectAUsersRelease /releaseCar.htm");
+
 			} catch (Exception e) {
-				logger.error("错误提示：" + e.getLocalizedMessage(), e);
+				logger.error("错误提示(selectAUsersRelease)：" + e.getLocalizedMessage(), e);
 				e.printStackTrace();
 			}
+			logger.info("leave   /userinterface /selectAUsersRelease.htm");
 			jsonObject.put("code", "200");
 			jsonObject.put("wx", jsonObject1);
 			jsonObject.put("data", listjsonObject);
@@ -178,7 +181,7 @@ public class UsersController {
 			resultjsonObject.put("data", jsonObject);
 			logger.info("查询个人资料jsonObject" + jsonObject);
 		} catch (Exception e) {
-			logger.error("错误提示：" + e.getLocalizedMessage(), e);
+			logger.error("错误提示(selectAUsers)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
 		logger.info("leave/userinterface/selectAUsers.htm");
@@ -190,7 +193,7 @@ public class UsersController {
 		@ResponseBody
 		@RequestMapping(value="/selectRelease.htm",method = {RequestMethod.POST,RequestMethod.GET})
 		public Map<String, Object> selectRelease() {
-			logger.info("come in   /xxxxxx /releaseCar.htm");
+			logger.info("come in   /userinterface /selectRelease.htm");
 
 			Map<String, Object> jsonObject = new HashMap<String, Object>();
 			List<Map<String,Object>> listjsonObject = new ArrayList<Map<String,Object>>();
@@ -206,11 +209,12 @@ public class UsersController {
 				JSONObject wxObject = JSONObject.parseObject(sb);
 				listjsonObject = interFaceService.selectRelease(wxObject.getString("wx_id"));
 				jsonObject.put("data",listjsonObject);
-				logger.info("leave   /xxxxxx /releaseCar.htm");
+
 			} catch (Exception e) {
-				logger.error("错误提示：" + e.getLocalizedMessage(), e);
+				logger.error("错误提示(selectRelease)：" + e.getLocalizedMessage(), e);
 				e.printStackTrace();
 			}
+			logger.info("leave   /userinterface /selectRelease.htm");
 			jsonObject.put("code", "200");
 			return jsonObject;
 		}
@@ -245,7 +249,7 @@ public class UsersController {
 				}
 			}
 		} catch (Exception e) {
-			logger.error("错误提示：" + e.getLocalizedMessage(), e);
+			logger.error("错误提示(perfectVehicle)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
 		logger.info("leave/userinterface/perfectVehicle.htm");
@@ -257,7 +261,7 @@ public class UsersController {
 		@ResponseBody
 		@RequestMapping(value = "/selectMyCollection.htm",method = {RequestMethod.POST,RequestMethod.GET})
 		public Map<String, Object> selectMyCollection() {
-			logger.info("come in   /xxxxxx /releaseCar.htm");
+			logger.info("come in   /userinterface /selectMyCollection.htm");
 			Map<String, Object> jsonObject = new HashMap<String, Object>();
 			List<Map<String,Object>> listjsonObject = new ArrayList<Map<String,Object>>();
 			try {
@@ -272,11 +276,12 @@ public class UsersController {
 				for (Map<String, Object> l:listjsonObject) {
 					l.put("favorableRate","暂无");
 				}
-				logger.info("leave   /xxxxxx /releaseCar.htm");
+
 			} catch (Exception e) {
-				logger.error("错误提示：" + e.getLocalizedMessage(), e);
+				logger.error("错误提示(selectMyCollection)：" + e.getLocalizedMessage(), e);
 				e.printStackTrace();
 			}
+			logger.info("leave   /userinterface /selectMyCollection.htm");
 			jsonObject.put("code", "200");
 			jsonObject.put("data",listjsonObject);
 			return jsonObject;
@@ -321,7 +326,7 @@ public class UsersController {
 				jsonObject.put("user_share_num",null);
 			}
 		} catch (Exception e) {
-			logger.error("错误提示：" + e.getLocalizedMessage(), e);
+			logger.error("错误提示(shareInformation)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
 		logger.info("leave/userinterface/shareInformation.htm");
@@ -397,7 +402,7 @@ public class UsersController {
 			}
 
 		} catch (Exception e) {
-			logger.error("错误提示：" + e.getLocalizedMessage(), e);
+			logger.error("错误提示(shareShiro)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
 		logger.info("leave/userinterface/shareShiro.htm");
@@ -423,7 +428,7 @@ public class UsersController {
 			String user_perfect = interFaceService.selectPerfectVehicle(wxObject.getString("wx_id"));
 			jsonObject.put("user_perfect", user_perfect);
 		} catch (Exception e) {
-			logger.error("错误提示：" + e.getLocalizedMessage(), e);
+			logger.error("错误提示(selectPerfectVehicle)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
 		logger.info("leave/userinterface/selectPerfectVehicle.htm");
@@ -449,7 +454,7 @@ public class UsersController {
 			jsonObject = interFaceService.selectShiro(wxObject.getString("wx_id"));
 			logger.info("查询个人信息jsonObject" + jsonObject);
 		} catch (Exception e) {
-			logger.error("错误提示：" + e.getLocalizedMessage(), e);
+			logger.error("错误提示(selectAUsers)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
 		logger.info("leave/userinterface/selectAUsers.htm");
@@ -461,7 +466,7 @@ public class UsersController {
 	@ResponseBody
 	@RequestMapping("/chongxinfabu.htm")
 	public Map<String, Object> chongxinfabu(Integer id, String Identification) {
-		logger.info("come in   /xxxxxx /releaseCar.htm");
+		logger.info("come in   /userinterface /chongxinfabu.htm");
 		Map<String, Object> jsonObject = new HashMap<String, Object>();
 		Map<String, Object> jsonObject1 = new HashMap<String, Object>();
 		try {
@@ -489,11 +494,12 @@ public class UsersController {
 				jsonObject.put("code", "202");
 				return jsonObject;
 			}
-			logger.info("leave   /xxxxxx /releaseCar.htm");
+
 		} catch (Exception e) {
-			logger.error("错误提示：" + e.getLocalizedMessage(), e);
+			logger.error("错误提示(chongxinfabu)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
+		logger.info("leave   /userinterface /chongxinfabu.htm");
 		jsonObject.put("code", "200");
 		return jsonObject;
 	}
@@ -516,7 +522,7 @@ public class UsersController {
 	@ResponseBody
 	@RequestMapping("/xiugaifabu.htm")
 	public Map<String, Object> xiugaifabu(Integer id, String Identification) {
-		logger.info("come in   /xxxxxx /releaseCar.htm");
+		logger.info("come in   /userinterface /xiugaifabu.htm");
 		Map<String, Object> jsonObject = new HashMap<String, Object>();
 		try {
 //			String sb = "{" + "    \"id\": \"4\",\"Identification\": \"1\"" + "}";
@@ -527,11 +533,12 @@ public class UsersController {
 			}
 			JSONObject wxObject = JSONObject.parseObject(sb);
 			jsonObject = interFaceService.xiugaifabu(wxObject);
-			logger.info("leave   /xxxxxx /releaseCar.htm");
+
 		} catch (Exception e) {
-			logger.error("错误提示：" + e.getLocalizedMessage(), e);
+			logger.error("错误提示(xiugaifabu)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
+		logger.info("leave   /userinterface /xiugaifabu.htm");
 		jsonObject.put("code", "200");
 		return jsonObject;
 	}
@@ -540,7 +547,7 @@ public class UsersController {
 	@ResponseBody
 	@RequestMapping("/xiugaifabutijiao.htm")
 	public Map<String, Object> xiugaifabutijiao() {
-		logger.info("come in   /xxxxxx /releaseCar.htm");
+		logger.info("come in   /userinterface /xiugaifabutijiao.htm");
 		Map<String, Object> jsonObject = new HashMap<String, Object>();
 		try {
 //			String sb = "{\"identification\":\"1\",\"vehicle_contactinformation\":\"13660678928\",\"vehicle_contacts\":\"李四\"," +
@@ -601,11 +608,12 @@ public class UsersController {
 				return jsonObject;
 			}
 			System.out.println("i" + i);
-			logger.info("leave   /xxxxxx /releaseCar.htm");
+
 		} catch (Exception e) {
-			logger.error("错误提示：" + e.getLocalizedMessage(), e);
+			logger.error("错误提示(xiugaifabutijiao)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
+		logger.info("leave   /userinterface /xiugaifabutijiao.htm");
 		jsonObject.put("code", "200");
 		return jsonObject;
 	}
@@ -614,15 +622,16 @@ public class UsersController {
 		@ResponseBody
 		@RequestMapping("/guanyuwomen.htm")
 		public Map<String, Object> guanyuwomen() {
-			logger.info("come in   /xxxxxx /releaseCar.htm");
+			logger.info("come in   /userinterface /guanyuwomen.htm");
 			Map<String, Object> jsonObject = new HashMap<String, Object>();
 			try {
 				jsonObject =  interFaceService.guanyuwomen();
-				logger.info("leave   /xxxxxx /releaseCar.htm");
+
 			} catch (Exception e) {
-				logger.error("错误提示：" + e.getLocalizedMessage(), e);
+				logger.error("错误提示(guanyuwomen)：" + e.getLocalizedMessage(), e);
 				e.printStackTrace();
 			}
+			logger.info("leave   /userinterface /guanyuwomen.htm");
 			jsonObject.put("code", "200");
 			return jsonObject;
 		}
@@ -632,7 +641,7 @@ public class UsersController {
 		@ResponseBody
 		@RequestMapping(value = "/selectliulanjilu.htm",method = {RequestMethod.POST,RequestMethod.GET})
 		public Map<String, Object> selectliulanjilu() {
-			logger.info("come in   /xxxxxx /selectliulanjilu.htm");
+			logger.info("come in   /userinterface /selectliulanjilu.htm");
 			Map<String, Object> jsonObject = new HashMap<String, Object>();
 			Map<String, Object> jsonObject1 = new HashMap<String, Object>();
 			List<Map<String,Object>> listjsonObject = new ArrayList<Map<String,Object>>();
@@ -649,11 +658,12 @@ public class UsersController {
 				for (Map<String,Object> map:listjsonObject1) {
 					listjsonObject.add(interFaceService.selectliulanjilu(map));
 				}
-				logger.info("leave   /xxxxxx /releaseCar.htm");
+
 			} catch (Exception e) {
-				logger.error("错误提示：" + e.getLocalizedMessage(), e);
+				logger.error("错误提示(selectliulanjilu)：" + e.getLocalizedMessage(), e);
 				e.printStackTrace();
 			}
+			logger.info("leave   /userinterface /selectliulanjilu.htm");
 			jsonObject.put("code", "200");
 			jsonObject.put("data",listjsonObject);
 			return jsonObject;
@@ -662,7 +672,7 @@ public class UsersController {
 		@ResponseBody
 		@RequestMapping(value = "/dianjishoucanguser.htm",method = {RequestMethod.POST,RequestMethod.GET})
 		public Map<String, Object> dianjishoucanguser() {
-			logger.info("come in   /dianjishoucanguser /releaseCar.htm");
+			logger.info("come in   /userinterface /dianjishoucanguser.htm");
 			Map<String, Object> jsonObject = new HashMap<String, Object>();
 
 			try {
@@ -680,11 +690,12 @@ public class UsersController {
 					jsonObject.put("code", "200");
 					return jsonObject;
 				}
-				logger.info("leave   /dianjishoucanguser /releaseCar.htm");
+
 			} catch (Exception e) {
-				logger.error("错误提示：" + e.getLocalizedMessage(), e);
+				logger.error("错误提示(dianjishoucanguser)：" + e.getLocalizedMessage(), e);
 				e.printStackTrace();
 			}
+			logger.info("leave   /userinterface /dianjishoucanguser.htm");
 			jsonObject.put("code", "201");
 			return jsonObject;
 		}

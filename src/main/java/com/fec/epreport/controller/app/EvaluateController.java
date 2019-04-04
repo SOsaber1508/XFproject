@@ -59,11 +59,12 @@ public class EvaluateController {
             jsonObject.put("haoping_number",interFaceService.selectPraise(wxObject.getString("wx_id")).get("haoping_number"));
             jsonObject.put("zhongping_number",interFaceService.selectIn(wxObject.getString("wx_id")).get("zhongping_number")) ;
             jsonObject.put("chaping_number",interFaceService.selectDifferenc(wxObject.getString("wx_id")).get("chaping_number")) ;
-            logger.info("leave   /xxxxxx /releaseCar.htm");
+
         } catch (Exception e) {
-            logger.error("错误提示："+e.getLocalizedMessage(), e);
+            logger.error("错误提示(selectEvaluates)："+e.getLocalizedMessage(), e);
             e.printStackTrace();
         }
+        logger.info("leave   /evaluate /selectEvaluates.htm");
         jsonObject.put("code", "200");
         jsonObject.put("list",listjsonObject);
         return jsonObject;
@@ -73,7 +74,7 @@ public class EvaluateController {
     @ResponseBody
     @RequestMapping("/submissionEvaluates.htm")
     public Map<String, Object> submissionEvaluates(Integer user_id,String evaluate_type,String evaluate_content){
-        logger.info("come in   /xxxxxx /releaseCar.htm");
+        logger.info("come in   /evaluate /submissionEvaluates.htm");
         Map<String, Object> jsonObject = new HashMap<String, Object>();
         try {
            // String sb = "{" + "    \"id\": \"1003\",\"user_id\": \"1004\",\"evaluate_type\": \"1\",\"evaluate_content\": \"设定地方官索尼单反\"" + "}";
@@ -85,11 +86,12 @@ public class EvaluateController {
             JSONObject wxObject = JSONObject.parseObject(sb);
             Integer number=  interFaceService.submissionEvaluates(wxObject);
             jsonObject.put("number", "1");
-            logger.info("leave   /xxxxxx /releaseCar.htm");
+
         } catch (Exception e) {
-            logger.error("错误提示："+e.getLocalizedMessage(),e);
+            logger.error("错误提示(submissionEvaluates)："+e.getLocalizedMessage(),e);
             e.printStackTrace();
         }
+        logger.info("leave   /evaluate /submissionEvaluates.htm");
         jsonObject.put("code", "200");
         return jsonObject;
     }
@@ -98,7 +100,7 @@ public class EvaluateController {
     @ResponseBody
     @RequestMapping(value = "/clickEvaluates.htm")
     public Map<String, Object> clickEvaluates(Integer user_id){
-        logger.info("come in   /xxxxxx /releaseCar.htm");
+        logger.info("come in   /evaluate /clickEvaluates.htm");
         Map<String, Object> jsonObject = new HashMap<String, Object>();
         try {
             //String sb = "{" + "    \"wx_id\": \"1001\"" + "}";
@@ -109,11 +111,12 @@ public class EvaluateController {
             }
             JSONObject wxObject = JSONObject.parseObject(sb);
             jsonObject = interFaceService.clickEvaluates(wxObject.getString("wx_id"));
-            logger.info("leave   /xxxxxx /releaseCar.htm");
+
         } catch (Exception e) {
-            logger.error("错误提示："+e.getLocalizedMessage(),e);
+            logger.error("错误提示(clickEvaluates)："+e.getLocalizedMessage(),e);
             e.printStackTrace();
         }
+        logger.info("leave   /evaluate /clickEvaluates.htm");
         jsonObject.put("code", "200");
         return jsonObject;
     }
@@ -122,6 +125,7 @@ public class EvaluateController {
 	@ResponseBody
 	@RequestMapping("/shareCard.htm")
 	public Map<String, Object> shareCard() {
+        logger.info("come in   /evaluate /shareCard.htm");
 		Map<String, Object> jsonObject = new HashMap<String, Object>();
 		try {
 //			String sb = PureNetUtil.buffJson(request);
@@ -135,9 +139,10 @@ public class EvaluateController {
 			jsonObject.put("share_img", share.getShare_img());
 			jsonObject.put("share_url", share.getShare_url());
 		} catch (Exception e) {
-			logger.error("错误提示：" + e.getLocalizedMessage(), e);
+			logger.error("错误提示(shareCard)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
+        logger.info("leave   /evaluate /shareCard.htm");
 		return jsonObject;
 	}
 

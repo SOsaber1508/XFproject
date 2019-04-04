@@ -43,7 +43,7 @@ public class GoodsController {
     @ResponseBody
     @RequestMapping(value = "/selectSourceDetails.htm")
     public Map<String, Object> selectSourceDetails(Integer goods_id,Integer user_id){
-        logger.info("come in   /xxxxxx /releaseCar.htm");
+        logger.info("come in   /goods /selectSourceDetails.htm");
         Map<String, Object> jsonObject = new HashMap<String, Object>();
         Map<String, Object> jsonObject1 = new HashMap<String, Object>();
         try {
@@ -78,11 +78,12 @@ public class GoodsController {
                 jsonObject.put("collection", "2");
             }
             jsonObject.put("favorableRate", "暂无");
-            logger.info("leave   /xxxxxx /releaseCar.htm");
+
         } catch (Exception e) {
-            logger.error("错误提示："+e.getLocalizedMessage(),e);
+            logger.error("错误提示(selectSourceDetails)："+e.getLocalizedMessage(),e);
             e.printStackTrace();
         }
+        logger.info("leave   /goods /selectSourceDetails.htm");
         jsonObject.put("code", "200");
         return jsonObject;
     }
@@ -91,7 +92,7 @@ public class GoodsController {
     @ResponseBody
     @RequestMapping(value = "/selectGoods.htm", method = {RequestMethod.POST, RequestMethod.GET})
     public Map<String, Object> selectGoods(@RequestParam(defaultValue = "1", required = true, value = "pageNo") int pageNo, @RequestParam(defaultValue = "0", required = true, value = "share_shiro") String share_shiro) {
-        logger.info("come in   /xxxxxx /releaseCar.htm");
+        logger.info("come in   /goods /selectGoods.htm");
         System.out.println(share_shiro);
         System.out.println(pageNo);
         if (share_shiro.equals("0")) {
@@ -168,12 +169,13 @@ public class GoodsController {
                 System.out.println(pageInfo);
             }
         } catch (Exception e) {
-            logger.error("错误提示：" + e.getLocalizedMessage(), e);
+            logger.error("错误提示(selectGoods)：" + e.getLocalizedMessage(), e);
             e.printStackTrace();
         }
+        System.out.println(pageInfo);
         jsonObject.put("data", pageInfo);
         jsonObject.put("code", "200");
-        logger.info("leave   /xxxxxx /releaseCar.htm");
+        logger.info("leave   /goods /selectGoods.htm");
         return jsonObject;
     }
 
@@ -182,7 +184,7 @@ public class GoodsController {
     @RequestMapping("/releaseSource.htm")
     public Map<String, Object> releaseSource() {
         Map<String, Object> jsonObject = new HashMap<String, Object>();
-        logger.info("/releaseSource.htm");
+        logger.info("come in   /goods /releaseSource.htm");
         try {
 //			// 测试数据
 //			String sb = "{" + "    \"goods_Detailedtype\": \"金属钢材\"," + "    \"goods_contactinformation\": \"1366666\","
@@ -228,9 +230,10 @@ public class GoodsController {
             }
             System.out.println("i" + i);
         } catch (Exception e) {
-            logger.error("错误提示：" + e.getLocalizedMessage(), e);
+            logger.error("错误提示(releaseSource)：" + e.getLocalizedMessage(), e);
             e.printStackTrace();
         }
+        logger.info("leave   /goods /releaseSource.htm");
         jsonObject.put("code", "200");
         return jsonObject;
     }
