@@ -171,4 +171,7 @@ public interface InterFaceService {
 	// 查询后台分享的话术
 	public Share sharePC();
 
+	//版本下载查询
+	public Map<String, Object> selectBanBenXiaZai();
+
 }

@@ -699,4 +699,21 @@ public class UsersController {
 			jsonObject.put("code", "201");
 			return jsonObject;
 		}
+		//版本下载查询
+		@ResponseBody
+		@RequestMapping("/selectBanBenXiaZai.htm")
+		public Map<String, Object> selectBanBenXiaZai() {
+			logger.info("come in   /userinterface/selectBanBenXiaZai.htm");
+			Map<String, Object> jsonObject = new HashMap<String, Object>();
+			try {
+				jsonObject =  interFaceService.selectBanBenXiaZai();
+
+			} catch (Exception e) {
+				logger.error("错误提示(selectBanBenXiaZai)：" + e.getLocalizedMessage(), e);
+				e.printStackTrace();
+			}
+			logger.info("leave   /userinterface /selectBanBenXiaZai.htm");
+			jsonObject.put("code", "200");
+			return jsonObject;
+		}
 }

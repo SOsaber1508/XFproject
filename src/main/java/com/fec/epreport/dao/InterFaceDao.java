@@ -180,5 +180,7 @@ public interface InterFaceDao {
 	public Share sharePC();
 	//关于我们
     public Map<String, Object> guanyuwomen();
+	//版本下载查询
+	public Map<String, Object> selectBanBenXiaZai();
 
 }

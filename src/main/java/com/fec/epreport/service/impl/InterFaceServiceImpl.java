@@ -617,5 +617,15 @@ public class InterFaceServiceImpl implements InterFaceService {
 		}
 		return integer;
 	}
+	//版本下载查询
+	public Map<String, Object> selectBanBenXiaZai(){
+		Map<String, Object> map = new HashMap<>();
+		try {
+			map = interFaceDao.selectBanBenXiaZai();
+		} catch (DataAccessException d) {
+			logger.info("查询数据库错误：(selectBanBenXiaZai)" + d.getLocalizedMessage());
+		}
+		return map;
+	}
 
 }

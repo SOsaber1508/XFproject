@@ -658,4 +658,9 @@
 		resultType="java.util.HashMap">
 		select aboutus_content from aboutus
 	</select>
+	<!--版本下载查询 -->
+	<select id="selectBanBenXiaZai"
+			resultType="java.util.HashMap">
+		select * from banben
+	</select>
 </mapper>
