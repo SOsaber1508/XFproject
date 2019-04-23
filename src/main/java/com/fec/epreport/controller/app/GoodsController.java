@@ -39,6 +39,8 @@ public class GoodsController {
 	HttpServletRequest request;
 	private  int pageSize;//每页显示多少条
 
+    private final static  int  ONE=1;
+
     //货源详情查询 http://2q4v154598.zicp.vip/epreport/goods/selectSourceDetails.htm
     @ResponseBody
     @RequestMapping(value = "/selectSourceDetails.htm")
@@ -166,7 +168,11 @@ public class GoodsController {
                 System.out.println(resultList);
                 //List<GoodsList>resultList = interFaceService.selectGoodsShaiXuan2(wxObject,min_number,max_number);
                 pageInfo = new PageInfo<GoodsList>(resultList);
+                if(pageSize==5){
+                    pageInfo.setPages(ONE);
+                }
                 System.out.println(pageInfo);
+
             }
         } catch (Exception e) {
             logger.error("错误提示(selectGoods)：" + e.getLocalizedMessage(), e);

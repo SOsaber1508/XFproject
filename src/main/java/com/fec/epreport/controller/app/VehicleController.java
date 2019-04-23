@@ -39,6 +39,7 @@ public class VehicleController {
 	HttpServletRequest request;
 
 	private int pageSize;// 每页显示多少条
+	private final static  int  ONE=1;
 
 	// 车源详情查询
 	@ResponseBody
@@ -178,6 +179,9 @@ public class VehicleController {
 				List<Map<String, Object>> resultList = interFaceService.selectVehiclesShaiXuan(wxObject, maps, list1);
 				System.out.println(resultList);
 				pageInfo = new PageInfo<Map<String, Object>>(resultList);
+				if(pageSize==5){
+					pageInfo.setPages(ONE);
+				}
 				System.out.println("pageInfo" + pageInfo);
 			}
 
