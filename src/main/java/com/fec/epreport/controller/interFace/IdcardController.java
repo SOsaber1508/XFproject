@@ -81,7 +81,6 @@ public class IdcardController {
 				json.put("code", "208");
 				return json;
 			}
-			
 		//imageFile(req,resp);
 		JSONObject wxObject = JSONObject.parseObject(sb);
 		String wx_idcard=wxObject.getString("wx_idcard");

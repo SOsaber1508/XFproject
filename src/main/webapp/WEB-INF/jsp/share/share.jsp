@@ -10,6 +10,7 @@
 <meta name="apple-wap-web-app-capable" content="yes">
 <meta name="apple-wap-web-app-status-bar-style"
 	content="black-translucent">
+<link href="../ico/peihuo.icon" rel="shortcut icon">
 <!-- css -->
 <link rel="stylesheet" href="../css/assets/css/bootstrap.min.css">
 </head>
@@ -19,11 +20,15 @@
 			<img src="../image/1.jpg" style="width: 99.9%; height: 80%;">
 		</div>
 		<div class="row">
-		<a href="http://47.111.11.27:8080/epreport/evaluate/download2.htm">
-			<img src="../image/button1.png"
-				style="position: absolute; z-index: 2; width: 68%; margin-top: 28px;height: 9%;margin-left: 54px;">
-		</a>	
-			<img src="../image/2.jpg" style="width: 99.9%; height: 20%;">
+			<!-- 页面重定向 -->
+			<a href="http://47.111.11.27:8080/epreport/evaluate/download2.htm">
+				<!-- 普通下载 --> <img src="../image/button2.png"
+				style="position: absolute; z-index: 2; width: 44%; margin-top: 28px; height: 7%; margin-left: 15px;">
+			</a> <a
+				href="http://www.peihuodating.cn:8080/epreport/evaluate/download.htm">
+				<!-- 高速下载 --> <img src="../image/button3.png"
+				style="position: absolute; z-index: 2; width: 45%; margin-top: 28px; height: 7%; margin-left: 193px;">
+			</a> <img src="../image/2.jpg" style="width: 99.9%; height: 20%;">
 		</div>
 	</div>
 </body>

@@ -35,13 +35,17 @@
 		<property name="initialSize" value="${druid.initialSize}" />
        	<!-- 连接池最大数量 -->
         <property name="maxActive" value="${druid.maxActive}" />
-       	<!-- 连接池最大空闲 -->
+       	<!-- 连接池最大空闲 已经不再配置了 因为配置了也没啥子效果具体翻文档
         <property name="maxIdle" value="${druid.maxIdle}" />
+        -->
         <!-- 获取连接最大等待时间 -->
         <property name="maxWait" value="${druid.maxWait}" />
         <property name="defaultAutoCommit" value="${druid.defaultAutoCommit}" />
+        <!-- 对于长时间不使用的连接强制关闭 是否开启 -->
         <property name="removeAbandoned" value="${druid.removeAbandoned}" />
+        <!-- 数据库链接超过xx秒开始关闭空闲连接 秒为单位 -->
         <property name="removeAbandonedTimeout" value="${druid.removeAbandonedTimeout}" />
+        <!-- 关闭abanded连接时输出错误日志，这样出现连接泄露时可以通过错误日志定位忘记关闭连接的位置 -->
         <property name="logAbandoned" value="true"></property>
         <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
         <property name="timeBetweenEvictionRunsMillis" value="60000" />
@@ -51,7 +55,6 @@
         <property name="testWhileIdle" value="true" />
         <property name="testOnBorrow" value="false" />
         <property name="testOnReturn" value="false" />
-        
         <!-- 打开PSCache，并且指定每个连接上PSCache的大小 如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。分库分表较多的数据库，建议配置为false。-->
         <property name="poolPreparedStatements" value="false" />
         <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
@@ -83,8 +86,8 @@
     </bean>  
     <!-- jedis客户端单机版 -->
     <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
-        <!--<constructor-arg name="host" value="r-bp19e53817d7f924.redis.rds.aliyuncs.com"></constructor-arg>-->
-        <constructor-arg name="host" value="192.168.3.69"></constructor-arg>
+        <constructor-arg name="host" value="r-bp19e53817d7f924.redis.rds.aliyuncs.com"></constructor-arg>
+        <!--<constructor-arg name="host" value="192.168.3.45"></constructor-arg>-->
         <constructor-arg name="port" value="6379"></constructor-arg>
 		<!-- 客户端连接超时时间-->
         <constructor-arg name="timeout" value="30000"></constructor-arg>

@@ -53,6 +53,18 @@ public class TokenUtil {
 		return getAuth(clientId, clientSecret);
 	}
 
+	
+	public static void main(String[] args) {
+		//zcy
+	//String clientId = "9nVQ1W2m4u8K4Ij8YgZAAqXe";
+	// 官网获取的 Secret Key 更新为你注册的
+	//String clientSecret = "cuf4b6kNozXxZhmMdk0gvVrFYF9QbvO3";
+	String clientId="vl4gONK0BvujMG72BQWXK8sY";
+	String clientSecret="5Q3lkWCQuZojj4XlO2GbYu0MS6bxE27s";
+	flag = true;
+	getAuth(clientId, clientSecret);
+	}
+	
 	/**
 	 * 获取API访问token 该token有一定的有效期，需要自行管理，当失效时需重新获取.
 	 * 

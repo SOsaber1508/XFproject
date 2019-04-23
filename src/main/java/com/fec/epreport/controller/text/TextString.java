@@ -57,10 +57,10 @@ public class TextString {
 //	        }
 //		  System.out.println(filename);
 //	}
-		String goods_wight = "0-5%5-10";
-		if (!goods_wight.equals("")) {
-			List<String> result = Arrays.asList(goods_wight.split("%"));
-			System.out.println(result);
-		}
+//		String goods_wight = "0-5%5-10";
+//		if (!goods_wight.equals("")) {
+//			List<String> result = Arrays.asList(goods_wight.split("%"));
+//			System.out.println(result);
+//		}
 	}
 }

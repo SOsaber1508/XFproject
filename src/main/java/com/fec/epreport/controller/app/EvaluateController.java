@@ -140,7 +140,7 @@ public class EvaluateController {
 			jsonObject.put("share_url", share.getShare_url());
 		} catch (Exception e) {
 			logger.error("错误提示(shareCard)：" + e.getLocalizedMessage(), e);
-			e.printStackTrace();
+			e.printStackTrace();//apiwireless.58.com/api/redirect/down/3
 		}
         logger.info("leave   /evaluate /shareCard.htm");
 		return jsonObject;
@@ -158,57 +158,6 @@ public class EvaluateController {
 		return "share/share";
 	}
 
-	/**
-	 * apk下載
-	 * @throws UnsupportedEncodingException
-	 */
-	@RequestMapping("/download.htm")
-	public void download() throws UnsupportedEncodingException {
-		response.setContentType("application/x-download");
-		String filedownload = request.getServletContext().getRealPath("/app_update/app-debug.apk");
-		System.out.println(filedownload);
-		String filedisplay = "app-debug.apk";
-		filedisplay = URLEncoder.encode(filedisplay, "UTF-8");// （如果文件名称加密，使用此代码具有解密功能）
-		response.addHeader("Content-Disposition", "attachment;filename=" + filedisplay);
-		OutputStream outp = null;
-		FileInputStream in = null;
-		try {
-			outp = response.getOutputStream();
-			in = new FileInputStream(filedownload);
-			byte[] b = new byte[1024];
-			int i = 0;
-			while ((i = in.read(b)) > 0) {
-				outp.write(b, 0, i);
-			}
-			outp.flush();
-		} catch (Exception e) {
-			logger.info("download下载出错");
-			e.printStackTrace();
-		} finally {
-			if (in != null) {
-				try {
-					in.close();
-				} catch (IOException e) {
-					logger.info("出錯");
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				in = null;
-			}
-			if (outp != null) {
-				try {
-					outp.close();
-				} catch (IOException e) {
-					logger.info("出錯");
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				outp = null;
-			}
-		}
-
-	}
-	
 	@RequestMapping("/download2.htm")
 	public void downLoad(HttpServletResponse response, boolean isOnLine) throws Exception {
 		logger.info("开始下载");
@@ -240,5 +189,21 @@ public class EvaluateController {
         
         logger.info("离开下载");
     }
+	// 重定向到apk下载页
+		@RequestMapping("/download.htm")
+		public String download() {
+			logger.info("leave download.htm");
+			return "share/share2";
+		}
+		// apk下载页
+		@RequestMapping("/download3.htm")
+		public String download3() {
+			try {
 
+			} catch (Exception e) {
+				logger.error("错误提示：" + e.getLocalizedMessage(), e);
+				e.printStackTrace();
+			}
+			return "share/share3";
+		}
 }
