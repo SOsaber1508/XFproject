@@ -103,6 +103,7 @@ public class GoodsController {
             pageSize = 10;
         }
         System.out.println("pageNo" + pageNo);
+        System.out.println("pageSize" + pageSize);
         Map<String, Object> jsonObject = new HashMap<String, Object>();
         PageInfo<GoodsList> pageInfo = new PageInfo<>();
         try {
@@ -115,6 +116,12 @@ public class GoodsController {
                 // listjsonObject = interFaceService.selectGoods();
                 List<GoodsList> resultList = interFaceService.selectGoods();
                 pageInfo = new PageInfo<GoodsList>(resultList);
+
+                if (share_shiro.equals("0")) {
+                    System.out.println("进来判断了");
+                    pageInfo.setPages(ONE);
+                }
+
             } else {
                 JSONObject wxObject = JSONObject.parseObject(sb);
                 if (wxObject.getString("goods_wight").equals("不限%")){
@@ -168,10 +175,14 @@ public class GoodsController {
                 System.out.println(resultList);
                 //List<GoodsList>resultList = interFaceService.selectGoodsShaiXuan2(wxObject,min_number,max_number);
                 pageInfo = new PageInfo<GoodsList>(resultList);
-                if(pageSize==5){
+               // if(pageSize==5){
+               //    System.out.println("进来判断了");
+                //    pageInfo.setPages(ONE);
+               // }
+                if (share_shiro.equals("0")) {
+                    System.out.println("进来判断了");
                     pageInfo.setPages(ONE);
                 }
-                System.out.println(pageInfo);
 
             }
         } catch (Exception e) {

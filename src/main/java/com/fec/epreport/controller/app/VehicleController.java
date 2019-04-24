@@ -126,6 +126,10 @@ public class VehicleController {
 				// listjsonObject = interFaceService.selectVehicles();
 				List<Map<String, Object>> resultList = interFaceService.selectVehicles();
 				pageInfo = new PageInfo<Map<String, Object>>(resultList);
+				if (share_shiro.equals("0")) {
+					System.out.println("进来判断了");
+					pageInfo.setPages(ONE);
+				}
 				System.out.println("pageInfo" + pageInfo);
 			} else {
 				JSONObject wxObject = JSONObject.parseObject(sb);
@@ -179,7 +183,8 @@ public class VehicleController {
 				List<Map<String, Object>> resultList = interFaceService.selectVehiclesShaiXuan(wxObject, maps, list1);
 				System.out.println(resultList);
 				pageInfo = new PageInfo<Map<String, Object>>(resultList);
-				if(pageSize==5){
+				if (share_shiro.equals("0")) {
+					System.out.println("进来判断了");
 					pageInfo.setPages(ONE);
 				}
 				System.out.println("pageInfo" + pageInfo);
