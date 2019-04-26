@@ -47,7 +47,7 @@
     <!-- 测试-->
 	<div class="wrapper">
 		<!-- head -->
-		<div class="main-header">
+		<div class="main-header" style="color:ghostwhite">
 			<div class="logo-header">
 				<a href="index.html" class="logo">配货管理中心</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button"

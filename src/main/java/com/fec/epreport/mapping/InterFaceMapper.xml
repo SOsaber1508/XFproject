@@ -38,7 +38,7 @@
 	<insert id="submissionEvaluates"
 		parameterType="com.alibaba.fastjson.JSONObject">
 		insert into evaluate
-		values(null,#{id},#{user_id},#{evaluate_type},#{evaluate_content},SYSDATE())
+		values(null,#{id},#{user_id},#{evaluate_type},#{evaluate_content},NOW())
 	</insert>
 	<!--点击评价 -->
 	<select id="clickEvaluates" parameterType="java.lang.String"
@@ -51,19 +51,19 @@
 	<!--添加浏览记录(货) -->
 	<insert id="tianjialiulanjiluhuo"
 		parameterType="com.alibaba.fastjson.JSONObject">
-		insert into browse values(null,#{wx_id},#{goods_id},SYSDATE(),2)
+		insert into browse values(null,#{wx_id},#{goods_id},NOW(),2)
 	</insert>
 	<!--修改浏览记录(货车) -->
 	<update id="xiugailiulanjiluhuoche"
 		parameterType="java.util.HashMap">
-		update browse set browse_time=SYSDATE()
+		update browse set browse_time=NOW()
 		where browse_user_id=#{browse_user_id} and browse_data_id=#{browse_data_id}
 		and browse_identification=#{browse_identification}
 	</update>
 	<!--添加浏览记录(车) -->
 	<insert id="tianjialiulanjiluche"
 		parameterType="com.alibaba.fastjson.JSONObject">
-		insert into browse values(null,#{wx_id},#{vehicle_id},SYSDATE(),1)
+		insert into browse values(null,#{wx_id},#{vehicle_id},NOW(),1)
 	</insert>
 	<!--查询我的浏览记录-->
     <select id="selectliulanjilu" parameterType="java.util.HashMap" resultType="java.util.HashMap">
@@ -473,11 +473,11 @@
 		parameterType="com.alibaba.fastjson.JSONObject">
 		<choose>
 			<when test="identification==1">
-				update vehicle set vehicle_releasetime =SYSDATE()
+				update vehicle set vehicle_releasetime =NOW()
 				where vehicle_id = #{id}
 			</when>
 			<when test="identification==2">
-				update goods set goods_time =SYSDATE()
+				update goods set goods_time =NOW()
 				where goods_id = #{id}
 			</when>
 		</choose>
@@ -529,7 +529,7 @@
 				vehicle_start_province=#{vehicle_start_province},vehicle_start_city=#{vehicle_start_city},vehicle_start_area=#{vehicle_start_area},
 				vehicle_start_address=#{vehicle_start_address},vehicle_end_province=#{vehicle_end_province},vehicle_end_city=#{vehicle_end__city},vehicle_end_area=#{vehicle_end__area},
 				vehicle_end_address=#{vehicle_end__address},vehicle_contacts=#{vehicle_contacts},vehicle_contactinformation=#{vehicle_contactinformation},vehicle_length=#{vehicle_length},
-				vehicle_type=#{vehicle_type},vehicle_releasetime=SYSDATE(),vehicle_user_id=#{vehicle_wx_id},vehicle_detaileddescription=#{vehicle_detaileddescription},
+				vehicle_type=#{vehicle_type},vehicle_releasetime=NOW(),vehicle_user_id=#{vehicle_wx_id},vehicle_detaileddescription=#{vehicle_detaileddescription},
 				vehicle_number=#{vehicle_number},vehicle_number_mi=#{vehicle_number_mi},vehicle_start=#{vehicle_start},vehicle_end=#{vehicle_end}
 				where vehicle_id=#{vehicle_id}
 			</when>
@@ -539,7 +539,7 @@
 				goods_start_address=#{goods_start_address},goods_end_province=#{goods_end_province},goods_end_city=#{goods_end_city},goods_end_area=#{goods_end_area},
 				goods_end_address=#{goods_end_address},goods_contacts=#{goods_contacts},goods_contactinformation=#{goods_contactinformation},goods_type=#{goods_type},
 				goods_vetype=#{goods_vetype},goods_vehicletype=#{goods_vehicletype},goods_Detailedtype=#{goods_Detailedtype},goods_detailed=#{goods_detailed},
-				goods_length=#{goods_length},goods_name=#{goods_name},goods_number=#{goods_number},goods_number_mi=#{goods_number_mi},goods_time=SYSDATE(),
+				goods_length=#{goods_length},goods_name=#{goods_name},goods_number=#{goods_number},goods_number_mi=#{goods_number_mi},goods_time=NOW(),
 				goods_loadingtime=#{goods_loadingtime},goods_user_id=#{goods_user_id},goods_start=#{goods_start},goods_end=#{goods_end}
 				where goods_id=#{goods_id}
 			</when>
@@ -570,8 +570,8 @@
 	<insert id="insertWxUser"
 		parameterType="com.fec.epreport.pojo.WxUser">
 		insert into user
-		(user_sex,wx_city,wx_province,wx_country,wx_headimgurl,user_id,wx_name,wx_openid)value
-		(#{wx_sex},#{wx_city},#{wx_province},#{wx_country},#{wx_headimgurl},#{wx_id},#{wx_nickname},#{wx_openid})
+		(user_sex,wx_city,wx_province,wx_country,wx_headimgurl,user_id,wx_name,wx_openid,user_establish)value
+		(#{wx_sex},#{wx_city},#{wx_province},#{wx_country},#{wx_headimgurl},#{wx_id},#{wx_nickname},#{wx_openid},NOW())
 	</insert>
 	<!-- 查询微信是否授权该用户 -->
 	<select id="selectShouQuan" resultType="int"
