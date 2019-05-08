@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans  
@@ -10,130 +11,141 @@
                         http://www.springframework.org/schema/mvc  
                         http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 	<!-- 自动扫描 -->
-	<context:component-scan base-package="com.fec.epreport" />
-    <!--密文  此段代码要加在连接数据库之前-->
-    <bean class="com.fec.epreport.util.PasswordEncryptConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath:jdbc.properties</value>
-            </list>
-        </property>
-        <property name="fileEncoding" value="UTF-8"/>
-    </bean>
+	<context:component-scan
+		base-package="com.fec.epreport" />
+	<!--密文  此段代码要加在连接数据库之前 -->
+	<bean class="com.fec.epreport.util.PasswordEncryptConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:jdbc.properties</value>
+			</list>
+		</property>
+		<property name="fileEncoding" value="UTF-8" />
+	</bean>
 
 	<!-- 引入配置文件 -->
 	<bean id="propertyConfigurer"
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="location" value="classpath:jdbc.properties" />
 	</bean>
-	 <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"  init-method="init" destroy-method="close">
+	<bean id="dataSource"
+		class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
+		destroy-method="close">
 		<property name="driverClassName" value="${driver}" />
 		<property name="url" value="${url}" />
 		<property name="username" value="${username}" />
 		<property name="password" value="${password}" />
-		 <!-- 初始化连接大小 -->
+		<!-- 初始化连接大小 -->
 		<property name="initialSize" value="${druid.initialSize}" />
-       	<!-- 连接池最大数量 -->
-        <property name="maxActive" value="${druid.maxActive}" />
-       	<!-- 连接池最大空闲 已经不再配置了 因为配置了也没啥子效果具体翻文档
-        <property name="maxIdle" value="${druid.maxIdle}" />
-        -->
-        <!-- 获取连接最大等待时间 -->
-        <property name="maxWait" value="${druid.maxWait}" />
-        <property name="defaultAutoCommit" value="${druid.defaultAutoCommit}" />
-        <!-- 对于长时间不使用的连接强制关闭 是否开启 -->
-        <property name="removeAbandoned" value="${druid.removeAbandoned}" />
-        <!-- 数据库链接超过xx秒开始关闭空闲连接 秒为单位 -->
-        <property name="removeAbandonedTimeout" value="${druid.removeAbandonedTimeout}" />
-        <!-- 关闭abanded连接时输出错误日志，这样出现连接泄露时可以通过错误日志定位忘记关闭连接的位置 -->
-        <property name="logAbandoned" value="true"></property>
-        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
-        <property name="timeBetweenEvictionRunsMillis" value="60000" />
-        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
-        <property name="minEvictableIdleTimeMillis" value="300000" />
-        <property name="validationQuery" value="${druid.validationQuery}" />
-        <property name="testWhileIdle" value="true" />
-        <property name="testOnBorrow" value="false" />
-        <property name="testOnReturn" value="false" />
-        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。分库分表较多的数据库，建议配置为false。-->
-        <property name="poolPreparedStatements" value="false" />
-        <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
-        <!-- 配置监控统计拦截的filters -->
-        <property name="filters" value="stat" /> 
+		<!-- 连接池最大数量 -->
+		<property name="maxActive" value="${druid.maxActive}" />
+		<!-- 连接池最大空闲 已经不再配置了 因为配置了也没啥子效果具体翻文档 <property name="maxIdle" value="${druid.maxIdle}" 
+			/> -->
+		<!-- 获取连接最大等待时间 -->
+		<property name="maxWait" value="${druid.maxWait}" />
+		<property name="defaultAutoCommit"
+			value="${druid.defaultAutoCommit}" />
+		<!-- 对于长时间不使用的连接强制关闭 是否开启 -->
+		<property name="removeAbandoned"
+			value="${druid.removeAbandoned}" />
+		<!-- 数据库链接超过xx秒开始关闭空闲连接 秒为单位 -->
+		<property name="removeAbandonedTimeout"
+			value="${druid.removeAbandonedTimeout}" />
+		<!-- 关闭abanded连接时输出错误日志，这样出现连接泄露时可以通过错误日志定位忘记关闭连接的位置 -->
+		<property name="logAbandoned" value="true"></property>
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<property name="validationQuery"
+			value="${druid.validationQuery}" />
+		<property name="testWhileIdle" value="true" />
+		<property name="testOnBorrow" value="false" />
+		<property name="testOnReturn" value="false" />
+		<!-- 打开PSCache，并且指定每个连接上PSCache的大小 如果用Oracle，则把poolPreparedStatements配置为true，mysql可以配置为false。分库分表较多的数据库，建议配置为false。 -->
+		<property name="poolPreparedStatements" value="false" />
+		<property name="maxPoolPreparedStatementPerConnectionSize"
+			value="20" />
+		<!-- 配置监控统计拦截的filters -->
+		<property name="filters" value="stat" />
 	</bean>
-<!-- 连接池配置 -->
-    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
-        <!-- 最大连接数 -->
-        <property name="maxTotal" value="700"/>
-        <!-- 最大空闲连接数 -->
-        <property name="maxIdle" value="320"/>
-        <!-- 每次释放连接的最大数目 -->
-        <property name="numTestsPerEvictionRun" value="1024" />
-        <!-- 释放连接的扫描间隔（毫秒） -->
-        <property name="timeBetweenEvictionRunsMillis" value="30000" />
-        <!-- 连接最小空闲时间 -->
-        <property name="minEvictableIdleTimeMillis" value="1800000" />
-        <!-- 连接空闲多久后释放, 当空闲时间>该值 且 空闲连接>最大空闲连接数 时直接释放 -->
-        <property name="softMinEvictableIdleTimeMillis" value="10000" />
-        <!-- 获取连接时的最大等待毫秒数,小于零:阻塞不确定的时间,默认-1 -->
-        <property name="maxWaitMillis" value="3000" />
-        <!-- 在获取连接的时候检查有效性, 默认false -->
-        <property name="testOnBorrow" value="true" />
-        <!-- 在空闲时检查有效性, 默认false -->
-        <property name="testWhileIdle" value="true" />
-        <!-- 连接耗尽时是否阻塞, false报异常,ture阻塞直到超时, 默认true -->
-        <property name="blockWhenExhausted" value="false" />
-    </bean>  
-    <!-- jedis客户端单机版 -->
-    <bean id="jedisPool" class="redis.clients.jedis.JedisPool">
-        <constructor-arg name="host" value="r-bp19e53817d7f924.redis.rds.aliyuncs.com"></constructor-arg>
-        <!--<constructor-arg name="host" value="192.168.3.45"></constructor-arg>-->
-        <constructor-arg name="port" value="6379"></constructor-arg>
-		<!-- 客户端连接超时时间-->
-        <constructor-arg name="timeout" value="30000"></constructor-arg>
-        <!--  <property name="password" value="Xfkjadmin123"></property>-->
-        <constructor-arg name="password" value="Xfkjadmin123"></constructor-arg>
-        <constructor-arg name="poolConfig" ref="jedisPoolConfig"></constructor-arg>
-    </bean>
-     <bean id="jedisClient" class="com.fec.epreport.service.impl.JedisClientSingle"/>
-	
-	<!--<bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
-        <property name="connectionFactory" ref="connectionFactory" />
-    </bean>
-    <bean id="LoginRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate">
-        <property name="connectionFactory" ref="connectionFactory" />
-    </bean>-->
-	<!-- spring jdbc  NamedParameterJdbcTemplate -->
-    <bean id="namedjdbctemp" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
-        <constructor-arg ref="dataSource"/>
-    </bean>
-
+	<!-- 连接池配置 -->
+	<bean id="jedisPoolConfig"
+		class="redis.clients.jedis.JedisPoolConfig">
+		<!-- 最大连接数 -->
+		<property name="maxTotal" value="9000" />
+		<!-- 最大空闲连接数 -->
+		<property name="maxIdle" value="700" />
+		<!-- 最小空闲连接数 -->
+		<property name="minIdle" value="200" />
+		<!-- 每次释放连接的最大数目 -->
+		<property name="numTestsPerEvictionRun" value="200" />
+		<!-- 释放连接的扫描间隔（毫秒） -->
+		<property name="timeBetweenEvictionRunsMillis" value="30000" />
+		<!-- 连接最小空闲时间 默认1800000也就是30分钟 -->
+		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<!-- 连接空闲多久后释放, 当空闲时间>该值 且 空闲连接>最大空闲连接数 时直接释放 -->
+		<property name="softMinEvictableIdleTimeMillis" value="10000" />
+		<!-- 获取连接时的最大等待毫秒数,小于零:阻塞不确定的时间,默认-1 -->
+		<property name="maxWaitMillis" value="3000" />
+		<!-- 在获取连接的时候检查有效性, 默认false -->
+		<property name="testOnBorrow" value="true" />
+		<!-- 在空闲时检查有效性, 默认false -->
+		<property name="testWhileIdle" value="true" />
+		<!-- 连接耗尽时是否阻塞, false报异常,ture阻塞直到超时, 默认true -->
+		<property name="blockWhenExhausted" value="false" />
+	</bean>
+	<!-- jedis客户端单机版 -->
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg name="host" value="r-bp19e53817d7f924.redis.rds.aliyuncs.com"></constructor-arg>
+		<!--<constructor-arg name="host" value="192.168.3.45"></constructor-arg> -->
+		<constructor-arg name="port" value="6379"></constructor-arg>
+		<!-- 客户端连接超时时间 -->
+		<constructor-arg name="timeout" value="30000"></constructor-arg>
+		<!-- <property name="password" value="Xfkjadmin123"></property> -->
+		<constructor-arg name="password" value="Xfkjadmin123"></constructor-arg>
+		<constructor-arg name="poolConfig"
+			ref="jedisPoolConfig"></constructor-arg>
+	</bean>
+	<bean id="jedisClient"
+		class="com.fec.epreport.service.impl.JedisClientSingle" />
+	<!--<bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"> 
+		<property name="connectionFactory" ref="connectionFactory" /> </bean> <bean 
+		id="LoginRedisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate"> 
+		<property name="connectionFactory" ref="connectionFactory" /> </bean> -->
+	<!-- spring jdbc NamedParameterJdbcTemplate -->
+	<bean id="namedjdbctemp"
+		class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+		<constructor-arg ref="dataSource" />
+	</bean>
 	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<!-- 自动扫描mapping.xml文件 -->
-		<property name="mapperLocations" value="classpath:com/fec/epreport/mapping/*.xml"></property>
-		<!--查找实体类
-		<property name="typeAliasesPackage" value="com.fec.epreport.entity"/>-->
+		<property name="mapperLocations"
+			value="classpath:com/fec/epreport/mapping/*.xml"></property>
+		<!--查找实体类 <property name="typeAliasesPackage" value="com.fec.epreport.entity"/> -->
 		<!-- page分页 -->
 		<property name="plugins">
-        <array>
-            <bean class="com.github.pagehelper.PageInterceptor">
-                <property name="properties">
-                    <value>
-                        helperDialect=mysql
-                        reasonable=true
-                    </value>
-                </property>
-            </bean>
-        </array>
-    </property>
+			<array>
+				<bean class="com.github.pagehelper.PageInterceptor">
+					<property name="properties">
+						<value>
+							helperDialect=mysql
+							reasonable=true
+						</value>
+					</property>
+				</bean>
+			</array>
+		</property>
 	</bean>
 
 	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.fec.epreport.dao" />
-		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"></property>
+		<property name="sqlSessionFactoryBeanName"
+			value="sqlSessionFactory"></property>
 	</bean>
 
 	<!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->

@@ -300,6 +300,7 @@ public class UsersController {
 	@RequestMapping("/shareInformation.htm")
 	public Map<String, Object> shareInformation() {
 		logger.info("come in /userinterface/shareInformation.htm");
+		String user_share_shiro;
 		Map<String, Object> jsonObject = new HashMap<String, Object>();
 		try {
 			//String sb = "{" + " \"wx_id\": \"o_xR71EEsi2313iZ7zmG2XXqd_u8FUbE\"" + "}";
@@ -311,7 +312,7 @@ public class UsersController {
 			}
 			JSONObject wxObject = JSONObject.parseObject(sb);
 			// 查询分享接口权限
-			String user_share_shiro = jedisClient.get(USER_SHARE_SHIRO + ":" + wxObject.getString("wx_id"));
+			user_share_shiro = jedisClient.get(USER_SHARE_SHIRO + ":" + wxObject.getString("wx_id"));
 			if (StringUtils.isBlank(user_share_shiro)) {
 				System.out.println("走mysql查询赋值redis缓存");
 				user_share_shiro = interFaceService.shareInformation(wxObject.getString("wx_id"));

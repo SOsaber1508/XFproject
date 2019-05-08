@@ -18,78 +18,141 @@ public class JedisClientSingle implements JedisClient {
 	// 读取数据
 	@Override
 	public String get(String key) {
-		Jedis jedis = jedisPool.getResource();
-		String string = jedis.get(key);
-		jedis.close();
+		Jedis jedis = null;
+		String string = null;
+		try {
+			jedis = jedisPool.getResource();
+			string = jedis.get(key);
+		} finally {
+			if (jedis != null) {
+				jedis.close();
+			}
+		}
 		return string;
 	}
 
 	// 写入数据
 	@Override
 	public String set(String key, String value) {
-		Jedis jedis = jedisPool.getResource();
-		String string = jedis.set(key, value);
-		jedis.close();
+		Jedis jedis = null;
+		String string = null;
+		try {
+			jedis = jedisPool.getResource();
+			string = jedis.set(key, value);
+		} finally {
+			if (jedis != null) {
+				jedis.close();
+			}
+		}
 		return string;
 	}
 
 	// 获取存储结构是hashMap类型的操作
 	@Override
 	public String hget(String hkey, String key) {
-		Jedis jedis = jedisPool.getResource();
-		String string = jedis.hget(hkey, key);
-		jedis.close();
+		Jedis jedis = null;
+		String string = null;
+		try {
+			jedis = jedisPool.getResource();
+			string = jedis.hget(hkey, key);
+		} finally {
+			if (jedis != null) {
+				jedis.close();
+			}
+		}
 		return string;
 	}
 
 	// 存储hashMap
 	@Override
 	public long hset(String hkey, String key, String value) {
-		Jedis jedis = jedisPool.getResource();
-		Long result = jedis.hset(hkey, key, value);
-		jedis.close();
+		Jedis jedis = null;
+		Long result = null;
+		try {
+			jedis = jedisPool.getResource();
+			result = jedis.hset(hkey, key, value);
+		} finally {
+			if (jedis != null) {
+				jedis.close();
+			}
+		}
 		return result;
 	}
 
 	@Override
 	public long incr(String key) {
-		Jedis jedis = jedisPool.getResource();
-		Long result = jedis.incr(key);
-		jedis.close();
+		Jedis jedis = null;
+		Long result = null;
+		try {
+			jedis = jedisPool.getResource();
+			result = jedis.incr(key);
+		} finally {
+			if (jedis != null) {
+				jedis.close();
+			}
+		}
 		return result;
 	}
 
 	// 设罝缓存生存时间
 	@Override
 	public long expire(String key, int second) {
-		Jedis jedis = jedisPool.getResource();
-		Long result = jedis.expire(key, second);
-		jedis.close();
+		Jedis jedis = null;
+		Long result = null;
+		try {
+			jedis = jedisPool.getResource();
+			result = jedis.expire(key, second);
+		} finally {
+			if (jedis != null) {
+				jedis.close();
+			}
+		}
 		return result;
 	}
 
 	@Override
 	public long ttl(String key) {
-		Jedis jedis = jedisPool.getResource();
-		Long result = jedis.ttl(key);
-		jedis.close();
+		Jedis jedis = null;
+		Long result = null;
+		try {
+			jedis = jedisPool.getResource();
+			result = jedis.ttl(key);
+		} finally {
+			if (jedis != null) {
+				jedis.close();
+			}
+		}
 		return result;
 	}
 
 	// 删除数据
 	@Override
 	public long del(String key) {
-		Jedis jedis = jedisPool.getResource();
-		Long result = jedis.del(key);
-		jedis.close();
+		Jedis jedis = null;
+		Long result = null;
+		try {
+			jedis = jedisPool.getResource();
+			result = jedis.del(key);
+		} finally {
+			if (jedis != null) {
+				jedis.close();
+			}
+		}
 		return result;
 	}
 
 	@Override
 	public long hdel(String hkey, String key) {
-		Jedis jedis = jedisPool.getResource();
-		Long result = jedis.hdel(hkey, key);
-		jedis.close();
+		Jedis jedis = null;
+		Long result = null;
+		try {
+			jedis = jedisPool.getResource();
+			result = jedis.hdel(hkey, key);
+		} finally {
+			if (jedis != null) {
+				jedis.close();
+			}
+		}
 		return result;
 	}
 
