@@ -489,3 +489,5 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 [INFO] [2015-02-10 15:26:27][com.fec.epreport.testmybatis.TestMyBatis]{"age":1,"id":1,"name":"test","password":"test"}
 [INFO] [2015-02-10 15:26:27][com.fec.epreport.testmybatis.TestMyBatis][{"age":1,"id":1,"name":"test","password":"test"}]
 [INFO] [2015-02-10 15:26:27][org.springframework.context.support.GenericApplicationContext]Closing org.springframework.context.support.GenericApplicationContext@14acaea5: startup date [Tue Feb 10 15:26:26 CST 2015]; root of context hierarchy
+[INFO] [2019-04-28 16:05:32][com.fec.epreport.util.baidu.BaiduTokenUtil]access_token+++++++++++++++24.c01f73f9eae41bfeb8f3e0882c5ed1b5.2592000.1559030736.282335-15796269
+[INFO] [2019-05-05 08:44:06][com.fec.epreport.util.baidu.BaiduTokenUtil]access_token+++++++++++++++24.3bd5d1933b48755c711d8ad643252def.2592000.1559609051.282335-15796269

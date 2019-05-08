@@ -296,6 +296,10 @@
 			ORDER BY goods_loadingtime DESC
 
 		</if>
+		<if test="param1.desc_time != null and param1.desc_time ==0">
+			ORDER BY goods_id DESC
+
+		</if>
 	</select>
 
 	<!-- 车源 -->
@@ -392,6 +396,11 @@
 
 		<if test="param1.desc_time != null and param1.desc_time ==1">
 			ORDER BY vehicle_releasetime DESC
+
+		</if>
+
+		<if test="param1.desc_time != null and param1.desc_time ==0">
+			ORDER BY vehicle_id DESC
 
 		</if>
 	</select>
