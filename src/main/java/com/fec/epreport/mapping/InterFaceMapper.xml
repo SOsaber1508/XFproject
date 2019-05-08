@@ -444,7 +444,7 @@
 		ORDER BY id DESC
 	</select>
 
-	<!--用户简介查询（发布信息） -->
+	<!--用户简介查询（发布信息）  -->
 	<select id="selectAUsersRelease"
 		parameterType="java.lang.String" resultType="java.util.HashMap">
 		select goods_id as
