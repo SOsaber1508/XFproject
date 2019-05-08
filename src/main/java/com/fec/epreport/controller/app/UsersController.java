@@ -142,7 +142,7 @@ public class UsersController {
 					return jsonObject;
 				}
 				JSONObject wxObject = JSONObject.parseObject(sb);
-				//查用户信息。
+				//查用户信息
 				jsonObject1 = interFaceService.selectAUsers(wxObject.getString("wx_id"));
 				//查历史发布记录
 				listjsonObject = interFaceService.selectAUsersRelease(wxObject.getString("wx_id"));
