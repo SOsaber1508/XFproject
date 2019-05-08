@@ -77,7 +77,10 @@ public class UsersController {
 			int count = interFaceService.selectShouQuan(wxObject.getString("wx_id"));
 			if (count == 0) {
 				WxUser user = JSON.parseObject(sb, WxUser.class);
+				//sql入库
 				interFaceService.insertWxUser(user);
+				//redis入库
+				jedisClient.set(USER_SHARE_SHIRO + ":" + wxObject.getString("wx_id"), FINAL_SHIRO_ZERO);
 			}
 			String user_authentication = interFaceService.selectidentityAuthentication(wxObject.getString("wx_id"));
 			jsonObject.put("user_authentication", user_authentication);

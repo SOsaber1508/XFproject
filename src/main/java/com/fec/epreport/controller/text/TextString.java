@@ -62,5 +62,9 @@ public class TextString {
 //			List<String> result = Arrays.asList(goods_wight.split("%"));
 //			System.out.println(result);
 //		}
+	String a=null;
+	if(StringUtils.isBlank(a)) {
+		System.out.println("TextString.enclosing_method()");
+	}
 	}
 }

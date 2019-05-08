@@ -161,7 +161,7 @@ public class EvaluateController {
 	@RequestMapping("/download2.htm")
 	public void downLoad(HttpServletResponse response, boolean isOnLine) throws Exception {
 		logger.info("开始下载");
-		String filePath=request.getServletContext().getRealPath("/app_update/app-debug.apk");
+		String filePath=request.getServletContext().getRealPath("/app_update/peihuo.apk");
 		File f = new File(filePath);
         if (!f.exists()) {
             response.sendError(404, "File not found!");

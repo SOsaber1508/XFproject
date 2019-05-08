@@ -3,7 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
-<title>信丰</title>
+<title>配货大厅</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport"
 	content="user-scalable=no, width=device-width, initial-scale=1.0" />
@@ -42,12 +42,12 @@ img {
 		var isWeixin = is_weixin();
 		var winHeight = typeof window.innerHeight != 'undefined' ? window.innerHeight
 				: document.documentElement.clientHeight;
-		var weixinTip = $('<div id="weixinTip"><p><img src="../image/live_weixin.png" alt="微信打开"/></p><p><a href="http://www.peihuodating.cn:8080/epreport/evaluate/shareDownload.htm"><p>取消</p></a></p></div>');
+		var weixinTip = $('<div id="weixinTip"><p><img src="../image/live_weixin2.png" alt="微信打开"/></p><p><a href="http://www.peihuodating.cn:8080/epreport/evaluate/shareDownload.htm"><p>取消</p></a></p></div>');
 
 		if (isWeixin) {
 			$("body").append(weixinTip);
 		} else {
-			window.location.href = "http://huomanbang.cn/app-peihuo.apk";
+			window.location.href = "http://huomanbang.cn/apppeihuo.apk";
 		}
 		$("#weixinTip").css({
 			"position" : "fixed",
@@ -61,9 +61,9 @@ img {
 		});
 		$("#weixinTip p").css({
 			"text-align" : "center",
-			"margin-top" : "10%",
-			"padding-left" : "5%",
-			"padding-right" : "5%"
+			"margin-top" : "0%",
+			"padding-left" : "0%",
+			"padding-right" : "0%"
 		});
 	</script>
 </body>

@@ -3,7 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
-<title>信丰</title>
+<title>配货大厅</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport"
 	content="user-scalable=no, width=device-width, initial-scale=1.0" />
@@ -20,15 +20,11 @@
 			<img src="../image/1.jpg" style="width: 99.9%; height: 80%;">
 		</div>
 		<div class="row">
-			<!-- 页面重定向 -->
-			<a href="http://47.111.11.27:8080/epreport/evaluate/download2.htm">
-				<!-- 普通下载 --> <img src="../image/button2.png"
-				style="position: absolute; z-index: 2; width: 44%; margin-top: 28px; height: 7%; margin-left: 15px;">
-			</a> <a
-				href="http://www.peihuodating.cn:8080/epreport/evaluate/download.htm">
-				<!-- 高速下载 --> <img src="../image/button3.png"
-				style="position: absolute; z-index: 2; width: 45%; margin-top: 28px; height: 7%; margin-left: 193px;">
-			</a> <img src="../image/2.jpg" style="width: 99.9%; height: 20%;">
+		<a href="http://www.peihuodating.cn:8080/epreport/evaluate/download.htm">
+			<img src="../image/button1.png"
+				style="position: absolute; z-index: 2; width: 68%; margin-top: 28px;height: 9%;margin-left: 54px;">
+		</a>	
+			<img src="../image/2.jpg" style="width: 99.9%; height: 20%;">
 		</div>
 	</div>
 </body>

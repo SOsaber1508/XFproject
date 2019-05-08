@@ -3,7 +3,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
 <head>
-<title>信丰</title>
+<title>配货大厅</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport"
 	content="user-scalable=no, width=device-width, initial-scale=1.0" />
@@ -53,7 +53,7 @@ img {
 		if (isWeixin) {
 			$("body").append(weixinTip);
 		} else {
-			window.location.href = "http://huomanbang.cn/app-peihuo.apk";
+			window.location.href = "http://huomanbang.cn/apppeihuo.apk";
 		}
 		$("#weixinTip").css({
 			"position" : "fixed",
