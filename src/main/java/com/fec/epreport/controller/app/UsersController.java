@@ -312,7 +312,9 @@ public class UsersController {
 			}
 			JSONObject wxObject = JSONObject.parseObject(sb);
 			// 查询分享接口权限
+			logger.info("查询分享信息接口app传来的微信id:"+wxObject.getString("wx_id"));
 			user_share_shiro = jedisClient.get(USER_SHARE_SHIRO + ":" + wxObject.getString("wx_id"));
+			logger.info("查询分享信息接口user_share_shiro："+user_share_shiro);
 			if (StringUtils.isBlank(user_share_shiro)) {
 				logger.info("走mysql查询赋值redis缓存");
 				user_share_shiro = interFaceService.shareInformation(wxObject.getString("wx_id"));
@@ -340,7 +342,6 @@ public class UsersController {
 		}
 		logger.info("leave/userinterface/shareInformation.htm");
 		jsonObject.put("code", "200");
-		
 		return jsonObject;
 	}
 	//http://2f410t4715.qicp.vip:25889/epreport/userinterface/shareShiro.htm
