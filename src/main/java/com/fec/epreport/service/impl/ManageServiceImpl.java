@@ -156,4 +156,15 @@ public class ManageServiceImpl implements ManageService {
         }
         return list;
     }
+    //查询用户认证数量
+    @Override
+    public Map<String, Object> selectRenZhengUserNumber() {
+        Map map = null;
+        try {
+            map=manageDao.selectRenZhengUserNumber();
+        } catch (DataAccessException d) {
+            logger.info("查询数据库错误："+d.getLocalizedMessage());
+        }
+        return map;
+    }
 }

@@ -30,8 +30,27 @@
 											</div>
 											<div class="col-7 d-flex align-items-center">
 												<div class="numbers">
-													<p class="card-category">用户数量</p>
+													<p class="card-category">真实授权用户数量</p>
 													<h4 class="card-title">${requestScope.userNumber}</h4>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-2">
+								<div class="card card-stats card-warning">
+									<div class="card-body ">
+										<div class="row">
+											<div class="col-5">
+												<div class="icon-big text-center">
+													<i class="la la-users"></i>
+												</div>
+											</div>
+											<div class="col-7 d-flex align-items-center">
+												<div class="numbers">
+													<p class="card-category">认证用户数量</p>
+													<h4 class="card-title">${requestScope.user_renzheng}</h4>
 												</div>
 											</div>
 										</div>
@@ -49,7 +68,7 @@
 											</div>
 											<div class="col-7 d-flex align-items-center">
 												<div class="numbers">
-													<p class="card-category">车源总量</p>
+													<p class="card-category">真实发布车源数量</p>
 													<h4 class="card-title">${requestScope.vehiceNumber}</h4>
 												</div>
 											</div>
@@ -68,7 +87,7 @@
 											</div>
 											<div class="col-7 d-flex align-items-center">
 												<div class="numbers">
-													<p class="card-category">货源总量</p>
+													<p class="card-category">真实发布货源总量</p>
 													<h4 class="card-title">${requestScope.doodsNumber}</h4>
 												</div>
 											</div>
@@ -76,7 +95,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-md-2">
+							<%--<div class="col-md-2">
 								<div class="card card-stats card-primary">
 									<div class="card-body ">
 										<div class="row">
@@ -113,7 +132,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div>--%>
 <!-- 							<div class="col-md-3">
 								<div class="card card-stats">
 									<div class="card-body ">
@@ -277,9 +296,9 @@
 															{
 																type: 'value',
 																name: '发布数量',
-																min: 0,
-																max: 200,
-																interval: 50,
+																// min: 0,
+																// max: 200,
+																// interval: 50,
 																axisLabel: {
 																	formatter: '{value} 单'
 																}
@@ -381,9 +400,9 @@
 														{
 															type: 'value',
 															name: '发布数量',
-															min: 0,
-															max: 200,
-															interval: 50,
+															// min: 0,
+															// max: 200,
+															// interval: 50,
 															axisLabel: {
 																formatter:'{value}'
 															}
@@ -567,7 +586,7 @@
 										<table class="table table-head-bg-success table-striped table-hover col-md-6">
 											<thead>
 												<tr>
-													<th scope="col">#</th>
+													<th scope="col">id</th>
 													<th scope="col">姓名</th>
 													<th scope="col">性别</th>
 													<th scope="col">身份证号</th>
@@ -577,11 +596,11 @@
 											<tbody id="users">
 												<c:forEach items="${userlist.list}" var="user" varStatus="status">
 													<tr>
-														<td>${user.user_id}</td>
-														<td>${user.wx_nickname}</td>
-														<td>${user.user_sex}</td>
-														<td>${user.user_idnumber}</td>
-														<td>${user.user_address}</td>
+														<td style="word-break: break-all;">${user.user_id}</td>
+														<td style="word-break: break-all;">${user.wx_nickname}</td>
+														<td style="word-break: break-all;">${user.user_sex}</td>
+														<td style="word-break: break-all;">${user.user_idnumber}</td>
+														<td style="word-break: break-all;">${user.user_address}</td>
 													</tr>
 												</c:forEach>
 												<%--<tr>
@@ -637,11 +656,11 @@
 											$("#users").html("");
 											for(var i = 0;i<data.list.length;i++){
 												var users = $("<tr>\n" +
-														"<td>"+data.list[i].user_id+"</td>" +
-														"<td>"+data.list[i].wx_nickname+"</td>" +
-														"<td>"+data.list[i].user_sex+"</td>" +
-														"<td>"+data.list[i].user_idnumber+"</td>" +
-														"<td>"+data.list[i].user_address+"</td>" +
+														"<td style=\"word-break: break-all;\">"+data.list[i].user_id+"</td>" +
+														"<td style=\"word-break: break-all;\">"+data.list[i].wx_nickname+"</td>" +
+														"<td style=\"word-break: break-all;\">"+data.list[i].user_sex+"</td>" +
+														"<td style=\"word-break: break-all;\">"+data.list[i].user_idnumber+"</td>" +
+														"<td style=\"word-break: break-all;\">"+data.list[i].user_address+"</td>" +
 														"</tr>");
 												$("#users").append(users);
 											}

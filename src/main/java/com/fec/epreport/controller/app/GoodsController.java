@@ -109,7 +109,7 @@ public class GoodsController {
         try {
             PageHelper.startPage(pageNo, pageSize);
             //拦截写入新的查询 暂定10条每页查
-//            String sb="{\"desc_time\":\"0\",\"goods_end_area\":\"不限\",\"goods_length\":\"不限\",\"goods_loadingtime\":\"不限\",\"goods_start_area\":\"济宁市\",\"goods_type\":\"其他\",\"goods_vehicletype\":\"不限\",\"goods_vetype\":\"不限\",\"goods_wight\":\"不限\"}";
+//            String sb="{\"desc_time\":\"1\",\"goods_end_area\":\"不限\",\"goods_length\":\"不限\",\"goods_loadingtime\":\"不限\",\"goods_start_area\":\"济宁市\",\"goods_type\":\"其他\",\"goods_vehicletype\":\"不限\",\"goods_vetype\":\"不限\",\"goods_wight\":\"不限\"}";
             String sb = PureNetUtil.buffJson(request);
             if ("".equals(sb.toString())) {
                 System.out.println("进判断");

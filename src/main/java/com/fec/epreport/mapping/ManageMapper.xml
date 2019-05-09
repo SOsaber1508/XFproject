@@ -25,14 +25,22 @@
     <select id="selectVehiceOrderNumber" parameterType="java.lang.String" resultType="java.util.HashMap">
         select count(*) as order_vehicle from vehicle where vehicle_releasetime like #{dates}
     </select>
+    <!--授权的用户数量-->
     <select id="selectUserNumber" resultType="java.util.HashMap">
-        select count(*) as user_number from user
+        select count(*) as user_number from user WHERE user_pa=0
     </select>
+    <!--已认证的用户数量-->
+    <select id="selectRenZhengUserNumber" resultType="java.util.HashMap">
+        SELECT count(*) as user_renzheng FROM  user  WHERE  user_pa=0 and user_authentication =1
+    </select>
+
+    <!--已发布的车源-->
     <select id="selectVehiceNumber" resultType="java.util.HashMap">
-        select count(*) as vehicle_number from vehicle
+        select count(*) as vehicle_number from vehicle WHERE vehicle_pa=0
     </select>
+    <!--已发布的货源-->
     <select id="selectDoodsNumber" resultType="java.util.HashMap">
-        select count(*) as goods_number from goods
+        select count(*) as goods_number from goods WHERE  goods_pa=0
     </select>
     <select id="selectVehiceStateNumber" resultType="java.util.HashMap">
         select count(*) as vehicle_statenumber from vehicle where vehicle_state = '0'
@@ -41,7 +49,7 @@
         select count(*) as goods_statenumber from goods where goods_releasestatus = '0'
     </select>
     <select id="selectAllusers" resultType="com.fec.epreport.entity.Users">
-        select * from user
+        select user_id,wx_name,user_sex,user_idnumber,user_address from user WHERE  user_pa=0
     </select>
 
 

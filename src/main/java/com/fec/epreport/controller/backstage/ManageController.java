@@ -44,11 +44,13 @@ public class ManageController extends HttpServlet {
 			   Map<String,Object> map2 = manageService.selectDoodsNumber();
 			   Map<String,Object> map3 = manageService.selectVehiceStateNumber();
 			   Map<String,Object> map4 = manageService.selectDoodsStateNumber();
+			   Map<String,Object> map5 = manageService.selectRenZhengUserNumber();
 			   req.setAttribute("userNumber",map.get("user_number"));
-			   req.setAttribute("vehiceNumber",map1.get("vehice_number"));
+			   req.setAttribute("vehiceNumber",map1.get("vehicle_number"));
 			   req.setAttribute("doodsNumber",map2.get("goods_number"));
-			   req.setAttribute("vehiceStateNumber",map3.get("vehice_statenumber"));
+			   req.setAttribute("vehiceStateNumber",map3.get("vehicle_statenumber"));
 			   req.setAttribute("doodsStateNumber",map4.get("goods_statenumber"));
+			   req.setAttribute("user_renzheng",map5.get("user_renzheng"));
 
 				//分页插件
 			   List<Users> list1 = PageHelper.startPage(pageNo, pageSize);
