@@ -314,10 +314,10 @@ public class UsersController {
 			// 查询分享接口权限
 			user_share_shiro = jedisClient.get(USER_SHARE_SHIRO + ":" + wxObject.getString("wx_id"));
 			if (StringUtils.isBlank(user_share_shiro)) {
-				System.out.println("走mysql查询赋值redis缓存");
+				logger.info("走mysql查询赋值redis缓存");
 				user_share_shiro = interFaceService.shareInformation(wxObject.getString("wx_id"));
-				System.out.println("走mysql查询user_share_shiro："+user_share_shiro);
-				System.out.println("走mysql查询wx_id："+wxObject.getString("wx_id"));
+				logger.info("走mysql查询user_share_shiro："+user_share_shiro);
+				logger.info("走mysql查询wx_id："+wxObject.getString("wx_id"));
 				jedisClient.set(USER_SHARE_SHIRO + ":" + wxObject.getString("wx_id"), user_share_shiro);
 				// if (user_share_shiro.equals(FINAL_SHIRO_ONE)) {
 				// 设置session的过期时间 时间单位是秒
