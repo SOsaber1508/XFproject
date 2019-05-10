@@ -37,6 +37,8 @@
 		<property name="password" value="${password}" />
 		<!-- 初始化连接大小 -->
 		<property name="initialSize" value="${druid.initialSize}" />
+		<!-- 最小连接池数量 -->
+		<property name="minIdle" value="${druid.minIdle}" />
 		<!-- 连接池最大数量 -->
 		<property name="maxActive" value="${druid.maxActive}" />
 		<!-- 连接池最大空闲 已经不再配置了 因为配置了也没啥子效果具体翻文档 <property name="maxIdle" value="${druid.maxIdle}" 
@@ -45,18 +47,18 @@
 		<property name="maxWait" value="${druid.maxWait}" />
 		<property name="defaultAutoCommit"
 			value="${druid.defaultAutoCommit}" />
+		<!-- 打开后，增强timeBetweenEvictionRunsMillis的周期性连接检查，minIdle内的空闲连接，每次检查强制验证连接有效性. 参考：https://github.com/alibaba/druid/wiki/KeepAlive_cn -->
+        <property name="keepAlive" value="true" />	
 		<!-- 对于长时间不使用的连接强制关闭 是否开启 -->
 		<property name="removeAbandoned"
 			value="${druid.removeAbandoned}" />
 		<!-- 数据库链接超过xx秒开始关闭空闲连接 秒为单位 -->
 		<property name="removeAbandonedTimeout"
 			value="${druid.removeAbandonedTimeout}" />
-		<!-- 关闭abanded连接时输出错误日志，这样出现连接泄露时可以通过错误日志定位忘记关闭连接的位置 -->
-		<property name="logAbandoned" value="true"></property>
 		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
-		<property name="timeBetweenEvictionRunsMillis" value="60000" />
-		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
-		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<property name="timeBetweenEvictionRunsMillis" value="30000" />
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒，连接保持空闲而不被驱逐的最小时间 -->
+		<property name="minEvictableIdleTimeMillis" value="100000" />
 		<property name="validationQuery"
 			value="${druid.validationQuery}" />
 		<property name="testWhileIdle" value="true" />
@@ -70,6 +72,8 @@
 			value="20" />
 		<!-- 配置监控统计拦截的filters -->
 		<property name="filters" value="stat" />
+		<!-- 关闭abanded连接时输出错误日志，这样出现连接泄露时可以通过错误日志定位忘记关闭连接的位置 -->
+		<property name="logAbandoned" value="${druid.logAbandoned}" />
 	</bean>
 	<!-- 连接池配置 -->
 	<bean id="jedisPoolConfig"
@@ -85,11 +89,11 @@
 		<!-- 释放连接的扫描间隔（毫秒） -->
 		<property name="timeBetweenEvictionRunsMillis" value="30000" />
 		<!-- 连接最小空闲时间 默认1800000也就是30分钟 -->
-		<property name="minEvictableIdleTimeMillis" value="300000" />
+		<property name="minEvictableIdleTimeMillis" value="100000" />
 		<!-- 连接空闲多久后释放, 当空闲时间>该值 且 空闲连接>最大空闲连接数 时直接释放 -->
 		<property name="softMinEvictableIdleTimeMillis" value="10000" />
 		<!-- 获取连接时的最大等待毫秒数,小于零:阻塞不确定的时间,默认-1 -->
-		<property name="maxWaitMillis" value="3000" />
+		<property name="maxWaitMillis" value="4000" />
 		<!-- 在获取连接的时候检查有效性, 默认false -->
 		<property name="testOnBorrow" value="true" />
 		<!-- 在空闲时检查有效性, 默认false -->
@@ -100,7 +104,7 @@
 	<!-- jedis客户端单机版 -->
 	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
 		<constructor-arg name="host" value="r-bp19e53817d7f924.redis.rds.aliyuncs.com"></constructor-arg>
-		<!--<constructor-arg name="host" value="192.168.3.45"></constructor-arg> -->
+		<!--<constructor-arg name="host" value="192.168.3.45"></constructor-arg>--> 
 		<constructor-arg name="port" value="6379"></constructor-arg>
 		<!-- 客户端连接超时时间 -->
 		<constructor-arg name="timeout" value="30000"></constructor-arg>
