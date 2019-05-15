@@ -210,13 +210,12 @@ public class VehicleController {
 		Map<String, Object> jsonObject = new HashMap<String, Object>();
 		try {
 
-			String sb = "{\"vehicle_contactinformation\": \"1366666666\",\"vehicle_contacts\": \"张三\",\"vehicle_detaileddescription\": \"哈哈\",\"vehicle_end__address\": \"人民医院\",\"vehicle_end__area\": \"长治县\",\"vehicle_end__city\": \"长治市\",\"vehicle_end_province\": \"山西省\",\"vehicle_length\": \"不限\",\"vehicle_number\": \"22\",\"vehicle_number_mi\": \"666\",\"vehicle_releasetime\": \"\",\"vehicle_start_address\": \"天安门\",\"vehicle_start_area\": \"嘉祥县\",\"vehicle_start_city\": \"济宁市\",\"vehicle_start_province\": \"山东省\",\"vehicle_type\": \"不限\",\"vehicle_wx_id\":\"o_xR71EEsiiZ7zmG2XXqd_u8FUbE\" }";
-//            String sb = PureNetUtil.buffJson(request);
+			//String sb = "{\"vehicle_contactinformation\": \"1366666666\",\"vehicle_contacts\": \"张三\",\"vehicle_detaileddescription\": \"哈哈\",\"vehicle_end__address\": \"人民医院\",\"vehicle_end__area\": \"长治县\",\"vehicle_end__city\": \"长治市\",\"vehicle_end_province\": \"山西省\",\"vehicle_length\": \"不限\",\"vehicle_number\": \"22\",\"vehicle_number_mi\": \"666\",\"vehicle_releasetime\": \"\",\"vehicle_start_address\": \"天安门\",\"vehicle_start_area\": \"嘉祥县\",\"vehicle_start_city\": \"济宁市\",\"vehicle_start_province\": \"山东省\",\"vehicle_type\": \"不限\",\"vehicle_wx_id\":\"o_xR71EEsiiZ7zmG2XXqd_u8FUbE\" }";
+            String sb = PureNetUtil.buffJson(request);
 			if ("".equals(sb.toString())) {
 				jsonObject.put("code", "201");
 				return jsonObject;
 			}
-
 			System.out.println(sb);
 			VehicleJson car = JSON.parseObject(sb, VehicleJson.class);
 
