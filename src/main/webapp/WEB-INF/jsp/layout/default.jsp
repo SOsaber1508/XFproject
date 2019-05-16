@@ -42,6 +42,11 @@
 <script src="../css/my/js/toastr.js"></script>
 <script src="../css/my/layer/layer.js"></script>
 <script src="../css/assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
+
+
+	<link rel="stylesheet" href="../css/my/css/reset.css" />
+	<link rel="stylesheet" href="../css/my/css/style.css" />
+	<script src="../css/my/js/Ecalendar.jquery.min.js"></script>
 </head>
 <body>
     <!-- 测试-->

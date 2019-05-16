@@ -198,7 +198,7 @@ public class InterfaceController {
 			// logger.error("接收同步消息失败"+e);
 		}
 		System.out.println("request json:" + json);
-//mav.setViewName("redirect:../../pic/index.html");
+//mav.setViewName("redirect:../../pic/text.html");
 		return null;
 	}
 

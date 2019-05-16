@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
@@ -12,6 +13,11 @@
 	<title>配货大厅</title>
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 	<!--  <script src="<%=basePath%>css/my/js/echarts.js"></script>-->
+
+
+    <%--<script src="<%=basePath%>css/my/js/jquery.min.js"></script>--%>
+
+
 </head>
 <body>
 <div class="main-panel">
@@ -19,6 +25,35 @@
 					<div class="container-fluid">
 						<h4 class="page-title">总览</h4>
 						<div class="row">
+
+
+                            <h2>案例二：日期时间</h2>
+                            <div class="case">
+                                <div class="calendarWarp" style="">
+                                    <input type="text" name="date" class='ECalendar' id="ECalendar_case2"  value="2017-3-1 15:32"/>
+                                </div>
+                            </div>
+
+                            <script type="text/javascript">
+                                function ss(){
+                                    alert("asdasd")
+                                }
+                                $("#ECalendar_case1").blur(function () {
+                                    console.log("i m  coming");
+                                });
+                                $(function(){
+                                    $("#ECalendar_case1").ECalendar({
+                                        type:"date",
+                                        skin:"#233",
+                                        offset:[0,2]
+                                    });
+
+                                })
+                            </script>
+                            <div style="text-align:center;margin:50px 0; font:normal 14px/24px 'MicroSoft YaHei';">
+
+                            </div>
+
 							<div class="col-md-2">
 								<div class="card card-stats card-warning">
 									<div class="card-body ">
@@ -244,7 +279,7 @@
 										</div>
 									</div>--%>
 									<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-									<div id="main" class="col-xs-12" style="width: 90%;height: 50%;left: 5%"></div>
+									<div id="main" class="col-xs-12" style="width: 90%;height: 400%;left: 5%"></div>
 									<script type="text/javascript">
 										var myChart;
 										$("#year").change(function(){
@@ -429,8 +464,8 @@
 														{
 															name:'车源发布数量',
 															type:'bar',
-															data:[data.Vehice1, data.Vehice2, data.Vehice3, data.Vehice4, data.Vehice5, data.Vehice6,
-																data.Vehice7, data.Vehice8, data.Vehice9, data.Vehice10, data.Vehice11, data.Vehice12]
+															data:[data.Vehicle1, data.Vehicle2, data.Vehicle3, data.Vehicle4, data.Vehicle5, data.Vehicle6,
+																data.Vehicle7, data.Vehicle8, data.Vehicle9, data.Vehicle10, data.Vehicle11, data.Vehicle12]
 														},
 														/*{
 															name:'平均温度',

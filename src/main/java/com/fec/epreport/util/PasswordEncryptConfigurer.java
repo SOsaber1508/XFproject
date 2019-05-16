@@ -12,13 +12,13 @@ import java.util.Properties;
 public class PasswordEncryptConfigurer extends PropertyPlaceholderConfigurer {
     @Override
     protected void processProperties(ConfigurableListableBeanFactory beanFactory, Properties props)throws BeansException {
-        System.out.println("asddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+
     	try {
             String JdPassword = props.getProperty("password");
             String JdPasswords = null;
             if (JdPassword != null) {
                 //加密  password
-                String Jd = EncryptUtil.encrypt("Xfkjadmin123");
+                String Jd = EncryptUtil.encrypt("root");
                 System.out.println("加密："+Jd);
                 //解密  password
                 JdPasswords = EncryptUtil.decrypt(JdPassword);

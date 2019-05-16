@@ -14,7 +14,7 @@
         update admin_user set user_password = #{user_password} where user_name = #{user_name}
     </update>
     <select id="selectGoodsOrderNumber" parameterType="java.lang.String" resultType="java.util.HashMap">
-        select count(*) as order_quantity from goods where goods_time like #{dates}
+        select count(*) as order_quantity from goods where goods_time like #{dates} and goods_pa=0
     </select>
     <select id="selectGoodsVehiceTime" resultType="java.util.HashMap">
         select DISTINCT YEAR(goods_time) as year from (select * FROM(
@@ -23,7 +23,7 @@
             select vehicle_releasetime FROM vehicle) as t)as s ORDER BY year DESC
     </select>
     <select id="selectVehiceOrderNumber" parameterType="java.lang.String" resultType="java.util.HashMap">
-        select count(*) as order_vehicle from vehicle where vehicle_releasetime like #{dates}
+        select count(*) as order_vehicle from vehicle where vehicle_releasetime like #{dates} and vehicle_pa=0
     </select>
     <!--授权的用户数量-->
     <select id="selectUserNumber" resultType="java.util.HashMap">

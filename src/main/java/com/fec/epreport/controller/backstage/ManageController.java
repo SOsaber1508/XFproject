@@ -39,6 +39,7 @@ public class ManageController extends HttpServlet {
 
 			   List<Map<String,Object>> list = manageService.selectGoodsVehiceTime();
 			   req.setAttribute("year",list);
+			   System.out.println(list);
 			   Map<String,Object> map = manageService.selectUserNumber();
 			   Map<String,Object> map1 = manageService.selectVehiceNumber();
 			   Map<String,Object> map2 = manageService.selectDoodsNumber();
