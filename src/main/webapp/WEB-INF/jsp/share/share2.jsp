@@ -47,7 +47,7 @@ img {
 		if (isWeixin) {
 			$("body").append(weixinTip);
 		} else {
-			window.location.href = "http://huomanbang.cn/apppeihuo.apk";
+			window.location.href = "http://huomanbang.cn/peihuodating.apk";
 		}
 		$("#weixinTip").css({
 			"position" : "fixed",
