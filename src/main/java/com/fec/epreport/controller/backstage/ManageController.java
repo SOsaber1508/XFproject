@@ -36,7 +36,6 @@ public class ManageController extends HttpServlet {
 	public String welcome(HttpServletRequest req, Model model, String startTime, String endTime,
 			@RequestParam(defaultValue = "1", required = true, value = "pageNo") int pageNo) {
 		try {
-
 			List<Map<String, Object>> list = manageService.selectGoodsVehiceTime();
 			req.setAttribute("year", list);
 			// 用户授权数
