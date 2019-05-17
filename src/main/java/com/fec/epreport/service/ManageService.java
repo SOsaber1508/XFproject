@@ -22,11 +22,11 @@ public interface ManageService {
     //车源信息 查询一年中的各月份的订单量
     public Map<String,Object> selectVehiceOrderNumber(String dates);
     //查询用户数量
-    public Map<String,Object> selectUserNumber();
+    public Map<String,Object> selectUserNumber(String startTime, String endTime);
     //查询车源数量
-    public Map<String,Object> selectVehiceNumber();
+    public Map<String,Object> selectVehiceNumber(String startTime, String endTime);
     //查询货源源数量
-    public Map<String,Object> selectDoodsNumber();
+    public Map<String,Object> selectDoodsNumber(String startTime, String endTime);
     //查询车源完成数量
     public Map<String,Object> selectVehiceStateNumber();
     //查询货源完成源数量
@@ -34,5 +34,5 @@ public interface ManageService {
     //查询所有的用户信息
     public List<Users> selectAllusers();
     //查询认证用户数量
-    public Map<String, Object> selectRenZhengUserNumber();
+    public Map<String, Object> selectRenZhengUserNumber(String startTime, String endTime);
 }

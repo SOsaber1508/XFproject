@@ -1,9 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-    String path = request.getContextPath();
-    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
-            + path + "/";
+	String path = request.getContextPath();
+	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+			+ path + "/";
 %>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="en">
@@ -21,33 +21,39 @@
 <link href="../css/my/css/toastr.css" rel="stylesheet" />
 <!-- js -->
 <script src="../css/assets/js/core/jquery.3.2.1.min.js"></script>
-<script src="../css/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script
+	src="../css/assets/js/plugin/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 <script src="../css/assets/js/core/popper.min.js"></script>
 <script src="../css/assets/js/core/bootstrap.min.js"></script>
 <script src="../css/assets/js/plugin/chartist/chartist.min.js"></script>
 
-<script src="../css/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
+<script
+	src="../css/assets/js/plugin/bootstrap-notify/bootstrap-notify.min.js"></script>
 
-<script src="../css/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
+<script
+	src="../css/assets/js/plugin/bootstrap-toggle/bootstrap-toggle.min.js"></script>
 
 <script src="../css/assets/js/plugin/jquery-mapael/jquery.mapael.min.js"></script>
 
 <script src="../css/assets/js/plugin/chart-circle/circles.min.js"></script>
 
-<script src="../css/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+<script
+	src="../css/assets/js/plugin/jquery-scrollbar/jquery.scrollbar.min.js"></script>
 
 <script src="../css/assets/js/ready.min.js"></script>
 <script src="../css/my/js/default.js"></script>
 <script src="../css/my/js/echarts.js"></script>
 <script src="../css/my/js/toastr.js"></script>
 <script src="../css/my/layer/layer.js"></script>
-<script src="../css/assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
+<script
+	src="../css/assets/js/plugin/chartist/plugin/chartist-plugin-tooltip.min.js"></script>
+<script src="../js/layer/laydate/laydate.js"></script>
 </head>
 <body>
-    <!-- 测试-->
+	<!-- 测试-->
 	<div class="wrapper">
 		<!-- head -->
-		<div class="main-header" style="color:ghostwhite">
+		<div class="main-header" style="color: ghostwhite">
 			<div class="logo-header">
 				<a href="index.html" class="logo">配货管理中心</a>
 				<button class="navbar-toggler sidenav-toggler ml-auto" type="button"
@@ -167,8 +173,8 @@
 							<a class="dropdown-item" href="#"><i class="ti-settings"></i>
 								Account Setting</a>
 							<div class="dropdown-divider"></div>--%>
-							<a class="dropdown-item" href="#" id="Logout"><i class="fa fa-power-off"></i>
-								退出登录</a>
+							<a class="dropdown-item" href="#" id="Logout"><i
+								class="fa fa-power-off"></i> 退出登录</a>
 						</ul> <!-- /.dropdown-user --></li>
 				</ul>
 			</div>
@@ -185,7 +191,8 @@
 					<div class="info">
 						<a class="" data-toggle="collapse" href="#collapseExample"
 							aria-expanded="true"> <span> 管理员: <span
-								class="user-level">${sessionScope.username}</span> <span class="caret"></span>
+								class="user-level">${sessionScope.username}</span> <span
+								class="caret"></span>
 						</span>
 						</a>
 						<div class="clearfix"></div>
@@ -199,15 +206,16 @@
 								<li><a href="#edit"> <span class="link-collapse">Edit
 											Profile</span>
 								</a></li>--%>
-								<li><a href="#" data-toggle="modal" data-target="#Updatepassword"> <span class="link-collapse">修改密码</span>
+								<li><a href="#" data-toggle="modal"
+									data-target="#Updatepassword"> <span class="link-collapse">修改密码</span>
 								</a></li>
 							</ul>
 						</div>
 					</div>
 				</div>
 				<ul class="nav" id="left_nav">
-					<li class="nav-item active"><a href="../admin/welcome.htm"> <i
-							class="la la-dashboard"></i>
+					<li class="nav-item active"><a href="../admin/welcome.htm">
+							<i class="la la-dashboard"></i>
 							<p>总览</p> <span class="badge badge-count">5</span>
 					</a></li>
 					<li class="nav-item"><a href="../admin/components.htm"> <i
@@ -222,8 +230,8 @@
 							class="la la-th"></i>
 							<p>表格</p> <span class="badge badge-count">6</span>
 					</a></li>
-					<li class="nav-item"><a href="../admin/notifications.htm"> <i
-							class="la la-bell"></i>
+					<li class="nav-item"><a href="../admin/notifications.htm">
+							<i class="la la-bell"></i>
 							<p>待办事项</p> <span class="badge badge-success">3</span>
 					</a></li>
 					<li class="nav-item"><a href="../admin/typography.htm"> <i
@@ -266,22 +274,25 @@
 						<div class="form-group">
 							<label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
 							<div class="col-sm-11">
-								<input type="text" class="form-control" id="inputEmail3" placeholder="username">
+								<input type="text" class="form-control" id="inputEmail3"
+									placeholder="username">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputPassword3" class="col-sm-2 control-label">密码</label>
-								<div class="col-sm-11">
-									<input type="password" class="form-control" id="inputPassword3" placeholder="password">
-								</div>
+							<div class="col-sm-11">
+								<input type="password" class="form-control" id="inputPassword3"
+									placeholder="password">
+							</div>
 						</div>
 					</div>
-						<div class="form-group">
-							<div class="col-sm-offset-2 col-sm-10"> </div>
-						</div>
+					<div class="form-group">
+						<div class="col-sm-offset-2 col-sm-10"></div>
+					</div>
 					<div class="modal-footer">
 						<button type="submit" class="btn btn-default" onclick="register()">注册</button>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">关闭</button>
 					</div>
 				</form>
 			</div>
@@ -308,28 +319,33 @@
 						<div class="form-group">
 							<label for="inputPassword1" class="col-sm-5 control-label">原密码：</label>
 							<div class="col-sm-11">
-								<input type="password" class="form-control" id="inputPassword1" placeholder="password">
+								<input type="password" class="form-control" id="inputPassword1"
+									placeholder="password">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputPassword2" class="col-sm-5 control-label">新密码：</label>
 							<div class="col-sm-11">
-								<input type="password" class="form-control" id="inputPassword2" placeholder="password">
+								<input type="password" class="form-control" id="inputPassword2"
+									placeholder="password">
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputPassword4" class="col-sm-5 control-label">再次输入新密码：</label>
 							<div class="col-sm-11">
-								<input type="password" class="form-control" id="inputPassword4" placeholder="password">
+								<input type="password" class="form-control" id="inputPassword4"
+									placeholder="password">
 							</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10"> </div>
+						<div class="col-sm-offset-2 col-sm-10"></div>
 					</div>
 					<div class="modal-footer">
-						<button type="submit" class="btn btn-default" onclick="Updatepassword()">修改密码</button>
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+						<button type="submit" class="btn btn-default"
+							onclick="Updatepassword()">修改密码</button>
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">关闭</button>
 					</div>
 				</form>
 			</div>
@@ -340,7 +356,14 @@
 
 
 	<script type="text/javascript" src="../css/my/js/md5.js"></script>
-
+	<!--  置空会话框中的内容,例:时间会话框-->
+	<script type="text/javascript">
+function kill() {
+	console.log("ssadsasd");
+	$("#start").val("");
+	$("#end").val("");
+}
+</script>
 	<script type="text/javascript">
 
 		//失去焦点用户名
@@ -478,29 +501,30 @@
 				var md5upwd = $.md5(upwd);
 				$.ajax({
 					url:"<%=basePath%>login/updatePassword.htm",
-					type:"POST",
-					data:{"user_password":md5pwd,
-					"user_upassword":md5upwd },
-					dataType:"json",
-					success:function(data) {
-						if(data==1){
-						alert("原密码输入有误，修改失败！！！")
-						} else if (data==2) {
-						alert("修改成功！！！")
+					type : "POST",
+					data : {
+						"user_password" : md5pwd,
+						"user_upassword" : md5upwd
+					},
+					dataType : "json",
+					success : function(data) {
+						if (data == 1) {
+							alert("原密码输入有误，修改失败！！！")
+						} else if (data == 2) {
+							alert("修改成功！！！")
 						}
 					},
-					error:function () {
+					error : function() {
 						alert("请求失败");
 					},
-					complete:function () {
+					complete : function() {
 						//alert("请求成功与否，都会执行");
 					}
 				});
-			}else {
+			} else {
 
 			}
 		}
-
 	</script>
 </body>
 <!--  <script src="../css/assets/js/plugin/jquery-mapael/maps/world_countries.min.js"></script>-->

@@ -1,56 +1,106 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.fec.epreport.dao.ManageDao" >
+<mapper namespace="com.fec.epreport.dao.ManageDao">
 
-    <resultMap id="BaseResultMap" type="com.fec.epreport.entity.User" >
-    </resultMap>
-    <select id="selectByName" resultMap="BaseResultMap">
-        select * from admin_user where user_name=#{user_name}
-    </select>
-    <insert id="insertAUser" parameterType="com.fec.epreport.entity.User">
-        insert into admin_user values(null,#{user_name},#{user_password},null,null,null,null,#{user_creationtime},null)
-    </insert>
-    <update id="updatePassword" parameterType="com.fec.epreport.entity.User">
-        update admin_user set user_password = #{user_password} where user_name = #{user_name}
-    </update>
-    <select id="selectGoodsOrderNumber" parameterType="java.lang.String" resultType="java.util.HashMap">
-        select count(*) as order_quantity from goods where goods_time like #{dates}
-    </select>
-    <select id="selectGoodsVehiceTime" resultType="java.util.HashMap">
-        select DISTINCT YEAR(goods_time) as year from (select * FROM(
-            select goods_time FROM goods
-            union all
-            select vehicle_releasetime FROM vehicle) as t)as s ORDER BY year DESC
-    </select>
-    <select id="selectVehiceOrderNumber" parameterType="java.lang.String" resultType="java.util.HashMap">
-        select count(*) as order_vehicle from vehicle where vehicle_releasetime like #{dates}
-    </select>
-    <!--授权的用户数量-->
-    <select id="selectUserNumber" resultType="java.util.HashMap">
-        select count(*) as user_number from user WHERE user_pa=0
-    </select>
-    <!--已认证的用户数量-->
-    <select id="selectRenZhengUserNumber" resultType="java.util.HashMap">
-        SELECT count(*) as user_renzheng FROM  user  WHERE  user_pa=0 and user_authentication =1
-    </select>
+	<resultMap id="BaseResultMap"
+		type="com.fec.epreport.entity.User">
+	</resultMap>
+	<!-- 时间筛选公共sql -->
+	<sql id="time_public_sql">
+		<if test="startTime != null and startTime != ''">
+			<![CDATA[and user_establish > #{startTime}]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+			<![CDATA[and user_establish < #{endTime}]]>
+		</if>
+	</sql>
 
-    <!--已发布的车源-->
-    <select id="selectVehiceNumber" resultType="java.util.HashMap">
-        select count(*) as vehicle_number from vehicle WHERE vehicle_pa=0
-    </select>
-    <!--已发布的货源-->
-    <select id="selectDoodsNumber" resultType="java.util.HashMap">
-        select count(*) as goods_number from goods WHERE  goods_pa=0
-    </select>
-    <select id="selectVehiceStateNumber" resultType="java.util.HashMap">
-        select count(*) as vehicle_statenumber from vehicle where vehicle_state = '0'
-    </select>
-    <select id="selectDoodsStateNumber" resultType="java.util.HashMap">
-        select count(*) as goods_statenumber from goods where goods_releasestatus = '0'
-    </select>
-    <select id="selectAllusers" resultType="com.fec.epreport.entity.Users">
-        select user_id,wx_name,user_sex,user_idnumber,user_address from user WHERE  user_pa=0
-    </select>
+	<select id="selectByName" resultMap="BaseResultMap">
+		select * from admin_user
+		where user_name=#{user_name}
+	</select>
+	<insert id="insertAUser"
+		parameterType="com.fec.epreport.entity.User">
+		insert into admin_user
+		values(null,#{user_name},#{user_password},null,null,null,null,#{user_creationtime},null)
+	</insert>
+	<update id="updatePassword"
+		parameterType="com.fec.epreport.entity.User">
+		update admin_user set user_password = #{user_password}
+		where user_name =
+		#{user_name}
+	</update>
+	<select id="selectGoodsOrderNumber"
+		parameterType="java.lang.String" resultType="java.util.HashMap">
+		select count(*) as
+		order_quantity from goods where goods_time like #{dates}
+	</select>
+	<select id="selectGoodsVehiceTime"
+		resultType="java.util.HashMap">
+		select DISTINCT YEAR(goods_time) as year from (select *
+		FROM(
+		select goods_time FROM goods
+		union all
+		select vehicle_releasetime
+		FROM vehicle) as t)as s ORDER BY year DESC
+	</select>
+	<select id="selectVehiceOrderNumber"
+		parameterType="java.lang.String" resultType="java.util.HashMap">
+		select count(*) as
+		order_vehicle from vehicle where vehicle_releasetime like
+		#{dates}
+	</select>
+	<!--授权的用户数量 -->
+	<select id="selectUserNumber" resultType="java.util.HashMap">
+		select count(*) as user_number from user WHERE user_pa=0
+		<include refid="time_public_sql" />
+	</select>
+	<!--已认证的用户数量 -->
+	<select id="selectRenZhengUserNumber"
+		resultType="java.util.HashMap">
+		SELECT count(*) as user_renzheng FROM user WHERE user_pa=0 and
+		user_authentication =1
+		<include refid="time_public_sql" />
+	</select>
+
+	<!--已发布的车源 -->
+	<select id="selectVehiceNumber" resultType="java.util.HashMap">
+		select count(*) as vehicle_number from vehicle WHERE vehicle_pa=0
+		<if test="startTime != null and startTime != ''">
+			<![CDATA[and vehicle_releasetime > #{startTime}]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+			<![CDATA[and vehicle_releasetime < #{endTime}]]>
+		</if>
+	</select>
+	<!--已发布的货源 -->
+	<select id="selectDoodsNumber" resultType="java.util.HashMap">
+		select count(*) as goods_number from goods WHERE goods_pa=0
+		<if test="startTime != null and startTime != ''">
+			<![CDATA[and goods_time > #{startTime}]]>
+		</if>
+		<if test="endTime != null and endTime != ''">
+			<![CDATA[and goods_time < #{endTime}]]>
+		</if>
+	</select>
+	<select id="selectVehiceStateNumber"
+		resultType="java.util.HashMap">
+		select count(*) as vehicle_statenumber from vehicle where
+		vehicle_state =
+		'0'
+	</select>
+	<select id="selectDoodsStateNumber"
+		resultType="java.util.HashMap">
+		select count(*) as goods_statenumber from goods where
+		goods_releasestatus =
+		'0'
+	</select>
+	<select id="selectAllusers"
+		resultType="com.fec.epreport.entity.Users">
+		select user_id,wx_name,user_sex,user_idnumber,user_address
+		from user WHERE
+		user_pa=0
+	</select>
 
 
 

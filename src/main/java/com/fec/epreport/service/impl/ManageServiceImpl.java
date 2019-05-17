@@ -92,10 +92,10 @@ public class ManageServiceImpl implements ManageService {
     }
     //查询用户数量
     @Override
-    public Map<String, Object> selectUserNumber() {
+    public Map<String, Object> selectUserNumber(String startTime, String endTime) {
         Map map = null;
         try {
-            map=manageDao.selectUserNumber();
+            map=manageDao.selectUserNumber(startTime,endTime);
         } catch (DataAccessException d) {
             logger.info("查询数据库错误："+d.getLocalizedMessage());
         }
@@ -103,10 +103,10 @@ public class ManageServiceImpl implements ManageService {
     }
     //查询车源数量
     @Override
-    public Map<String, Object> selectVehiceNumber() {
+    public Map<String, Object> selectVehiceNumber(String startTime, String endTime) {
         Map map = null;
         try {
-            map=manageDao.selectVehiceNumber();
+            map=manageDao.selectVehiceNumber(startTime,endTime);
         } catch (DataAccessException d) {
             logger.info("查询数据库错误："+d.getLocalizedMessage());
         }
@@ -114,10 +114,10 @@ public class ManageServiceImpl implements ManageService {
     }
     //查询货源源数量
     @Override
-    public Map<String, Object> selectDoodsNumber() {
+    public Map<String, Object> selectDoodsNumber(String startTime, String endTime) {
         Map map = null;
         try {
-            map=manageDao.selectDoodsNumber();
+            map=manageDao.selectDoodsNumber(startTime,endTime);
         } catch (DataAccessException d) {
             logger.info("查询数据库错误："+d.getLocalizedMessage());
         }
@@ -158,10 +158,10 @@ public class ManageServiceImpl implements ManageService {
     }
     //查询用户认证数量
     @Override
-    public Map<String, Object> selectRenZhengUserNumber() {
+    public Map<String, Object> selectRenZhengUserNumber(String startTime, String endTime) {
         Map map = null;
         try {
-            map=manageDao.selectRenZhengUserNumber();
+            map=manageDao.selectRenZhengUserNumber(startTime,endTime);
         } catch (DataAccessException d) {
             logger.info("查询数据库错误："+d.getLocalizedMessage());
         }
