@@ -12,7 +12,6 @@ import java.util.Properties;
 public class PasswordEncryptConfigurer extends PropertyPlaceholderConfigurer {
     @Override
     protected void processProperties(ConfigurableListableBeanFactory beanFactory, Properties props)throws BeansException {
-        System.out.println("asddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
     	try {
             String JdPassword = props.getProperty("password");
             String JdPasswords = null;

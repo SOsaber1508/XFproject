@@ -23,7 +23,7 @@
         update admin_user set user_password = #{user_password} where user_name = #{user_name}
     </update>
     <select id="selectGoodsOrderNumber" parameterType="java.lang.String" resultType="java.util.HashMap">
-        select count(*) as order_quantity from goods where goods_time like #{dates} and goods_pa=0
+        select count(*) as order_quantity from goods where goods_time like concat(#{dates},"%") and goods_pa=0
     </select>
     <select id="selectGoodsVehiceTime" resultType="java.util.HashMap">
         select DISTINCT YEAR(goods_time) as year from (select * FROM(
@@ -32,7 +32,7 @@
             select vehicle_releasetime FROM vehicle) as t)as s ORDER BY year DESC
     </select>
     <select id="selectVehiceOrderNumber" parameterType="java.lang.String" resultType="java.util.HashMap">
-        select count(*) as order_vehicle from vehicle where vehicle_releasetime like #{dates} and vehicle_pa=0
+        select count(*) as order_vehicle from vehicle where vehicle_releasetime like concat(#{dates},"%") and vehicle_pa=0
     </select>
     <!--授权的用户数量 -->
 	<select id="selectUserNumber" resultType="java.util.HashMap">
@@ -74,7 +74,20 @@
         select count(*) as goods_statenumber from goods where goods_releasestatus = '0'
     </select>
     <select id="selectAllusers" resultType="com.fec.epreport.entity.Users">
-        select user_id,wx_name,user_sex,user_idnumber,user_address from user WHERE  user_pa=0
+        select user_id,wx_nickname,user_sex,user_idnumber,user_phonenumber from user WHERE  user_pa=0 and user_authentication=1
     </select>
+    <!--//查询用户创建时间（年）-->
+    <select id="selectUserYear" resultType="java.util.HashMap">
+        select DISTINCT YEAR(user_establish) as year FROM user where user_pa=0 ORDER BY year DESC
+    </select>
+    <!--//查询一个月中用户授权数量-->
+    <select id="selectAUserNumber" parameterType="java.lang.String" resultType="java.util.HashMap">
+        select count(*) as user_number from user where user_establish like concat(#{dates},"%") and user_pa=0
+    </select>
+    <!--//查询一个月中用户认证数量-->
+    <select id="selectAUserRenZhengNumber" parameterType="java.lang.String" resultType="java.util.HashMap">
+        select count(*) as user_number from user where user_establish like concat(#{dates},"%") and user_pa=0 and user_authentication=1
+    </select>
+
 
 </mapper>

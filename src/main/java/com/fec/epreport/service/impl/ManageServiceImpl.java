@@ -167,4 +167,34 @@ public class ManageServiceImpl implements ManageService {
         }
         return map;
     }
+    //查询用户创建时间（年）
+    public List<Map<String,Object>> selectUserYear(){
+        List<Map<String,Object>> map = null;
+        try {
+            map=manageDao.selectUserYear();
+        } catch (DataAccessException d) {
+            logger.info("查询数据库错误："+d.getLocalizedMessage());
+        }
+        return map;
+    }
+    //查询一个月中用户授权数量
+    public Map<String,Object> selectAUserNumber(String dates){
+        Map map = null;
+        try {
+            map=manageDao.selectAUserNumber(dates);
+        } catch (DataAccessException d) {
+            logger.info("查询数据库错误："+d.getLocalizedMessage());
+        }
+        return map;
+    }
+    //查询一个月中用户认证数量
+    public Map<String,Object> selectAUserRenZhengNumber(String dates){
+        Map map = null;
+        try {
+            map=manageDao.selectAUserRenZhengNumber(dates);
+        } catch (DataAccessException d) {
+            logger.info("查询数据库错误："+d.getLocalizedMessage());
+        }
+        return map;
+    }
 }

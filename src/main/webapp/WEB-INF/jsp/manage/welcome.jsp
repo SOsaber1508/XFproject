@@ -32,7 +32,6 @@ function kill() {
 					<div class="container-fluid">
 						<h4 class="page-title">总览</h4>
 						<div class="row">
-
 							<div class="col-md-2">
 								<div class="card card-stats card-warning">
 									<div class="card-body ">
@@ -261,7 +260,7 @@ function kill() {
 							<div class="col-md-9">
 								<div class="card">
 									<div class="card-header">
-										<h4 class="card-title">年度订单信息：</h4>
+										<h4 class="card-title">年度车源货源信息：</h4>
 										<p class="card-category">
 											请选择要查询的年份：
 											<select id="year" class="form-control col-md-6">
@@ -277,7 +276,7 @@ function kill() {
 										</div>
 									</div>--%>
 									<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-									<div id="main" class="col-xs-12" style="width: 90%;height: 50%;left: 5%"></div>
+									<div id="main" class="col-xs-12" style="width: 90%;height: 400%;left: 8%"></div>
 									<script type="text/javascript">
 										var myChart;
 										$("#year").change(function(){
@@ -407,6 +406,12 @@ function kill() {
 																color: '#999'
 															}
 														}
+													},
+													grid: {
+														left: '3%',
+														right: '4%',
+														bottom: '3%',
+														containLabel: true
 													},
 													toolbox: {
 														feature: {
@@ -588,32 +593,566 @@ function kill() {
 							<div class="col-md-4">
 								<div class="card">
 									<div class="card-header">
-										<h4 class="card-title">Users Statistics</h4>
+										<h4 class="card-title">用户：</h4>
 										<p class="card-category">
-										Users statistics this month</p>
+										认证与未认证所占比例</p>
 									</div>
 									<div class="card-body">
-										<div id="monthlyChart" class="chart chart-pie"></div>
+										<%--<div id="monthlyChart" class="chart chart-pie"></div>--%>
+										<div id="user2" class="col-xs-12" style="width: 90%;height: 400%;left: 5%"></div>
+											<script type="text/javascript">
+												var myChart2;
+												myChart2 = echarts.init(document.getElementById('user2'));
+												$.ajax({
+													url:"<%=basePath%>login/selectUserBiLi.htm",
+													type:"POST",
+													data:{},
+													dataType:"json",
+													success:function(data) {
+														option2 = {
+															tooltip: {
+																trigger: 'item',
+																formatter: "{a} <br/>{b}: {c} ({d}%)"
+															},
+															legend: {
+																orient: 'vertical',
+																x: 'left',
+																data:['未认证用户','已认证用户']
+															},
+															series: [
+																{
+																	name:'访问来源',
+																	type:'pie',
+																	radius: ['50%', '70%'],
+																	avoidLabelOverlap: false,
+																	label: {
+																		normal: {
+																			show: false,
+																			position: 'center'
+																		},
+																		emphasis: {
+																			show: true,
+																			textStyle: {
+																				fontSize: '25',
+																				fontWeight: 'bold'
+																			}
+																		}
+																	},
+																	labelLine: {
+																		normal: {
+																			show: false
+																		}
+																	},
+																	data:[
+																		{value:data.weiRenZheng, name:'未认证用户',itemStyle:{color:'#d64230'}},
+																		{value:data.yiRenZheng, name:'已认证用户',itemStyle:{color:'#a9df55'}}
+																	]
+																}
+															]
+														};
+
+														myChart2.setOption(option2);
+														window.addEventListener("resize",function () {
+															myChart2.resize();
+														})
+													},
+													error:function () {
+														alert("请求失败");
+													},
+													complete:function () {
+														//alert("请求成功与否，都会执行");
+													}
+												});
+
+
+
+
+
+											</script>
 									</div>
 								</div>
 							</div>
 							<div class="col-md-8">
 								<div class="card">
 									<div class="card-header">
-										<h4 class="card-title">2018 Sales</h4>
+										<h4 class="card-title">年度用户信息：</h4>
 										<p class="card-category">
-										Number of products sold</p>
+											请选择要查询的年份：
+											<select id="year1" class="form-control col-md-6">
+												<c:forEach var="userYear" items="${requestScope.userYear}">
+													<option value="${userYear.year}">${userYear.year}</option>
+												</c:forEach>
+											</select>
+										</p>
 									</div>
 									<div class="card-body">
-										<div id="salesChart" class="chart"></div>
+										<%--<div id="salesChart" class="chart"></div>--%>
+										<div id="user" class="col-xs-12" style="width: 90%;height: 400%;left: 5%"></div>
+
+										<script type="text/javascript">
+											var myChart1;
+
+											$("#user").change(function() {
+												if (myChart1 != null && myChart1 != "" && myChart1 != undefined) {
+													myChart1.dispose();
+												}
+												myChart1 = echarts.init(document.getElementById('user'));
+												$.ajax({
+													url:"<%=basePath%>login/selectUserYearNumber.htm",
+													type:"POST",
+													data:{"year":$("#year1").val()},
+													dataType:"json",
+													success:function(data) {
+
+														option1 = {
+															title: {
+																text: '折线图堆叠'
+															},
+															tooltip: {
+																trigger: 'axis'
+															},
+															legend: {
+																data:['授权用户数','认证用户数']
+															},
+															grid: {
+																left: '3%',
+																right: '4%',
+																bottom: '3%',
+																containLabel: true
+															},
+															toolbox: {
+																feature: {
+																	saveAsImage: {}
+																}
+															},
+															xAxis: {
+																type: 'category',
+																boundaryGap: false,
+																data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+															},
+															yAxis: {
+																type: 'value'
+															},
+															series: [
+																{
+																	name:'授权用户数',
+																	type:'line',
+																	data:[data.ShouQuanUser1, data.ShouQuanUser2, data.ShouQuanUser3, data.ShouQuanUser4, data.ShouQuanUser5, data.ShouQuanUser6,
+																		data.ShouQuanUser7, data.ShouQuanUser8, data.ShouQuanUser9, data.ShouQuanUser10, data.ShouQuanUser11, data.ShouQuanUser12],
+																	smooth: true
+																},
+																{
+																	name:'认证用户数',
+																	type:'line',
+																	data:[data.RenZhengUser1, data.RenZhengUser2, data.RenZhengUser3, data.RenZhengUser4, data.RenZhengUser5, data.RenZhengUser6,
+																		data.RenZhengUser7, data.RenZhengUser8, data.RenZhengUser9, data.RenZhengUser10, data.RenZhengUser11, data.RenZhengUser12],
+																	smooth: true
+																},
+															]
+														};
+
+														myChart1.setOption(option1);
+														window.addEventListener("resize",function () {
+															myChart1.resize();
+														})
+													},
+													error:function () {
+														alert("请求失败");
+													},
+													complete:function () {
+														//alert("请求成功与否，都会执行");
+													}
+												});
+
+											});
+
+											myChart1 = echarts.init(document.getElementById('user'));
+											$.ajax({
+												url:"<%=basePath%>login/selectUserYearNumber.htm",
+												type:"POST",
+												data:{"year":$("#year1").val()},
+												dataType:"json",
+												success:function(data) {
+
+													option1 = {
+														title: {
+															text: '折线图堆叠'
+														},
+														tooltip: {
+															trigger: 'axis'
+														},
+														legend: {
+															data:['授权用户数','认证用户数']
+														},
+														grid: {
+															left: '3%',
+															right: '4%',
+															bottom: '3%',
+															containLabel: true
+														},
+														toolbox: {
+															feature: {
+																saveAsImage: {}
+															}
+														},
+														xAxis: {
+															type: 'category',
+															boundaryGap: false,
+															data: ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月']
+														},
+														yAxis: {
+															type: 'value'
+														},
+														series: [
+															{
+																name:'授权用户数',
+																type:'line',
+																data:[data.ShouQuanUser1, data.ShouQuanUser2, data.ShouQuanUser3, data.ShouQuanUser4, data.ShouQuanUser5, data.ShouQuanUser6,
+																	data.ShouQuanUser7, data.ShouQuanUser8, data.ShouQuanUser9, data.ShouQuanUser10, data.ShouQuanUser11, data.ShouQuanUser12],
+																smooth: true
+															},
+															{
+																name:'认证用户数',
+																type:'line',
+																data:[data.RenZhengUser1, data.RenZhengUser2, data.RenZhengUser3, data.RenZhengUser4, data.RenZhengUser5, data.RenZhengUser6,
+																	data.RenZhengUser7, data.RenZhengUser8, data.RenZhengUser9, data.RenZhengUser10, data.RenZhengUser11, data.RenZhengUser12],
+																smooth: true
+															},
+														]
+													};
+
+													myChart1.setOption(option1);
+													window.addEventListener("resize",function () {
+														myChart1.resize();
+													})
+												},
+												error:function () {
+													alert("请求失败");
+												},
+												complete:function () {
+													//alert("请求成功与否，都会执行");
+												}
+											});
+
+
+
+
+
+
+
+
+										</script>
+
+
+
+
 									</div>
 								</div>
 							</div>
+
+							<div class="col-md-12">
+								<div class="card">
+									<div class="card-header">
+										<h4 class="card-title">用户货源车源信息（天）：</h4>
+									</div>
+									<div class="card-body">
+										<%--<div id="salesChart" class="chart"></div>--%>
+										<div id="userGoods" class="col-xs-12" style="width: 90%;height: 500%;left: 5%"></div>
+
+										<script type="text/javascript">
+											var myChart3;
+											myChart3 = echarts.init(document.getElementById('userGoods'));
+											option3 = {
+												tooltip: {
+													trigger: 'axis',
+													axisPointer: {
+														type: 'shadow',
+														label: {
+															show: true
+														}
+													}
+												},
+												toolbox: {
+													show: true,
+													feature: {
+														mark: {show: true},
+														dataView: {show: true, readOnly: false},
+														magicType: {show: true, type: ['line', 'bar']},
+														restore: {show: true},
+														saveAsImage: {show: true}
+													}
+												},
+												calculable: true,
+												legend: {
+													data:['Growth', 'Budget 2011', 'Budget 2012'],
+													itemGap: 5
+												},
+												grid: {
+													top: '12%',
+													left: '2%',
+													right: '10%',
+													containLabel: true
+												},
+												xAxis: [
+													{
+														name: '日期',
+														type: 'category',
+														data: []
+													}
+												],
+												yAxis: [
+													{
+														type: 'value',
+														name: '数量',
+														axisLabel: {
+															formatter: function (a) {
+																a= +a;
+																return isFinite(a)
+																		? echarts.format.addCommas(+a / 1)
+																		: '';
+															}
+														}
+													}
+												],
+												dataZoom: [
+													{
+														show : true,
+														start: 0,
+														end  : 100
+													},
+													{
+														type: 'inside',
+														start: 0,
+														end: 100
+													},
+													{
+														show: true,
+														yAxisIndex: 0,
+														filterMode: 'empty',
+														width: 30,
+														height: '80%',
+														showDataShadow: false,
+														left: '93%'
+													}
+												],
+												series: [
+													{
+														name: '用户授权数',
+														type: 'bar',
+														data: []
+													},
+													{
+														name: '用户认证数',
+														type: 'bar',
+														data: []
+													},
+													{
+														name: '发布货源数',
+														type: 'bar',
+														data: []
+													},
+													{
+														name: '发布车源数',
+														type: 'bar',
+														data: []
+													}
+												]
+											};
+											myChart3.setOption(option3);
+											window.addEventListener("resize",function () {
+											myChart3.resize();
+											});
+											myChart3.showLoading({
+												text: '正在加载...',
+												textStyle: { fontSize : 30 , color: '#444' },
+												effectOption: {backgroundColor: 'rgba(0, 0, 0, 0)'}
+											});
+											$.ajax({
+												url:"<%=basePath%>login/selectAllUserGoodsNumber.htm",
+												type:"POST",
+												data:{},
+												dataType:"json",
+												success:function(data) {
+													myChart3.hideLoading();
+													myChart3.setOption({        //加载数据图表
+														xAxis: [
+															{
+																name: '日期',
+																type: 'category',
+																data: data.datas
+															}
+														],
+														series: [
+															{
+																name: '用户授权数',
+																type: 'bar',
+																data: data.UserNumber
+															},
+															{
+																name: '用户认证数',
+																type: 'bar',
+																data: data.UserRenZhengNumber
+															},
+															{
+																name: '发布货源数',
+																type: 'bar',
+																data: data.GoodsNumber
+															},
+															{
+																name: '发布车源数',
+																type: 'bar',
+																data: data.VehicleNumber
+															}
+														]
+                                            });
+
+                                        },
+                                        error:function () {
+                                        alert("请求失败");
+                                        },
+                                        complete:function () {
+                                        //alert("请求成功与否，都会执行");
+                                        }
+                                    });
+
+
+
+
+                                    <%--$.ajax({--%>
+												<%--url:"<%=basePath%>login/selectAllUserGoodsNumber.htm",--%>
+												<%--type:"POST",--%>
+												<%--data:{},--%>
+												<%--dataType:"json",--%>
+												<%--success:function(data) {--%>
+
+													<%--// option3 = {--%>
+													<%--// 	tooltip: {--%>
+													<%--// 		trigger: 'axis',--%>
+													<%--// 		axisPointer: {--%>
+													<%--// 			type: 'shadow',--%>
+													<%--// 			label: {--%>
+													<%--// 				show: true--%>
+													<%--// 			}--%>
+													<%--// 		}--%>
+													<%--// 	},--%>
+													<%--// 	toolbox: {--%>
+													<%--// 		show: true,--%>
+													<%--// 		feature: {--%>
+													<%--// 			mark: {show: true},--%>
+													<%--// 			dataView: {show: true, readOnly: false},--%>
+													<%--// 			magicType: {show: true, type: ['line', 'bar']},--%>
+													<%--// 			restore: {show: true},--%>
+													<%--// 			saveAsImage: {show: true}--%>
+													<%--// 		}--%>
+													<%--// 	},--%>
+													<%--// 	calculable: true,--%>
+													<%--// 	legend: {--%>
+													<%--// 		data:['Growth', 'Budget 2011', 'Budget 2012'],--%>
+													<%--// 		itemGap: 5--%>
+													<%--// 	},--%>
+													<%--// 	grid: {--%>
+													<%--// 		top: '12%',--%>
+													<%--// 		left: '2%',--%>
+													<%--// 		right: '10%',--%>
+													<%--// 		containLabel: true--%>
+													<%--// 	},--%>
+													<%--// 	xAxis: [--%>
+													<%--// 		{--%>
+													<%--// 			name: '日期',--%>
+													<%--// 			type: 'category',--%>
+													<%--// 			data: data.datas--%>
+													<%--// 		}--%>
+													<%--// 	],--%>
+													<%--// 	yAxis: [--%>
+													<%--// 		{--%>
+													<%--// 			type: 'value',--%>
+													<%--// 			name: '数量',--%>
+													<%--// 			axisLabel: {--%>
+													<%--// 				formatter: function (a) {--%>
+													<%--// 					a= +a;--%>
+													<%--// 					return isFinite(a)--%>
+													<%--// 							? echarts.format.addCommas(+a / 1)--%>
+													<%--// 							: '';--%>
+													<%--// 				}--%>
+													<%--// 			}--%>
+													<%--// 		}--%>
+													<%--// 	],--%>
+													<%--// 	dataZoom: [--%>
+													<%--// 		{--%>
+													<%--// 			show : true,--%>
+													<%--// 			start: 0,--%>
+													<%--// 			end  : 100--%>
+													<%--// 		},--%>
+													<%--// 		{--%>
+													<%--// 			type: 'inside',--%>
+													<%--// 			start: 0,--%>
+													<%--// 			end: 100--%>
+													<%--// 		},--%>
+													<%--// 		{--%>
+													<%--// 			show: true,--%>
+													<%--// 			yAxisIndex: 0,--%>
+													<%--// 			filterMode: 'empty',--%>
+													<%--// 			width: 30,--%>
+													<%--// 			height: '80%',--%>
+													<%--// 			showDataShadow: false,--%>
+													<%--// 			left: '93%'--%>
+													<%--// 		}--%>
+													<%--// 	],--%>
+													<%--// 	series: [--%>
+													<%--// 		{--%>
+													<%--// 			name: '用户授权数',--%>
+													<%--// 			type: 'bar',--%>
+													<%--// 			data: data.UserNumber--%>
+													<%--// 		},--%>
+													<%--// 		{--%>
+													<%--// 			name: '用户认证数',--%>
+													<%--// 			type: 'bar',--%>
+													<%--// 			data: data.UserRenZhengNumber--%>
+													<%--// 		},--%>
+													<%--// 		{--%>
+													<%--// 			name: '发布货源数',--%>
+													<%--// 			type: 'bar',--%>
+													<%--// 			data: data.GoodsNumber--%>
+													<%--// 		},--%>
+													<%--// 		{--%>
+													<%--// 			name: '发布车源数',--%>
+													<%--// 			type: 'bar',--%>
+													<%--// 			data: data.VehicleNumber--%>
+													<%--// 		}--%>
+													<%--// 	]--%>
+													<%--// };--%>
+
+													<%--myChart3.setOption(option3);--%>
+													<%--window.addEventListener("resize",function () {--%>
+														<%--myChart3.resize();--%>
+													<%--})--%>
+												<%--},--%>
+												<%--error:function () {--%>
+													<%--alert("请求失败");--%>
+												<%--},--%>
+												<%--complete:function () {--%>
+													<%--//alert("请求成功与否，都会执行");--%>
+												<%--}--%>
+											<%--});--%>
+										</script>
+
+									</div>
+								</div>
+							</div>
+
 							<div class="col-md-6">
 								<div class="card">
 									<div class="card-header ">
-										<h4 class="card-title">Table</h4>
-										<p class="card-category">Users Table</p>
+										<h4 class="card-title">认证用户信息：</h4>
+										<p class="card-category">根据名字查询用户信息：</p>
+										<div class="col-lg-6">
+											<div class="input-group">
+												<input type="text" class="form-control">
+												<span class="input-group-btn">
+                        						<button class="btn btn-default" type="button">查询</button>
+                    							</span>
+											</div><!-- /input-group -->
+										</div>
 									</div>
 									<div class="card-body">
 										<table class="table table-head-bg-success table-striped table-hover col-md-6">
@@ -621,9 +1160,9 @@ function kill() {
 												<tr>
 													<th scope="col">id</th>
 													<th scope="col">姓名</th>
-													<th scope="col">性别</th>
+													<%--<th scope="col">性别</th>--%>
 													<th scope="col">身份证号</th>
-													<th scope="col">住址</th>
+													<th scope="col">手机号</th>
 												</tr>
 											</thead>
 											<tbody id="users">
@@ -631,9 +1170,9 @@ function kill() {
 													<tr>
 														<td style="word-break: break-all;">${user.user_id}</td>
 														<td style="word-break: break-all;">${user.wx_nickname}</td>
-														<td style="word-break: break-all;">${user.user_sex}</td>
+														<%--<td style="word-break: break-all;">${user.user_sex}</td>--%>
 														<td style="word-break: break-all;">${user.user_idnumber}</td>
-														<td style="word-break: break-all;">${user.user_address}</td>
+														<td style="word-break: break-all;">${user.user_phonenumber}</td>
 													</tr>
 												</c:forEach>
 												<%--<tr>
@@ -691,9 +1230,9 @@ function kill() {
 												var users = $("<tr>\n" +
 														"<td style=\"word-break: break-all;\">"+data.list[i].user_id+"</td>" +
 														"<td style=\"word-break: break-all;\">"+data.list[i].wx_nickname+"</td>" +
-														"<td style=\"word-break: break-all;\">"+data.list[i].user_sex+"</td>" +
+														// "<td style=\"word-break: break-all;\">"+data.list[i].user_sex+"</td>" +
 														"<td style=\"word-break: break-all;\">"+data.list[i].user_idnumber+"</td>" +
-														"<td style=\"word-break: break-all;\">"+data.list[i].user_address+"</td>" +
+														"<td style=\"word-break: break-all;\">"+data.list[i].user_phonenumber+"</td>" +
 														"</tr>");
 												$("#users").append(users);
 											}

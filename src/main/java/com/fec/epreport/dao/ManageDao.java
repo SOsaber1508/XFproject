@@ -35,4 +35,11 @@ public interface ManageDao {
     public List<Users> selectAllusers();
     //查询认证用户数量
     public Map<String, Object> selectRenZhengUserNumber(@Param("startTime") String startTime, @Param("endTime") String endTime);
+    //查询用户创建时间（年）
+    public List<Map<String,Object>> selectUserYear();
+    //查询一个月中用户授权数量
+    public Map<String,Object> selectAUserNumber(String dates);
+    //查询一个月中用户认证数量
+    public Map<String,Object> selectAUserRenZhengNumber(String dates);
+
 }
