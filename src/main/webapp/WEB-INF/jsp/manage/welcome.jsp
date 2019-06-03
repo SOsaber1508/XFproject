@@ -276,7 +276,7 @@ function kill() {
 										</div>
 									</div>--%>
 									<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
-									<div id="main" class="col-xs-12" style="width: 90%;height: 400%;left: 8%"></div>
+									<div id="main" class="col-xs-12" style="width: 90%;height: 90%;left: 8%"></div>
 									<script type="text/javascript">
 										var myChart;
 										$("#year").change(function(){
@@ -599,7 +599,7 @@ function kill() {
 									</div>
 									<div class="card-body">
 										<%--<div id="monthlyChart" class="chart chart-pie"></div>--%>
-										<div id="user2" class="col-xs-12" style="width: 90%;height: 400%;left: 5%"></div>
+										<div id="user2" class="col-xs-12" style="width: 90%;height: 90%;left: 5%"></div>
 											<script type="text/javascript">
 												var myChart2;
 												myChart2 = echarts.init(document.getElementById('user2'));
@@ -687,7 +687,7 @@ function kill() {
 									</div>
 									<div class="card-body">
 										<%--<div id="salesChart" class="chart"></div>--%>
-										<div id="user" class="col-xs-12" style="width: 90%;height: 400%;left: 5%"></div>
+										<div id="user" class="col-xs-12" style="width: 90%;height: 90%;left: 5%"></div>
 
 										<script type="text/javascript">
 											var myChart1;
@@ -857,7 +857,7 @@ function kill() {
 									</div>
 									<div class="card-body">
 										<%--<div id="salesChart" class="chart"></div>--%>
-										<div id="userGoods" class="col-xs-12" style="width: 90%;height: 500%;left: 5%"></div>
+										<div id="userGoods" class="col-xs-12" style="width: 90%;height: 90%;left: 5%"></div>
 
 										<script type="text/javascript">
 											var myChart3;
