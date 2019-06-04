@@ -22,4 +22,11 @@ public interface JedisClient {
 	long del(String key); // 删除数据-根据key
 
 	long hdel(String hkey, String key);// 删除hashMap类型-根据hkey,key
+
+	/**
+	 * 判断是否存在某个 key
+	**/
+	boolean exists(String key);
+
+	boolean exists(byte[] key);
 }

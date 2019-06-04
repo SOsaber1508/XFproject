@@ -1,5 +1,8 @@
 package com.fec.epreport.service.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fec.epreport.dao.JedisClient;
@@ -23,10 +26,11 @@ public class JedisClientSingle implements JedisClient {
 		try {
 			jedis = jedisPool.getResource();
 			string = jedis.get(key);
+		} catch (Exception e) {
+			jedis.close();
+			e.printStackTrace();
 		} finally {
-			if (jedis != null) {
-				jedis.close();
-			}
+			jedis.close();
 		}
 		return string;
 	}
@@ -39,10 +43,11 @@ public class JedisClientSingle implements JedisClient {
 		try {
 			jedis = jedisPool.getResource();
 			string = jedis.set(key, value);
+		} catch (Exception e) {
+			jedis.close();
+			e.printStackTrace();
 		} finally {
-			if (jedis != null) {
-				jedis.close();
-			}
+			jedis.close();
 		}
 		return string;
 	}
@@ -55,10 +60,11 @@ public class JedisClientSingle implements JedisClient {
 		try {
 			jedis = jedisPool.getResource();
 			string = jedis.hget(hkey, key);
+		} catch (Exception e) {
+			jedis.close();
+			e.printStackTrace();
 		} finally {
-			if (jedis != null) {
-				jedis.close();
-			}
+			jedis.close();
 		}
 		return string;
 	}
@@ -71,10 +77,11 @@ public class JedisClientSingle implements JedisClient {
 		try {
 			jedis = jedisPool.getResource();
 			result = jedis.hset(hkey, key, value);
+		} catch (Exception e) {
+			jedis.close();
+			e.printStackTrace();
 		} finally {
-			if (jedis != null) {
-				jedis.close();
-			}
+			jedis.close();
 		}
 		return result;
 	}
@@ -86,10 +93,11 @@ public class JedisClientSingle implements JedisClient {
 		try {
 			jedis = jedisPool.getResource();
 			result = jedis.incr(key);
+		} catch (Exception e) {
+			jedis.close();
+			e.printStackTrace();
 		} finally {
-			if (jedis != null) {
-				jedis.close();
-			}
+			jedis.close();
 		}
 		return result;
 	}
@@ -102,10 +110,11 @@ public class JedisClientSingle implements JedisClient {
 		try {
 			jedis = jedisPool.getResource();
 			result = jedis.expire(key, second);
+		} catch (Exception e) {
+			jedis.close();
+			e.printStackTrace();
 		} finally {
-			if (jedis != null) {
-				jedis.close();
-			}
+			jedis.close();
 		}
 		return result;
 	}
@@ -117,10 +126,11 @@ public class JedisClientSingle implements JedisClient {
 		try {
 			jedis = jedisPool.getResource();
 			result = jedis.ttl(key);
+		} catch (Exception e) {
+			jedis.close();
+			e.printStackTrace();
 		} finally {
-			if (jedis != null) {
-				jedis.close();
-			}
+			jedis.close();
 		}
 		return result;
 	}
@@ -133,10 +143,11 @@ public class JedisClientSingle implements JedisClient {
 		try {
 			jedis = jedisPool.getResource();
 			result = jedis.del(key);
+		} catch (Exception e) {
+			jedis.close();
+			e.printStackTrace();
 		} finally {
-			if (jedis != null) {
-				jedis.close();
-			}
+			jedis.close();
 		}
 		return result;
 	}
@@ -148,12 +159,93 @@ public class JedisClientSingle implements JedisClient {
 		try {
 			jedis = jedisPool.getResource();
 			result = jedis.hdel(hkey, key);
+		} catch (Exception e) {
+			jedis.close();
+			e.printStackTrace();
 		} finally {
-			if (jedis != null) {
-				jedis.close();
-			}
+			jedis.close();
 		}
 		return result;
 	}
 
+	/**
+	 * 
+	 * @Description: 判断是否存在某个 key
+	 * @author zcy
+	 * @Created 2019年6月4日
+	 * @param key
+	 * @return true 存在 false 不存在
+	 */
+	public boolean exists(String key) {
+		Jedis jedis = null;
+		try {
+			jedis = jedisPool.getResource();
+		} catch (Exception e) {
+			jedis.close();
+			e.printStackTrace();
+		} finally {
+			jedis.close();
+			// TODO: handle finally clause
+		}
+		return jedis.exists(key);
+	}
+
+	public boolean exists(byte[] key) {
+		Jedis jedis = null;
+		try {
+			jedis = jedisPool.getResource();
+		} catch (Exception e) {
+			jedis.close();
+			e.printStackTrace();
+		} finally {
+			jedis.close();
+			// TODO: handle finally clause
+		}
+		return jedis.exists(key);
+	}
+
+	/**
+	 * 
+	 * @Description:获取多个 key 的 value 值
+	 * @author zcy
+	 * @Created 2019年6月4日
+	 * @param keys
+	 * @return 存在 key 返回 value,不存在 key 返回 null
+	 */
+	public List<String> mget(String... keys) {
+		Jedis jedis = null;
+		List<String> list = new ArrayList<String>();
+		try {
+			jedis = jedisPool.getResource();
+			list = jedis.mget(keys);
+		} catch (Exception e) {
+			jedis.close();
+			e.printStackTrace();
+		} finally {
+			jedis.close();
+		}
+		return list;
+	}
+	/**
+	 * 
+	 * @Description: 删除多个key的值
+	 * @author zcy 
+	 * @Created 2019年6月4日
+	 * @param keys
+	 * @return 被删除 key 的数量
+	 */
+	public Long del(String[] keys){
+		Jedis jedis = null;
+		long value = 0l;
+		try {
+			jedis = jedisPool.getResource();
+			value = jedis.del(keys);
+		} catch (Exception e) {
+			jedis.close();
+			e.printStackTrace();
+		}finally {
+			jedis.close();
+		}
+		return value;
+	}
 }
