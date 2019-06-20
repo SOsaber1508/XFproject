@@ -38,5 +38,19 @@ public class MapListJson {
         map2.put("code", "200");
         
         System.out.println(map2);
+        
+        List<Map<String,Object>> listjsonObject = new ArrayList<Map<String,Object>>();
+        Map<String, Object> map1 = new HashMap<String, Object>();
+        map1.put("1", "a");
+        map1.put("2", "b");
+        map1.put("3", "c");
+        listjsonObject.add(map1);
+
+        Map<String, Object> map3 = new HashMap<String, Object>();
+        map3.put("11", "aa");
+        map3.put("22", "bb");
+        map3.put("33", "cc");
+        listjsonObject.add(map3);
+        System.out.println(listjsonObject);
     }
 }

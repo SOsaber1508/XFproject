@@ -248,4 +248,10 @@ public class JedisClientSingle implements JedisClient {
 		}
 		return value;
 	}
+//	public Long del2(String[] keys){
+//		Jedis jedis = null;
+//		jedis.hgetAll("asd");
+//		return null;
+//	}
+
 }

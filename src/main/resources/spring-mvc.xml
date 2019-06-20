@@ -64,8 +64,8 @@
 			<mvc:exclude-mapping path="/evaluate/**" />
 			<!-- 微信分享 -->
 			<mvc:exclude-mapping path="/wxshare/**" />
-			<!-- 入驻 -->
-			<mvc:exclude-mapping path="/station/**" />
+			<!-- 入驻接口 -->
+			<mvc:exclude-mapping path="/stationInterface/**" />
 			<bean class="com.fec.epreport.util.LoginInterceptor" />
 		</mvc:interceptor>
 	</mvc:interceptors>
