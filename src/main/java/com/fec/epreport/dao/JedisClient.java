@@ -1,6 +1,5 @@
 package com.fec.epreport.dao;
 
-import java.util.List;
 
 /*一般第一次访问的时候先从数据库读取数据，然后将数据写入到缓存，
  * 再次访问同一内容的时候就从缓存中读取，如果缓存中没有则从数据库中读取

@@ -4,7 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fec.epreport.pojo.GoodsJson;
 import com.fec.epreport.pojo.GoodsList;
+import com.fec.epreport.pojo.XfAdvertiseHome;
 import com.fec.epreport.service.InterFaceService;
+import com.fec.epreport.service.ManageService;
+import com.fec.epreport.service.XfmanageService;
 import com.fec.epreport.util.commons.DateUtil;
 import com.fec.epreport.util.commons.PureNetUtil;
 import com.github.pagehelper.PageHelper;
@@ -33,11 +36,14 @@ import javax.servlet.http.HttpServletRequest;
 public class GoodsController {
 	private static Logger logger = LoggerFactory.getLogger(GoodsController.class);
 	@Autowired
-	InterFaceService interFaceService;
-
+	InterFaceService interFaceService;//app接口service
+	@Autowired
+	XfmanageService xfmanageService;//配货管理后台+app接口
+	@Autowired
+	ManageService manageService;
 	@Resource
 	HttpServletRequest request;
-	private  int pageSize;//每页显示多少条
+	private final static int pageSize=10;//每页显示多少条
 
     private final static  int  ONE=1;
 
@@ -95,13 +101,8 @@ public class GoodsController {
     @RequestMapping(value = "/selectGoods.htm", method = {RequestMethod.POST, RequestMethod.GET})
     public Map<String, Object> selectGoods(@RequestParam(defaultValue = "1", required = true, value = "pageNo") int pageNo, @RequestParam(defaultValue = "0", required = true, value = "share_shiro") String share_shiro) {
         logger.info("come in   /goods /selectGoods.htm");
-        System.out.println(share_shiro);
-        System.out.println(pageNo);
-        if (share_shiro.equals("0")) {
-            pageSize = 5;
-        } else {
-            pageSize = 10;
-        }
+        //查询广告
+       XfAdvertiseHome xfAdvertiseHome=xfmanageService.selectGuangGao(pageNo);
         System.out.println("pageNo" + pageNo);
         System.out.println("pageSize" + pageSize);
         Map<String, Object> jsonObject = new HashMap<String, Object>();
@@ -113,15 +114,16 @@ public class GoodsController {
             String sb = PureNetUtil.buffJson(request);
             if ("".equals(sb.toString())) {
                 System.out.println("进判断");
-                // listjsonObject = interFaceService.selectGoods();
                 List<GoodsList> resultList = interFaceService.selectGoods();
+//                resultList.get(0).setId(xfAdvertiseHome.getId());
+//                resultList.get(0).setTitle(xfAdvertiseHome.getTitle());
+//                resultList.get(0).setCompany(xfAdvertiseHome.getCompany());
+//                resultList.get(0).setPic(xfAdvertiseHome.getPic());
                 pageInfo = new PageInfo<GoodsList>(resultList);
-
                 if (share_shiro.equals("0")) {
-                    System.out.println("进来判断了");
+                    System.out.println("setPages为1");
                     pageInfo.setPages(ONE);
                 }
-
             } else {
                 JSONObject wxObject = JSONObject.parseObject(sb);
                 if (wxObject.getString("goods_wight").equals("不限%")){
@@ -175,12 +177,8 @@ public class GoodsController {
                 System.out.println(resultList);
                 //List<GoodsList>resultList = interFaceService.selectGoodsShaiXuan2(wxObject,min_number,max_number);
                 pageInfo = new PageInfo<GoodsList>(resultList);
-               // if(pageSize==5){
-               //    System.out.println("进来判断了");
-                //    pageInfo.setPages(ONE);
-               // }
                 if (share_shiro.equals("0")) {
-                    System.out.println("进来判断了");
+                	System.out.println("setPages为1");
                     pageInfo.setPages(ONE);
                 }
 
@@ -192,6 +190,7 @@ public class GoodsController {
         System.out.println(pageInfo);
         jsonObject.put("data", pageInfo);
         jsonObject.put("code", "200");
+        jsonObject.put("godata",xfAdvertiseHome); 
         logger.info("leave   /goods /selectGoods.htm");
         return jsonObject;
     }

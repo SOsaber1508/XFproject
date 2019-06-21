@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.fec.epreport.dao.XfmanageDao">
+
+	<select id="selectGuangGao" parameterType="int"
+		resultType="com.fec.epreport.pojo.XfAdvertiseHome">
+		SELECT h.id,r.id as designId,h.pic as pic,h.title as title,h.company as company
+		FROM xf_advertise_home h,xf_design_resources r
+		WHERE
+		h.design_id=r.id limit #{pageNo},1;
+	</select>
+
+</mapper>

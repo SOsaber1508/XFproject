@@ -3,7 +3,9 @@ package com.fec.epreport.controller.app;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fec.epreport.pojo.VehicleJson;
+import com.fec.epreport.pojo.XfAdvertiseHome;
 import com.fec.epreport.service.InterFaceService;
+import com.fec.epreport.service.XfmanageService;
 import com.fec.epreport.util.commons.DateUtil;
 import com.fec.epreport.util.commons.PureNetUtil;
 import com.github.pagehelper.PageHelper;
@@ -34,11 +36,13 @@ public class VehicleController {
 
 	@Autowired
 	InterFaceService interFaceService;
-
+	@Autowired
+	XfmanageService xfmanageService;//配货管理后台+app接口
+	
 	@Resource
 	HttpServletRequest request;
 
-	private int pageSize;// 每页显示多少条
+	private final static int pageSize=10;//每页显示多少条
 	private final static  int  ONE=1;
 
 	// 车源详情查询
@@ -100,13 +104,7 @@ public class VehicleController {
 			@RequestParam(defaultValue = "1", required = true, value = "pageNo") int pageNo,
 			@RequestParam(defaultValue = "0", required = true, value = "share_shiro") String share_shiro) {
 		logger.info("come in   /vehicle /selectVehicles.htm");
-		System.out.println(share_shiro);
-		System.out.println(pageNo);
-		if (share_shiro.equals("0")) {
-			pageSize = 5;
-		} else {
-			pageSize = 10;
-		}
+		XfAdvertiseHome xfAdvertiseHome=xfmanageService.selectGuangGao(pageNo);
 		System.out.println("pageNo" + pageNo);
 		Map<String, Object> jsonObject = new HashMap<String, Object>();
 		List<Map<String, Object>> listjsonObject = new ArrayList<Map<String, Object>>();
@@ -127,10 +125,9 @@ public class VehicleController {
 				List<Map<String, Object>> resultList = interFaceService.selectVehicles();
 				pageInfo = new PageInfo<Map<String, Object>>(resultList);
 				if (share_shiro.equals("0")) {
-					System.out.println("进来判断了");
+					System.out.println("setPages为1");
 					pageInfo.setPages(ONE);
 				}
-				System.out.println("pageInfo" + pageInfo);
 			} else {
 				JSONObject wxObject = JSONObject.parseObject(sb);
 				// listjsonObject = interFaceService.selectVehiclesShaiXuan(wxObject);
@@ -147,16 +144,14 @@ public class VehicleController {
 					System.out.println("vehicle_weight:" + wxObject.getString("vehicle_weight"));
 					String string = wxObject.getString("vehicle_weight").substring(3,
 							wxObject.getString("vehicle_weight").length());
-
 					List<String> list = Arrays.asList(string.split("%"));
-					System.out.println(list);
 					for (String s : list) {
 						List<String> list1 = Arrays.asList(s.split("-"));
 						List<String> arrList = new ArrayList<>(list1);
 						if (arrList.size() == 1) {
 							arrList.add("0.66");
 						}
-						System.out.println(arrList);
+						//System.out.println(arrList);
 						Map<String, Object> map = new HashMap<>();
 						map.put("min_number", Double.parseDouble(arrList.get(0)));
 						map.put("max_number", Double.parseDouble(arrList.get(1)));
@@ -164,7 +159,7 @@ public class VehicleController {
 					}
 				}
 //                wxObject.put("goods_number",maps);
-				System.out.println(maps);
+				//System.out.println(maps);
 
 				if (!wxObject.getString("vehicle_length").equals("不限")) {
 					String str = wxObject.getString("vehicle_length").substring(0,
@@ -179,15 +174,15 @@ public class VehicleController {
 							wxObject.getString("vehicle_type").length());
 				}
 				List<String> list1 = Arrays.asList(string1.split("%"));
-				System.out.println(list1);
+				//System.out.println(list1);
 				List<Map<String, Object>> resultList = interFaceService.selectVehiclesShaiXuan(wxObject, maps, list1);
-				System.out.println(resultList);
+				//System.out.println(resultList);
 				pageInfo = new PageInfo<Map<String, Object>>(resultList);
 				if (share_shiro.equals("0")) {
-					System.out.println("进来判断了");
+					System.out.println("setPages为1");
 					pageInfo.setPages(ONE);
 				}
-				System.out.println("pageInfo" + pageInfo);
+				//System.out.println("pageInfo" + pageInfo);
 			}
 
 
@@ -196,9 +191,10 @@ public class VehicleController {
 			e.printStackTrace();
 		}
 		logger.info("leave   / vehicle/selectVehicles.htm");
+		jsonObject.put("code", "200");
 		jsonObject.put("data", pageInfo);
 //        jsonObject.put("data",listjsonObject);
-		jsonObject.put("code", "200");
+        jsonObject.put("godata",xfAdvertiseHome); 
 		return jsonObject;
 	}
 
