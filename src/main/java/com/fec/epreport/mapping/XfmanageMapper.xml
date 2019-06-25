@@ -10,4 +10,9 @@
 		h.design_id=r.id limit #{pageNo},1;
 	</select>
 
+	<select id="selectZhaoShang" parameterType="int"
+		resultType="com.fec.epreport.pojo.XfBusinessCenter">
+		SELECT id,pic,designId FROM  xf_business_center   WHERE  del_flag=0   LIMIT 1
+	</select>
+    
 </mapper>

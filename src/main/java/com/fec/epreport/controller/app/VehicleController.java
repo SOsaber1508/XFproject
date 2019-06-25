@@ -4,10 +4,12 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.fec.epreport.pojo.VehicleJson;
 import com.fec.epreport.pojo.XfAdvertiseHome;
+import com.fec.epreport.pojo.XfBusinessCenter;
 import com.fec.epreport.service.InterFaceService;
 import com.fec.epreport.service.XfmanageService;
 import com.fec.epreport.util.commons.DateUtil;
 import com.fec.epreport.util.commons.PureNetUtil;
+import com.fec.epreport.util.commons.StringUtils;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -104,10 +106,19 @@ public class VehicleController {
 			@RequestParam(defaultValue = "1", required = true, value = "pageNo") int pageNo,
 			@RequestParam(defaultValue = "0", required = true, value = "share_shiro") String share_shiro) {
 		logger.info("come in   /vehicle /selectVehicles.htm");
-		XfAdvertiseHome xfAdvertiseHome=xfmanageService.selectGuangGao(pageNo);
-		System.out.println("pageNo" + pageNo);
 		Map<String, Object> jsonObject = new HashMap<String, Object>();
-		List<Map<String, Object>> listjsonObject = new ArrayList<Map<String, Object>>();
+		// 查询广告
+		XfAdvertiseHome xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo);
+		//没有广告时返回招商
+		if (StringUtils.isBlank(xfAdvertiseHome.getId())) {
+			// 查询招商
+			XfBusinessCenter xfBusinessCenter = xfmanageService.selectZhaoShang();
+			jsonObject.put("godata", xfBusinessCenter);
+		} else {
+			jsonObject.put("godata", xfAdvertiseHome);
+		}
+		System.out.println("pageNo" + pageNo);
+		//List<Map<String, Object>> listjsonObject = new ArrayList<Map<String, Object>>();
 		PageInfo<Map<String, Object>> pageInfo = new PageInfo<>();
 		try {
 			PageHelper.startPage(pageNo, pageSize);
@@ -125,7 +136,7 @@ public class VehicleController {
 				List<Map<String, Object>> resultList = interFaceService.selectVehicles();
 				pageInfo = new PageInfo<Map<String, Object>>(resultList);
 				if (share_shiro.equals("0")) {
-					System.out.println("setPages为1");
+				//	System.out.println("setPages为1");
 					pageInfo.setPages(ONE);
 				}
 			} else {
@@ -194,7 +205,6 @@ public class VehicleController {
 		jsonObject.put("code", "200");
 		jsonObject.put("data", pageInfo);
 //        jsonObject.put("data",listjsonObject);
-        jsonObject.put("godata",xfAdvertiseHome); 
 		return jsonObject;
 	}
 
