@@ -100,6 +100,7 @@ public class VehicleController {
 	}
 
 	// 车源列表查询
+	@SuppressWarnings("null")
 	@ResponseBody
 	@RequestMapping("/selectVehicles.htm")
 	public Map<String, Object> selectVehicles(
@@ -110,7 +111,7 @@ public class VehicleController {
 		// 查询广告
 		XfAdvertiseHome xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo);
 		//没有广告时返回招商
-		if (StringUtils.isBlank(xfAdvertiseHome.getId())) {
+		if (xfAdvertiseHome ==null && StringUtils.isBlank(xfAdvertiseHome.getId())) {
 			// 查询招商
 			XfBusinessCenter xfBusinessCenter = xfmanageService.selectZhaoShang();
 			jsonObject.put("godata", xfBusinessCenter);

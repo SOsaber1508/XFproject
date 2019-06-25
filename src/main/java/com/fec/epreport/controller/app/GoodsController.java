@@ -101,6 +101,7 @@ public class GoodsController {
 	}
 
 	// 货源列表查询 http://2q4v154598.zicp.vip/epreport/goods/selectGoods.htm
+	@SuppressWarnings("null")
 	@ResponseBody
 	@RequestMapping(value = "/selectGoods.htm", method = { RequestMethod.POST, RequestMethod.GET })
 	public Map<String, Object> selectGoods(
@@ -111,7 +112,7 @@ public class GoodsController {
 		// 查询广告
 		XfAdvertiseHome xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo);
 		//没有广告时返回招商
-		if (StringUtils.isBlank(xfAdvertiseHome.getId())) {
+		if (xfAdvertiseHome ==null && StringUtils.isBlank(xfAdvertiseHome.getId())) {
 			// 查询招商
 			XfBusinessCenter xfBusinessCenter = xfmanageService.selectZhaoShang();
 			jsonObject.put("godata", xfBusinessCenter);
