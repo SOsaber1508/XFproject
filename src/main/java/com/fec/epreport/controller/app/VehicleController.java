@@ -39,13 +39,13 @@ public class VehicleController {
 	@Autowired
 	InterFaceService interFaceService;
 	@Autowired
-	XfmanageService xfmanageService;//配货管理后台+app接口
-	
+	XfmanageService xfmanageService;// 配货管理后台+app接口
+
 	@Resource
 	HttpServletRequest request;
 
-	private final static int pageSize=10;//每页显示多少条
-	private final static  int  ONE=1;
+	private final static int pageSize = 10;// 每页显示多少条
+	private final static int ONE = 1;
 
 	// 车源详情查询
 	@ResponseBody
@@ -105,24 +105,15 @@ public class VehicleController {
 	@RequestMapping("/selectVehicles.htm")
 	public Map<String, Object> selectVehicles(
 			@RequestParam(defaultValue = "1", required = true, value = "pageNo") int pageNo,
-			@RequestParam(defaultValue = "0", required = true, value = "share_shiro") String share_shiro) {
+			@RequestParam(defaultValue = "0", required = true, value = "share_shiro") String share_shiro,
+			@RequestParam(required = false, value = "province") String province,
+			@RequestParam(required = false, value = "city") String city) {
 		logger.info("come in   /vehicle /selectVehicles.htm");
 		Map<String, Object> jsonObject = new HashMap<String, Object>();
-		// 查询广告
-		XfAdvertiseHome xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo);
-		//没有广告时返回招商
-		if (xfAdvertiseHome ==null && StringUtils.isBlank(xfAdvertiseHome.getId())) {
-			// 查询招商
-			XfBusinessCenter xfBusinessCenter = xfmanageService.selectZhaoShang();
-			jsonObject.put("godata", xfBusinessCenter);
-		} else {
-			jsonObject.put("godata", xfAdvertiseHome);
-		}
 		System.out.println("pageNo" + pageNo);
-		//List<Map<String, Object>> listjsonObject = new ArrayList<Map<String, Object>>();
 		PageInfo<Map<String, Object>> pageInfo = new PageInfo<>();
+		XfAdvertiseHome xfAdvertiseHome = null;
 		try {
-			PageHelper.startPage(pageNo, pageSize);
 //            String sb = "{" +
 //                    "    \"desc_time\": \"1\"," +
 //                    "    \"vehicle_start_area\": \"济宁市\"," +
@@ -134,10 +125,12 @@ public class VehicleController {
 			String sb = PureNetUtil.buffJson(request);
 			if ("".equals(sb.toString())) {
 				// listjsonObject = interFaceService.selectVehicles();
+				guangShang(pageNo, province, city, jsonObject, xfAdvertiseHome);
+				PageHelper.startPage(pageNo, pageSize);
 				List<Map<String, Object>> resultList = interFaceService.selectVehicles();
 				pageInfo = new PageInfo<Map<String, Object>>(resultList);
 				if (share_shiro.equals("0")) {
-				//	System.out.println("setPages为1");
+					// System.out.println("setPages为1");
 					pageInfo.setPages(ONE);
 				}
 			} else {
@@ -153,7 +146,6 @@ public class VehicleController {
 
 				if ((!wxObject.getString("vehicle_weight").equals("不限"))
 						&& (!wxObject.getString("vehicle_weight").equals("不限%"))) {
-					System.out.println("vehicle_weight:" + wxObject.getString("vehicle_weight"));
 					String string = wxObject.getString("vehicle_weight").substring(3,
 							wxObject.getString("vehicle_weight").length());
 					List<String> list = Arrays.asList(string.split("%"));
@@ -163,7 +155,7 @@ public class VehicleController {
 						if (arrList.size() == 1) {
 							arrList.add("0.66");
 						}
-						//System.out.println(arrList);
+						// System.out.println(arrList);
 						Map<String, Object> map = new HashMap<>();
 						map.put("min_number", Double.parseDouble(arrList.get(0)));
 						map.put("max_number", Double.parseDouble(arrList.get(1)));
@@ -171,13 +163,12 @@ public class VehicleController {
 					}
 				}
 //                wxObject.put("goods_number",maps);
-				//System.out.println(maps);
+				// System.out.println(maps);
 
 				if (!wxObject.getString("vehicle_length").equals("不限")) {
 					String str = wxObject.getString("vehicle_length").substring(0,
 							wxObject.getString("vehicle_length").length() - 1);
 					wxObject.put("vehicle_length", str);
-					System.out.println(str);
 				}
 				String string1 = "不限";
 				if ((!wxObject.getString("vehicle_type").equals("不限"))
@@ -185,18 +176,18 @@ public class VehicleController {
 					string1 = wxObject.getString("vehicle_type").substring(3,
 							wxObject.getString("vehicle_type").length());
 				}
+				//广告或招商
+				guangShang(pageNo, wxObject.getString("province"), wxObject.getString("city"), jsonObject, xfAdvertiseHome);
+				PageHelper.startPage(pageNo, pageSize);
 				List<String> list1 = Arrays.asList(string1.split("%"));
-				//System.out.println(list1);
 				List<Map<String, Object>> resultList = interFaceService.selectVehiclesShaiXuan(wxObject, maps, list1);
-				//System.out.println(resultList);
 				pageInfo = new PageInfo<Map<String, Object>>(resultList);
 				if (share_shiro.equals("0")) {
 					System.out.println("setPages为1");
 					pageInfo.setPages(ONE);
 				}
-				//System.out.println("pageInfo" + pageInfo);
+				// System.out.println("pageInfo" + pageInfo);
 			}
-
 
 		} catch (Exception e) {
 			logger.error("错误提示(selectVehicles)：" + e.getLocalizedMessage(), e);
@@ -209,6 +200,22 @@ public class VehicleController {
 		return jsonObject;
 	}
 
+	private void guangShang(int pageNo, String province, String city, Map<String, Object> jsonObject,
+			XfAdvertiseHome xfAdvertiseHome) {
+		if (!StringUtils.isBlank(province) && !StringUtils.isBlank(city)) {
+			// 查询广告
+			xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo, province, city);
+		}
+		// 没有广告时返回招商
+		if (xfAdvertiseHome == null ||  StringUtils.isBlank(xfAdvertiseHome.getId())) {
+			// 查询招商
+			XfBusinessCenter xfBusinessCenter = xfmanageService.selectZhaoShang();
+			jsonObject.put("godata", xfBusinessCenter);
+		} else {
+			jsonObject.put("godata", xfAdvertiseHome);
+		}
+	}
+
 	// 发布车源
 	@ResponseBody
 	@RequestMapping("/releaseCar.htm")
@@ -217,8 +224,17 @@ public class VehicleController {
 		Map<String, Object> jsonObject = new HashMap<String, Object>();
 		try {
 
-			//String sb = "{\"vehicle_contactinformation\": \"1366666666\",\"vehicle_contacts\": \"张三\",\"vehicle_detaileddescription\": \"哈哈\",\"vehicle_end__address\": \"人民医院\",\"vehicle_end__area\": \"长治县\",\"vehicle_end__city\": \"长治市\",\"vehicle_end_province\": \"山西省\",\"vehicle_length\": \"不限\",\"vehicle_number\": \"22\",\"vehicle_number_mi\": \"666\",\"vehicle_releasetime\": \"\",\"vehicle_start_address\": \"天安门\",\"vehicle_start_area\": \"嘉祥县\",\"vehicle_start_city\": \"济宁市\",\"vehicle_start_province\": \"山东省\",\"vehicle_type\": \"不限\",\"vehicle_wx_id\":\"o_xR71EEsiiZ7zmG2XXqd_u8FUbE\" }";
-            String sb = PureNetUtil.buffJson(request);
+			// String sb = "{\"vehicle_contactinformation\":
+			// \"1366666666\",\"vehicle_contacts\": \"张三\",\"vehicle_detaileddescription\":
+			// \"哈哈\",\"vehicle_end__address\": \"人民医院\",\"vehicle_end__area\":
+			// \"长治县\",\"vehicle_end__city\": \"长治市\",\"vehicle_end_province\":
+			// \"山西省\",\"vehicle_length\": \"不限\",\"vehicle_number\":
+			// \"22\",\"vehicle_number_mi\": \"666\",\"vehicle_releasetime\":
+			// \"\",\"vehicle_start_address\": \"天安门\",\"vehicle_start_area\":
+			// \"嘉祥县\",\"vehicle_start_city\": \"济宁市\",\"vehicle_start_province\":
+			// \"山东省\",\"vehicle_type\":
+			// \"不限\",\"vehicle_wx_id\":\"o_xR71EEsiiZ7zmG2XXqd_u8FUbE\" }";
+			String sb = PureNetUtil.buffJson(request);
 			if ("".equals(sb.toString())) {
 				jsonObject.put("code", "201");
 				return jsonObject;

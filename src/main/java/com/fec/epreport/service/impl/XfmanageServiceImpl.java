@@ -19,10 +19,10 @@ public class XfmanageServiceImpl implements XfmanageService {
 	XfmanageDao xfmanageDao;
 
 	@Override
-	public XfAdvertiseHome selectGuangGao(int pageNo) {
+	public XfAdvertiseHome selectGuangGao(int pageNo, String province, String city) {
 		XfAdvertiseHome xfAdvertiseHome = null;
 		try {
-			xfAdvertiseHome = xfmanageDao.selectGuangGao(pageNo-1);
+			xfAdvertiseHome = xfmanageDao.selectGuangGao(pageNo - 1,province,city);
 		} catch (DataAccessException d) {
 			log.info("查询广告接口错误：" + d.getLocalizedMessage());
 		}

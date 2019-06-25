@@ -1,13 +1,17 @@
 package com.fec.epreport.dao;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.fec.epreport.pojo.XfAdvertiseHome;
 import com.fec.epreport.pojo.XfBusinessCenter;
 
 public interface XfmanageDao {
 
-	//查询广告
-	public XfAdvertiseHome selectGuangGao(int pageNo);
-	//查询招商
+	// 查询广告
+	public XfAdvertiseHome selectGuangGao(@Param("pageNo") int pageNo, @Param("province") String province,
+			@Param("city") String city);
+
+	// 查询招商
 	public XfBusinessCenter selectZhaoShang();
 
 }

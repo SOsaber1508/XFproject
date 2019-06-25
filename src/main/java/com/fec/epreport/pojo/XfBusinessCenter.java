@@ -18,7 +18,26 @@ public class XfBusinessCenter implements Serializable {
 	private String pic; // 招商图片
 	private String designId; // 招商关联素材id
 	private Integer delFlag; // 删除标志位0未删除1已删除
+	//private String title;
+	//private String company;
 	private XfDesignResources design;// 关联的素材
+
+	
+//	public String getTitle() {
+//		return title;
+//	}
+//
+//	public void setTitle(String title) {
+//		this.title = title;
+//	}
+//
+//	public String getCompany() {
+//		return company;
+//	}
+//
+//	public void setCompany(String company) {
+//		this.company = company;
+//	}
 
 	public String getId() {
 		return id;

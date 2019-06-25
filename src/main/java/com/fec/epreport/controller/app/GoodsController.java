@@ -106,28 +106,33 @@ public class GoodsController {
 	@RequestMapping(value = "/selectGoods.htm", method = { RequestMethod.POST, RequestMethod.GET })
 	public Map<String, Object> selectGoods(
 			@RequestParam(defaultValue = "1", required = true, value = "pageNo") int pageNo,
-			@RequestParam(defaultValue = "0", required = true, value = "share_shiro") String share_shiro) {
+			@RequestParam(defaultValue = "0", required = false, value = "share_shiro") String share_shiro,
+			@RequestParam(required = false, value = "province") String province,
+			@RequestParam(required = false, value = "city") String city) {
 		logger.info("come in   /goods /selectGoods.htm");
-		Map<String, Object> jsonObject = new HashMap<String, Object>();
-		// 查询广告
-		XfAdvertiseHome xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo);
-		//没有广告时返回招商
-		if (xfAdvertiseHome ==null && StringUtils.isBlank(xfAdvertiseHome.getId())) {
-			// 查询招商
-			XfBusinessCenter xfBusinessCenter = xfmanageService.selectZhaoShang();
-			jsonObject.put("godata", xfBusinessCenter);
-		} else {
-			jsonObject.put("godata", xfAdvertiseHome);
-		}
 		System.out.println("pageNo" + pageNo);
-		System.out.println("pageSize" + pageSize);
+		Map<String, Object> jsonObject = new HashMap<String, Object>();
 		PageInfo<GoodsList> pageInfo = new PageInfo<>();
+		XfAdvertiseHome xfAdvertiseHome = null;
 		try {
-			PageHelper.startPage(pageNo, pageSize);
-			// 拦截写入新的查询 暂定10条每页查
-//            String sb="{\"desc_time\":\"1\",\"goods_end_area\":\"不限\",\"goods_length\":\"不限\",\"goods_loadingtime\":\"不限\",\"goods_start_area\":\"济宁市\",\"goods_type\":\"其他\",\"goods_vehicletype\":\"不限\",\"goods_vetype\":\"不限\",\"goods_wight\":\"不限\"}";
+//			String sb="{" + 
+//					"    \"city\": \"济宁市\"," + 
+//					"    \"desc_time\": \"0\"," + 
+//					"    \"goods_end_area\": \"不限\"," + 
+//					"    \"goods_length\": \"不限\"," + 
+//					"    \"goods_loadingtime\": \"不限\"," + 
+//					"    \"goods_start_area\": \"济宁市\"," + 
+//					"    \"goods_type\": \"其他\"," + 
+//					"    \"goods_vehicletype\": \"不限\"," + 
+//					"    \"goods_vetype\": \"不限\"," + 
+//					"    \"goods_wight\": \"不限\"," + 
+//					"    \"province\": \"山东省\"" + 
+//					"}";
 			String sb = PureNetUtil.buffJson(request);
 			if ("".equals(sb.toString())) {
+				//广告或招商
+				guangShang(pageNo, province, city, jsonObject, xfAdvertiseHome);
+				PageHelper.startPage(pageNo, pageSize);
 				// System.out.println("进判断");
 				List<GoodsList> resultList = interFaceService.selectGoods();
 				pageInfo = new PageInfo<GoodsList>(resultList);
@@ -153,7 +158,6 @@ public class GoodsController {
 					String string = wxObject.getString("goods_wight").substring(3,
 							wxObject.getString("goods_wight").length());
 					List<String> list = Arrays.asList(string.split("%"));
-					System.out.println(list);
 					for (String s : list) {
 						List<String> list1 = Arrays.asList(s.split("-"));
 						List<String> arrList = new ArrayList<>(list1);
@@ -168,7 +172,6 @@ public class GoodsController {
 					}
 				}
 //                wxObject.put("goods_number",maps);
-				// System.out.println(maps);
 				String string = "不限";
 				if ((!wxObject.getString("goods_loadingtime").equals("不限"))
 						&& (!wxObject.getString("goods_loadingtime").equals("不限%"))) {
@@ -176,12 +179,10 @@ public class GoodsController {
 							wxObject.getString("goods_loadingtime").length());
 				}
 				List<String> list1 = Arrays.asList(string.split("%"));
-				System.out.println(list1);
 				if (!wxObject.getString("goods_length").equals("不限")) {
 					String str = wxObject.getString("goods_length").substring(0,
 							wxObject.getString("goods_length").length() - 1);
 					wxObject.put("goods_length", str);
-					// System.out.println(str);
 				}
 				String string1 = "不限";
 				if ((!wxObject.getString("goods_vetype").equals("不限"))
@@ -189,8 +190,10 @@ public class GoodsController {
 					string1 = wxObject.getString("goods_vetype").substring(3,
 							wxObject.getString("goods_vetype").length());
 				}
+				//广告或招商
+				guangShang(pageNo, wxObject.getString("province"), wxObject.getString("city"), jsonObject, xfAdvertiseHome);
+				PageHelper.startPage(pageNo, pageSize);
 				List<String> list2 = Arrays.asList(string1.split("%"));
-				// System.out.println(list2);
 				List<GoodsList> resultList = interFaceService.selectGoodsShaiXuan(wxObject, maps, list1, list2);
 				// System.out.println(resultList);
 				// List<GoodsList>resultList =
@@ -206,11 +209,26 @@ public class GoodsController {
 			logger.error("错误提示(selectGoods)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
 		}
-		System.out.println(pageInfo);
 		jsonObject.put("data", pageInfo);
 		jsonObject.put("code", "200");
 		logger.info("leave   /goods /selectGoods.htm");
 		return jsonObject;
+	}
+
+	private void guangShang(int pageNo, String province, String city, Map<String, Object> jsonObject,
+			XfAdvertiseHome xfAdvertiseHome) {
+		if (!StringUtils.isBlank(province) && !StringUtils.isBlank(city)) {
+			// 查询广告
+			xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo, province, city);
+		}
+		// 没有广告时返回招商
+		if (xfAdvertiseHome == null || StringUtils.isBlank(xfAdvertiseHome.getId())) {
+			// 查询招商
+			XfBusinessCenter xfBusinessCenter = xfmanageService.selectZhaoShang();
+			jsonObject.put("godata", xfBusinessCenter);
+		} else {
+			jsonObject.put("godata", xfAdvertiseHome);
+		}
 	}
 
 	// 发布货源

@@ -2,17 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.fec.epreport.dao.XfmanageDao">
 
-	<select id="selectGuangGao" parameterType="int"
-		resultType="com.fec.epreport.pojo.XfAdvertiseHome">
-		SELECT h.id,r.id as designId,h.pic as pic,h.title as title,h.company as company
-		FROM xf_advertise_home h,xf_design_resources r
-		WHERE
-		h.design_id=r.id limit #{pageNo},1;
+	<!-- 查询广告 -->
+	<select id="selectGuangGao" resultType="com.fec.epreport.pojo.XfAdvertiseHome">
+	SELECT
+		h.id,
+		r.id AS designId,
+		h.pic AS pic,
+		h.title AS title,
+		h.company AS
+		company
+	FROM
+		xf_advertise_home h,
+		xf_design_resources r,
+		js_sys_user u
+	WHERE
+		h.design_id = r.id
+		AND u.user_code = h.create_id
+		and u.province=#{province}
+		and u.city=#{city}
+	ORDER BY h.seq desc
+	LIMIT #{pageNo},1
 	</select>
 
-	<select id="selectZhaoShang" parameterType="int"
-		resultType="com.fec.epreport.pojo.XfBusinessCenter">
-		SELECT id,pic,designId FROM  xf_business_center   WHERE  del_flag=0   LIMIT 1
+	<!-- 查询招商 -->
+	<select id="selectZhaoShang" resultType="com.fec.epreport.pojo.XfBusinessCenter">
+		SELECT id,pic,design_id as designId FROM xf_business_center WHERE
+		del_flag=0 
 	</select>
-    
+
 </mapper>
