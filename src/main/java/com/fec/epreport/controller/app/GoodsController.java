@@ -117,12 +117,12 @@ public class GoodsController {
 		PageInfo<GoodsList> pageInfo = new PageInfo<>();
 		XfAdvertiseHome xfAdvertiseHome =new XfAdvertiseHome();
 		try {
-			String sb = "{" + "    \"city\": \"济宁市\"," + "    \"desc_time\": \"0\"," + "    \"goods_end_area\": \"不限\","
-					+ "    \"goods_length\": \"不限\"," + "    \"goods_loadingtime\": \"不限\","
-					+ "    \"goods_start_area\": \"济宁市\"," + "    \"goods_type\": \"其他\","
-					+ "    \"goods_vehicletype\": \"不限\"," + "    \"goods_vetype\": \"不限\","
-					+ "    \"goods_wight\": \"不限\"," + "    \"province\": \"山东省\"" + "}";
-			 //String sb = PureNetUtil.buffJson(request);
+//			String sb = "{" + "    \"city\": \"济宁市\"," + "    \"desc_time\": \"0\"," + "    \"goods_end_area\": \"不限\","
+//					+ "    \"goods_length\": \"不限\"," + "    \"goods_loadingtime\": \"不限\","
+//					+ "    \"goods_start_area\": \"济宁市\"," + "    \"goods_type\": \"其他\","
+//					+ "    \"goods_vehicletype\": \"不限\"," + "    \"goods_vetype\": \"不限\","
+//					+ "    \"goods_wight\": \"不限\"," + "    \"province\": \"山东省\"" + "}";
+			 String sb = PureNetUtil.buffJson(request);
 			xfAdvertiseHome.setTitle("zcy");
 			if ("".equals(sb.toString())) {
 				// 广告或招商
