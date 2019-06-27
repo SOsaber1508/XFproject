@@ -9,7 +9,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>老司机动画网站访问出错500页面模板</title>
+    <title>配货大厅访问错误500</title>
     <link rel="stylesheet" type="text/css" href="../css/my/css/500.css" />
 </head>
 

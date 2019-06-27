@@ -45,7 +45,7 @@ public class VehicleController {
 	@Resource
 	HttpServletRequest request;
 
-	private final static int pageSize = 10;// 每页显示多少条
+	private final static int pageSize = 5;// 每页显示多少条
 	private final static int ONE = 1;
 
 	// 车源详情查询

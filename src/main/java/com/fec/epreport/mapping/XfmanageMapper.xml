@@ -3,19 +3,15 @@
 <mapper namespace="com.fec.epreport.dao.XfmanageDao">
 
 	<sql id="Base_Column_List">
-		FROM
-		xf_advertise_home h,
-		xf_design_resources r,
-		js_sys_user u
-		WHERE
-		h.design_id = r.id
-		AND u.user_code = h.create_id
-		and
-		u.province=#{province}
-		and u.city=#{city}
+		FROM xf_advertise_home h
+	left JOIN
+		xf_design_resources r on h.design_id = r.id
+	left JOIN
+		js_sys_user u on u.user_code = h.create_id
+	where
+		u.province=#{province} and u.city=#{city}
 		ORDER BY h.seq desc
-		LIMIT
-		#{pageNo},1
+		LIMIT #{pageNo},1
 	</sql>
 	<!-- 查询当前是否有广告 -->
 	<select id="selectCount" resultType="int">

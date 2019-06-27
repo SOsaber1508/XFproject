@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,7 +47,7 @@ public class GoodsController {
 	ManageService manageService;
 	@Resource
 	HttpServletRequest request;
-	private final static int pageSize = 10;// 每页显示多少条
+	private final static int pageSize = 5;// 每页显示多少条
 
 	private final static int ONE = 1;
 
@@ -102,7 +103,7 @@ public class GoodsController {
 	}
 
 	// 货源列表查询 http://2q4v154598.zicp.vip/epreport/goods/selectGoods.htm
-	@SuppressWarnings("null")
+	@SuppressWarnings({ "null", "unchecked" })
 	@ResponseBody
 	@RequestMapping(value = "/selectGoods.htm", method = { RequestMethod.POST, RequestMethod.GET })
 	public Map<String, Object> selectGoods(
@@ -114,14 +115,15 @@ public class GoodsController {
 		System.out.println("pageNo" + pageNo);
 		Map<String, Object> jsonObject = new HashMap<String, Object>();
 		PageInfo<GoodsList> pageInfo = new PageInfo<>();
-		XfAdvertiseHome xfAdvertiseHome = null;
+		XfAdvertiseHome xfAdvertiseHome =new XfAdvertiseHome();
 		try {
-//			String sb = "{" + "    \"city\": \"济宁市\"," + "    \"desc_time\": \"0\"," + "    \"goods_end_area\": \"不限\","
-//					+ "    \"goods_length\": \"不限\"," + "    \"goods_loadingtime\": \"不限\","
-//					+ "    \"goods_start_area\": \"济宁市\"," + "    \"goods_type\": \"其他\","
-//					+ "    \"goods_vehicletype\": \"不限\"," + "    \"goods_vetype\": \"不限\","
-//					+ "    \"goods_wight\": \"不限\"," + "    \"province\": \"山东省\"" + "}";
-			 String sb = PureNetUtil.buffJson(request);
+			String sb = "{" + "    \"city\": \"济宁市\"," + "    \"desc_time\": \"0\"," + "    \"goods_end_area\": \"不限\","
+					+ "    \"goods_length\": \"不限\"," + "    \"goods_loadingtime\": \"不限\","
+					+ "    \"goods_start_area\": \"济宁市\"," + "    \"goods_type\": \"其他\","
+					+ "    \"goods_vehicletype\": \"不限\"," + "    \"goods_vetype\": \"不限\","
+					+ "    \"goods_wight\": \"不限\"," + "    \"province\": \"山东省\"" + "}";
+			 //String sb = PureNetUtil.buffJson(request);
+			xfAdvertiseHome.setTitle("zcy");
 			if ("".equals(sb.toString())) {
 				// 广告或招商
 				guangShang(pageNo, province, city, jsonObject, xfAdvertiseHome);
@@ -131,6 +133,7 @@ public class GoodsController {
 				if (share_shiro.equals("0")) {
 					// System.out.println("setPages为1");
 					pageInfo.setPages(ONE);
+					//pageInfo.getList().addAll((Collection<? extends GoodsList>) xfAdvertiseHome);
 				}
 			} else {
 				JSONObject wxObject = JSONObject.parseObject(sb);
@@ -233,6 +236,7 @@ public class GoodsController {
 			jsonObject.put("godata", xfAdvertiseHome);
 		}
 	}
+
 	// 发布货源
 	@ResponseBody
 	@RequestMapping("/releaseSource.htm")
@@ -281,7 +285,7 @@ public class GoodsController {
 				jsonObject.put("code", "203");
 				return jsonObject;
 			}
-			//System.out.println("i" + i);
+			// System.out.println("i" + i);
 		} catch (Exception e) {
 			logger.error("错误提示(releaseSource)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();
