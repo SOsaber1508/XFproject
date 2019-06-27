@@ -14,8 +14,8 @@ public class XfAdvertiseHome implements Serializable {
 	private Integer auditStatus; // 审核状态0未审核1已通过2未通过
 	private Long seq; // 排序字段数值越大越往前
 	private Integer delFlag; // 删除标志位0未删除1已删除
-	private String province; //省
-	private String city;//市
+	private String province; // 省
+	private String city;// 市
 
 	public String getId() {
 		return id;
@@ -105,13 +105,6 @@ public class XfAdvertiseHome implements Serializable {
 		this.city = city;
 	}
 
-	@Override
-	public String toString() {
-		return "XfAdvertiseHome [id=" + id + ", title=" + title + ", company=" + company + ", pic=" + pic
-				+ ", designId=" + designId + ", createTime=" + createTime + ", auditStatus=" + auditStatus + ", seq="
-				+ seq + ", delFlag=" + delFlag + ", province=" + province + ", city=" + city + "]";
-	}
-
 	public XfAdvertiseHome() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -131,6 +124,13 @@ public class XfAdvertiseHome implements Serializable {
 		this.delFlag = delFlag;
 		this.province = province;
 		this.city = city;
+	}
+
+	@Override
+	public String toString() {
+		return "XfAdvertiseHome [id=" + id + ", title=" + title + ", company=" + company + ", pic=" + pic
+				+ ", designId=" + designId + ", createTime=" + createTime + ", auditStatus=" + auditStatus + ", seq="
+				+ seq + ", delFlag=" + delFlag + ", province=" + province + ", city=" + city + "]";
 	}
 
 }

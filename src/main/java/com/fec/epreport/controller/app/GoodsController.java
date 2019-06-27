@@ -29,6 +29,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -109,31 +110,22 @@ public class GoodsController {
 			@RequestParam(defaultValue = "0", required = false, value = "share_shiro") String share_shiro,
 			@RequestParam(required = false, value = "province") String province,
 			@RequestParam(required = false, value = "city") String city) {
-		logger.info("come in   /goods /selectGoods.htm");
+		logger.info("come in /goods/selectGoods.htm");
 		System.out.println("pageNo" + pageNo);
 		Map<String, Object> jsonObject = new HashMap<String, Object>();
 		PageInfo<GoodsList> pageInfo = new PageInfo<>();
 		XfAdvertiseHome xfAdvertiseHome = null;
 		try {
-//			String sb="{" + 
-//					"    \"city\": \"济宁市\"," + 
-//					"    \"desc_time\": \"0\"," + 
-//					"    \"goods_end_area\": \"不限\"," + 
-//					"    \"goods_length\": \"不限\"," + 
-//					"    \"goods_loadingtime\": \"不限\"," + 
-//					"    \"goods_start_area\": \"济宁市\"," + 
-//					"    \"goods_type\": \"其他\"," + 
-//					"    \"goods_vehicletype\": \"不限\"," + 
-//					"    \"goods_vetype\": \"不限\"," + 
-//					"    \"goods_wight\": \"不限\"," + 
-//					"    \"province\": \"山东省\"" + 
-//					"}";
-			String sb = PureNetUtil.buffJson(request);
+//			String sb = "{" + "    \"city\": \"济宁市\"," + "    \"desc_time\": \"0\"," + "    \"goods_end_area\": \"不限\","
+//					+ "    \"goods_length\": \"不限\"," + "    \"goods_loadingtime\": \"不限\","
+//					+ "    \"goods_start_area\": \"济宁市\"," + "    \"goods_type\": \"其他\","
+//					+ "    \"goods_vehicletype\": \"不限\"," + "    \"goods_vetype\": \"不限\","
+//					+ "    \"goods_wight\": \"不限\"," + "    \"province\": \"山东省\"" + "}";
+			 String sb = PureNetUtil.buffJson(request);
 			if ("".equals(sb.toString())) {
-				//广告或招商
+				// 广告或招商
 				guangShang(pageNo, province, city, jsonObject, xfAdvertiseHome);
 				PageHelper.startPage(pageNo, pageSize);
-				// System.out.println("进判断");
 				List<GoodsList> resultList = interFaceService.selectGoods();
 				pageInfo = new PageInfo<GoodsList>(resultList);
 				if (share_shiro.equals("0")) {
@@ -190,8 +182,9 @@ public class GoodsController {
 					string1 = wxObject.getString("goods_vetype").substring(3,
 							wxObject.getString("goods_vetype").length());
 				}
-				//广告或招商
-				guangShang(pageNo, wxObject.getString("province"), wxObject.getString("city"), jsonObject, xfAdvertiseHome);
+				// 广告或招商
+				guangShang(pageNo, wxObject.getString("province"), wxObject.getString("city"), jsonObject,
+						xfAdvertiseHome);
 				PageHelper.startPage(pageNo, pageSize);
 				List<String> list2 = Arrays.asList(string1.split("%"));
 				List<GoodsList> resultList = interFaceService.selectGoodsShaiXuan(wxObject, maps, list1, list2);
@@ -217,9 +210,19 @@ public class GoodsController {
 
 	private void guangShang(int pageNo, String province, String city, Map<String, Object> jsonObject,
 			XfAdvertiseHome xfAdvertiseHome) {
+		Random random = new Random();
+		int countSize = 0;
+		// 查询广告第一条 始终要是自己公司的
 		if (!StringUtils.isBlank(province) && !StringUtils.isBlank(city)) {
 			// 查询广告
 			xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo, province, city);
+			if (pageNo > 1 && xfAdvertiseHome == null) {
+				int count = xfmanageService.selectCount(ONE, province, city);
+				if (count > 0) {
+					countSize = random.nextInt(count) + 1;
+				}
+				xfAdvertiseHome = xfmanageService.selectGuangGao(countSize, province, city);
+			}
 		}
 		// 没有广告时返回招商
 		if (xfAdvertiseHome == null || StringUtils.isBlank(xfAdvertiseHome.getId())) {
@@ -230,7 +233,6 @@ public class GoodsController {
 			jsonObject.put("godata", xfAdvertiseHome);
 		}
 	}
-
 	// 发布货源
 	@ResponseBody
 	@RequestMapping("/releaseSource.htm")
@@ -251,7 +253,6 @@ public class GoodsController {
 //					+ "    \"goods_type\": \"重货\"," + "    \"goods_vehicletype\": \"整车\","
 //					+ "    \"goods_vetype\": \"不限 危险品 \"," + "    \"goods_wx_id\": \"o_xR71EEsiiZ7zmG2XXqd_u8FUbE\""
 //					+ "}";
-
 			String sb = PureNetUtil.buffJson(request);
 			if ("".equals(sb.toString())) {
 				jsonObject.put("code", "201");
@@ -280,7 +281,7 @@ public class GoodsController {
 				jsonObject.put("code", "203");
 				return jsonObject;
 			}
-			System.out.println("i" + i);
+			//System.out.println("i" + i);
 		} catch (Exception e) {
 			logger.error("错误提示(releaseSource)：" + e.getLocalizedMessage(), e);
 			e.printStackTrace();

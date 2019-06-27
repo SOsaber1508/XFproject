@@ -14,4 +14,7 @@ public interface XfmanageDao {
 	// 查询招商
 	public XfBusinessCenter selectZhaoShang();
 
+	// 查询广告条数
+	public int selectCount(@Param("pageNo") int pageNo, @Param("province") String province, @Param("city") String city);
+
 }

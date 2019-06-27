@@ -2,32 +2,44 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.fec.epreport.dao.XfmanageDao">
 
+	<sql id="Base_Column_List">
+		FROM
+		xf_advertise_home h,
+		xf_design_resources r,
+		js_sys_user u
+		WHERE
+		h.design_id = r.id
+		AND u.user_code = h.create_id
+		and
+		u.province=#{province}
+		and u.city=#{city}
+		ORDER BY h.seq desc
+		LIMIT
+		#{pageNo},1
+	</sql>
+	<!-- 查询当前是否有广告 -->
+	<select id="selectCount" resultType="int">
+		SELECT count(*)
+		<include refid="Base_Column_List" />
+	</select>
 	<!-- 查询广告 -->
-	<select id="selectGuangGao" resultType="com.fec.epreport.pojo.XfAdvertiseHome">
-	SELECT
+	<select id="selectGuangGao"
+		resultType="com.fec.epreport.pojo.XfAdvertiseHome">
+		SELECT
 		h.id,
 		r.id AS designId,
 		h.pic AS pic,
 		h.title AS title,
 		h.company AS
 		company
-	FROM
-		xf_advertise_home h,
-		xf_design_resources r,
-		js_sys_user u
-	WHERE
-		h.design_id = r.id
-		AND u.user_code = h.create_id
-		and u.province=#{province}
-		and u.city=#{city}
-	ORDER BY h.seq desc
-	LIMIT #{pageNo},1
+		<include refid="Base_Column_List" />
 	</select>
-
 	<!-- 查询招商 -->
-	<select id="selectZhaoShang" resultType="com.fec.epreport.pojo.XfBusinessCenter">
-		SELECT id,pic,design_id as designId FROM xf_business_center WHERE
-		del_flag=0 
+	<select id="selectZhaoShang"
+		resultType="com.fec.epreport.pojo.XfBusinessCenter">
+		SELECT id,pic,design_id as designId FROM xf_business_center
+		WHERE
+		del_flag=0
 	</select>
 
 </mapper>

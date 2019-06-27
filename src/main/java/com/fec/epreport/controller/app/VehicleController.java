@@ -27,6 +27,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -176,8 +177,9 @@ public class VehicleController {
 					string1 = wxObject.getString("vehicle_type").substring(3,
 							wxObject.getString("vehicle_type").length());
 				}
-				//广告或招商
-				guangShang(pageNo, wxObject.getString("province"), wxObject.getString("city"), jsonObject, xfAdvertiseHome);
+				// 广告或招商
+				guangShang(pageNo, wxObject.getString("province"), wxObject.getString("city"), jsonObject,
+						xfAdvertiseHome);
 				PageHelper.startPage(pageNo, pageSize);
 				List<String> list1 = Arrays.asList(string1.split("%"));
 				List<Map<String, Object>> resultList = interFaceService.selectVehiclesShaiXuan(wxObject, maps, list1);
@@ -202,12 +204,22 @@ public class VehicleController {
 
 	private void guangShang(int pageNo, String province, String city, Map<String, Object> jsonObject,
 			XfAdvertiseHome xfAdvertiseHome) {
+		Random random = new Random();
+		int countSize = 0;
+		// 查询广告第一条 始终要是自己公司的
 		if (!StringUtils.isBlank(province) && !StringUtils.isBlank(city)) {
 			// 查询广告
 			xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo, province, city);
+			if (pageNo > 1 && xfAdvertiseHome == null) {
+				int count = xfmanageService.selectCount(ONE, province, city);
+				if (count > 0) {
+					countSize = random.nextInt(count)+1;
+					xfAdvertiseHome = xfmanageService.selectGuangGao(countSize, province, city);
+				}
+			}
 		}
 		// 没有广告时返回招商
-		if (xfAdvertiseHome == null ||  StringUtils.isBlank(xfAdvertiseHome.getId())) {
+		if (xfAdvertiseHome == null || StringUtils.isBlank(xfAdvertiseHome.getId())) {
 			// 查询招商
 			XfBusinessCenter xfBusinessCenter = xfmanageService.selectZhaoShang();
 			jsonObject.put("godata", xfBusinessCenter);

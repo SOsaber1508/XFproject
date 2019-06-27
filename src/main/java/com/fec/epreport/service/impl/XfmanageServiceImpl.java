@@ -22,7 +22,7 @@ public class XfmanageServiceImpl implements XfmanageService {
 	public XfAdvertiseHome selectGuangGao(int pageNo, String province, String city) {
 		XfAdvertiseHome xfAdvertiseHome = null;
 		try {
-			xfAdvertiseHome = xfmanageDao.selectGuangGao(pageNo - 1,province,city);
+			xfAdvertiseHome = xfmanageDao.selectGuangGao(pageNo - 1, province, city);
 		} catch (DataAccessException d) {
 			log.info("查询广告接口错误：" + d.getLocalizedMessage());
 		}
@@ -38,6 +38,17 @@ public class XfmanageServiceImpl implements XfmanageService {
 			log.info("查询招商接口错误：" + d.getLocalizedMessage());
 		}
 		return xfBusinessCenter;
+	}
+
+	@Override
+	public int selectCount(int pageNo, String province, String city) {
+		int count = 0;
+		try {
+			count = xfmanageDao.selectCount(pageNo- 1, province, city);
+		} catch (DataAccessException d) {
+			log.info("查询广告条数错误：" + d.getLocalizedMessage());
+		}
+		return count;
 	}
 
 }

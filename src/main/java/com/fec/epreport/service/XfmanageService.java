@@ -5,10 +5,13 @@ import com.fec.epreport.pojo.XfBusinessCenter;
 
 public interface XfmanageService {
 
-	//查询广告
+	// 查询广告
 	public XfAdvertiseHome selectGuangGao(int pageNo, String province, String city);
 
-	//查询招商
+	// 查询招商
 	public XfBusinessCenter selectZhaoShang();
+
+	// 拿一下条数
+	public int selectCount(int pageNo, String province, String city);
 
 }
