@@ -115,7 +115,7 @@ public class GoodsController {
 		System.out.println("pageNo" + pageNo);
 		Map<String, Object> jsonObject = new HashMap<String, Object>();
 		PageInfo<GoodsList> pageInfo = new PageInfo<>();
-		XfAdvertiseHome xfAdvertiseHome =new XfAdvertiseHome();
+		XfAdvertiseHome xfAdvertiseHome =null;
 		try {
 //			String sb = "{" + "    \"city\": \"济宁市\"," + "    \"desc_time\": \"0\"," + "    \"goods_end_area\": \"不限\","
 //					+ "    \"goods_length\": \"不限\"," + "    \"goods_loadingtime\": \"不限\","
@@ -123,7 +123,6 @@ public class GoodsController {
 //					+ "    \"goods_vehicletype\": \"不限\"," + "    \"goods_vetype\": \"不限\","
 //					+ "    \"goods_wight\": \"不限\"," + "    \"province\": \"山东省\"" + "}";
 			 String sb = PureNetUtil.buffJson(request);
-			xfAdvertiseHome.setTitle("zcy");
 			if ("".equals(sb.toString())) {
 				// 广告或招商
 				guangShang(pageNo, province, city, jsonObject, xfAdvertiseHome);
@@ -215,16 +214,19 @@ public class GoodsController {
 			XfAdvertiseHome xfAdvertiseHome) {
 		Random random = new Random();
 		int countSize = 0;
-		// 查询广告第一条 始终要是自己公司的
 		if (!StringUtils.isBlank(province) && !StringUtils.isBlank(city)) {
-			// 查询广告
-			xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo, province, city);
-			if (pageNo > 1 && xfAdvertiseHome == null) {
+			// 查询广告第一条 始终要是自己公司的
+			if(pageNo==1) {
+				xfAdvertiseHome=xfmanageService.selectXfGuangGao();
+			}else {
+				xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo, province, city);	
+			}
+			 if (pageNo > 1 && xfAdvertiseHome == null) {
 				int count = xfmanageService.selectCount(ONE, province, city);
 				if (count > 0) {
 					countSize = random.nextInt(count) + 1;
+					xfAdvertiseHome = xfmanageService.selectGuangGao(countSize, province, city);
 				}
-				xfAdvertiseHome = xfmanageService.selectGuangGao(countSize, province, city);
 			}
 		}
 		// 没有广告时返回招商

@@ -206,14 +206,17 @@ public class VehicleController {
 			XfAdvertiseHome xfAdvertiseHome) {
 		Random random = new Random();
 		int countSize = 0;
-		// 查询广告第一条 始终要是自己公司的
 		if (!StringUtils.isBlank(province) && !StringUtils.isBlank(city)) {
-			// 查询广告
-			xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo, province, city);
-			if (pageNo > 1 && xfAdvertiseHome == null) {
+			// 查询广告第一条 始终要是自己公司的
+			if(pageNo==1) {
+				xfAdvertiseHome=xfmanageService.selectXfGuangGao();
+			}else {
+				xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo, province, city);	
+			}
+			 if (pageNo > 1 && xfAdvertiseHome == null) {
 				int count = xfmanageService.selectCount(ONE, province, city);
 				if (count > 0) {
-					countSize = random.nextInt(count)+1;
+					countSize = random.nextInt(count) + 1;
 					xfAdvertiseHome = xfmanageService.selectGuangGao(countSize, province, city);
 				}
 			}

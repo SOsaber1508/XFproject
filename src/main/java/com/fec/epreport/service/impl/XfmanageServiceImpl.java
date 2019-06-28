@@ -51,4 +51,15 @@ public class XfmanageServiceImpl implements XfmanageService {
 		return count;
 	}
 
+	@Override
+	public XfAdvertiseHome selectXfGuangGao() {
+		XfAdvertiseHome xfAdvertiseHome = null;
+		try {
+			xfAdvertiseHome = xfmanageDao.selectXfGuangGao();
+		} catch (DataAccessException d) {
+			log.info("查询广告接口错误：" + d.getLocalizedMessage());
+		}
+		return xfAdvertiseHome;
+	}
+
 }

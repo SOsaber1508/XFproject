@@ -17,4 +17,7 @@ public interface XfmanageDao {
 	// 查询广告条数
 	public int selectCount(@Param("pageNo") int pageNo, @Param("province") String province, @Param("city") String city);
 
+	//查询自己的广告
+	public XfAdvertiseHome selectXfGuangGao();
+
 }
