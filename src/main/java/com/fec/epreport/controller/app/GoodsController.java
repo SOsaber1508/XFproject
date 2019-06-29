@@ -228,6 +228,11 @@ public class GoodsController {
 					countSize = random.nextInt(count) + 1;
 					xfAdvertiseHome = xfmanageService.selectGuangGao(countSize, province, city);
 				}
+			 }if (pageNo == 1 && xfAdvertiseHome == null) {
+				int count = xfmanageService.selectCount(ONE, province, city);
+				if (count > 0) {
+					xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo, province, city);
+				}
 			}
 		}
 		// 没有广告时返回招商
