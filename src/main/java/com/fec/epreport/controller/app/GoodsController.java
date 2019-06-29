@@ -218,8 +218,9 @@ public class GoodsController {
 			// 查询广告第一条 始终要是自己公司的
 			if(pageNo==1) {
 				xfAdvertiseHome=xfmanageService.selectXfGuangGao();
-			}else {
-				xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo, province, city);	
+			}
+			else {
+				xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo-1, province, city);	
 			}
 			 if (pageNo > 1 && xfAdvertiseHome == null) {
 				int count = xfmanageService.selectCount(ONE, province, city);
