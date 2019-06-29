@@ -19,7 +19,7 @@ SELECT
 		js_sys_user u on u.user_code = h.create_id
 	where
 		u.province=#{province} and u.city=#{city}
-		and h.del_flag=0
+		and h.del_flag=0 and h.audit_status=1
 		ORDER BY h.seq desc
 		LIMIT #{pageNo},1
 	</sql>
@@ -41,7 +41,7 @@ SELECT
 		FROM xf_advertise_home h,xf_design_resources r,js_sys_user u
 		where
 		h.design_id = r.id  and  u.user_code ="system" and 
-	   where h.del_flag=0
+	   where h.del_flag=0 and h.audit_status=1
    		 ORDER BY h.seq desc
 		LIMIT 0,1
 	</select>
