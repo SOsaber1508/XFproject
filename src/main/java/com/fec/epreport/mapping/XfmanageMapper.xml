@@ -41,7 +41,7 @@ SELECT
 		FROM xf_advertise_home h,xf_design_resources r,js_sys_user u
 		where
 		h.design_id = r.id  and  u.user_code ="system" and 
-	   where h.del_flag=0 and h.audit_status=1
+	   h.del_flag=0 and h.audit_status=1
    		 ORDER BY h.seq desc
 		LIMIT 0,1
 	</select>
