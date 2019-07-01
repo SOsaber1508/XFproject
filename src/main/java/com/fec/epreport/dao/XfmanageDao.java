@@ -20,4 +20,7 @@ public interface XfmanageDao {
 	//查询自己的广告
 	public XfAdvertiseHome selectXfGuangGao();
 
+	public int selectXfCount(@Param("pageNo") int pageNo, @Param("province") String province,
+			@Param("city") String city);
+
 }

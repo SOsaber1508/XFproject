@@ -17,4 +17,7 @@ public interface XfmanageService {
 	//查system的广告
 	public XfAdvertiseHome selectXfGuangGao();
 
+	//查system的条数
+	public int selectXfCount(int one, String province, String city);
+
 }

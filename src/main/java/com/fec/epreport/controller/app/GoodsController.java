@@ -214,22 +214,26 @@ public class GoodsController {
 			XfAdvertiseHome xfAdvertiseHome) {
 		Random random = new Random();
 		int countSize = 0;
+		int count=0;
+		int count1=0;
 		if (!StringUtils.isBlank(province) && !StringUtils.isBlank(city)) {
+			count = xfmanageService.selectCount(ONE, province, city);
+			count1=xfmanageService.selectXfCount(ONE, province, city);
 			// 查询广告第一条 始终要是自己公司的
 			if(pageNo==1) {
 				xfAdvertiseHome=xfmanageService.selectXfGuangGao();
 			}
-			else {
+			else if(count1>0){
 				xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo-1, province, city);	
+			}else if(count1==0) {
+				xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo, province, city);	
 			}
-			 if (pageNo > 1 && xfAdvertiseHome == null) {
-				int count = xfmanageService.selectCount(ONE, province, city);
+			 if (pageNo > 1 && xfAdvertiseHome == null&& pageNo>count) {
 				if (count > 0) {
 					countSize = random.nextInt(count) + 1;
 					xfAdvertiseHome = xfmanageService.selectGuangGao(countSize, province, city);
 				}
 			 }if (pageNo == 1 && xfAdvertiseHome == null) {
-				int count = xfmanageService.selectCount(ONE, province, city);
 				if (count > 0) {
 					xfAdvertiseHome = xfmanageService.selectGuangGao(pageNo, province, city);
 				}

@@ -62,4 +62,15 @@ public class XfmanageServiceImpl implements XfmanageService {
 		return xfAdvertiseHome;
 	}
 
+	@Override
+	public int selectXfCount(int pageNo, String province, String city) {
+		int count1 = 0;
+		try {
+			count1 = xfmanageDao.selectXfCount(pageNo- 1, province, city);
+		} catch (DataAccessException d) {
+			log.info("查询广告条数错误：" + d.getLocalizedMessage());
+		}
+		return count1;
+	}
+
 }
