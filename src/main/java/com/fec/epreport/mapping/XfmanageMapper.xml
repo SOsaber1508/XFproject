@@ -16,22 +16,24 @@ SELECT
 	left JOIN
 		xf_design_resources r on h.design_id = r.id
 	left JOIN
-		js_sys_user u on u.user_code = h.create_id
+		xf_user_extens u on u.user_id = h.create_id
 	where
-		u.province=#{province} and u.city=#{city}
+		h.province=#{province} and h.city=#{city}
 		and h.del_flag=0 and h.audit_status=1
 		ORDER BY h.seq desc
 		LIMIT #{pageNo},1
 	</sql>
 		<sql id="Base_Column_List1">
-		FROM xf_advertise_home h
+  	FROM xf_advertise_home h
 	left JOIN
 		xf_design_resources r on h.design_id = r.id
 	left JOIN
-		js_sys_user u on u.user_code = h.create_id
+		xf_user_extens u on u.user_id = h.create_id	
+	
 	where
-		 h.del_flag=0 and h.audit_status=1 and u.user_code ='system'
-		ORDER BY h.seq desc
+		h.create_id =1
+		and h.del_flag=0 and h.audit_status=1
+ 	 ORDER BY h.seq desc
 		LIMIT #{pageNo},1
 	</sql>
 	<!-- 查询当前是否有广告 -->
@@ -45,8 +47,6 @@ SELECT
 		SELECT count(*)
 		<include refid="Base_Column_List1" />
 	</select>
-	
-	
 	<!-- 查询广告 -->
 	<select id="selectGuangGao"
 		resultType="com.fec.epreport.pojo.XfAdvertiseHome">
@@ -61,19 +61,21 @@ SELECT
 	left JOIN
 		xf_design_resources r on h.design_id = r.id
 	left JOIN
-		js_sys_user u on u.user_code = h.create_id
+		xf_user_extens u on u.user_id = h.create_id	
+	
 	where
-		u.user_code ='system'
+		h.create_id =1
 		and h.del_flag=0 and h.audit_status=1
  	 ORDER BY h.seq desc
-	  LIMIT 0,1
+	  LIMIT 0,1 
 	</select>
 	<!-- 查询招商 -->
 	<select id="selectZhaoShang"
 		resultType="com.fec.epreport.pojo.XfBusinessCenter">
 		SELECT id,pic,design_id as designId FROM xf_business_center
 		WHERE
-		del_flag=0
+		del_flag=0 
+		LIMIT 0,1
 	</select>
 
 </mapper>
