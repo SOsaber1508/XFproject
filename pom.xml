@@ -195,7 +195,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
-			<version>1.1.14</version>
+			<version>1.1.19</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
 		<dependency>
@@ -271,16 +271,16 @@
 		</dependency>
 		<!-- 极光 -->
 		<dependency>
-   		 <groupId>cn.jpush.api</groupId>
-   		 <artifactId>jpush-client</artifactId>
-   		 <version>3.3.10</version>
+			<groupId>cn.jpush.api</groupId>
+			<artifactId>jpush-client</artifactId>
+			<version>3.3.10</version>
 		</dependency>
 		<dependency>
-        <groupId>io.netty</groupId>
-        <artifactId>netty-all</artifactId>
-        <version>4.1.6.Final</version>
-        <scope>compile</scope>
-    </dependency>
+			<groupId>io.netty</groupId>
+			<artifactId>netty-all</artifactId>
+			<version>4.1.6.Final</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>epreport</finalName>
